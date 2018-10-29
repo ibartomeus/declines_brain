@@ -1,0 +1,53 @@
+---
+title: "To Do"
+author: ""
+date: "29/10/2018"
+output: html_document
+---
+
+# Data
+
+## Trends
+
+[ ] Bartomeus PNAS estimates (Nacho) 
+[ ] Sheper PNAS estimates (MA)
+[ ] UE red list (via @ropensci; MA)
+[ ] SPAIN trends (MA: species with Brain size; Nacho or Cristina: trends)
+
+## traits
+
+[ ] LHT Bartomeus PNAS + Shepper PNAS + Traitbase (Var) Nacho
+[ ] Brain: MA (Spain + ND + US Ferran + US Parker): MA
+[ ] Habitats USA: MA; Others ¿?: MA
+[ ] Exotic use ¿? (Nacho)
+[ ] Innovation (some in MA bbdd)
+[ ] Invasive species in US. (Nacho)
+
+## Phylogeny
+
+[ ] Hedtke et al 2013? + politomies
+[ ] Build one as Ferran did?
+
+# Models
+
+- Regresion Trees (see Sol et al 2012 Science)
+- Quantile regresions
+
+# Refs:
+
+- Mamifers. Manuela gonzalez??? big-worst
+- Birds. Invasion proceses (Sol et al 2012),... 
+- Reptiles. Invasion also related with Brain size.
+
+
+
+
+
+
+
+
+
+
+
+
+
