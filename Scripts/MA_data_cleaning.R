@@ -4,6 +4,7 @@ brains.it <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/brains.it.csv")
 
 brains.it$Encephalization<-brains.it$Brain.Weight..mg./brains.it$IT
 brains.t<-subset(brains.it, subset = (is.na(brains.it$Encephalization)==FALSE))
+list.of.species<-as.data.frame(unique(brains.t$Species))
 spain.bees<-subset(brains.t, subset = (brains.t$Country=="Spain"))
 list.of.spanish.bees<-unique(spain.bees$Species)
 list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
@@ -11,6 +12,7 @@ list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
 getwd()
 setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
 write.csv(list.of.spanish.bees, "list.of.spanish.bees.csv")
+write.csv(list.of.species, "list.of.species.csv")
 setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/")
 
 #Does Queen have bigger brains?------
