@@ -10,14 +10,14 @@ output: html_document
 ## Trends
 
 [ ] Bartomeus PNAS estimates (Nacho) 
-[ ] Sheper PNAS estimates (MA)
+[ ] Scheper PNAS estimates (MA)
 [ ] UE red list (via @ropensci; MA)
 [X] SPAIN trends (MA: species with Brain size) 
 [ ] Trends: Nacho or Cristina
 
 ## traits
 
-[ ] LHT Bartomeus PNAS + Shepper PNAS + Traitbase (Var) Nacho
+[ ] LHT Bartomeus PNAS + Scheper PNAS + Traitbase (Var) Nacho
 [X] Brain: MA (Spain + ND + US Ferran + US Parker): MA
 [ ] Habitats USA: MA; Others ¿?: MA
 [ ] Exotic use ¿? (Nacho)
