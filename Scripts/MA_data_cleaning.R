@@ -50,8 +50,26 @@ list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" |
 list.of.innovators<-unique(list.of.innovators.f$species)
 list.of.innovators
 
+#Import scheper trends----
+
+scheper_trends <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/scheper_trends.csv")
+# 1 means not change along time
+scheper_trends
+
+#Import red list----
+install.packages("rredlist")
+library(rredlist)
 
 
+rl_use_iucn()
+
+
+rl_threats_(name = "Osmia cornuta", id = NULL, region = NULL, key = NULL)
+
+
+#US habitats----
+habitat_preference_US <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/habitat_preference_US.csv")
+habitat_preference_US
 #Does Queen have bigger brains?------
 boxplot(brains.it$Brain.Weight..mg./brains.it$IT~brains.it$Sex, ylab="Brain/IT")
 

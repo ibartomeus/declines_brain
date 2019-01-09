@@ -10,7 +10,7 @@ output: html_document
 ## Trends
 
 [ ] Bartomeus PNAS estimates (Nacho) 
-[ ] Scheper PNAS estimates (MA)
+[X] Scheper PNAS estimates (MA)
 [ ] UE red list (via @ropensci; MA)
 [X] SPAIN trends (MA: species with Brain size) 
 [ ] Trends: Nacho or Cristina
