@@ -1,3 +1,7 @@
+library(reshape2)
+library(googlesheets)
+library(rredlist)
+
 brains.it <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/brains.it.csv")
 
 #List of species with brain weight and IT-----
@@ -9,25 +13,22 @@ spain.bees<-subset(brains.t, subset = (brains.t$Country=="Spain"))
 list.of.spanish.bees<-unique(spain.bees$Species)
 list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
 
-list.of.spanish.bees
-list.of.species
 
 getwd()
 setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
 #write.csv(list.of.spanish.bees, "list.of.spanish.bees.csv")
 #write.csv(list.of.species, "list.of.species.csv")
 setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/")
+list.of.spanish.bees
+list.of.species
 
 #List of innovators-----
 # load package
-install.packages("googlesheets")
-library(googlesheets)
 gs_ls("Traits")
 be <- gs_title("Traits")
 gs_ws_ls(be)
 Traits <- gs_read(ss=be, ws = "Sheet1", skip=0)
 Traits<- as.data.frame(Traits)
-View(Traits)
 Traits$species
 summary(as.factor(Traits$value), maxsum = 1000)
 list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" | 
@@ -57,8 +58,6 @@ scheper_trends <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/scheper_tr
 scheper_trends
 
 #Import red list----
-install.packages("rredlist")
-library(rredlist)
 
 
 rl_use_iucn()
@@ -69,6 +68,24 @@ rl_threats_(name = "Osmia cornuta", id = NULL, region = NULL, key = NULL)
 
 #US habitats----
 habitat_preference_US <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/habitat_preference_US.csv")
+habitat_preference_US
+m.habitat_preference_US<-melt(habitat_preference_US)
+m.habitat_preference_US<-as.data.frame(m.habitat_preference_US)
+#We order
+m.habitat_preference_US<-m.habitat_preference_US[order(m.habitat_preference_US$Species),]
+m.habitat_preference_US<-subset(m.habitat_preference_US, subset = (!(m.habitat_preference_US$variable == "Habitats.used")))
+m.habitat_preference_US$habitat.preference<-rep(NA,nrow(m.habitat_preference_US))
+
+for (n in 1:nrow(m.habitat_preference_US)) {
+    if(m.habitat_preference_US$value[n]>0.94){m.habitat_preference_US$habitat.preference[n] <- "Yes"}else{
+        if(m.habitat_preference_US$value[n]<0.06){
+            m.habitat_preference_US$habitat.preference[n] <- "No"    
+        }}}
+m.habitat_preference_US
+na.omit(m.habitat_preference_US)
+
+habitat_preference_US<-na.omit(m.habitat_preference_US)
+
 habitat_preference_US
 #Does Queen have bigger brains?------
 boxplot(brains.it$Brain.Weight..mg./brains.it$IT~brains.it$Sex, ylab="Brain/IT")

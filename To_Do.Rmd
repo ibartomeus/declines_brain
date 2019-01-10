@@ -19,7 +19,8 @@ output: html_document
 
 [ ] LHT Bartomeus PNAS + Scheper PNAS + Traitbase (Var) Nacho
 [X] Brain: MA (Spain + ND + US Ferran + US Parker): MA
-[ ] Habitats USA: MA; Others ¿?: MA
+[X] Habitats USA: MA 
+    [ ] Others ¿?: MA
 [ ] Exotic use ¿? (Nacho)
 [X] Innovation (some in MA bbdd)
 [ ] Invasive species in US. (Nacho)
@@ -39,16 +40,5 @@ output: html_document
 - Mamifers. Manuela gonzalez??? big-worst
 - Birds. Invasion proceses (Sol et al 2012),... 
 - Reptiles. Invasion also related with Brain size.
-
-
-
-
-
-
-
-
-
-
-
 
 
