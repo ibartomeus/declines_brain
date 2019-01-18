@@ -58,12 +58,43 @@ scheper_trends <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/scheper_tr
 scheper_trends
 
 #Import red list----
-
+rl_use_iucn
 
 rl_use_iucn()
+IUCN_REDLIST_KEY="084775ffa81321631f2583dcd416a81af6fbd73efb60a0eab38e0df10082fe07"
+iucn_redlist_key()
+rl_regions(key = IUCN_REDLIST_KEY, parse = TRUE)
+
+rl_threats(name = 'Emys orbicularis', region = "europe", key = IUCN_REDLIST_KEY)
+A<-rl_threats(name = 'Emys orbicularis', key = IUCN_REDLIST_KEY)
 
 
-rl_threats_(name = "Osmia cornuta", id = NULL, region = NULL, key = NULL)
+rl_threats('Fratercula arctica', key = IUCN_REDLIST_KEY, parse = TRUE)
+rl_threats('Fratercula arctica', key = IUCN_REDLIST_KEY)
+rl_threats('Fratercula arctica', region = 'europe', key = IUCN_REDLIST_KEY)
+rl_threats(id = 12392, key = IUCN_REDLIST_KEY)
+rl_threats(id = 22694927, region = 'europe')
+rl_threats(name = 'Abies numidica')
+rl_threats_('Fratercula arctica', key = IUCN_REDLIST_KEY)
+
+rl_threats(id = 62290750)
+
+rl_occ_country('Loxodonta africana', key = IUCN_REDLIST_KEY)
+
+rl_history('Fratercula arctica', key = IUCN_REDLIST_KEY)
+rl_measures('Fratercula arctica', key = IUCN_REDLIST_KEY, region = "europe")
+rl_measures(id = 12392, key = IUCN_REDLIST_KEY)
+rl_growth_forms('Fratercula arctica', key = IUCN_REDLIST_KEY)
+rl_growth_forms('Quercus robur', key = IUCN_REDLIST_KEY)
+rl_narrative('Fratercula arctica', key = IUCN_REDLIST_KEY)
+
+rl_sp_count(key = IUCN_REDLIST_KEY)
+
+rl_threats(id = 12392, key = IUCN_REDLIST_KEY)
+rl_threats(id = 22694927, region = 'europe', key = IUCN_REDLIST_KEY)
+rl_search('Fratercula arctica', key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search('Colletes albomaculatus', key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+
 
 
 #US habitats----
