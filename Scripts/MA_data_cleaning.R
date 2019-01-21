@@ -58,44 +58,64 @@ scheper_trends <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/scheper_tr
 scheper_trends
 
 #Import red list----
-rl_use_iucn
 
+#You need an API token to use this
 rl_use_iucn()
 IUCN_REDLIST_KEY="084775ffa81321631f2583dcd416a81af6fbd73efb60a0eab38e0df10082fe07"
-iucn_redlist_key()
-rl_regions(key = IUCN_REDLIST_KEY, parse = TRUE)
-
-rl_threats(name = 'Emys orbicularis', region = "europe", key = IUCN_REDLIST_KEY)
-A<-rl_threats(name = 'Emys orbicularis', key = IUCN_REDLIST_KEY)
 
 
-rl_threats('Fratercula arctica', key = IUCN_REDLIST_KEY, parse = TRUE)
-rl_threats('Fratercula arctica', key = IUCN_REDLIST_KEY)
-rl_threats('Fratercula arctica', region = 'europe', key = IUCN_REDLIST_KEY)
-rl_threats(id = 12392, key = IUCN_REDLIST_KEY)
-rl_threats(id = 22694927, region = 'europe')
-rl_threats(name = 'Abies numidica')
-rl_threats_('Fratercula arctica', key = IUCN_REDLIST_KEY)
+list.of.species
 
-rl_threats(id = 62290750)
+for (n in 1:nrow(list.of.species)) {
+    tryCatch({temp<-rl_search(as.character(list.of.species[n,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+    print(temp)}, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+}
 
-rl_occ_country('Loxodonta africana', key = IUCN_REDLIST_KEY)
+rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[20,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[26,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[60,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[67,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[72,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[114,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[115,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[122,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[138,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[145,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+A<-c("Dasypoda iberica","Nomada merceti","Flavipanurgus venustus",
+     "Andrena semilaevis")
 
-rl_history('Fratercula arctica', key = IUCN_REDLIST_KEY)
-rl_measures('Fratercula arctica', key = IUCN_REDLIST_KEY, region = "europe")
-rl_measures(id = 12392, key = IUCN_REDLIST_KEY)
-rl_growth_forms('Fratercula arctica', key = IUCN_REDLIST_KEY)
-rl_growth_forms('Quercus robur', key = IUCN_REDLIST_KEY)
-rl_narrative('Fratercula arctica', key = IUCN_REDLIST_KEY)
+species.temp<-(c(as.character(list.of.species[19,1]),
+as.character(list.of.species[20,1]),
+as.character(list.of.species[26,1]),
+as.character(list.of.species[60,1]),
+as.character(list.of.species[67,1]),
+as.character(list.of.species[72,1]),
+as.character(list.of.species[114,1]),
+as.character(list.of.species[115,1]),
+as.character(list.of.species[122,1]),
+as.character(list.of.species[138,1]),
+as.character(list.of.species[145,1])))
 
-rl_sp_count(key = IUCN_REDLIST_KEY)
+category.temp<-c(rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[20,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[26,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[60,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[67,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[72,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[114,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[115,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[122,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[138,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[145,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category)
+species.iucn<-as.data.frame(species.temp)          
+category.iucn<-as.data.frame(category.temp)          
+iucn.trends<-(cbind(species.iucn,category.iucn))
+getwd()
 
-rl_threats(id = 12392, key = IUCN_REDLIST_KEY)
-rl_threats(id = 22694927, region = 'europe', key = IUCN_REDLIST_KEY)
-rl_search('Fratercula arctica', key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search('Colletes albomaculatus', key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-
-
+# setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
+# write.csv(iucn.trends, "iucn_trends.csv")
+# setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain")
 
 #US habitats----
 habitat_preference_US <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/habitat_preference_US.csv")
