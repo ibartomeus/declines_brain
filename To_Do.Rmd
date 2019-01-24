@@ -9,7 +9,7 @@ output: html_document
 
 ## Trends
 
-[ ] Bartomeus PNAS estimates (Nacho) 
+[X] Bartomeus PNAS estimates (Nacho) 
 [X] Scheper PNAS estimates (MA)
 [X] UE red list (via @ropensci; MA)
 [X] SPAIN trends (MA: species with Brain size) 

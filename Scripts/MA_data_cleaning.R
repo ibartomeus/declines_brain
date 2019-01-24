@@ -14,7 +14,6 @@ list.of.spanish.bees<-unique(spain.bees$Species)
 list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
 
 
-getwd()
 #setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
 #write.csv(list.of.spanish.bees, "list.of.spanish.bees.csv")
 #write.csv(list.of.species, "list.of.species.csv")
@@ -111,7 +110,6 @@ category.temp<-c(rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLI
 species.iucn<-as.data.frame(species.temp)          
 category.iucn<-as.data.frame(category.temp)          
 iucn.trends<-(cbind(species.iucn,category.iucn))
-getwd()
 
 # setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
 # write.csv(iucn.trends, "iucn_trends.csv")
@@ -138,6 +136,70 @@ na.omit(m.habitat_preference_US)
 habitat_preference_US<-na.omit(m.habitat_preference_US)
 
 habitat_preference_US
+
+#Species trends data--------
+scheper_trends <- read.csv("Raw_data/scheper_trends.csv")
+iucn_trends <- read.csv("Raw_data/iucn_trends.csv")
+bartomeus_trends <- read.csv("Raw_data/bartomeus_trends.csv", sep = ";")
+
+colnames(scheper_trends)
+colnames(iucn_trends) <-c("X","Species","category.temp")
+colnames(bartomeus_trends)
+
+colnames(list.of.species)<-c("Species")
+
+merger1<-merge(list.of.species,scheper_trends)
+merger2<-data.frame(merger1$Species, merger1$Change.index)
+colnames(merger2)<-c("Species","Scheper_trends")
+merger3<-merge(list.of.species, iucn_trends)
+merger4<-data.frame(merger3$Species,merger3$category.temp)
+colnames(merger4)<-c("Species","IUCN_trends")
+
+merger5<-merge(list.of.species, bartomeus_trends)
+merger6<-data.frame(merger5$Species, merger5$Status)
+colnames(merger6)<-c("Species","Bartomeus_trends")
+
+merger2$source<-rep("Scheper",nrow(merger2))
+merger4$source<-rep("IUCN",nrow(merger4))
+merger6$source<-rep("Bartomeus",nrow(merger6))
+
+#Let's standarize by increasing, stable, decreasing, unknown
+merger2
+
+f.trend2<-vector()
+for (n in 1:nrow(merger2)) {
+if (merger2$Scheper_trends[n]<1){
+    f.trend2[n] = "declining"
+}else{
+if (merger2$Scheper_trends[n]>1) {
+f.trend2[n] = "increasing"    
+}else{
+f.trend2[n] = "stable"        
+}}}
+merger2$f.trend<-f.trend2
+
+
+merger4
+f.trend4<-vector()
+for (n in 1:nrow(merger4)) {
+if (merger4$IUCN_trends[n] == "DD") {
+f.trend4[n]<-"unknown"    
+}else{
+if (merger4$IUCN_trends[n] == "LC") {
+f.trend4[n]<-"stable"    
+}else{print("Check IUCN_trends")}   
+}    
+}
+merger4$f.trend<-f.trend4
+
+merger6$f.trend<-merger6$Bartomeus_trends
+
+colnames(merger2)<-c("Species","original.trends","source","f.trend")
+colnames(merger4)<-c("Species","original.trends","source","f.trend")
+colnames(merger6)<-c("Species","original.trends","source","f.trend")
+
+species.trends<-rbind(merger2,merger4,merger6)
+
 #Does Queen have bigger brains?------
 boxplot(brains.it$Brain.Weight..mg./brains.it$IT~brains.it$Sex, ylab="Brain/IT")
 
