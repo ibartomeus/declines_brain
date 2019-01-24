@@ -2,7 +2,7 @@ library(reshape2)
 library(googlesheets)
 library(rredlist)
 
-brains.it <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/brains.it.csv")
+brains.it <- read.csv("Raw_data/brains.it.csv")
 
 #List of species with brain weight and IT-----
 
@@ -15,10 +15,10 @@ list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
 
 
 getwd()
-setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
+#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
 #write.csv(list.of.spanish.bees, "list.of.spanish.bees.csv")
 #write.csv(list.of.species, "list.of.species.csv")
-setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/")
+#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/")
 list.of.spanish.bees
 list.of.species
 
@@ -53,7 +53,7 @@ list.of.innovators
 
 #Import scheper trends----
 
-scheper_trends <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/scheper_trends.csv")
+scheper_trends <- read.csv("Raw_data/scheper_trends.csv")
 # 1 means not change along time
 scheper_trends
 
@@ -118,7 +118,7 @@ getwd()
 # setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain")
 
 #US habitats----
-habitat_preference_US <- read.csv("~/Desktop/Tesis/R/declines_brain/Raw_data/habitat_preference_US.csv")
+habitat_preference_US <- read.csv("Raw_data/habitat_preference_US.csv")
 habitat_preference_US
 m.habitat_preference_US<-melt(habitat_preference_US)
 m.habitat_preference_US<-as.data.frame(m.habitat_preference_US)
