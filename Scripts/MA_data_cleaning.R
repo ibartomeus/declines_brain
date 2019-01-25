@@ -59,16 +59,15 @@ scheper_trends
 #Import red list----
 
 #You need an API token to use this
-rl_use_iucn()
 IUCN_REDLIST_KEY="084775ffa81321631f2583dcd416a81af6fbd73efb60a0eab38e0df10082fe07"
 
 
 list.of.species
 
-for (n in 1:nrow(list.of.species)) {
-    tryCatch({temp<-rl_search(as.character(list.of.species[n,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-    print(temp)}, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
-}
+#for (n in 1:nrow(list.of.species)) {
+    #tryCatch({temp<-rl_search(as.character(list.of.species[n,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+    #print(temp)}, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
+#}
 
 rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[20,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
@@ -81,8 +80,6 @@ rl_search(as.character(list.of.species[115,1]), key = IUCN_REDLIST_KEY, parse = 
 rl_search(as.character(list.of.species[122,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[138,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[145,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-A<-c("Dasypoda iberica","Nomada merceti","Flavipanurgus venustus",
-     "Andrena semilaevis")
 
 species.temp<-(c(as.character(list.of.species[19,1]),
 as.character(list.of.species[20,1]),
@@ -163,7 +160,7 @@ merger2$source<-rep("Scheper",nrow(merger2))
 merger4$source<-rep("IUCN",nrow(merger4))
 merger6$source<-rep("Bartomeus",nrow(merger6))
 
-#Let's standarize by increasing, stable, decreasing, unknown
+#Let's standarize
 merger2
 
 f.trend2<-vector()
@@ -199,6 +196,26 @@ colnames(merger4)<-c("Species","original.trends","source","f.trend")
 colnames(merger6)<-c("Species","original.trends","source","f.trend")
 
 species.trends<-rbind(merger2,merger4,merger6)
+
+#We add brain sizes and ITs
+brains.it$Species
+brains.it$IT
+brains.it$Brain.Weight..mg.
+
+species.brains1<-data.frame(brains.it$Species,
+                            brains.it$IT,
+                            brains.it$Brain.Weight..mg.)
+species.brains1<-na.omit(species.brains1)
+colnames(species.brains1)<-c("Species", "IT", "Brain.weight")
+
+plot(species.brains1$Brain.weight, species.brains1$IT, data = species.brains1)
+
+
+boxplot(Brain.weight~Species, data = species.brains1)
+
+
+aggregate(species.brains1, by = list(species.brains1$Species), FUN = mean)
+
 
 #Does Queen have bigger brains?------
 boxplot(brains.it$Brain.Weight..mg./brains.it$IT~brains.it$Sex, ylab="Brain/IT")
