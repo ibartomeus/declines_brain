@@ -3,7 +3,8 @@ library(googlesheets)
 library(rredlist)
 
 brains.it <- read.csv("Raw_data/brains.it.csv")
-
+#Dasypoda visnaga's brain was conserved in ethanol, not formol
+brains.it<-brains.it[-175,]
 #List of species with brain weight and IT-----
 
 brains.it$Encephalization<-brains.it$Brain.Weight..mg./brains.it$IT
@@ -197,7 +198,79 @@ colnames(merger6)<-c("Species","original.trends","source","f.trend")
 
 species.trends<-rbind(merger2,merger4,merger6)
 
+species.trends[order(species.trends$Species),]
+
+subset(species.trends, subset = (species.trends$Species == ("Andrena barbilabris"|
+                                                                 "Andrena fulva"|
+                                                             "Andrena semilaevis"|
+                                                             "Bombus bimaculatus"|
+                                                                 "Bombus griseocollis"|
+                                                                 "Bombus impatiens"|
+                                                                 "Bombus jonellus"|
+                                                             "Bombus ternarius"|
+                                                                 "Bombus vagans"|
+                                                                 "Halictus confusus"|
+                                                             "Halictus rubicundus"|
+                                                                 "Megachile centuncularis"
+)))
+
+
+repeated.trends<-subset(species.trends, subset = (species.trends$Species == "Andrena barbilabris" 
+                                 | species.trends$Species == "Andrena fulva"
+                                 | species.trends$Species == "Andrena semilaevis"
+                                 | species.trends$Species == "Bombus bimaculatus"
+                                 | species.trends$Species == "Bombus griseocollis"
+                                 | species.trends$Species == "Bombus impatiens"
+                                 | species.trends$Species == "Bombus jonellus"
+                                 | species.trends$Species == "Bombus ternarius"
+                                 | species.trends$Species == "Bombus vagans"
+                                 | species.trends$Species == "Halictus confusus"
+                                 | species.trends$Species == "Halictus rubicundus"
+                                 | species.trends$Species == "Megachile centuncularis"
+                                 ))
+
+repeated.trends[order(repeated.trends$Species),]
+
+#Identify the procedence of the repeated species
+
+brains.it[which(brains.it$Species == "Andrena barbilabris"),] #Pick Scheper
+brains.it[which(brains.it$Species == "Andrena fulva"),] #Pick Scheper
+brains.it[which(brains.it$Species == "Andrena semilaevis"),] #Pick Scheper
+brains.it[which(brains.it$Species == "Bombus bimaculatus"),] #Bartomeus
+brains.it[which(brains.it$Species == "Bombus griseocollis"),] #Bartomeus
+brains.it[which(brains.it$Species == "Bombus impatiens"),] #Bartomeus
+brains.it[which(brains.it$Species == "Bombus jonellus"),] #Pick Scheper
+brains.it[which(brains.it$Species == "Bombus ternarius"),] #Pick Bartomeus
+brains.it[which(brains.it$Species == "Bombus vagans"),] #Pick Bartomeus
+brains.it[which(brains.it$Species == "Halictus confusus"),] #Pick anything
+brains.it[which(brains.it$Species == "Megachile centuncularis"),] #Pick Scheper
+brains.it[which(brains.it$Species == "Halictus rubicundus"),] #Pick Scheper
+
+#Remove the repeated species
+
+sp.t<-subset(species.trends, subset = (!(species.trends$Species == "Andrena barbilabris" & species.trends$source == "Bartomeus")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Andrena fulva" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Andrena semilaevis" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus bimaculatus" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus griseocollis" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus impatiens" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus jonellus" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus ternarius" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Bombus vagans" & sp.t$source == "IUCN")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Halictus confusus" & sp.t$source == "Bartomeus")))
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Halictus rubicundus" & sp.t$source == "Bartomeus")))
+
+sp.t<-subset(sp.t, subset = (!(sp.t$Species == "Megachile centuncularis" & sp.t$source == "Bartomeus")))
+duplicated(sp.t$Species)
+
+sp.t
+
+# write.csv(repeated.trends, "repeated.trends.csv")
+
 #We add brain sizes and ITs
+#Dasypoda visnaga's brain was conserved in ethanol, not formol
+brains.it<-brains.it[-175,]
+
 brains.it$Species
 brains.it$IT
 brains.it$Brain.Weight..mg.
@@ -208,8 +281,27 @@ species.brains1<-data.frame(brains.it$Species,
 species.brains1<-na.omit(species.brains1)
 colnames(species.brains1)<-c("Species", "IT", "Brain.weight")
 
-plot(species.brains1$Brain.weight, species.brains1$IT, data = species.brains1)
+plot(species.brains1$Brain.weight ~ species.brains1$IT, data = species.brains1)
+abline(lm(species.brains1$Brain.weight ~ species.brains1$IT,data = species.brains1), col="pink")
+summary(lm(species.brains1$Brain.weight ~ species.brains1$IT,data = species.brains1))
 
+#Linearizing
+plot(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), data = species.brains1)
+abline(lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT),data = species.brains1), col="pink")
+summary(lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT),data = species.brains1))
+text(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), labels=row.names(species.brains1), cex= 0.7, pos=3)
+res.extract1<-lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), data = species.brains1)
+res.extract1$residuals
+
+
+#Add residuals and encephalization to the dataframe
+species.brains1$residuals<-res.extract1$residuals
+species.brains1$Brain.IT<-species.brains1$Brain.weight/species.brains1$IT
+
+colnames(species.trends)
+colnames(species.brains1)
+A<-merge(species.brains1, species.trends)
+View(A)
 
 boxplot(Brain.weight~Species, data = species.brains1)
 
