@@ -294,19 +294,41 @@ res.extract1<-lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), da
 res.extract1$residuals
 
 
+
+
+
+
 #Add residuals and encephalization to the dataframe
 species.brains1$residuals<-res.extract1$residuals
 species.brains1$Brain.IT<-species.brains1$Brain.weight/species.brains1$IT
 
 colnames(species.trends)
 colnames(species.brains1)
-A<-merge(species.brains1, species.trends)
-View(A)
+brain.it.trends<-merge(species.brains1, species.trends)
+brain.it.trends
 
-boxplot(Brain.weight~Species, data = species.brains1)
+#Early graphs-----
+brain.it.trends
+#Encephalization
+boxplot(brain.it.trends$Brain.IT~brain.it.trends$f.trend, notch=TRUE,data = brain.it.trends, ylab= "Brain/IT", xlab="Population trends")
+b.aov<-(aov(Brain.IT~f.trend, data = brain.it.trends))
+TukeyHSD(b.aov)
+
+#Mixed models
+c.aov<-(aov(Brain.IT~f.trend + Error(Species), data = brain.it.trends))
+summary(c.aov)
 
 
-aggregate(species.brains1, by = list(species.brains1$Species), FUN = mean)
+
+#Residuals
+boxplot(brain.it.trends$residuals~brain.it.trends$f.trend, notch=TRUE,data = brain.it.trends, ylab= "Brain/IT residuals", xlab="Population trends")
+d.aov<-(aov(residuals~f.trend, data = brain.it.trends))
+TukeyHSD(d.aov)
+
+e.aov<-(aov(residuals~f.trend + Error(Species), data = brain.it.trends))
+summary(e.aov)
+
+
 
 
 #Does Queen have bigger brains?------
