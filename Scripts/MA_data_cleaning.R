@@ -270,7 +270,7 @@ sp.t
 #We add brain sizes and ITs
 #Dasypoda visnaga's brain was conserved in ethanol, not formol
 brains.it<-brains.it[-175,]
-
+species.brains1
 brains.it$Species
 brains.it$IT
 brains.it$Brain.Weight..mg.
@@ -308,25 +308,8 @@ brain.it.trends<-merge(species.brains1, species.trends)
 brain.it.trends
 
 #Early graphs-----
-brain.it.trends
-#Encephalization
-boxplot(brain.it.trends$Brain.IT~brain.it.trends$f.trend, notch=TRUE,data = brain.it.trends, ylab= "Brain/IT", xlab="Population trends")
-b.aov<-(aov(Brain.IT~f.trend, data = brain.it.trends))
-TukeyHSD(b.aov)
+#write.csv(brain.it.trends, "data_to_play_with.csv")
 
-#Mixed models
-c.aov<-(aov(Brain.IT~f.trend + Error(Species), data = brain.it.trends))
-summary(c.aov)
-
-
-
-#Residuals
-boxplot(brain.it.trends$residuals~brain.it.trends$f.trend, notch=TRUE,data = brain.it.trends, ylab= "Brain/IT residuals", xlab="Population trends")
-d.aov<-(aov(residuals~f.trend, data = brain.it.trends))
-TukeyHSD(d.aov)
-
-e.aov<-(aov(residuals~f.trend + Error(Species), data = brain.it.trends))
-summary(e.aov)
 
 
 
