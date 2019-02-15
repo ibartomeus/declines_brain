@@ -73,45 +73,45 @@ list.of.species
 rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[20,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[26,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[60,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[67,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[72,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[59,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[66,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[71,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[113,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 rl_search(as.character(list.of.species[114,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[115,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[122,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[138,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
-rl_search(as.character(list.of.species[145,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[121,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[137,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
+rl_search(as.character(list.of.species[144,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category
 
 species.temp<-(c(as.character(list.of.species[19,1]),
 as.character(list.of.species[20,1]),
 as.character(list.of.species[26,1]),
-as.character(list.of.species[60,1]),
-as.character(list.of.species[67,1]),
-as.character(list.of.species[72,1]),
+as.character(list.of.species[59,1]),
+as.character(list.of.species[66,1]),
+as.character(list.of.species[71,1]),
+as.character(list.of.species[113,1]),
 as.character(list.of.species[114,1]),
-as.character(list.of.species[115,1]),
-as.character(list.of.species[122,1]),
-as.character(list.of.species[138,1]),
-as.character(list.of.species[145,1])))
+as.character(list.of.species[121,1]),
+as.character(list.of.species[137,1]),
+as.character(list.of.species[144,1])))
 
 category.temp<-c(rl_search(as.character(list.of.species[19,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
                  rl_search(as.character(list.of.species[20,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
                  rl_search(as.character(list.of.species[26,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[60,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[67,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[72,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[59,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[66,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[71,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[113,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
                  rl_search(as.character(list.of.species[114,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[115,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[122,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[138,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
-                 rl_search(as.character(list.of.species[145,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category)
+                 rl_search(as.character(list.of.species[121,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[137,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category,
+                 rl_search(as.character(list.of.species[144,1]), key = IUCN_REDLIST_KEY, parse = FALSE)$result[[1]]$category)
 species.iucn<-as.data.frame(species.temp)          
 category.iucn<-as.data.frame(category.temp)          
 iucn.trends<-(cbind(species.iucn,category.iucn))
 
-# setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
-# write.csv(iucn.trends, "iucn_trends.csv")
-# setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain")
+#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
+#write.csv(iucn.trends, "iucn_trends.csv")
+#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain")
 
 #US habitats----
 habitat_preference_US <- read.csv("Raw_data/habitat_preference_US.csv")
@@ -307,7 +307,11 @@ colnames(species.brains1)
 brain.it.trends<-merge(species.brains1, species.trends)
 brain.it.trends
 
-#Early graphs-----
+# Phylogenetics-----
+brain.it.trends$Species
+bee.trees=read.tree(file="data/phylogeny_genus_level.txt")
+
+
 #write.csv(brain.it.trends, "data_to_play_with.csv")
 
 
