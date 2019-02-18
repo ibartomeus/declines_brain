@@ -1,6 +1,13 @@
 library(reshape2)
 library(googlesheets)
 library(rredlist)
+library(MCMCglmm)
+library(brms)
+library(data.tree)
+library('ctv') 
+library(ape)
+library(stringi)
+
 
 brains.it <- read.csv("Raw_data/brains.it.csv")
 #Dasypoda visnaga's brain was conserved in ethanol, not formol
@@ -308,10 +315,38 @@ brain.it.trends<-merge(species.brains1, species.trends)
 brain.it.trends
 
 # Phylogenetics-----
+
 brain.it.trends$Species
 bee.trees=read.tree(file="data/phylogeny_genus_level.txt")
+data<-brain.it.trends
+unique(data$Species)
 
-
+#######
+species=c("Agapostemon_sericeus", "Agapostemon_virescens", "Andrena_barbilabris", "Andrena_bicolor",            
+          Andrena carantonica         Andrena carlini             Andrena chrysosceles        Andrena cineraria          
+          Andrena crataegi            Andrena dorsata             Andrena dunningi            Andrena flavipes           
+          Andrena fragilis            Andrena frigida             Andrena fucata              Andrena fulva              
+          Andrena fulvida             Andrena gravida             Andrena hippotes            Andrena hirticincta        
+          Andrena labiata             Andrena milwaukeensis       Andrena miserabilis         Andrena nasonii            
+          Andrena nigriceps           Andrena nigroaenea          Andrena nitida              Andrena nubecula           
+          Andrena ovatula             Andrena pilipes             Andrena pruni               Andrena rugosa             
+          Andrena semilaevis          Andrena simplex             Andrena subopaca            Andrena tibialis           
+          Andrena vicina              Anthidium manicatum         Anthophora plumipes         Anthophora quadrimaculata  
+          Anthophora retusa           Augochlora pura             Augochlorella aurata        Augochloropsis metallica   
+          Bombus bimaculatus          Bombus griseocollis         Bombus hortorum             Bombus impatiens           
+          Bombus jonellus             Bombus lapidarius           Bombus pascuorum            Bombus pratorum            
+          Bombus ternarius            Bombus terrestris           Bombus vagans               Calliopsis andreniformis   
+          Ceratina calcarata          Ceratina strenua            Colletes thoracicus         Dasypoda iberica           
+          Flavipanurgus venustus      Halictus confusus           Halictus ligatus            Halictus rubicundus        
+          Hylaeus mesillae            Hylaeus modestus            Lasioglossum calceatum      Lasioglossum coriaceum     
+          Lasioglossum fulvicorne     Lasioglossum leucozonium    Lasioglossum punctatissimum Lasioglossum sexnotatum    
+          Lasioglossum sexstrigatum   Lasioglossum zonulum        Megachile campanulae        Megachile centuncularis    
+          Megachile gemula            Megachile mendica           Megachile pugnata           Megachile texana           
+          Megachile willughbiella     Melissodes bimaculata       Nomada cressonii            Nomada luteoloides         
+          Nomada merceti              Osmia atriventris           Osmia bicornis              Osmia bucephala            
+          Osmia caerulescens          Osmia lignaria              Osmia pumila                Sphecodes ranunculi        
+          Xylocopa virginica)
+###
 #write.csv(brain.it.trends, "data_to_play_with.csv")
 
 
