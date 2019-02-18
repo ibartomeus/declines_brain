@@ -313,43 +313,153 @@ colnames(species.trends)
 colnames(species.brains1)
 brain.it.trends<-merge(species.brains1, species.trends)
 brain.it.trends
+#write.csv(brain.it.trends, "data_to_play_with.csv")
 
 # Phylogenetics-----
-
 brain.it.trends$Species
 bee.trees=read.tree(file="data/phylogeny_genus_level.txt")
 data<-brain.it.trends
 unique(data$Species)
 
-#######
+
 species=c("Agapostemon_sericeus", "Agapostemon_virescens", "Andrena_barbilabris", "Andrena_bicolor",            
-          Andrena carantonica         Andrena carlini             Andrena chrysosceles        Andrena cineraria          
-          Andrena crataegi            Andrena dorsata             Andrena dunningi            Andrena flavipes           
-          Andrena fragilis            Andrena frigida             Andrena fucata              Andrena fulva              
-          Andrena fulvida             Andrena gravida             Andrena hippotes            Andrena hirticincta        
-          Andrena labiata             Andrena milwaukeensis       Andrena miserabilis         Andrena nasonii            
-          Andrena nigriceps           Andrena nigroaenea          Andrena nitida              Andrena nubecula           
-          Andrena ovatula             Andrena pilipes             Andrena pruni               Andrena rugosa             
-          Andrena semilaevis          Andrena simplex             Andrena subopaca            Andrena tibialis           
-          Andrena vicina              Anthidium manicatum         Anthophora plumipes         Anthophora quadrimaculata  
-          Anthophora retusa           Augochlora pura             Augochlorella aurata        Augochloropsis metallica   
-          Bombus bimaculatus          Bombus griseocollis         Bombus hortorum             Bombus impatiens           
-          Bombus jonellus             Bombus lapidarius           Bombus pascuorum            Bombus pratorum            
-          Bombus ternarius            Bombus terrestris           Bombus vagans               Calliopsis andreniformis   
-          Ceratina calcarata          Ceratina strenua            Colletes thoracicus         Dasypoda iberica           
-          Flavipanurgus venustus      Halictus confusus           Halictus ligatus            Halictus rubicundus        
-          Hylaeus mesillae            Hylaeus modestus            Lasioglossum calceatum      Lasioglossum coriaceum     
-          Lasioglossum fulvicorne     Lasioglossum leucozonium    Lasioglossum punctatissimum Lasioglossum sexnotatum    
-          Lasioglossum sexstrigatum   Lasioglossum zonulum        Megachile campanulae        Megachile centuncularis    
-          Megachile gemula            Megachile mendica           Megachile pugnata           Megachile texana           
-          Megachile willughbiella     Melissodes bimaculata       Nomada cressonii            Nomada luteoloides         
-          Nomada merceti              Osmia atriventris           Osmia bicornis              Osmia bucephala            
-          Osmia caerulescens          Osmia lignaria              Osmia pumila                Sphecodes ranunculi        
-          Xylocopa virginica)
-###
-#write.csv(brain.it.trends, "data_to_play_with.csv")
+          "Andrena_carantonica", "Andrena_carlini", "Andrena_chrysosceles", "Andrena_cineraria",          
+          "Andrena_crataegi", "Andrena_dorsata", "Andrena_dunningi", "Andrena_flavipes",           
+          "Andrena_fragilis", "Andrena_frigida", "Andrena_fucata", "Andrena_fulva",              
+          "Andrena_fulvida", "Andrena_gravida", "Andrena_hippotes", "Andrena_hirticincta",        
+          "Andrena_labiata", "Andrena_milwaukeensis", "Andrena_miserabilis", "Andrena_nasonii",            
+          "Andrena_nigriceps", "Andrena_nigroaenea", "Andrena_nitida", "Andrena_nubecula",           
+          "Andrena_ovatula", "Andrena_pilipes", "Andrena_pruni", "Andrena_rugosa",             
+          "Andrena_semilaevis", "Andrena_simplex", "Andrena_subopaca", "Andrena_tibialis",           
+          "Andrena_vicina", "Anthidium_manicatum", "Anthophora_plumipes", "Anthophora_quadrimaculata",  
+          "Anthophora_retusa", "Augochlora_pura", "Augochlorella_aurata", "Augochloropsis_metallica",   
+          "Bombus_bimaculatus", "Bombus_griseocollis", "Bombus_hortorum", "Bombus_impatiens",           
+          "Bombus_jonellus", "Bombus_lapidarius", "Bombus_pascuorum", "Bombus_pratorum",            
+          "Bombus_ternarius", "Bombus_terrestris", "Bombus_vagans", "Calliopsis_andreniformis",   
+          "Ceratina_calcarata", "Ceratina_strenua", "Colletes_thoracicus", "Dasypoda_iberica",           
+          "Flavipanurgus_venustus", "Halictus_confusus", "Halictus_ligatus", "Halictus_rubicundus",        
+          "Hylaeus_mesillae", "Hylaeus_modestus", "Lasioglossum_calceatum", "Lasioglossum_coriaceum",     
+          "Lasioglossum_fulvicorne", "Lasioglossum_leucozonium", "Lasioglossum_punctatissimum", "Lasioglossum_sexnotatum",    
+          "Lasioglossum_sexstrigatum", "Lasioglossum_zonulum", "Megachile_campanulae", "Megachile_centuncularis",    
+          "Megachile_gemula", "Megachile_mendica", "Megachile_pugnata", "Megachile_texana",           
+          "Megachile_willughbiella", "Melissodes_bimaculata", "Nomada_cressonii", "Nomada_luteoloides",         
+          "Nomada_merceti", "Osmia_atriventris", "Osmia_bicornis", "Osmia_bucephala",            
+          "Osmia_caerulescens", "Osmia_lignaria", "Osmia_pumila", "Sphecodes_ranunculi",        
+          "Xylocopa_virginica")
+#Pick tree 1
+bee.mcmc=bee.trees[[1]]
+#Make a wasp the outgroup
+bee.mcmc=root(bee.mcmc,outgroup="Tachysphex")
+range(bee.mcmc$edge.length) 
+bee.mcmc=as.phylo(bee.mcmc)
+bee.mcmc=chronos(bee.mcmc)
 
 
+bee.mcmc$tip.label
+species
+bee.tree=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa", "Chilimelissa",    
+                                    "Hylaeus", "Amphylaeus", "Meroglossa", "Palaeorhiza",     
+                                    "Hyleoides", "Scrapter", "Euhesma", "Euryglossina",    
+                                    "Callohesma", "Euryglossa", "Xanthesma", "Stenotritus",     
+                                    "Ctenocolletes", "Alocandrena", "Megandrena",      
+                                    "Euherbstia", "Orphana", "Protoxaea", "Nolanomelissa",   
+                                    "Neffapis", "Meliturgula", "Plesiopanurgus", "Macrotera",       
+                                    "Perdita", "Clavipanurgus", "Panurginus",        
+                                    "Camptopoeum", "Melitturga", "Protandrena", "Pseudopanurgus",  
+                                    "Arhysosage", "Callonychium", "Cerceris",        
+                                    "Eucerceris", "Clypeadon", "Philanthus", "Pulverro",        
+                                    "Clitemnestra", "Stizoides", "Bembix", "Xerostictia",     
+                                    "Microbembex", "Bicyrtes", "Ampulex", "Sceliphron",      
+                                    "Chlorion", "Chalybion", "Isodontia", "Sphex",           
+                                    "Podalonia", "Prionyx", "Ammophila", "Eremnophila",     
+                                    "Oxybelus", "Anacrabro", "Plenoculus", "Tachytes",        
+                                    "Samba", "Capicola", "Hesperapis",      
+                                    "Eremaphanta", "Melitta", "Redivivoides",    
+                                    "Rediviva", "Macropis", "Promelitta", "Meganomia",       
+                                    "Habropoda", "Deltoptila", "Pachymelus", "Amegilla",        
+                                    "Sphecodopsis", "Pasites", "Oreopasites",     
+                                    "Ammobates", "Odyneropsis", "Triepeolus", "Rhinepeolus",     
+                                    "Doeringiella", "Thalestria", "Epeolus", "Triopasites",     
+                                    "Brachynomada", "Paranomada", "Holcopasites", "Ammobatoides",    
+                                    "Hexepeolus", "Neolarra", "Biastes",         
+                                    "Neopasites", "Townsendiella", "Caenoprosopina", "Caenoprosopis",   
+                                    "Tetralonioidella", "Zacosmia", "Xeromelecta", "Melecta",         
+                                    "Thyreus", "Hopliphora", "Mesoplia", "Mesocheira",      
+                                    "Ctenioschelus", "Epiclopus", "Mesonychium", "Ericrocis",       
+                                    "Rhathymus", "Nanorhathymus", "Osiris", "Isepeolus",       
+                                    "Melectoides", "Epeoloides", "Leiopodus", "Coelioxoides",    
+                                    "Parepeolus", "Ancyla", "Florilegus", "Svastrina",       
+                                    "Peponapis", "Xenoglossa", "Tetraloniella",   
+                                    "Tetralonia", "Svastra", "Martinapis",      
+                                    "Svastrides", "Thygater", "Melissoptila", "Meliphilopsis",   
+                                    "Diadasia", "Alepidosceles", "Ptilothrix", "Diadasina",       
+                                    "Melitoma", "Tapinotaspoides", "Caenonomada", "Tapinotaspidini", 
+                                    "Arhysoceble", "Paratetrapedia", "Anthophorula", "Exomalopsis",     
+                                    "Ancyloscelis", "Epicharis", "Exaerete", "Euglossa",        
+                                    "Aglae", "Eulaema", "Eufriesea",            
+                                    "Tetragonilla", "Tetragonula", "Platytrigona",    
+                                    "Heterotrigona", "Sundatrigona", "Geniotrigona", "Lepidotrigona",   
+                                    "Lophotrigona", "Tetrigona", "Homotrigona", "Odontotrigona",   
+                                    "Leurotrigona", "Hypotrigona", "Austroplebeia", "Lisotrigona",     
+                                    "Liotrigona", "Plebeiella", "Axestotrigona", "Meliponula",      
+                                    "Apotrigona", "Meliplebeia", "Plebeina", "Dactylurina",     
+                                    "Melipona", "Parapartamona", "Meliwillea", "Partamona",       
+                                    "Nogueirapis", "Aparatrigona", "Paratrigona", "Nannotrigona",    
+                                    "Tetragonisca", "Frieseomelitta", "Duckeola", "Trichotrigona",   
+                                    "Lestrimelitta", "Plebeia", "Friesella", "Mourella",        
+                                    "Schwarziana", "Oxytrigona", "Scaptotrigona", "Ptilotrigona",    
+                                    "Tetragona", "Trigona", "Cephalotrigona", "Geotrigona",      
+                                    "Scaura", "Schwarzula", "Dolichotrigona", "Trigonisca",      
+                                    "Celetrigona", "Centris", "Manuelia", "Ctenoplectrina",  
+                                    "Ctenoplectra", "Macrogalea", "Allodapula",      
+                                    "Exoneuridia", "Exoneurella", "Brevineura", "Exoneura",        
+                                    "Inquilina",  "Halterapis", "Compsomelissa", "Braunsapis",      
+                                    "Allodape", "Fideliopsis", "Fidelia",         
+                                    "Pararhophites", "Aspidosmia", "Aglaoapis", "Paradioxys",      
+                                    "Dioxys", "Noteriades", "Radoszkowskiana", 
+                                    "Coelioxys", "Pseudoheriades", "Afroheriades", "Protosmia",       
+                                    "Heriades", "Stenoheriades", "Hofferia", "Othinosmia",      
+                                    "Haetosmia", "Wainia", "Hoplosmia",           
+                                    "Ashmeadiella", "Atoposmia", "Hoplitis", "Stenosmia",       
+                                    "Chelostoma", "Ochreriades", "Trachusa", "Afranthidium",    
+                                    "Serapista", "Pseudoanthidium", "Bathanthidium",   
+                                    "Dianthidium", "Anthidiellum", "Paranthidium",  
+                                    "Icteranthidium", "Pachyanthidium", "Benanthis", "Eoanthidium",     
+                                    "Hypanthidium","Anthodioctes", "Hypanthidioides", 
+                                    "Notanthidium", "Epanthidium", "Stelis", "Lithurgus",       
+                                    "Microthurge", "Trichothurgus", "Neofidelia", "Dieunomia",       
+                                    "Pseudapis", "Lipotriches", "Curvinomia", "Hoplonomia",      
+                                    "Nomia", "Macronomia", "Nomioides", "Cellariella",     
+                                    "Corynura", "Neocorynura", "Megommation", "Megalopta",       
+                                    "Xenochlora", "Megaloptidia",    
+                                    "Dinagapostemon", "Rhinetula",       
+                                    "Caenohalictus", "Habralictus", "Ruizantheda", "Pseudagapostemon",
+                                    "Eupetersia", "Mexalictus", "Patellapis",      
+                                    "Thrincohalictus", "Homalictus",   
+                                    "Parathrincostoma", "Thrinchostoma", "Penapis", "Goeletapis",      
+                                    "Xeralictus", "Protodufourea", "Dufourea", "Systropha",       
+                                    "Rophites", "Sphecodosoma", "Conanthalictus", "Mydrosoma",       
+                                    "Ptiloglossidia", "Willinkapis", "Caupolicana", "Ptiloglossa",     
+                                    "Zikanapis", "Cadeguala", "Diphaglossa", "Cadegualina", 
+                                    "Edwyniana", "Belopria", "Nomiocolletes", "Eulonchopria",    
+                                    "Hoplocolletes",  "Niltonia", "Spinolapis", "Kylopasiphae",    
+                                    "Hexantheda", "Brachyglossula", "Tetraglossula", "Perditomorpha",   
+                                    "Halictanthrena", "Phenacolletes", "Euryglossidia", "Excolletes",      
+                                    "Leioproctus", "Lamprocolletes", "Neopasiphae", "Andrenopsis",     
+                                    "Colletellus", "Protomorpha", "Goniocolletes", "Odontocolletes",  
+                                    "Glossurocolletes", "Reedapis", "Cephalocolletes", "Chilicolletes",   
+                                    "Paracolletes", "Trichocolletes", "Callomelitta", "Xanthocotelles",  
+                                    "Hemicotelles", "Mourecotelles", 
+                                    "Ectemnius", "trigona", "Tetrapedia", "Neoceratina", "Nasutapis", "Apidae",        
+                                    "Toromelissa", "Lonchopria", "Baeocolletes", "Astata", "Stigmus",       
+                                    "Stangeella", "Crabro", "Pison", "Sphecius", "Zanysson", "Heterogyna", "Acamptopoeum", "Psaenythia",    
+                                    "Austropanurgus", "Anthrenoides", "Ancylandrena", "Melittoides",
+                                    "Eucera", "Chilicola", "Duckeanthidium",
+                                    "Tachysphex" 
+))
+
+#"Augochlorella" genus is missing
+plot(bee.tree)
 
 
 
