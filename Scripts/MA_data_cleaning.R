@@ -8,6 +8,7 @@ library('ctv')
 library(ape)
 library(stringi)
 
+#DATA CONSTRUCTION------
 
 brains.it <- read.csv("Raw_data/brains.it.csv")
 #Dasypoda visnaga's brain was conserved in ethanol, not formol
@@ -31,11 +32,8 @@ list.of.species
 
 #List of innovators-----
 # load package
-gs_ls("Traits")
-be <- gs_title("Traits")
-gs_ws_ls(be)
-Traits <- gs_read(ss=be, ws = "Sheet1", skip=0)
-Traits<- as.data.frame(Traits)
+Traits <- read.csv("Data/Traits.csv")
+
 Traits$species
 summary(as.factor(Traits$value), maxsum = 1000)
 list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" | 
@@ -277,7 +275,6 @@ sp.t
 #We add brain sizes and ITs
 #Dasypoda visnaga's brain was conserved in ethanol, not formol
 brains.it<-brains.it[-175,]
-species.brains1
 brains.it$Species
 brains.it$IT
 brains.it$Brain.Weight..mg.
@@ -315,7 +312,7 @@ brain.it.trends<-merge(species.brains1, species.trends)
 brain.it.trends
 #write.csv(brain.it.trends, "data_to_play_with.csv")
 
-# Phylogenetics-----
+# PHYLOGENETICS-----
 brain.it.trends$Species
 bee.trees=read.tree(file="data/phylogeny_genus_level.txt")
 data<-brain.it.trends
@@ -460,6 +457,7 @@ bee.tree=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa
 
 #"Augochlorella" genus is missing
 plot(bee.tree)
+
 
 
 
