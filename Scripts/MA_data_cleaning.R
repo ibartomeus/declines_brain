@@ -7,6 +7,9 @@ library(data.tree)
 library('ctv') 
 library(ape)
 library(stringi)
+library(phytools)
+library(ggtree)
+
 
 #DATA CONSTRUCTION------
 
@@ -355,7 +358,7 @@ bee.mcmc=chronos(bee.mcmc)
 bee.mcmc$tip.label
 species
 bee.tree=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa", "Chilimelissa",    
-                                    "Hylaeus", "Amphylaeus", "Meroglossa", "Palaeorhiza",     
+                                    "Amphylaeus", "Meroglossa", "Palaeorhiza",     
                                     "Hyleoides", "Scrapter", "Euhesma", "Euryglossina",    
                                     "Callohesma", "Euryglossa", "Xanthesma", "Stenotritus",     
                                     "Ctenocolletes", "Alocandrena", "Megandrena",      
@@ -455,11 +458,56 @@ bee.tree=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa
                                     "Tachysphex" 
 ))
 
-#"Augochlorella" genus is missing
+#----------------
+plot(bee.tree)
+nodelabels()
+tiplabels()
+bee.tree$tip.label == "Andrena"
+unique(data$Species)
+
+#change panurgus to flavipanurgus
+bee.tree$tip.label[3]
+bee.tree$tip.label[3]=c("Flavipanurgus")
+
+#add dummy species labels
+bee.tree$tip.label<-paste(bee.tree$tip.label,"_dum",sep="")
+
+#Add species tips
+for(i in 1:length(species)){
+    bee.tree<-add.species.to.genus(bee.tree,species[i],
+                                   where="root")
+}
+## prune out dummy taxa
+ii<-grep("dum",bee.tree$tip.label)
+bee.tree<-drop.tip(bee.tree,bee.tree$tip.label[ii])
+#Our tree
 plot(bee.tree)
 
+##Check for missing species
+setdiff(species,bee.tree$tip.label)
+
+#Remove node labels, or the model will fail
+bee.tree$node.label=NULL
+
+##Phylogenetic co-variance matrix
+inv.phylo <- MCMCglmm::inverseA(bee.tree, nodes = "TIPS", scale = TRUE)
+A <- solve(inv.phylo$Ainv)
+rownames(A) <- rownames(inv.phylo$Ainv)
+isSymmetric(A, check.attributes = FALSE)
 
 
+
+
+
+dataformcmc=data
+dataformcmc$Species
+#Let's fix it
+dataformcmc$Species<-stri_replace_first_regex(dataformcmc$Species,pattern = " ", replacement = "_")
+
+#no differences. good
+setdiff(rownames(A),dataformcmc$Species)
+
+#All set
 
 #Does Queen have bigger brains?------
 boxplot(brains.it$Brain.Weight..mg./brains.it$IT~brains.it$Sex, ylab="Brain/IT")
