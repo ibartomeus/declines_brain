@@ -13,9 +13,8 @@ TukeyHSD(b.aov)
 
 #DECLINING / INCRESING ONLY
 incdec.data<-subset(data1, subset = (data1$f.trend == "declining" | data1$f.trend == "increasing"))
+droplevels(incdec.data$f.trend)
 boxplot(incdec.data$Brain.IT ~ incdec.data$f.trend)
-incdec.data$f.trend<-droplevels(incdec.data$f.trend)
-levels(incdec.data$f.trend)
 
 
 incdec.data$numeric.trend <- NULL
