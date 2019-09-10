@@ -12,6 +12,7 @@ library(ggplot2)
 library(lme4)
 library(sjstats)
 library(visreg) 
+
 #DATA CONSTRUCTION------
 getwd()
 brains.it <- read.csv("Raw_data/brains.it.csv")
@@ -58,6 +59,7 @@ list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" |
                                                    Traits$value == "Dried paint" |
                                                    Traits$value == "Cardboard"))
 
+write.csv(list.of.innovators.f, "human_materials.csv")
 list.of.innovators<-unique(list.of.innovators.f$species)
 list.of.innovators
 
@@ -2385,6 +2387,34 @@ icc(brm.bartomeuspref.brain, re.form = NULL, typical = "mean",
     prob = 0.89, ppd = FALSE, adjusted = FALSE)
 
 marginal_effects(brm.bartomeuspref.residuals)
+
+phylosig(tree, x, method="K", test=FALSE, nsim=1000, se=NULL, start=NULL,
+         control=list())
+
+
+
+bee.tree7$tip.label
+dataformcmc7$Species
+dataformcmc7$IT
+
+
+v<-c("Augochlora pura", "Augochlorella aurata", "Agapostemon virescens",   
+"Halictus rubicundus", "Halictus confusus", "Lasioglossum coriaceum",  
+"Andrena nasonii", "Andrena carlini", "Calliopsis andreniformis",
+"Melissodes bimaculata", "Bombus griseocollis", "Xylocopa virginica",      
+"Ceratina strenua", "Megachile mendica", "Osmia pumila",            
+"Osmia bucephala", "Osmia atriventris")
+v<-as.factor(v)
+v<-as.data.frame(v)
+colnames(v)<-"Species"
+spit<-data.frame(dataformcmc7$Species, dataformcmc7$IT)
+colnames(spit)<-c("Species","IT")
+phyloit<-merge(v,spit, sort = FALSE)
+
+phylosig(bee.tree7, phyloit$IT, method="lambda", test=FALSE, nsim=1000, se=NULL, start=NULL,
+         control=list())
+
+
 #POPULATION TRENDS-HABITAT PREFERENCE-----
 plot(Bartomeus.Estimate ~ Pasture.and.Crops,data = data.means.pref)
 abline(glm(Bartomeus.Estimate ~ Pasture.and.Crops,data = data.means.pref))
@@ -2934,6 +2964,7 @@ brm.habpref.urban2
 bayes_R2(brm.habpref.urban2)
 
 marginal_effects(brm.habpref.urban2)
+
 
 #BRAIN - POPULATION TRENDS----
 brain.trend
@@ -3692,12 +3723,13 @@ par(mfrow=c(1,1))
 
 dev.off()
 #Figure 2
-pdf("Figure 2.pdf")
-par(mfrow=c(2,2))
+pdf("Figure 3.pdf", width = 4, height = 7)
+par(mfrow=c(3,1))
 
-plot(Bartomeus.Estimate ~ Forests, xlab= "Forest preference",data = dataformcmc8, las=1, ylab="", yaxt="n", main="Preference related to population trends\n Forest preference (a)")
+plot(Bartomeus.Estimate ~ Forests, xlab= "Forest preference",data = dataformcmc8, las=1, ylab="", yaxt="n", main="Preference related to population trends\n Forest preference (a)"
+     , cex.lab=1.3)
 axis(2,cex.axis=0.85, las=1)
-title(ylab="Population trends", line=3.1)
+title(ylab="Population trends", line=3.1, cex.lab=1.3)
 fit<-marginal_effects(brm.habpref.forests2)
 fits<-as.data.frame(fit$Forests)
 lines(fits$Forests, fits$lower__, col = "grey30", lwd = 2)
@@ -3707,9 +3739,10 @@ polygon(c(fits$Forests, rev(fits$Forests)), c(fits$upper__, rev(fits$lower__)),
 points(Bartomeus.Estimate ~ Forests,data = dataformcmc8)
 lines(fits$Forests, fits$estimate__, lwd=2, col = "darkgreen")
 
-plot(Bartomeus.Estimate ~ Urban,data = dataformcmc8, xlab="Urban preference",las=1, ylab="", yaxt="n", main="Preference related to population trends\n Urban preference (b)")
+plot(Bartomeus.Estimate ~ Urban,data = dataformcmc8, xlab="Urban preference",las=1, ylab="", yaxt="n", main="Preference related to population trends\n Urban preference (b)"
+     , cex.lab=1.3)
 axis(2,cex.axis=0.85, las=1)
-
+title(ylab="Population trends", line=3.1, cex.lab=1.3)
 fit<-marginal_effects(brm.habpref.urban2)
 fits<-as.data.frame(fit$Urban)
 lines(fits$Urban, fits$lower__, col = "grey30", lwd = 2)
@@ -3720,21 +3753,10 @@ points(Bartomeus.Estimate ~ Urban,data = dataformcmc8)
 lines(fits$Urban, fits$estimate__, lwd=2, col = "Blue")
 
 
-plot(Bartomeus.Estimate ~ Brain.weight, xlab="Absolute brain weight",data = dataformcmc9, las = 1, ylab="", yaxt="n", main="Brain size related to population trends\n Brain weight (c)")
+plot(Bartomeus.Estimate ~ residuals, data = dataformcmc9, xlab="Brain size - body size residuals",main = "Brain size related to population trends\n Brain - Body size residuals (c)", yaxt = "n",ylab="",
+      cex.lab=1.3)
 axis(2,cex.axis=0.85, las=1)
-title(ylab="Population trends", line=3.1)
-fit<-marginal_effects(brm.bartomeuspref.brain2)
-fits<-as.data.frame(fit$Brain.weight)
-lines(fits$Brain.weight, fits$lower__, col = "grey30", lwd = 2)
-lines(fits$Brain.weight, fits$upper__, col = "grey30", lwd = 2)
-polygon(c(fits$Brain.weight, rev(fits$Brain.weight)), c(fits$upper__, rev(fits$lower__)),
-        col = "grey80", border = NA)
-points(Bartomeus.Estimate ~ Brain.weight,data = dataformcmc9)
-lines(fits$Brain.weight, fits$estimate__, lwd=2)
-
-plot(Bartomeus.Estimate ~ residuals, data = dataformcmc9, xlab="Brain weight - body size residuals",main = "Brain size related to population trends\n Brain - Body size residuals (d)", yaxt = "n",ylab="")
-axis(2,cex.axis=0.85, las=1)
-
+title(ylab="Population trends", line=3.1, cex.lab=1.3)
 fit<-marginal_effects(brm.bartomeuspref.residuals2)
 fits<-as.data.frame(fit$residuals)
 lines(fits$residuals, fits$upper__, col = "grey30", lwd = 2)
@@ -3748,6 +3770,17 @@ lines(fits$residuals, fits$estimate__, lwd=2)
 dev.off()
 
 
+plot(Bartomeus.Estimate ~ Brain.weight, xlab="Absolute brain weight",data = dataformcmc9, las = 1, ylab="", yaxt="n", main="Brain size related to population trends\n Brain weight (c)")
+axis(2,cex.axis=0.85, las=1)
+title(ylab="Population trends", line=3.1)
+fit<-marginal_effects(brm.bartomeuspref.brain2)
+fits<-as.data.frame(fit$Brain.weight)
+lines(fits$Brain.weight, fits$lower__, col = "grey30", lwd = 2)
+lines(fits$Brain.weight, fits$upper__, col = "grey30", lwd = 2)
+polygon(c(fits$Brain.weight, rev(fits$Brain.weight)), c(fits$upper__, rev(fits$lower__)),
+        col = "grey80", border = NA)
+points(Bartomeus.Estimate ~ Brain.weight,data = dataformcmc9)
+lines(fits$Brain.weight, fits$estimate__, lwd=2)
 
 
 #supp mat Figure 1
@@ -3840,23 +3873,9 @@ aggregate(list.to.fill$Brain.Weight..mg. ~ list.to.fill$Species, FUN=mean, na.ac
 
 data.means.pref$Species
 
-Andrena cressonii
-Andrena erigeniae
-Andrena perplexa
-Lasioglossum bruneri
-Lasioglossum oblongum    
-Lasioglossum pectorale  
-Lasioglossum pilosum     
-Lasioglossum tegulare    
-Lasioglossum versatum
-Megachile brevis
-Nomada pygmaea
-
-
-
-
-
-Bombus bimaculatus
-Bombus fervidus
-Lasioglossum cressonii
-Lasioglossum imitatum   
+plot(dataformcmc9$IT,
+dataformcmc9$residuals)
+abline(lm(dataformcmc9$IT~
+          dataformcmc9$residuals))
+summary(lm(dataformcmc9$IT~
+       dataformcmc9$residuals))
