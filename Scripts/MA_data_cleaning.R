@@ -3786,19 +3786,19 @@ lines(fits$Brain.weight, fits$estimate__, lwd=2)
 #supp mat Figure 1
 
 #Habitat preference - brains
-#pdf("Brain sizes habitat preference tree.pdf")
+pdf("Brain sizes habitat preference tree.pdf")
 plot(bee.tree10, cex = 1.5, main= "Brain sizes - Habitat preference models \nPhylogenetic tree", sub="Modification and polytomies added from Hedtke et al. 2013")
-#dev.off()
+dev.off()
 
 #population trends - brains
-#pdf("Brain sizes population trends tree.pdf")
-plot(bee.tree9, cex = 0.75, main= "Brain sizes - Population trends models \nPhylogenetic tree", sub="Modification and polytomies added from Hedtke et al. 2013")
-#dev.off()
+pdf("Brain sizes population trends tree.pdf", width = 7, height = 10)
+plot(bee.tree9, cex = 0.70, main= "Brain sizes - Population trends models \nPhylogenetic tree", sub="Modification and polytomies added from Hedtke et al. 2013")
+dev.off()
 
 #Population trends - habitat preference
-#pdf("Population trends habitat preference tree.pdf")
+pdf("Population trends habitat preference tree.pdf", width = 7, height = 10)
 plot(bee.tree8, cex = 1.1, main= "Population trends - Habitat preference models \nPhylogenetic tree", sub="Modification and polytomies added from Hedtke et al. 2013")
-#dev.off()
+dev.off()
 
 
 
@@ -3879,3 +3879,35 @@ abline(lm(dataformcmc9$IT~
           dataformcmc9$residuals))
 summary(lm(dataformcmc9$IT~
        dataformcmc9$residuals))
+
+dev.off()
+
+par(mfrow=c(1,2))
+
+plot(Bartomeus.Estimate ~ Urban,data = dataformcmc8, xlab="Urban preference",las=1, ylab="", yaxt="n", main="Preference related to population trends\n Urban preference"
+     , cex.lab=1.3)
+axis(2,cex.axis=0.85, las=1)
+title(ylab="Population trends", line=3.1, cex.lab=1.3)
+fit<-marginal_effects(brm.habpref.urban2)
+fits<-as.data.frame(fit$Urban)
+lines(fits$Urban, fits$lower__, col = "grey30", lwd = 2)
+lines(fits$Urban, fits$upper__, col = "grey30", lwd = 2)
+polygon(c(fits$Urban, rev(fits$Urban)), c(fits$upper__, rev(fits$lower__)),
+        col = "grey80", border = NA)
+points(Bartomeus.Estimate ~ Urban,data = dataformcmc8)
+lines(fits$Urban, fits$estimate__, lwd=2, col = "Blue")
+
+
+plot(Bartomeus.Estimate ~ Forests, xlab= "Forest preference",data = dataformcmc8, las=1, ylab="", yaxt="n", main="Preference related to population trends\n Forest preference"
+     , cex.lab=1.3)
+axis(2,cex.axis=0.85, las=1)
+title(ylab="Population trends", line=3.1, cex.lab=1.3)
+fit<-marginal_effects(brm.habpref.forests2)
+fits<-as.data.frame(fit$Forests)
+lines(fits$Forests, fits$lower__, col = "grey30", lwd = 2)
+lines(fits$Forests, fits$upper__, col = "grey30", lwd = 2)
+polygon(c(fits$Forests, rev(fits$Forests)), c(fits$upper__, rev(fits$lower__)),
+        col = "grey80", border = NA)
+points(Bartomeus.Estimate ~ Forests,data = dataformcmc8)
+lines(fits$Forests, fits$estimate__, lwd=2, col = "darkgreen")
+
