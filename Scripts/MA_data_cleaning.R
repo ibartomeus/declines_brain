@@ -15,31 +15,29 @@ library(visreg)
 
 #DATA CONSTRUCTION------
 getwd()
+#This is raw data with just brain weights and intertegular distance
 brains.it <- read.csv("Raw_data/brains.it.csv")
 
-#Dasypoda visnaga's brain was conserved in ethanol, not formol
-brains.it<-brains.it[-175,]
-#List of species with brain weight and IT-----
+#Dasypoda visnaga's brain was conserved in ethanol, not formol, ask Oscar Aguado why, we remove
+brains.it<-subset(brains.it, subset = !(brains.it$ID)=="F33")
+which(brains.it$ID=="F33")
 
+
+
+#List of species with brain weight and IT-----
 brains.it$Encephalization<-brains.it$Brain.Weight..mg./brains.it$IT
+#We remove individuals without brain size or IT
 brains.t<-subset(brains.it, subset = (is.na(brains.it$Encephalization)==FALSE))
 list.of.species<-as.data.frame(unique(brains.t$Species))
 spain.bees<-subset(brains.t, subset = (brains.t$Country=="Spain"))
 list.of.spanish.bees<-unique(spain.bees$Species)
 list.of.spanish.bees<-as.data.frame(list.of.spanish.bees)
-
-
-#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/Raw_data")
-#write.csv(list.of.spanish.bees, "list.of.spanish.bees.csv")
-#write.csv(list.of.species, "list.of.species.csv")
-#setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain/")
 list.of.spanish.bees
 list.of.species
 
 #List of innovators-----
 # load package
 Traits <- read.csv("Data/Traits.csv")
-
 Traits$species
 summary(as.factor(Traits$value), maxsum = 1000)
 list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" | 
@@ -59,7 +57,7 @@ list.of.innovators.f<-subset(Traits, subset = (Traits$value == "Brick" |
                                                    Traits$value == "Dried paint" |
                                                    Traits$value == "Cardboard"))
 
-write.csv(list.of.innovators.f, "human_materials.csv")
+#write.csv(list.of.innovators.f, "human_materials.csv")
 list.of.innovators<-unique(list.of.innovators.f$species)
 list.of.innovators
 
@@ -125,7 +123,8 @@ iucn.trends<-(cbind(species.iucn,category.iucn))
 #write.csv(iucn.trends, "iucn_trends.csv")
 #setwd("/Users/Bartomeus_lab/Desktop/Tesis/R/declines_brain")
 
-#US habitats----
+#US habitats (From collado et al. 201x)----
+#We want a simple list here of "yes" or "no", for preference for different habitats
 habitat_preference_US <- read.csv("Raw_data/habitat_preference_US.csv")
 habitat_preference_US
 m.habitat_preference_US<-melt(habitat_preference_US)
@@ -133,8 +132,9 @@ m.habitat_preference_US<-as.data.frame(m.habitat_preference_US)
 #We order
 m.habitat_preference_US<-m.habitat_preference_US[order(m.habitat_preference_US$Species),]
 m.habitat_preference_US<-subset(m.habitat_preference_US, subset = (!(m.habitat_preference_US$variable == "Habitats.used")))
+#We create an empty colum of NA for filling
 m.habitat_preference_US$habitat.preference<-rep(NA,nrow(m.habitat_preference_US))
-
+#we fill the empty with yes or no for habitat preference
 for (n in 1:nrow(m.habitat_preference_US)) {
     if(m.habitat_preference_US$value[n]>0.94){m.habitat_preference_US$habitat.preference[n] <- "Yes"}else{
         if(m.habitat_preference_US$value[n]<0.06){
@@ -278,14 +278,12 @@ duplicated(sp.t$Species)
 sp.t
 
 # write.csv(repeated.trends, "repeated.trends.csv")
-
 #We add brain sizes and ITs
-#Dasypoda visnaga's brain was conserved in ethanol, not formol
-brains.it<-brains.it[-175,]
+
 brains.it$Species
 brains.it$IT
 brains.it$Brain.Weight..mg.
-
+#Creamos un dataframe chiquito para trabajar
 species.brains1<-data.frame(brains.it$Species,
                             brains.it$IT,
                             brains.it$Brain.Weight..mg.)
@@ -297,17 +295,13 @@ abline(lm(species.brains1$Brain.weight ~ species.brains1$IT,data = species.brain
 summary(lm(species.brains1$Brain.weight ~ species.brains1$IT,data = species.brains1))
 
 #Linearizing
+#Linearizamos, aplicamos log en ambos lados, y extraemos residuales, que es lo que usamos como cerebro
 plot(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), data = species.brains1)
 abline(lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT),data = species.brains1), col="pink")
 summary(lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT),data = species.brains1))
 text(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), labels=row.names(species.brains1), cex= 0.7, pos=3)
 res.extract1<-lm(log(species.brains1$Brain.weight) ~ log(species.brains1$IT), data = species.brains1)
 res.extract1$residuals
-
-
-
-
-
 
 #Add residuals and encephalization to the dataframe
 species.brains1$residuals<-res.extract1$residuals
@@ -325,9 +319,10 @@ colnames(bartomeus.numeric.trends)<-c("Species","Bartomeus.Estimate","Bartomeus.
 #RE-DO ALL FROM HERE----------
 BTT<-merge(brain.it.trends, bartomeus.numeric.trends, by.x = "Species", all.x = TRUE)
 
-write.csv(BTT, "data/data_to_play_with.csv")
+#write.csv(BTT, "data/data_to_play_with.csv")
 #BY INDIVIDUAL-----
 #GLM and GRAPHS----
+#Poptrends part----
 data1 <- read.csv("data/data_to_play_with.csv")
 data1
 data.scheper<-subset(data1, subset=(data1$source == "Scheper"))
@@ -609,9 +604,6 @@ dataformcmc2$Species<-stri_replace_first_regex(dataformcmc2$Species,pattern = " 
 
 #no differences. good
 setdiff(rownames(A2),dataformcmc2$Species)
-
-
-
 #All set
 
 
@@ -2121,10 +2113,12 @@ icc(brm.bartomeus.brainit, re.form = NULL, typical = "mean",
 
 marginal_effects(brm.bartomeus.means.IT)
 
+#------
 #HABITAT PREFERENCE------
 habpref <- read.csv("Raw_data/habitat_preference_simplify.csv")
 habpref$Species
 data1$Species
+#We see the diferences between dataframes
 setdiff(habpref$Species,data1$Species)
 data.means.pref<-merge(data.means,habpref)
 plot(f.trend ~ Urban,data = data.means.pref)
@@ -2602,7 +2596,6 @@ species.brains1
 data.filtered2<-species.brains1
 boxplot(Brain.weight~Species,data = species.brains1, las= 2,cex.axis = 0.6)
 boxplot(Brain.weight~Species,data = data.filtered2, las= 2,cex.axis = 0.6)
-View(species.brains1)
 subset(species.brains1, subset = (Species == "Andrena barbilabris"))
 mean(subset(species.brains1, subset = (Species == "Andrena barbilabris"))$Brain.weight)
 sd(subset(species.brains1, subset = (Species == "Andrena barbilabris"))$Brain.weight)

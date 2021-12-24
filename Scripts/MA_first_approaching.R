@@ -1,7 +1,7 @@
 library(lme4)
-data1 <- read.csv("D:/R/declines_brain/data_to_play_with.csv")
+data1 <- read.csv("data/data_to_play_with.csv")
 data1
-
+View(data1)
 
 #Encephalization
 boxplot(data1$Brain.IT~data1$f.trend, notch=TRUE,data = data1, ylab= "Brain/IT", xlab="Population trends")
