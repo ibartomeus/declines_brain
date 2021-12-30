@@ -201,6 +201,54 @@ lm.data.means$model
 #this is the dataframe containing brain weights (residuales)
 wit.mean
 
+#Vamos a ver cuántas especies reales podemos sacar de aquí
+numeritos<-(1:nrow(wit.mean))
+boxplot(wit.mean$Brain.weight~numeritos)
+wit.meanchiquito<-wit.mean
+wit.meanchiquito<-subset(wit.mean, subset = (wit.mean$Brain.weight<1))
+wit.mean$Species
+
+wit.mean<-subset(wit.mean, subset = !((Species == "Andrena sp 3")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Andrena sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Megascolia sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Halictus sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Eucera sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Dasypoda sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Coelioxys sp.")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Andrena (Chlorandrena)")))
+wit.mean<-subset(wit.mean, subset = !((Species == "Andrena (Chrysandrena)")))
+
+#Descuento las especies que tenemos ya todo los datos, para hacer una lista de potenciales
+habitat.brain$Species
+
+
+potentials<-wit.mean
+
+potentials<-subset(potentials, subset = !((Species == "Agapostemon virescens")))
+potentials<-subset(potentials, subset = !((Species == "Andrena carlini")))
+potentials<-subset(potentials, subset = !((Species == "Andrena nasonii")))
+potentials<-subset(potentials, subset = !((Species == "Augochlora pura")))
+potentials<-subset(potentials, subset = !((Species == "Augochlorella aurata")))
+potentials<-subset(potentials, subset = !((Species == "Bombus griseocollis")))
+potentials<-subset(potentials, subset = !((Species == "Calliopsis andreniformis")))
+potentials<-subset(potentials, subset = !((Species == "Ceratina strenua")))
+potentials<-subset(potentials, subset = !((Species == "Halictus confusus")))
+potentials<-subset(potentials, subset = !((Species == "Halictus rubicundus")))
+potentials<-subset(potentials, subset = !((Species == "Lasioglossum coriaceum")))
+potentials<-subset(potentials, subset = !((Species == "Megachile mendica")))
+potentials<-subset(potentials, subset = !((Species == "Melissodes bimaculata")))
+potentials<-subset(potentials, subset = !((Species == "Osmia atriventris")))
+potentials<-subset(potentials, subset = !((Species == "Osmia bucephala")))
+potentials<-subset(potentials, subset = !((Species == "Osmia pumila")))
+potentials<-subset(potentials, subset = !((Species == "Ptilothrix bombiformis")))
+potentials<-subset(potentials, subset = !((Species == "Xylocopa virginica")))
+#Este dataframe tiene las especies filtradas
+potentials$Species
+##write.csv(potentials$Species, "Especies_para_buscar.csv")
+
+
+
+
 #We load habitat preference (This is a small list from collado et al 201X, we need more)
 habpref <- read.csv("Raw_data/habitat_preference_simplify.csv")
 
