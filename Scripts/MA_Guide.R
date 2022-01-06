@@ -641,3 +641,61 @@ points(Urban ~ residuals,data = dataformcmc10)
 lines(fits$residuals, fits$estimate__, lwd=2, col = "Blue")
 lines(c(-0.5,0.99),c(1.04,1.04), col = "black")
 lines(c(-0.5,0.7),c(-0.04,-0.04), col = "black")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#############Tonteito con GIS--------
+library(sp)
+library(rgdal)
+library(raster)
+
+getwd()
+r <- raster("Raw_data/capitaCLC.tif")
+plot(r)
+#Coordinate reference system
+r@crs
+
+View(r@data)
+
+
+View(r@data@attributes)
+
+NLCD@data@attributes[[1]]$NLCD.2006.Land.Cover.Class[num.codes + 1]
+
+dat<-data.frame(Latitude,Longitude)
+Latitude<-c(1,1,1,1)
+Longitude<-c(1,1,1,1)
+lats <- c(dat$Latitude)
+lons <- c(dat$Longitude) 
+coords <- data.frame(x=lons,y=lats)
+points <- SpatialPoints(coords, proj4string = r@crs) 
+points <- na.omit(object = points)
+values <- extract(r, points)
+
+
+r@data
+
+
+r$capitaCLC
+
