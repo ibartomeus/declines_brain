@@ -46,8 +46,6 @@ gbif_id <- data.frame(unlist(gbif_id))
 #rename col
 colnames(gbif_id) <- "key_number"
 
-#Retrieve data from GBIF
-
 #Create template to store results from loop
 dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
                    decimalLongitude = NA,
@@ -55,7 +53,7 @@ dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
                    year = NA, month = NA, day = NA, recordedBy = NA,
                    identifiedBy = NA, sex = NA, stateProvince = NA,
                    locality = NA)
-
+#Download data
 temp <- NULL
 for(i in gbif_id$key_number){
     temp <- occ_search(taxonKey= i, 
@@ -86,3 +84,13 @@ for(i in gbif_id$key_number){
 #Delete first row with NA's that was created to add the data after the loop
 dat <- dat[!is.na(dat$species),]
 
+#Check number of levels per species
+info <- dat %>% 
+    group_by(species) %>%
+    summarise(no_rows = length(species))
+
+#At the moment there is a maximum of 7000 records per species
+#change it?
+
+#Save data
+write.csv(dat, "Data/gbif_data.csv")
