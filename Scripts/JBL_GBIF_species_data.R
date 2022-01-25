@@ -1,3 +1,4 @@
+#In this script we download data from GBIF for 133 bee species----
 
 #Load libraries
 library(stringr)
@@ -17,20 +18,46 @@ d$Species[d$Species=="Lasioglossum dialictus spp"] <- "Lasioglossum dialictus"
 #Delete Species with sp. 
 d <- filter(d, !grepl(" sp.",Species))
 
-#Now try to download data from GBIF
-#First start with an example without looping
+#Some more typos
+d$Species[d$Species=="Agaposemon sericeus"] <- "Agapostemon sericeus"
+d$Species[d$Species=="Rhodantidium sticticum"] <- "Rhodanthidium sticticum"
+d$Species[d$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
 
-Agaposemon_sericeus <- name_backbone(name="Agaposemon sericeus", rank = "species")$usageKey
+#Select now unique cases
+d <- dplyr::distinct(d, Species)
 
-#fetch data
+########################---
+#Download data from GBIF----
+########################---
+
+#First create species key (some long numbers that are needed to download the data) 
+#For loop to do it for all species
+i <- NULL
+gbif_id <- list()
+
+for(i in d$Species){
+    
+    j <- gsub(" ", "_", i)
+    gbif_id[[j]] <- name_backbone(name=i, rank = "species")$usageKey
+}
+
+#convert list to dataframe
+gbif_id <- data.frame(unlist(gbif_id))
+#rename col
+colnames(gbif_id) <- "key_number"
+
+#Retrieve data from GBIF
+
+#Create template to store results from loop
 dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
-                   decimalLongitude = NA, scientificName = NA,
+                   decimalLongitude = NA,
                    family = NA, genus = NA, species = NA,
                    year = NA, month = NA, day = NA, recordedBy = NA,
                    identifiedBy = NA, sex = NA, stateProvince = NA,
-                   locality = NA, coordinatePrecision = NA)
+                   locality = NA)
 
-for(i in c(Agaposemon_sericeus)){
+temp <- NULL
+for(i in gbif_id$key_number){
     temp <- occ_search(taxonKey= i, 
                        return='data', 
                        hasCoordinate=TRUE,
@@ -38,15 +65,24 @@ for(i in c(Agaposemon_sericeus)){
                        limit=7000, #safe threshold based on rounding up counts above
                        #country = c(spain_code, portugal_code),
                        fields = c('scientificName','name', 'decimalLatitude',
-                                  'decimalLongitude', 'scientificName',
+                                  'decimalLongitude', 
                                   'family','genus', 'species',
                                   'year', 'month', 'day', 'recordedBy',
                                   'identifiedBy', 'sex', 'stateProvince', 
-                                  'locality', 'coordinatePrecision'))
+                                  'locality'))
     
-    }
+   # temp$data <- temp$data[,c('scientificName','decimalLatitude',
+   #                       'decimalLongitude', 
+   #                       'family','genus', 'species',
+   #                       'year', 'month', 'day', 'recordedBy',
+   #                       'identifiedBy', 'sex',  'stateProvince', 
+   #                       'locality')]
+    
+    dat <- rbind(dat, as.data.frame(temp$data))
+    
+    
+}
 
-
-unique(temp$data$stateProvince)
-
+#Delete first row with NA's that was created to add the data after the loop
+dat <- dat[!is.na(dat$species),]
 
