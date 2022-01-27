@@ -18,13 +18,15 @@ d$Species[d$Species=="Lasioglossum dialictus spp"] <- "Lasioglossum dialictus"
 #Delete Species with sp. 
 d <- filter(d, !grepl(" sp.",Species))
 
+d <- filter(d, !Species==)
+
 #Some more typos
 d$Species[d$Species=="Agaposemon sericeus"] <- "Agapostemon sericeus"
 d$Species[d$Species=="Rhodantidium sticticum"] <- "Rhodanthidium sticticum"
 d$Species[d$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
 
-#Select now unique cases
-d <- dplyr::distinct(d, Species)
+#Filter out Apis mellifera
+d <- d %>% filter(!Species=="Apis mellifera")
 
 ########################---
 #Download data from GBIF----
@@ -52,7 +54,7 @@ dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
                    family = NA, genus = NA, species = NA,
                    year = NA, month = NA, day = NA, recordedBy = NA,
                    identifiedBy = NA, sex = NA, stateProvince = NA,
-                   locality = NA)
+                   locality = NA, continent= NA)
 #Download data
 temp <- NULL
 for(i in gbif_id$key_number){
@@ -60,14 +62,15 @@ for(i in gbif_id$key_number){
                        return='data', 
                        hasCoordinate=TRUE,
                        hasGeospatialIssue=FALSE,
-                       limit=7000, #safe threshold based on rounding up counts above
+                       start=500,
+                       limit=10000, #safe threshold based on rounding up counts above
                        #country = c(spain_code, portugal_code),
                        fields = c('scientificName','name', 'decimalLatitude',
                                   'decimalLongitude', 
                                   'family','genus', 'species',
                                   'year', 'month', 'day', 'recordedBy',
                                   'identifiedBy', 'sex', 'stateProvince', 
-                                  'locality'))
+                                  'locality', 'continent'))
     
    # temp$data <- temp$data[,c('scientificName','decimalLatitude',
    #                       'decimalLongitude', 
@@ -93,4 +96,30 @@ info <- dat %>%
 #change it?
 
 #Save data
-write.csv(dat, "Data/gbif_data.csv")
+#write.csv(dat, "Data/gbif_data.csv")
+
+d <- read.csv("Data/gbif_data.csv")
+
+library(ggplot2)
+
+world <- map_data("world")
+str(d)
+ggplot() +
+    geom_map(
+        data = world, map = world,
+        aes(long, lat, map_id = region),
+        color = "white", fill = "lightgray", size = 0.1) +
+    geom_point(
+        data = d,
+        aes(decimalLongitude, decimalLatitude),
+        alpha = 0.7, size = 0.1) 
+
+
+
+MainStates <- map_data("state")
+ggplot() + 
+    geom_polygon( data=MainStates, aes(x=long, y=lat, group=group),
+ color="black", fill="lightblue")+   geom_point(
+     data = d,
+     aes(decimalLongitude, decimalLatitude),
+     alpha = 0.7, size = 0.1) + xlim(-120,0) +ylim(0,60)
