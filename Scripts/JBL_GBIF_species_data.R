@@ -7,6 +7,7 @@ library(rgbif) #online database v.3.6.0
 library(ggplot2) #plotting v.3.3.5
 library(sp) #manipulate coordinates v.1.4-6
 library(rworldmap) #plot worldmap v.1.3-6
+library(sf) #scale worldmap v 1.0-5
 
 #Read data
 d <- read.csv("Data/Especies_para_buscar.csv", row.names = 1)
@@ -132,4 +133,26 @@ ggplot() + geom_map(data = world, map = world,
         color = "white", fill = "lightgray", size = 0.1) +
         geom_point(data = d,aes(decimalLongitude, decimalLatitude),
         alpha = 0.7, size = 0.1) 
+
+
+#Separate by continent
+namerica <- d %>% filter(Continent %in% c("North America"))
+europe <- d %>% filter(Continent %in% c("Europe"))
+
+#Plot north america spatial data
+ggplot() + geom_map(data = world, map = world,
+    aes(long, lat, map_id = region), color = "white", 
+    fill = "lightgray", size = 0.1) +
+    geom_point(data = namerica,aes(decimalLongitude, decimalLatitude),
+    alpha = 0.7, size = 0.1) + ylim(0,70) +
+    coord_sf(xlim = c(-120, -50), ylim = c(0, 70), expand = FALSE)
+
+#Plot europe spatial data
+ggplot() + geom_map(data = world, map = world,
+   aes(long, lat, map_id = region), color = "white", 
+   fill = "lightgray", size = 0.1) +
+    geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
+    alpha = 0.7, size = 0.1) + ylim(0,70) +
+    coord_sf(xlim = c(-15, 45), ylim = c(30, 75), expand = FALSE)
+
 
