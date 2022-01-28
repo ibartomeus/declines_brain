@@ -1,32 +1,33 @@
-#In this script we download data from GBIF for 133 bee species----
+#In this script we download data from GBIF----
 
 #Load libraries
-library(stringr)
-library(dplyr)
-library(rgbif)
+library(stringr) #data cleaning v.1.4.0
+library(dplyr) #data cleaning v.1.0.7
+library(rgbif) #online database v.3.6.0
+library(ggplot2) #plotting v.3.3.5
+library(sp) #manipulate coordinates v.1.4-6
+library(rworldmap) #plot worldmap v.1.3-6
 
 #Read data
 d <- read.csv("Data/Especies_para_buscar.csv", row.names = 1)
 #Rename cols
 colnames(d) <- c("Species")
-
 #Check levels
 levels(unique(factor(d$Species)))
-
 #Fix one species name
 d$Species[d$Species=="Lasioglossum dialictus spp"] <- "Lasioglossum dialictus" 
 #Delete Species with sp. 
 d <- filter(d, !grepl(" sp.",Species))
-
-d <- filter(d, !Species==)
-
 #Some more typos
 d$Species[d$Species=="Agaposemon sericeus"] <- "Agapostemon sericeus"
 d$Species[d$Species=="Rhodantidium sticticum"] <- "Rhodanthidium sticticum"
 d$Species[d$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
-
 #Filter out Apis mellifera
 d <- d %>% filter(!Species=="Apis mellifera")
+#For doing trials
+#lev_trial <- levels(factor(d$Species))[6:15]
+#d <- d %>% filter(Species %in% lev_trial)
+
 
 ########################---
 #Download data from GBIF----
@@ -48,78 +49,87 @@ gbif_id <- data.frame(unlist(gbif_id))
 #rename col
 colnames(gbif_id) <- "key_number"
 
-#Create template to store results from loop
-dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
-                   decimalLongitude = NA,
-                   family = NA, genus = NA, species = NA,
-                   year = NA, month = NA, day = NA, recordedBy = NA,
-                   identifiedBy = NA, sex = NA, stateProvince = NA,
-                   locality = NA, continent= NA)
 #Download data
 temp <- NULL
+dat <- NULL
+
 for(i in gbif_id$key_number){
     temp <- occ_search(taxonKey= i, 
                        return='data', 
                        hasCoordinate=TRUE,
                        hasGeospatialIssue=FALSE,
-                       start=500,
                        limit=10000, #safe threshold based on rounding up counts above
                        #country = c(spain_code, portugal_code),
-                       fields = c('scientificName','name', 'decimalLatitude',
+                       fields = c('scientificName', 'decimalLatitude',
                                   'decimalLongitude', 
                                   'family','genus', 'species',
                                   'year', 'month', 'day', 'recordedBy',
                                   'identifiedBy', 'sex', 'stateProvince', 
-                                  'locality', 'continent'))
+                                  'locality'))
     
-   # temp$data <- temp$data[,c('scientificName','decimalLatitude',
-   #                       'decimalLongitude', 
-   #                       'family','genus', 'species',
-   #                       'year', 'month', 'day', 'recordedBy',
-   #                       'identifiedBy', 'sex',  'stateProvince', 
-   #                       'locality')]
     
     dat <- rbind(dat, as.data.frame(temp$data))
     
     
 }
 
+colnames(temp$data)
+
 #Delete first row with NA's that was created to add the data after the loop
 dat <- dat[!is.na(dat$species),]
-
 #Check number of levels per species
 info <- dat %>% 
     group_by(species) %>%
     summarise(no_rows = length(species))
 
-#At the moment there is a maximum of 7000 records per species
-#change it?
+#Add continent manually gbif seems to have many NA's on this field
+#Get continents
+# The single argument to this function, points, is a data.frame in which:
+#   - column 1 contains the longitude in degrees
+#   - column 2 contains the latitude in degrees
+
+coords2continent = function(points) 
+{  
+    countriesSP <- getMap(resolution='low')
+    #countriesSP <- getMap(resolution='high') #you could use high res map from rworldxtra if you were concerned about detail
+    
+    # converting points to a SpatialPoints object
+    # setting CRS directly to that from rworldmap
+    pointsSP = SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
+    
+    
+    # use 'over' to get indices of the Polygons object containing each point 
+    indices = over(pointsSP, countriesSP)
+    
+    #indices$continent   # returns the continent (6 continent model)
+    indices$REGION   # returns the continent (7 continent model)
+    #indices$ADMIN  #returns country name
+    #indices$ISO3 # returns the ISO3 code 
+}
+
+points = cbind(dat$decimalLongitude, dat$decimalLatitude)
+#Include column of continent on the dataset
+dat$Continent <- coords2continent(points)
+
+#Filter out by continent
+dat <- dat %>% filter(Continent %in% c("Europe", "North America"))
+levels(factor(dat$Continent))
 
 #Save data
-#write.csv(dat, "Data/gbif_data.csv")
+write.csv(dat, "Data/gbif_data.csv")
 
+#####################---
+#Explore graphically----
+#####################---
+#read data to avoid running all again
 d <- read.csv("Data/gbif_data.csv")
 
-library(ggplot2)
-
+#Load worldmap
 world <- map_data("world")
-str(d)
-ggplot() +
-    geom_map(
-        data = world, map = world,
+#Plot spatial data
+ggplot() + geom_map(data = world, map = world,
         aes(long, lat, map_id = region),
         color = "white", fill = "lightgray", size = 0.1) +
-    geom_point(
-        data = d,
-        aes(decimalLongitude, decimalLatitude),
+        geom_point(data = d,aes(decimalLongitude, decimalLatitude),
         alpha = 0.7, size = 0.1) 
 
-
-
-MainStates <- map_data("state")
-ggplot() + 
-    geom_polygon( data=MainStates, aes(x=long, y=lat, group=group),
- color="black", fill="lightblue")+   geom_point(
-     data = d,
-     aes(decimalLongitude, decimalLatitude),
-     alpha = 0.7, size = 0.1) + xlim(-120,0) +ylim(0,60)
