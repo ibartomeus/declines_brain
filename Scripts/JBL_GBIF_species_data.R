@@ -130,7 +130,7 @@ world <- map_data("world")
 #Plot spatial data
 ggplot() + geom_map(data = world, map = world,
         aes(long, lat, map_id = region),
-        color = "white", fill = "lightgray", size = 0.1) +
+        color = "white", fill = "lightgray", size = 0.05) +
         geom_point(data = d,aes(decimalLongitude, decimalLatitude),
         alpha = 0.7, size = 0.1) 
 
@@ -144,7 +144,7 @@ ggplot() + geom_map(data = world, map = world,
     aes(long, lat, map_id = region), color = "white", 
     fill = "lightgray", size = 0.1) +
     geom_point(data = namerica,aes(decimalLongitude, decimalLatitude),
-    alpha = 0.7, size = 0.1) + ylim(0,70) +
+    alpha = 0.7, size = 0.05) + ylim(0,70) +
     coord_sf(xlim = c(-120, -50), ylim = c(0, 70), expand = FALSE)
 
 #Plot europe spatial data
@@ -152,7 +152,7 @@ ggplot() + geom_map(data = world, map = world,
    aes(long, lat, map_id = region), color = "white", 
    fill = "lightgray", size = 0.1) +
     geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
-    alpha = 0.7, size = 0.1) + ylim(0,70) +
+    alpha = 0.7, size = 0.05) + ylim(0,70) +
     coord_sf(xlim = c(-15, 45), ylim = c(30, 75), expand = FALSE)
 
 
