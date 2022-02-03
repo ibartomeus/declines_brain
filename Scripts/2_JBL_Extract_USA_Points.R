@@ -1,5 +1,5 @@
 ###############################################################---
-#Extract coordinates from polygon and explore graphically----
+#Extract points from USA polygon and explore graphically----
 ###############################################################---
 library(ggplot2) #plotting v.3.3.5
 library(dplyr) #data cleaning v.1.0.7
@@ -13,13 +13,6 @@ d <- read.csv("Data/gbif_data.csv")
 
 #Load worldmap
 world <- map_data("world")
-#Plot spatial data
-ggplot() + geom_map(data = world, map = world,
-                    aes(long, lat, map_id = region),
-                    color = "white", fill = "lightgray", size = 0.05) +
-    geom_point(data = d,aes(decimalLongitude, decimalLatitude),
-               alpha = 0.7, size = 0.1) 
-
 
 #Separate by continent
 namerica <- d %>% filter(Continent %in% c("North America"))
