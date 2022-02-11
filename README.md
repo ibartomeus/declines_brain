@@ -11,3 +11,6 @@ https://gis.stackexchange.com/questions/392817/extracting-values-from-corine-lan
 
 Una guía de extraer buffered points pero con el NLCD
 https://mbjoseph.github.io/posts/2018-12-27-categorical-spatial-data-extraction-around-buffered-points-in-r/
+
+En las capas raster, la capa de USA, la NLCD tiene los años 1992, 2001, 2006, 2011 and 2016
+		     la de EUROPA, la CORINE tiene los años 1990, 2000, 2006, 2012 y 2018
