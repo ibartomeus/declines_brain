@@ -156,56 +156,9 @@ all_long_lat <- all %>%
 area_eu <- euro_map_1 %>%  mutate(area = st_area(euro_map_1))
 set_units(sum(area_eu$area) , km^2)
 
-#Data for MA
-#write.csv(all_long_lat, "Data/GIS/europe_all_long_lat_MA.csv")
-
-st_write(euro_map_1, "Data/GIS/euro_map_1.shp")
-st_write(all_long_lat, "Data/GIS/euro_all_long_lat.shp")
-st_write(nuts2.sf, "Data/GIS/euro_nuts2.sf.shp")
+#Save data
+write.csv(all_long_lat, file=gzfile("Data/Europe_data/urope_all_long_lat.csv.gz"),row.names=FALSE)
+st_write(euro_map_1, "Data/Europe_data/euro_map.shp")
+st_write(nuts2.sf, "Data/Europe_data/euro_nuts2.sf.shp")
 #world <- map_data("world")
-
-all_long_lat <- filter(all_long_lat, year>1975)
-
-#Plot and check
-p1 <- ggplot(euro_map_1) +
-geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
-guides(fill="none") +
-geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
-geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
-data = . %>% group_by(CNTR_CODE) %>% summarise()) +
-ylab("Latitude") + xlab("Longitude")+
-geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
-coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1))
-    
-#Plot EUROPE spatial data
-
-zoom <-
-    c(
-        "xmin" = -5,
-        "xmax" = 16,
-        "ymin" = 47,
-        "ymax" = 58
-    ) %>%
-    sf::st_bbox() %>%
-    sf::st_as_sfc() %>%
-    sf::st_as_sf(crs = 4326)
-
-p2 <- ggplot() + geom_map(data = world, map = world,
-aes(long, lat, map_id = region), color = "white", 
-fill = "lightgray", size = 0.1)  + ylim(0,70) +
-geom_sf(data=euro_map_1,aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 0.3)+ 
-guides(fill="none") +
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1))+
-    geom_sf(data = zoom, colour = "black", fill = NA) +
-    coord_sf(xlim = c(-15, 40), ylim = c(30, 75), expand = FALSE)+
-    ylab("Latitude") + xlab("Longitude") 
-
-#Combine plots
-p2  + p1 +  plot_layout(widths = 1)
-
 
