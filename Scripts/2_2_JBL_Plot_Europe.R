@@ -23,20 +23,23 @@ nuts2.sf <- st_read("Data/Europe_data/euro_nuts2.sf.shp")
 #Load worldmap
 world <- map_data("world")
 
+all_long_lat$long <- as.numeric(gsub("[()]","", all_long_lat$long))
+
+str(all_long_lat)
 
 #Plot and check
 p1 <- ggplot(euro_map) +
     geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
-    guides(fill="none") +
-    geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
+    guides(fill="none")  +
     geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
-            data = . %>% group_by(CNTR_CODE) %>% summarise()) +
+    data = . %>% group_by(CNTR_CODE) %>% summarise()) +
     ylab("Latitude") + xlab("Longitude")+
     geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
     coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
     theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-                                          size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-          panel.border = element_rect(colour = "black", fill=NA, size=1))
+    size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+    panel.border = element_rect(colour = "black", fill=NA, size=1))+
+    geom_point(data = all_long_lat,aes(lat, long),size = 0.15)
 
 #Plot EUROPE spatial data
 
@@ -57,7 +60,7 @@ p2 <- ggplot() + geom_map(data = world, map = world,
     geom_sf(data=euro_map,aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 0.3)+ 
     guides(fill="none") +
     theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-                                          size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+     size = 0.5), panel.background = element_rect(fill = "aliceblue"),
           panel.border = element_rect(colour = "black", fill=NA, size=1))+
     geom_sf(data = zoom, colour = "black", fill = NA) +
     coord_sf(xlim = c(-15, 40), ylim = c(30, 75), expand = FALSE)+

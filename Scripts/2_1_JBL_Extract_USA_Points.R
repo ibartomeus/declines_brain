@@ -50,7 +50,7 @@ usa_points <- st_intersection(polygon,usa)
 
 #separate geometry to long lat
 separated_coord <- usa_points %>% 
-dplyr::mutate(long = sf::st_coordinates(.)[,1], lat = sf::st_coordinates(.)[,2])
+    dplyr::mutate(long = sf::st_coordinates(.)[,1], lat = sf::st_coordinates(.)[,2])
 
 #select points within USA
 separated_coord <- as.data.frame(separated_coord)
@@ -71,7 +71,7 @@ usa_states <- filter(us_states, NAME %in% vars)
 
 #Dataset of usa points
 polygon <- usa_states %>% summarise(geometry = st_combine(geometry)) %>% 
-st_cast("POLYGON")  %>% sf::st_as_sf(crs = 4326) %>% sf::st_transform(crs = 4326)
+    st_cast("POLYGON")  %>% sf::st_as_sf(crs = 4326) %>% sf::st_transform(crs = 4326)
 
 area_states <- polygon %>%  mutate(area = st_area(polygon))
 
@@ -155,71 +155,11 @@ size = 0.1) + geom_map(data = ny_metropolitan,
 map = ny_metropolitan,aes(long, lat, map_id = region, fill=region, group = group), 
 size = 0.1) +guides(fill=FALSE) + geom_point(data = all_east_coast,aes(long, lat),
 alpha = 0.3, size = 0.05)
-    
+
 #Save data now, the code takes some time
 #Point of interests
 
-#Data for MA
-#write.csv(all_east_coast, "Data/GIS/usa_all_long_lat_MA.csv")
-
-all_east_coast <- all_east_coast %>% select(-c("X"))
-write.csv(all_east_coast, "Data/GIS/all_east_coast.csv")
-write.csv(ny_metropolitan, "Data/GIS/ny_metropolitan.csv")
-write.csv(usa_states, "Data/GIS/usa_states.csv")
-
-all_east_coast_1 <- all_east_coast_1 %>% filter(year >1975)
-
-#Calculate area in km2
-set_units(sum(area_states$area) + sum(area_ny$area), km^2)
-#146180 [km^2]
-
-all_east_coast_1 <- read.csv("Data/GIS/all_east_coast.csv")
-usa_states_1 <- read.csv("Data/GIS/usa_states.csv")
-ny_metropolitan_1 <- read.csv("Data/GIS/ny_metropolitan.csv")
-# load us_states dataset too, library sp
-
-zoom <-
-    c(
-        "xmin" = -70,
-        "xmax" = -80,
-        "ymin" = 38,
-        "ymax" = 47
-    ) %>%
-    sf::st_bbox() %>%
-    sf::st_as_sfc() %>%
-    sf::st_as_sf(crs = 4326)
-
-
-p1 <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
-fill = "lightgray", size = 0.1) + geom_map(data = usa_states_1, map = usa_states_1,
-aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
-size = 0.1) + geom_map(data = ny_metropolitan_1, 
-map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
-size = 0.1) +guides(fill=FALSE) + geom_point(data = all_east_coast,aes(long, lat),
-size = 0.15, stroke = 0, shape = 16)+
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-    ylab("Latitude")+xlab("Longitude") +   geom_sf(data = zoom, colour = "black", fill = NA)+
-    coord_sf(xlim = c(-68, -105), ylim = c(23, 52)) 
-
-p1
-
-
-p2 <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
-fill = "lightgray", size = 0.1) +geom_map(data = usa_states_1, map = usa_states_1,
-aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
-size = 0.1) + geom_map(data = ny_metropolitan_1, 
-map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
-size = 0.1) +guides(fill=FALSE) + geom_point(data = all_east_coast,aes(long, lat),
-size = 0.2, stroke = 0, shape = 16)+
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-coord_sf(xlim = c(-69, -80), ylim = c(38, 45.5)) + ylab("Latitude")+
-xlab("Longitude")
-
-p2
-#Combine plots
-p1  + p2 +  plot_layout(widths = 1)
-
+#Save data
+write.csv(all_east_coast, file=gzfile("Data/Usa_data/usa_all_long_lat.csv.gz"),row.names=FALSE)
+write.csv(ny_metropolitan, "Data/Usa_data/ny_metropolitan.csv")
+write.csv(usa_states, "Data/Usa_data/usa_states.csv")
