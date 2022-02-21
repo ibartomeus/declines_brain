@@ -1,5 +1,9 @@
+
 #Read zip data generated in scripts 3 for USA and Europe
 #Bind Europa and USA data, last step before analysis!
+#Load libraries
+library(tidyverse)
+library(data.table)
 europe <- data.frame(fread("Data/Europe_data/all_above_50_europe.csv.gz"))
 usa <- data.frame(fread("Data/Usa_data/all_above_50_usa.csv.gz"))
 #Bind data
@@ -9,7 +13,7 @@ final_data <- rbind(europe, usa)
 colnames(final_data) <- str_to_title(colnames(final_data))
 
 #Save data again
-write.csv(final_data, file=gzfile("Data/final_data.csv.gz"), row.names=FALSE)
+#write.csv(final_data, file=gzfile("Data/final_data.csv.gz"), row.names=FALSE)
 #MA, this would read as follows:
 final_data <- data.frame(fread("Data/final_data.csv.gz"))
 
@@ -21,5 +25,18 @@ all_above_100 <- final_data %>%
     group_by(Species_name) %>% filter(n() >= 100) %>% ungroup()
 nlevels(factor(all_above_100$Species_name))
 #Check number of records by continent
-final_data %>% filter(Continent=="Europe") #46701
-final_data %>% filter(Continent=="North America") #3239
+eu <- final_data %>% filter(Continent=="Europe") #46701
+us <- final_data %>% filter(Continent=="North America") #3239
+
+#Histogram of counts per species
+#1rst for all
+all_sum <- data.frame(final_data %>% 
+                    group_by(Species_name) %>%
+                    summarise(no_rows = length(Species_name)) 
+                    %>%  arrange(-no_rows))
+
+all_sum$Species_name <- factor(all_sum$Species_name, levels = all_sum$Species_name)
+
+ggplot(all_sum, aes(x=Species_name, y=no_rows)) + 
+    geom_bar(stat = "identity") +
+    theme(axis.text.x=element_text(angle=45, hjust=1, size=5))
