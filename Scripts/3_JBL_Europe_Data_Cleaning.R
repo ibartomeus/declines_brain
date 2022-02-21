@@ -1,7 +1,7 @@
 ######-
 #In this script we prepare Europe data for analysis
 #We take 5 key decisions in data cleaning
-#1)Filter records above 1985
+#1)Filter records above 1985 (this is decided based on the GIS data available)
 #2)Filter by unique capture event
 #3)Filter by minimum of 3 decimals on coordinates
 #4)Filter number of levels per species (minimum N=50)
@@ -37,7 +37,13 @@ all_above_1985 <- all %>% filter(year>1985)
 #SECOND FILTER----
 #############-
 #Second filter unique capture event based on: year, month, day, locality
-all_unique_event <- all_above_1985 %>% distinct(scientificName, year, month,day,stateProvince,locality,  .keep_all = T)
+locality_na <-  all_above_1985 %>% filter(is.na(locality))
+locality_non_na <- all_above_1985 %>% filter(!is.na(locality))
+#Filter by unique locality when present and if not by unique coordinate
+locality_na_filtered <- locality_na %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
+locality_non_na_filtered <- locality_non_na %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
+#bind both
+all_unique_event <- rbind(locality_na_filtered, locality_non_na_filtered)
 
 #############-
 #THIRD FILTER----
@@ -79,9 +85,11 @@ s <- data.frame(all_unique_event_3_decimals %>%
 all_unique_event_3_decimals <- all_unique_event_3_decimals %>%
     filter(!str_detect(scientificName, regex("\\BOLD", ignore_case = TRUE)))
 
+#Rename species, gbif is giving the synonim
+all_unique_event_3_decimals$scientificName[all_unique_event_3_decimals$scientificName=="Andrena sabulosa (Scopoli, 1763)"] <- "Andrena carantonica Pérez, 1902"
 #Select above species with above 50 records
 all_above_50 <- all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>% filter(n() >= 50)
+    group_by(scientificName) %>% filter(n() >= 50) %>% ungroup()
 
 #Create a col with Species name that will match the original name
 all_above_50$Species_name <- paste(word(all_above_50$scientificName, 1), word(all_above_50$scientificName, 2))
@@ -118,32 +126,43 @@ nuts2.sf <- st_read("Data/Europe_data/euro_nuts2.sf.shp")
 #Load worldmap
 world <- map_data("world")
 
-all_above_50 %>% filter(Species_name=="Andrena angustior")
+#Convert long to numeric
 all_above_50$long <- as.numeric(all_above_50$long)
 str(all_above_50)
 
 #Create for loop and store all plots on a folder
 spp <- unique(all_above_50$Species_name)
 
-for(i in spp){
+#for(i in spp){
 
-temp_plot <- ggplot(euro_map) +
-geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
-guides(fill="none") +
-geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
-geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
-data = . %>% group_by(CNTR_CODE) %>% summarise()) +
-ylab("Latitude") + xlab("Longitude")+
-geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
-coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
-size = 1, stroke = 0, shape = 16)+ggtitle(i)
+#temp_plot <- ggplot(euro_map) +
+#geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
+#guides(fill="none") +
+#geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
+#geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
+#data = . %>% group_by(CNTR_CODE) %>% summarise()) +
+#ylab("Latitude") + xlab("Longitude")+
+#geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
+#coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
+#theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+#size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+#panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
+#size = 1, stroke = 0, shape = 16)+ggtitle(i)
+#
+#ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
 
-ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
+#}
 
-}
+#All species have approximately an homogeneous distribution
+
+#############-
+#SAVE DATA----
+#############-
+
+colnames(all_above_50)
+#Select cols of interest
+all_above_50_europe <- all_above_50 %>% select(c("Species_name", "recordedBy", "identifiedBy", "sex","long", "lat","day", "month", "year", 
+"locality", "Country", "Continent"))  
 
 
