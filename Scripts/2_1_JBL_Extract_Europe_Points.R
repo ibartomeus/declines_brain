@@ -22,7 +22,7 @@ world <- map_data("world")
 
 #Separate by continent
 europe <- d %>% filter(Continent %in% c("Europe"))
-
+str(europe)
 #Plot north america spatial data
 ggplot() + geom_map(data = world, map = world,
                     aes(long, lat, map_id = region), color = "white", 
