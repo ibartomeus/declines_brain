@@ -164,5 +164,6 @@ colnames(all_above_50)
 #Select cols of interest
 all_above_50_europe <- all_above_50 %>% select(c("Species_name", "recordedBy", "identifiedBy", "sex","long", "lat","day", "month", "year", 
 "locality", "Country", "Continent"))  
-
+#Save
+write.csv(all_above_50_europe, file=gzfile("Data/Europe_data/all_above_50_europe.csv.gz"),row.names=FALSE)
 
