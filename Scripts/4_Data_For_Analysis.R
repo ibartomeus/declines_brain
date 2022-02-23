@@ -29,15 +29,10 @@ all_above_100 <- final_data %>%
     group_by(Species_name) %>% filter(n() >= 100) %>% ungroup()
 nlevels(factor(all_above_100$Species_name))
 #Check number of records by continent
-<<<<<<< HEAD
 eu <- final_data %>% filter(Continent=="Europe") #344758
 us <- final_data %>% filter(Continent=="North America") #25773
 nlevels(factor(eu$Species_name))
 nlevels(factor(us$Species_name))
-=======
-eu <- final_data %>% filter(Continent=="Europe") #46701
-us <- final_data %>% filter(Continent=="North America") #3239
->>>>>>> c33128dbc99352cd7b806a727430bd75f4465e5a
 
 #Histogram of counts per species
 #1rst for all
