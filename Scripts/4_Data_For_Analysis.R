@@ -17,7 +17,7 @@ final_data <- rbind(europe, usa)
 colnames(final_data) <- str_to_title(colnames(final_data))
 
 #Save data again
-#write.csv(final_data, file=gzfile("Data/final_data.csv.gz"), row.names=FALSE)
+write.csv(final_data, file=gzfile("Data/final_data.csv.gz"), row.names=FALSE)
 #MA, this would read as follows:
 final_data <- data.frame(fread("Data/final_data.csv.gz"))
 

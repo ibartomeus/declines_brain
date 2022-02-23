@@ -87,7 +87,7 @@ all_unique_event_3_decimals <- all_unique_event_3_decimals %>%
 all_unique_event_3_decimals$scientificName[all_unique_event_3_decimals$scientificName=="Andrena sabulosa (Scopoli, 1763)"] <- "Andrena carantonica Pérez, 1902"
 #Select above species with above 50 records
 all_above_50 <- all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>% filter(n() >= 50) %>% ungroup()
+    group_by(scientificName) %>% filter(n() >= 100) %>% ungroup()
 
 #Create a col with Species name that will match the original name
 all_above_50$Species_name <- paste(word(all_above_50$scientificName, 1), word(all_above_50$scientificName, 2))

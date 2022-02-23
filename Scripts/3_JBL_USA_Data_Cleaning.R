@@ -89,7 +89,7 @@ all_unique_event_3_decimals$Species_name <- paste(word(all_unique_event_3_decima
 
 #Select above species with above 50 records
 all_above_50 <- all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>% filter(n() >= 50) %>% ungroup()
+    group_by(scientificName) %>% filter(n() >= 100) %>% ungroup()
 
 #Filter out now apis from this column
 all_above_50 <- all_above_50 %>% filter(!Species_name=="Apis mellifera")
