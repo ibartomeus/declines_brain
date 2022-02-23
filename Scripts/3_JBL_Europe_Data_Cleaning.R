@@ -23,9 +23,7 @@ all_long_lat$long <- gsub(")", "", all_long_lat$long)
 
 colnames(all_long_lat)
 
-all <- all_long_lat %>% select("scientificName", "family", "genus", "year", "month", "day","recordedBy",
-                        "identifiedBy","sex","stateProvince", "locality", "Continent",
-                        "Country", "long", "lat")
+all <- all_long_lat 
 
 #############-
 #FIRST FILTER----
@@ -133,26 +131,26 @@ str(all_above_50)
 #Create for loop and store all plots on a folder
 spp <- unique(all_above_50$Species_name)
 
-#for(i in spp){
+for(i in spp){
 
-#temp_plot <- ggplot(euro_map) +
-#geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
-#guides(fill="none") +
-#geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
-#geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
-#data = . %>% group_by(CNTR_CODE) %>% summarise()) +
-#ylab("Latitude") + xlab("Longitude")+
-#geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
-#coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
-#theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-#size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-#panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-#geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
-#size = 1, stroke = 0, shape = 16)+ggtitle(i)
-#
-#ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
+temp_plot <- ggplot(euro_map) +
+geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
+guides(fill="none") +
+geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
+geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
+data = . %>% group_by(CNTR_CODE) %>% summarise()) +
+ylab("Latitude") + xlab("Longitude")+
+geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
+coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
+theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
+size = 1, stroke = 0, shape = 16)+ggtitle(i)
 
-#}
+ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
+
+}
 
 #All species have approximately an homogeneous distribution
 
@@ -160,10 +158,9 @@ spp <- unique(all_above_50$Species_name)
 #SAVE DATA----
 #############-
 
-colnames(all_above_50)
-#Select cols of interest
-all_above_50_europe <- all_above_50 %>% select(c("Species_name", "recordedBy", "identifiedBy", "sex","long", "lat","day", "month", "year", 
-"locality", "Country", "Continent"))  
+#57 records
+#unique(all_above_50$Raw_spp)
+
 #Save
-write.csv(all_above_50_europe, file=gzfile("Data/Europe_data/all_above_50_europe.csv.gz"),row.names=FALSE)
+write.csv(all_above_50, file=gzfile("Data/Europe_data/all_above_50_europe.csv.gz"),row.names=FALSE)
 

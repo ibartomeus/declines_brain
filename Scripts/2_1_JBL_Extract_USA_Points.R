@@ -9,7 +9,8 @@ library(tidyverse)
 library(units)
 library(patchwork)
 #read data to avoid running all again
-d <- read.csv("Data/gbif_data.csv")
+library(data.table)
+d <- data.frame(fread("Data/gbif_data_final.csv.gz"))
 
 #Load worldmap
 world <- map_data("world")

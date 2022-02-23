@@ -120,26 +120,26 @@ ny_metropolitan_1 <- read.csv("Data/Usa_data/ny_metropolitan.csv")
 #Create for loop and store all plots on a folder
 spp <- unique(all_above_50$Species_name)
 
-#for(i in spp){
-#
-##Now create for loop for the different species 
-#temp_plot <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
-#fill = "lightgray", size = 0.1) +geom_map(data = usa_states_1, map = usa_states_1,
-#aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
-#size = 0.1) + geom_map(data = ny_metropolitan_1, 
-#map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
-#size = 0.1) +  scale_fill_manual(values =c("#85BEDC", "#DEB478", "#CCB62F", "#115896",
-#"#A1B654", "#CD8862", "#CABEE9","#D04E59","#C582B2"))+guides(fill=FALSE) +
-#theme(panel.grid.major = element_line(color = gray(0.5), 
-#linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-#panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-#coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longitude")+
-#geom_point(data = all_above_50 %>% filter(Species_name==i),aes(long, lat),
-#size = 1, stroke = 0, shape = 16)+ggtitle(i)
-#
-#ggsave(temp_plot, file=paste0("Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
-#
-#}
+for(i in spp){
+
+#Now create for loop for the different species 
+temp_plot <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
+fill = "lightgray", size = 0.1) +geom_map(data = usa_states_1, map = usa_states_1,
+aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
+size = 0.1) + geom_map(data = ny_metropolitan_1, 
+map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
+size = 0.1) +  scale_fill_manual(values =c("#85BEDC", "#DEB478", "#CCB62F", "#115896",
+"#A1B654", "#CD8862", "#CABEE9","#D04E59","#C582B2"))+guides(fill=FALSE) +
+theme(panel.grid.major = element_line(color = gray(0.5), 
+linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longitude")+
+geom_point(data = all_above_50 %>% filter(Species_name==i),aes(long, lat),
+size = 1, stroke = 0, shape = 16)+ggtitle(i)
+
+ggsave(temp_plot, file=paste0("Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
+
+}
 
 #All species have approximately an homogeneous distribution
 
@@ -147,12 +147,7 @@ spp <- unique(all_above_50$Species_name)
 #SAVE DATA----
 #############-
 
-colnames(all_above_50)
-all_above_50$Country <- "USA"
-#Select cols of interest
-all_above_50_usa <- all_above_50 %>% select(c("Species_name", "recordedBy", "identifiedBy", "sex","long", "lat","day", "month", "year", 
-"locality", "Country", "Continent"))  
 #Save
-write.csv(all_above_50_usa, file=gzfile("Data/Usa_data/all_above_50_usa.csv.gz"),row.names=FALSE)
+write.csv(all_above_50, file=gzfile("Data/Usa_data/all_above_50_usa.csv.gz"),row.names=FALSE)
 
 

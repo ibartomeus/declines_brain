@@ -52,14 +52,32 @@ colnames(gbif_id) <- "key_number"
 
 #Download data
 temp <- NULL
-dat <- NULL
 
-for(i in gbif_id$key_number){
-    temp <- occ_search(taxonKey= i, 
+#Add check to add missing vars
+library(cleanR)
+check <-  data.frame(scientificName = NA, decimalLatitude = NA,
+                     decimalLongitude = NA,
+                     family = NA, genus = NA, species = NA,
+                     year = NA, month = NA, day = NA, recordedBy = NA,
+                     identifiedBy = NA, sex = NA,  stateProvince = NA,
+                     locality = NA)
+
+check <- define_template(check, NA)
+
+dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
+                   decimalLongitude = NA,
+                   family = NA, genus = NA, species = NA,
+                   year = NA, month = NA, day = NA, recordedBy = NA,
+                   identifiedBy = NA, sex = NA,  stateProvince = NA,
+                   locality = NA)
+
+for(i in gbif_id$key_number[102:132]){
+    temp <- occ_search(taxonKey= 1340503, 
                        return='data', 
+                       year="1985, 2022",
                        hasCoordinate=TRUE,
                        hasGeospatialIssue=FALSE,
-                       limit=10000, #safe threshold based on rounding up counts above
+                       limit=100000, 
                        #country = c(spain_code, portugal_code),
                        fields = c('scientificName', 'decimalLatitude',
                                   'decimalLongitude', 
@@ -69,15 +87,41 @@ for(i in gbif_id$key_number){
                                   'locality'))
     
     
-    dat <- rbind(dat, as.data.frame(temp$data))
+    #Convert to dataframe and add cols if necessary
+    temp <- as.data.frame(temp$data)
+    temp <- add_missing_variables(check, temp)
+    dat <- rbind(dat, temp)
     
     
 }
 
-colnames(temp$data)
+#Some extra work to get 100,000 records per spp
+#bombus_terrestris <- dat
+#bombus_pratorum <- dat
+#bombus_pascuorum <- dat
+#bombus_lucorum <- dat
+#bombus_impatiens <- dat
+#bombus_hypnorum <- dat
+#bombus <- rbind(bombus_terrestris, bombus_pratorum,
+    #            bombus_pascuorum, bombus_lucorum,
+   #             bombus_impatiens, bombus_hypnorum)
+#bomb <- c("Bombus terrestris", "Bombus pratorum",
+ # "Bombus pascuorum", "Bombus lucorum",
+  #"Bombus impatiens", "Bombus hypnorum")
+#levels(factor(dat_final_no_bomb$species))
+#dat_final_no_bomb <- dat_final %>% filter(!species %in% bomb)
 
-#Delete first row with NA's that was created to add the data after the loop
-dat <- dat[!is.na(dat$species),]
+#This was done in three steps
+#It was taking too long
+#dat_132 <- dat
+#dat_101 <- dat
+#dat_50 <- dat
+#dat_final <- rbind(dat_50, dat_101, dat_132)
+#all <- rbind(dat_final_no_bomb, bombus)
+
+dat <- all %>% filter(!is.na(all$scientificName))
+
+
 #Check number of levels per species
 info <- dat %>% 
     group_by(species) %>%
@@ -117,13 +161,16 @@ dat <- dat %>% filter(Continent %in% c("Europe", "North America"))
 levels(factor(dat$Continent))
 
 #Save data
-write.csv(dat, "Data/gbif_data.csv")
+#write.csv(dat, "Data/gbif_data.csv")
+write.csv(dat, file=gzfile("Data/gbif_data.csv.gz"),row.names=FALSE)
+
 
 #####################---
 #Explore graphically----
 #####################---
 #read data to avoid running all again
-d <- read.csv("Data/gbif_data.csv")
+library(data.table)
+d <- data.frame(fread("Data/gbif_data.csv.gz"))
 
 #Load worldmap
 world <- map_data("world")

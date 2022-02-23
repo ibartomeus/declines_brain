@@ -18,8 +18,8 @@ all_long_lat <- data.frame(fread("Data/Europe_data/urope_all_long_lat.csv.gz"))
 #Fix colname position
 names(all_long_lat)[1:(ncol(all_long_lat)-1)] <- names(all_long_lat)[2:ncol(all_long_lat)]
 all_long_lat[, ncol(all_long_lat)] <- NULL
-euro_map <- st_read("Data/Europe_data/euro_map.shp")
-nuts2.sf <- st_read("Data/Europe_data/euro_nuts2.sf.shp")
+euro_map <- st_read("Data/Europe_data/euro_map_1.shp")
+nuts2.sf <- st_read("Data/Europe_data/euro_nuts2_1.sf.shp")
 #Load worldmap
 world <- map_data("world")
 
@@ -39,7 +39,7 @@ p1 <- ggplot(euro_map) +
     theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
     size = 0.5), panel.background = element_rect(fill = "aliceblue"),
     panel.border = element_rect(colour = "black", fill=NA, size=1))+
-    geom_point(data = all_long_lat,aes(lat, long),size = 0.15)
+    geom_point(data = all_long_lat,aes(lat, long),size = 0.01)
 
 #Plot EUROPE spatial data
 
