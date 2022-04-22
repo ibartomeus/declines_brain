@@ -673,6 +673,25 @@ library(raster)
 getwd()
 r <- raster("Raw_data/capitaCLC.tif")
 plot(r)
+crs(r)
+#Importa esto
+final_data
+summary(final_data$Country)
+nchar(final_data$Country)
+unique(final_data$Country)
+#vamos a hacer un subset, para probar, cogiendo solo dinamarca
+Dinamarca<-subset(final_data, subset=(final_data$Country =="Denmark"))
+lats<-c(Dinamarca$Lat)
+lons<-c(Dinamarca$Long)
+coords<-data.frame(x=lons,y=lats)
+
+points<-SpatialPoints(coords, proj4string = CRS("+proj=longlat +datum=WGS84"))
+pp<-spTransform(points, "EPSG:3035")
+
+
+points<-na.omit(object = points)
+values<-extract(r, points)
+
 #Coordinate reference system
 r@crs
 
