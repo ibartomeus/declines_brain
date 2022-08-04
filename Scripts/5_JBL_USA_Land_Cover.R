@@ -12,6 +12,7 @@ usa %>%
 group_by(species) %>% 
 summarize(no_rows= length(species))
 
+usa %>% filter(is.na(lo))
 
 #Extract land use
 #Code from using this code as an example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/

@@ -8,8 +8,7 @@ pref <- read_csv("Data/Usa_data/land_cover_usa.csv") %>%
 dplyr::select(species, cover.names) %>% 
 mutate_if(is.character,as.factor)
 
-
-data_wide <- spread(pref, species, cover.names)
+pref %>%  distinct(species)
 
 pref.table = pref %>%
     count(species, cover.names) %>%
