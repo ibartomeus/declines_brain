@@ -2,37 +2,55 @@
 
 #Load library
 library(tidyverse)
+library(bipartite)
 
 #Load extracted data
 pref <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
 dplyr::select(species, cover.names) %>% 
 mutate_if(is.character,as.factor)
 
-
-s = pref %>% 
+#Check levels of species and cover names
+#First, species
+pref %>% 
 group_by(species) %>% 
 summarise(n_rows = length(species))
+#Second, cover.names
+pref %>% 
+group_by(cover.names) %>% 
+summarise(n_rows = length(cover.names))
 
+#Recode levels to calculate preferences
+#Check pdf with landcover types in Data/Usa_data
+#and make decissions based on that
+pref = pref %>% 
+mutate(cover.names = fct_recode(as.factor(cover.names),
+      Natural = "Barren Land",
+      Agricultural = "Cultivated Crops", #just this one for this category...
+      Natural = "Deciduous Forest",
+      Urban = "Developed, High Intensity",
+      Urban = "Developed, Medium Intensity",
+      Urban = "Developed, Low Intensity",
+      Agricultural = "Developed, Open Space",
+      Natural = "Emergent Herbaceous Wetlands",
+      Natural = "Evergreen Forest",
+      Natural = "Hay/Pasture",
+      Natural = "Herbaceous",
+      Natural = "Mixed Forest",
+      Discard = "Open Water",
+      Natural = "Shrub/Scrub",
+      Natural = "Woody Wetlands")) %>% 
+filter(!cover.names == "Discard") # Don't select open water ones for now
 
+#Check levels again
+pref %>% 
+group_by(cover.names) %>% 
+summarise(n_rows = length(cover.names))
 
-pref %>%  distinct(species)
-
+#Now prepare data to calculate preferences
 pref.table = pref %>%
-    count(species, cover.names) %>%
-    pivot_wider(names_from = cover.names, values_from = n, values_fill = list(n = 0))
+count(species, cover.names) %>%
+pivot_wider(names_from = cover.names, values_from = n, values_fill = list(n = 0)) %>% 
+column_to_rownames(var="species")
 
-
-
-pref.table<-aggregate(cover.names~species, FUN=summary, pref)
-
-
-#Convertimos long data en wide data, así sacamos cuantas ocurrencias de cada especie en cada habitat
-pref.table<-aggregate(pref$cover.names~pref$species, FUN=summary, pref)
-pref.table<-c(pref.table)
-pref.tabletemp<-pref.table$`pref$cover.names`
-rownames(pref.tabletemp)<-pref.table$`pref$species`
-usa_table<-data.frame(pref.tabletemp)
-str(usa_table)
-str(pref.table)
-names(pref.table)
-View(usa_table)
+#Null model of our pref.table
+n.mod <- nullmodel(pref.table, N=1000, method="r2dtable")
