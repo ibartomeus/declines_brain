@@ -4,7 +4,7 @@
 library(tidyverse)
 
 #Load extracted data
-pref <- read_csv("Data/Usa_data/land_cover_usa.csv") %>% 
+pref <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
 dplyr::select(species, cover.names) %>% 
 mutate_if(is.character,as.factor)
 

@@ -4,30 +4,23 @@ library(data.table)
 library(tidyverse)
 
 #Load data
-usa <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",",row.names=1)
-#usa <- data.frame(fread("Data/Usa_data/all_above_50_usa.csv.gz"))
+usa <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
 
 #check levels, min 106 max just over 15.0000
 usa %>% 
 group_by(species) %>% 
 summarize(no_rows= length(species))
 
-usa %>% filter(is.na(lo))
-
 #Extract land use
 #Code from using this code as an example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
-names(usa)[which(names(usa)=="lat")]<-"latitude"
-names(usa)[which(names(usa)=="long")]<-"longitude"
-
-write_csv(usa, "Data/Usa_data/Datos.csv")
 
 year=2011
-#point_d = "Datos.csv" 
+#point_d = "Data/Usa_data/all_above_50_usa.csv.gz"
 #data_dir="NLCD_data"
 #write_dir="Data/Usa_data"
 
 extract_cover <- function(year,
-                          point_d = "Data/Usa_data/Datos.csv",  
+                          point_d = "Data/Usa_data/all_above_50_usa.csv.gz",  
                           data_dir="NLCD_data",
                           write_dir="Data/Usa_data"){
     require(raster)
@@ -42,7 +35,7 @@ extract_cover <- function(year,
     NLCD <- raster(filename)
     
     # load site data
-    Datos <- read.csv(point_d, header=T, sep=",") #Si falla, usar como sep "," o ";"
+    Datos <- read.table(point_d,  header=T, quote="\"", sep=",") #Si falla, usar como sep "," o ";"
     #según tus datos
     coords <- Datos[, c("longitude", "latitude")]  
     #convert lat/lon to appropriate projection
@@ -80,11 +73,13 @@ extract_cover <- function(year,
     mydf <- merge(conversions, mydf, by = "num.codes")
     
     # write output
-    out_name <- paste(write_dir, "/", "land_cover_", 
-                      "usa.csv", sep="")
-    write.csv(mydf, out_name)
+    out_name <- paste0(write_dir, "/", "land_cover_", 
+                      "usa.csv.gz")
+    
+    write_csv(mydf, file=gzfile(out_name))
 }
 
+
 #Extract cover with function
-extract_cover(year = 2011, point_d = "Data/Usa_data/Datos.csv", write_dir = "Data/Usa_data")
+extract_cover(year = 2011, point_d = "Data/Usa_data/all_above_50_usa.csv.gz", write_dir = "Data/Usa_data")
 

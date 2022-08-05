@@ -95,6 +95,13 @@ all_above_50 <- all_unique_event_3_decimals %>%
 all_above_50 <- all_above_50 %>% filter(!Species_name=="Apis mellifera")
 
 
+colnames(all_above_50)
+#Rename lat/lon cols
+all_above_50 = all_above_50 %>% 
+rename(longitude = long) %>% 
+rename(latitude = lat)
+
+
 #############-
 #FITH FILTER----
 #############-
