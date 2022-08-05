@@ -44,7 +44,7 @@ d <- as.data.frame(cbind(d,l))
     
 }
 
-
+#Alternative way, probably more elegant
 
 m = red #create matrix from data and overwrite in the for loop
 
@@ -54,7 +54,7 @@ for(k in 1:nrow(red)){
     
 v <- lapply(n.mod, `[[`, k) #generate vector for each row/species
     
-red2[k,z] <- sum(unlist(v) <  red[k,z] ) / length(unlist(v)) #calculate percentile and stroe in position
+m[k,z] <- sum(unlist(v) <  red[k,z] ) / length(unlist(v)) #calculate percentile and store in each matrix position 
     
 }}
 
