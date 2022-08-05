@@ -8,6 +8,13 @@ pref <- read_csv("Data/Usa_data/land_cover_usa.csv") %>%
 dplyr::select(species, cover.names) %>% 
 mutate_if(is.character,as.factor)
 
+
+s = pref %>% 
+group_by(species) %>% 
+summarise(n_rows = length(species))
+
+
+
 pref %>%  distinct(species)
 
 pref.table = pref %>%

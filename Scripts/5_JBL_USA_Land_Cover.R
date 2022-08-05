@@ -19,13 +19,15 @@ usa %>% filter(is.na(lo))
 names(usa)[which(names(usa)=="lat")]<-"latitude"
 names(usa)[which(names(usa)=="long")]<-"longitude"
 
-#year=2011
+write_csv(usa, "Data/Usa_data/Datos.csv")
+
+year=2011
 #point_d = "Datos.csv" 
 #data_dir="NLCD_data"
 #write_dir="Data/Usa_data"
 
 extract_cover <- function(year,
-                          point_d = "Datos.csv",  
+                          point_d = "Data/Usa_data/Datos.csv",  
                           data_dir="NLCD_data",
                           write_dir="Data/Usa_data"){
     require(raster)
@@ -51,7 +53,7 @@ extract_cover <- function(year,
     Datos_transformed <- spTransform(coords, CRS(crs_args))
     
     #extract land cover data for each point, given buffer size
-    Landcover <- extract(NLCD, Datos_transformed)
+    Landcover <- raster::extract(NLCD, Datos_transformed)
     
     # summarize each site's data by proportion of each cover type
     summ <- lapply(Landcover, function(x){
@@ -84,5 +86,5 @@ extract_cover <- function(year,
 }
 
 #Extract cover with function
-extract_cover(year = 2011, point_d = "Datos.csv", write_dir = "Data/Usa_data")
+extract_cover(year = 2011, point_d = "Data/Usa_data/Datos.csv", write_dir = "Data/Usa_data")
 
