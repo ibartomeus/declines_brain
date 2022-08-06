@@ -54,3 +54,19 @@ column_to_rownames(var="species")
 
 #Null model of our pref.table
 n.mod <- nullmodel(pref.table, N=1000, method="r2dtable")
+
+#Calculate preferences
+#Alternative way, probably more elegant
+
+m = pref.table #create matrix from data and overwrite in the for loop
+
+for(z in 1:ncol(pref.table)){
+ for(k in 1:nrow(pref.table)){
+        
+v <- lapply(n.mod, `[[`, k) #generate vector for each row/species
+#calculate percentile and store in each matrix position     
+m[k,z] <- sum(unlist(v) <  pref.table[k,z] ) / length(unlist(v)) 
+        
+}}
+
+
