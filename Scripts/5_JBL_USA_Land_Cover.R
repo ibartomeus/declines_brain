@@ -15,13 +15,10 @@ summarize(no_rows= length(species))
 #Code from using this code as an example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
 
 year=2011
-#point_d = "Data/Usa_data/all_above_50_usa.csv.gz"
-#data_dir="NLCD_data"
-#write_dir="Data/Usa_data"
 
 extract_cover <- function(year,
                           point_d = "Data/Usa_data/all_above_50_usa.csv.gz",  
-                          data_dir="NLCD_data",
+                          data_dir="Data/Raster_USA",
                           write_dir="Data/Usa_data"){
     require(raster)
     require(rgdal)
@@ -71,7 +68,7 @@ extract_cover <- function(year,
     mydf$num.codes <- mydf$cover
     
     mydf <- merge(conversions, mydf, by = "num.codes")
-    
+    #colnames(mydf) <- c("Species", "Cover_names")
     # write output
     out_name <- paste0(write_dir, "/", "land_cover_", 
                       "usa.csv.gz")

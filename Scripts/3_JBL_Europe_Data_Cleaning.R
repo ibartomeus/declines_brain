@@ -19,11 +19,14 @@ all_long_lat <- data.frame(fread("Data/Europe_data/urope_all_long_lat.csv.gz"))
 names(all_long_lat)[1:(ncol(all_long_lat)-1)] <- names(all_long_lat)[2:ncol(all_long_lat)]
 all_long_lat[, ncol(all_long_lat)] <- NULL
 
-all_long_lat$long <- gsub(")", "", all_long_lat$long)
+#The coordinates are a bit messy and the fix is not elegant... lat and long are swapped
+all = all_long_lat %>% 
+rename(lat1 = lat) %>% 
+rename(long1 = long) %>% 
+rename(lat = long1) %>% 
+rename(long = lat1) %>% 
+mutate(lat = gsub(")", "", lat))
 
-colnames(all_long_lat)
-
-all <- all_long_lat 
 
 #############-
 #FIRST FILTER----

@@ -7,7 +7,7 @@ library(bipartite)
 #Load extracted data
 pref <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
 dplyr::select(species, cover.names) %>% 
-mutate_if(is.character,as.factor)
+mutate_if(is.character,as.factor) 
 
 #Check levels of species and cover names
 #First, species
@@ -42,7 +42,7 @@ mutate(cover.names = fct_recode(as.factor(cover.names),
 filter(!cover.names == "Discard") # Don't select open water ones for now
 
 #Check levels again
-pref %>% 
+check_cover = pref %>% 
 group_by(cover.names) %>% 
 summarise(n_rows = length(cover.names))
 
@@ -53,7 +53,7 @@ pivot_wider(names_from = cover.names, values_from = n, values_fill = list(n = 0)
 column_to_rownames(var="species")
 
 #Null model of our pref.table
-n.mod <- nullmodel(pref.table, N=1000, method="r2dtable")
+n.mod <- nullmodel(pref.table, N=10000, method="r2dtable")
 
 #Calculate preferences
 #Alternative way, probably more elegant
