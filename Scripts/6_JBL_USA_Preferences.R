@@ -15,31 +15,35 @@ pref %>%
 group_by(species) %>% 
 summarise(n_rows = length(species))
 #Second, cover.names
-pref %>% 
+S = pref %>% 
 group_by(cover.names) %>% 
 summarise(n_rows = length(cover.names))
 
 #Recode levels to calculate preferences
 #Check pdf with landcover types in Data/Usa_data
-#and make decissions based on that
+#and make decisions based on that
 pref = pref %>% 
 mutate(cover.names = fct_recode(as.factor(cover.names),
-      Natural = "Barren Land",
-      Agricultural = "Cultivated Crops", #just this one for this category...
-      Natural = "Deciduous Forest",
-      Urban = "Developed, High Intensity",
-      Urban = "Developed, Medium Intensity",
-      Urban = "Developed, Low Intensity",
-      Agricultural = "Developed, Open Space",
-      Natural = "Emergent Herbaceous Wetlands",
-      Natural = "Evergreen Forest",
-      Natural = "Hay/Pasture",
-      Natural = "Herbaceous",
-      Natural = "Mixed Forest",
-      Discard = "Open Water",
-      Natural = "Shrub/Scrub",
-      Natural = "Woody Wetlands")) %>% 
-filter(!cover.names == "Discard") # Don't select open water ones for now
+      Discard = "Barren Land", #Very different cover type, not included (MA & JB)
+      Agricultural = "Cultivated Crops", #(MA & JB)
+      Natural = "Deciduous Forest", #(MA & JB)
+      Urban = "Developed, High Intensity", #Greater than 50% of cover (MA & JB) 
+      Urban = "Developed, Medium Intensity", #Greater than 50% of cover (MA & JB) 
+      Seminatural = "Developed, Low Intensity", #Low urban impact (MA & JB)
+      Seminatural = "Developed, Open Space", #Open areas with vegetation (MA & JB)
+      Natural = "Emergent Herbaceous Wetlands", #(MA & JB)
+      Natural = "Evergreen Forest", #(MA & JB)
+      Agricultural = "Hay/Pasture", #Highly managed by humans (MA & JB)
+      Natural = "Herbaceous", #See explanation below (MA & JB)
+      Natural = "Mixed Forest", #(MA & JB)
+      Discard = "Open Water", #Low vegetation and land, not included (MA & JB)
+      Natural = "Shrub/Scrub", #Heath classified as natural (MA & JB)
+      Natural = "Woody Wetlands")) %>% #(MA & JB)
+filter(!cover.names == "Discard") #Discard these categories classified as "Discard"
+
+#Herbaceous and hay/pasture are classified as two different habitats in NLCD. 
+#We merged them because herbaceous areas in our sampling region are always 
+#for livestock (Koh et al., 2016).
 
 #Check levels again
 check_cover = pref %>% 
@@ -69,4 +73,6 @@ m[k,z] <- sum(unlist(v) <  pref.table[k,z] ) / length(unlist(v))
         
 }}
 
-
+#Save data
+m = rownames_to_column(m, var = "Species")
+write_csv(m, "Data/Usa_data/preferences_usa.csv")

@@ -4,4 +4,5 @@
 .Ruserdata
 .httr-oauth
 .DS_Store
-NLCD_data/
+Data/Raster_Europe/
+Data/Raster_USA/
