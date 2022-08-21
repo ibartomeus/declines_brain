@@ -9,15 +9,26 @@ brains.it <- read.csv("Raw_data/brains.it.csv", dec = ",")
 
 #Clean data
 species.brains1 = brains.it %>% 
-    filter(!ID == "F33") %>%  #Dasypoda visnaga's brain was conserved in ethanol, not formol
-    rename(Brain.weight = Brain.Weight..mg.) %>% #Rename var
-    mutate(Brain.IT = (Brain.weight/IT)) %>% #create new col
-    select(Species, IT, Brain.weight, Brain.IT) %>% #select cols of interest
-    na.omit() #filter out na's
+filter(!ID == "F33") %>%  #Dasypoda visnaga's brain was conserved in ethanol, not formol
+rename(Brain.weight = Brain.Weight..mg.) %>% #Rename var
+mutate(Brain.IT = (Brain.weight/IT)) %>% #create new col
+select(Species, IT, Brain.weight, Brain.IT) %>% #select cols of interest
+na.omit() #filter out na's
 
-#Check outliers
-boxplot(Brain.weight~Species,data = species.brains1, las= 2,cex.axis = 0.6)
+#Check levels
+s = species.brains1 %>% distinct(Species)
 
+#Fix one species name
+species.brains1$Species[species.brains1$Species=="Lasioglossum dialictus spp"] <- "Lasioglossum dialictus" 
+#Delete Species with sp. 
+species.brains1 <- filter(species.brains1, !grepl(" sp.",Species))
+#Some more typos
+species.brains1$Species[species.brains1$Species=="Agaposemon sericeus"] <- "Agapostemon sericeus"
+species.brains1$Species[species.brains1$Species=="Rhodantidium sticticum"] <- "Rhodanthidium sticticum"
+species.brains1$Species[species.brains1$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
+#Filter out Apis mellifera
+species.brains1 <- species.brains1 %>% filter(!Species=="Apis mellifera")    
+    
 #Check and clean outliers
 #Andrena barbilabris
 species.brains1 <- subset(species.brains1, 
@@ -101,3 +112,6 @@ wit.mean<-subset(wit.mean, subset = !((Species == "Andrena (Chrysandrena)")))
 wit.mean$Species
 #Save species to search for their occurrence data
 write.csv(wit.mean$Species, "Data/Especies_para_buscar.csv")
+#Save data to merge in scripts number 8 for analysis
+write_csv(wit.mean, "Data/drain_weight_data.csv")
+
