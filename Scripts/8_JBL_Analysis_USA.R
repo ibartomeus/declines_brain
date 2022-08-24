@@ -20,24 +20,49 @@ long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
 
 
 #Analysis----
-s= get_prior(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
-             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
-
-
-prior1 <- c(set_prior("normal(0,1)", class = "b", coef = "HabitatNatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatSeminatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatUrban"))
-
-
-model = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
-                  data = long_data,prior=prior1, data2 = list(A = A10), family=zero_one_inflated_beta())
+model1 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
+                  data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
 
 #Check model fit
-pp_check(model,nsamples=100) + ylim(0,5)
+pp_check(model1,nsamples=100) + ylim(0,5)
 #Check r
-performance::r2(model)
+performance::r2(model1)
 #Check output
-marginal_effects(model)
+marginal_effects(model1)
 
+
+#Plotting preference~brain weight----
+ce1 <- conditional_effects(model1, effects = "Brain.weight:Habitat",points=T) 
+
+#Save data for plotting
+write.csv(long_data, "Data/Usa_data/data_preference_brain_weight_usa.csv")
+write.csv(ce1[[1]], "Data/Usa_data/model_output_preference_brain_weight_usa.csv")
+
+ggplot(ce1[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+    geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+    geom_line(aes(color=Habitat)) +
+    theme_bw() +
+    ylab("Habitat preference") +
+    xlab("Brain weight") +
+    ggtitle("USA occurrences")
+
+#Analysis----
+model2 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
+             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
+
+pp_check(model2,nsamples=100) +ylim(0,5)
+bayes_R2(model2)
+marginal_effects(model2)
+
+#Plotting preference~IT----
+ce2 <- conditional_effects(model2, effects = "IT:Habitat",points=T) 
+write.csv(ce2[[1]], "Data/Usa_data/model_output_preference_it_usa.csv")
+
+ggplot(ce2[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
+    geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+    geom_line(aes(color=Habitat)) +
+    theme_bw() +
+    ylab("Habitat preference") +
+    xlab("IT distance")
 

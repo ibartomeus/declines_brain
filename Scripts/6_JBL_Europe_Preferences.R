@@ -21,46 +21,80 @@ check_cover = pref %>%
 
 #Recode levels to calculate preferences
 #Check levels here
-#https://land.copernicus.eu/user-corner/technical-library/corine-land-cover-nomenclature-guidelines/html/index-clc-512.html
 pref = pref %>% 
 mutate(Cover_names = fct_recode(as.factor(Cover_names),
-     Seminatural = "Agro-forestry areas", #1 (2.4.4) Check with Nacho, dehesas and others (MA & JB)
-     Urban = "Airports", #2 Check with Nacho (MA & JB)
-     Agricultural = "Annual crops associated with permanent crops", #3 (2.4.1) Crops (MA & JB)
-     Discard = "Bare rocks", #4 Very different cover type, not included (MA & JB)
-     Discard = "Beaches, dunes, sands", #5 (3.3.1) Very different cover type, not included (MA & JB)
-     Discard = "Burnt areas", #6 Not included, lack of details (MA & JB)
-     Discard = "Coastal lagoons", #7 (5.2.1) Not included, only water surface  (MA & JB)
-     Natural = "Coniferous forest", #8 (MA & JB)
-     Urban = "Construction sites", #9 Excluded, complex to consider because it lacks habitat context (MA & JB)
-     Seminatural = "Discontinuous urban fabric", #10 Based on the images and the description has a lot of vegetation cover (MA & JB)
-     Discard = "Dump sites", #11 Pollinators here are likely to depend much on the context not on the dump (MA & JB)
-     Discard = "Estuaries", #12 Filter out, water body (MA & JB)
-     Agricultural = "Fruit trees and berry plantations", #13 (MA & JB)
-     Urban = "Green urban areas", #14 Urban as embedded within the city (MA & JB)
-     Urban = "Industrial or commercial units", #15 Highly modified (MA & JB)
-     Seminatural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #16 By definion, seminatural (MA & JB)
-     Discard = "Mineral extraction sites", #17 Discard as is not clear the vegetation context (MA & JB)
-     Natural = "Mixed forest", #18 (MA & JB)
-     Natural = "Moors and heathland", #19 (MA & JB)
-     Natural = "Natural grasslands", #20 (MA & JB)
-     Discard = "NODATA", #21 Filter out
-     Agricultural = "Non-irrigated arable land", #22 cultivated land (MA & JB)
-     Agricultural = "Olive groves", #23 As it is a monoculture despite some very natural practises (MA & JB)
-     Natural = "Peat bogs", #24 (MA & JB)
-     Seminatural = "Permanently irrigated land", #25 (MA & JB)
-     Urban = "Port areas", #26 Check with Nacho (MA & JB)
-     Seminatural = "Road and rail networks and associated land", #27 Check with Nacho (MA & JB)
-     Seminatural = "Salines", #28 Check with Nacho (MA & JB) but just only 200 records
-     Natural = "Salt marshes", #29  Flowering plant communities (MA & JB)
-     Natural = "Sclerophyllous vegetation", #30  Sclerophyllous shrubs and low shrubs (MA & JB)
-     Discard = "Sea and ocean", #31 Discard for now (MA & JB)
-     Natural = "Sparsely vegetated areas", #32 Areas with sparse vegetation, covering 10-50% of surface (MA & JB)
-     Seminatural = "Sport and leisure facilities", #33 Check with Nacho (MA & JB)
-     Discard = "Water bodies", #34 Out as they are very general (MA & JB) 
-     Discard = "Water courses" #35 Out as they are very general (MA & JB)
-     )) %>% 
-    filter(!Cover_names == "Discard") # Don't select open water ones for now
+#1 Check with Nacho, dehesas and others 
+Seminatural = "Agro-forestry areas", #1) 2.4.4 
+#2 Check with Nacho 
+Urban = "Airports", #2) 1.2.4 
+#3 Crops 
+Agricultural = "Annual crops associated with permanent crops", #3) 2.4.1 
+#4 Very different cover type, not included 
+Discard = "Bare rocks", #4) 3.3.2 
+#5 Very different cover type, not included 
+Discard = "Beaches, dunes, sands", #5) 3.3.1 
+#6 Not included, lack of details 
+Discard = "Burnt areas", #6 3.3.4
+#7 Not included, only water surface
+Discard = "Coastal lagoons", #7) 5.2.1 
+#8 Straightforward
+Natural = "Coniferous forest", #8) 3.1.2
+#9 Excluded, complex to consider because it lacks habitat context
+Urban = "Construction sites", #9) 1.3.3
+#10 Based on the images and the description has a lot of vegetation cover
+Urban = "Discontinuous urban fabric", #10) 1.1.2
+#11 Pollinators here are likely to depend much on the context not on the dump
+Discard = "Dump sites", #11) 1.3.2
+#12 Filter out, water body
+Discard = "Estuaries", #12) 5.2.2 
+#13 Straightforward
+Agricultural = "Fruit trees and berry plantations", #13) 2.2.2
+#14 Urban as embedded within the city
+Urban = "Green urban areas", #14) 1.4.1
+#15 Highly modified
+Urban = "Industrial or commercial units", #15) 1.2.1
+#16 By definion, seminatural
+Seminatural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #16) 2.4.3
+#17 Discard as is not clear the vegetation context
+Discard = "Mineral extraction sites", #17) 1.3.1
+#18 Straightforward 3.1.3
+Natural = "Mixed forest", #18) 3.1.3
+#19 Crystal clear category
+Natural = "Moors and heathland", #19) 3.2.2
+#20 Crystal clear category
+Natural = "Natural grasslands", #20) 3.2.1
+#21 Filter out
+Discard = "NODATA", #21 
+#22 cultivated land
+Agricultural = "Non-irrigated arable land", #22) 2.1.1
+#23 As it is a monoculture despite some very
+Agricultural = "Olive groves", #23) 2.2.3
+#24 Crystal clear category
+Natural = "Peat bogs", #24) 4.1.2
+#25 Crystal clear category
+Seminatural = "Permanently irrigated land", #25) 2.1.2
+#26 Check with Nacho
+Urban = "Port areas", #26) 1.2.3
+#27 Check with Nacho
+Seminatural = "Road and rail networks and associated land", #27) 1.2.2
+#28 Check with Nacho but just only 200 records
+Seminatural = "Salines", #28) 4.2.2 
+#29 Flowering plant communities 
+Natural = "Salt marshes", #29) 4.2.1
+#30 Sclerophyllous shrubs and low shrubs
+Natural = "Sclerophyllous vegetation", #30) 3.2.3
+#31 Discard for now 
+Discard = "Sea and ocean", #31) 5.2.3
+#32 Areas with sparse vegetation, covering 10-50% of surface 
+Natural = "Sparsely vegetated areas", #32) 3.3.3
+#33 Check with Nacho 
+Seminatural = "Sport and leisure facilities", #33) 1.4.2 
+#34 Excluded as it is very general
+Discard = "Water bodies", #34) 5.1.2
+#35 Excluded as it is very general
+Discard = "Water courses" #35 5.1.1 
+)) %>% 
+filter(!Cover_names == "Discard") 
 
 #Check levels again
 s = pref %>% 

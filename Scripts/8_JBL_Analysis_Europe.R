@@ -14,27 +14,34 @@ A10 = readRDS("Data/Europe_data/phylo_europe.rds")
 
 #Prepare data----
 d = left_join(preferences, brain_weight) %>% 
-    mutate(Species = str_replace_all(Species, " ", "_")) %>% 
+    mutate(Species = str_replace_all(Species, " ", "_")) 
 #Convert to long to model everything at the same time
 long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
 
 #Analysis preference~brain weight----
-priors_check= get_prior(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
-             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
+#priors_check= get_prior(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
+#             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
-prior1 <- c(set_prior("normal(0,1)", class = "b", coef = "HabitatNatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatSeminatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatUrban"))
+#prior1 <- c(set_prior("normal(0,1)", class = "b", coef = "HabitatNatural"),
+#            set_prior("normal(0,1)", class = "b", coef = "HabitatSeminatural"),
+#            set_prior("normal(0,1)", class = "b", coef = "HabitatUrban"))
+
+#long_data = long_data %>% 
+#    mutate(Brain.weight = case_when(Brain.weight > 3 ~ 2.5, TRUE ~ as.numeric(Brain.weight)))
 
 model1 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), 
-            data = long_data,prior = prior1, data2 = list(A = A10), family=zero_one_inflated_beta())
+            data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
-pp_check(model1,nsamples=100) +ylim(0,5)
+pp_check(model1) +ylim(0,5)
 bayes_R2(model1)
 marginal_effects(model1)
 
 #Plotting preference~brain weight----
 ce1 <- conditional_effects(model1, effects = "Brain.weight:Habitat",points=T) 
+
+#Save data for plotting
+write.csv(long_data, "Data/Europe_data/data_preference_brain_weight_europe.csv")
+write.csv(ce1[[1]], "Data/Europe_data/model_output_preference_brain_weight_europe.csv")
 
 ggplot(ce1[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
@@ -45,7 +52,7 @@ xlab("Brain weight") +
 ggtitle("Europe occurrences")
 
 
-#Analysis preference~brain weight----
+#Analysis preference~IT----
 model2 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)), 
             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
@@ -53,8 +60,9 @@ pp_check(model2,nsamples=100) +ylim(0,5)
 bayes_R2(model2)
 marginal_effects(model2)
 
-#Plotting preference~brain weight----
+#Plotting preference~IT----
 ce2 <- conditional_effects(model2, effects = "IT:Habitat",points=T) 
+write.csv(ce2[[1]], "Data/Europe_data/model_output_preference_it_europe.csv")
 
 ggplot(ce2[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +

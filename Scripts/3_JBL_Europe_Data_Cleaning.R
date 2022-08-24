@@ -4,7 +4,7 @@
 #1)Filter records above 1985 (this is decided based on the GIS data available)
 #2)Filter by unique capture event
 #3)Filter by minimum of 3 decimals on coordinates
-#4)Filter number of levels per species (minimum N=50)
+#4)Filter number of levels per species (minimum N=100)
 #5)Filter by wide geographical distribution
 ######-
 

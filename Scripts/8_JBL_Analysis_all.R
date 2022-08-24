@@ -24,13 +24,6 @@ d = left_join(preferences, brain_weight) %>%
 long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
 
 #Analysis preference~brain weight----
-priors_check= get_prior(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
-                        data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
-
-prior1 <- c(set_prior("normal(0,1)", class = "b", coef = "HabitatNatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatSeminatural"),
-            set_prior("normal(0,1)", class = "b", coef = "HabitatUrban"))
-
 model1 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), 
              data = long_data,prior = prior1, data2 = list(A = A10), family=zero_one_inflated_beta())
 
