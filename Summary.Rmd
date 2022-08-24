@@ -246,6 +246,8 @@ mutate_if(is.character,as.factor)
 
 ```
 
+United States land use classification with total number of occurrences within cover type in our dataset
+
 ```{r Table with all levels USA, echo = FALSE, warning = FALSE, message = FALSE}
 
 pref %>% 
@@ -270,7 +272,7 @@ Discard = "Open Water", #Low vegetation and land, not included
 Natural = "Shrub/Scrub", #Heath classified as natural 
 Natural = "Woody Wetlands")) %>% 
 kbl() %>% 
-kable_styling(latex_options = "hold_position", font_size = 12)
+kable_styling(latex_options = "hold_position", font_size = 10)
 
 
 ```
