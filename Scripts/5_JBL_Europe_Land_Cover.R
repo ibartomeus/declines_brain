@@ -31,6 +31,13 @@ activeCat(r) <- "LABEL3" #this has the categories of interest
 #Extract land use
 land_cover = extract(r, vv)
 
+#Check levels
+land_cover %>% 
+group_by(LABEL3) %>% 
+summarize(n_rows = length(LABEL3))
+
+factor(levels(land_cover$LABEL3))
+
 #Merge datasets
 all = cbind(europe, land_cover)
 

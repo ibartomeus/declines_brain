@@ -18,55 +18,60 @@ d = left_join(preferences, brain_weight) %>%
 #Convert to long to model everything at the same time
 long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
 
-#Analysis preference~brain weight----
-#priors_check= get_prior(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), warmup = 500, iter = 2000,
-#             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
+#Analysis Preference ~ residuals----
+model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), 
+             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
-#prior1 <- c(set_prior("normal(0,1)", class = "b", coef = "HabitatNatural"),
-#            set_prior("normal(0,1)", class = "b", coef = "HabitatSeminatural"),
-#            set_prior("normal(0,1)", class = "b", coef = "HabitatUrban"))
+ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T) 
 
-#long_data = long_data %>% 
-#    mutate(Brain.weight = case_when(Brain.weight > 3 ~ 2.5, TRUE ~ as.numeric(Brain.weight)))
-
-model1 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), 
-            data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
-
-pp_check(model1) +ylim(0,5)
 bayes_R2(model1)
 marginal_effects(model1)
 
-#Plotting preference~brain weight----
-ce1 <- conditional_effects(model1, effects = "Brain.weight:Habitat",points=T) 
+p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("Europe")
 
-#Save data for plotting
-write.csv(long_data, "Data/Europe_data/data_preference_brain_weight_europe.csv")
-write.csv(ce1[[1]], "Data/Europe_data/model_output_preference_brain_weight_europe.csv")
+#Analysis Preference ~ brain weight----
+model2 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), 
+             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
-ggplot(ce1[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+pp_check(model2)
+bayes_R2(model2)
+marginal_effects(model2)
+
+ce2 <- conditional_effects(model2, effects = "Brain.weight:Habitat",points=T) 
+
+p2 = ggplot(ce2[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("Europe occurrences")
+ggtitle("Europe")    
 
+#Analysis Preference ~ IT----
+model3 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)), 
+             data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
 
-#Analysis preference~IT----
-model2 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)), 
-            data = long_data, data2 = list(A = A10), family=zero_one_inflated_beta())
+pp_check(model3)
+bayes_R2(model3)
+marginal_effects(model3)
 
-pp_check(model2,nsamples=100) +ylim(0,5)
-bayes_R2(model2)
-marginal_effects(model2)
+ce3 <- conditional_effects(model3, effects = "IT:Habitat",points=T) 
 
-#Plotting preference~IT----
-ce2 <- conditional_effects(model2, effects = "IT:Habitat",points=T) 
-write.csv(ce2[[1]], "Data/Europe_data/model_output_preference_it_europe.csv")
-
-ggplot(ce2[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
+p3 = ggplot(ce3[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
-xlab("IT distance")
+xlab("Intertegular distance") +
+ggtitle("Europe")  
+
+
+#Plot all together
+library(patchwork)
+p1 / p2 / p3

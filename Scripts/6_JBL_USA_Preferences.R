@@ -51,10 +51,11 @@ group_by(cover.names) %>%
 summarise(n_rows = length(cover.names))
 
 #Now prepare data to calculate preferences
-pref.table = pref %>%
+pref.table = pref %>% 
 count(species, cover.names) %>%
 pivot_wider(names_from = cover.names, values_from = n, values_fill = list(n = 0)) %>% 
-column_to_rownames(var="species")
+column_to_rownames(var="species") %>% 
+select(Natural,Urban,Agricultural,Seminatural)
 
 #Null model of our pref.table
 n.mod <- nullmodel(pref.table, N=10000, method="r2dtable")
@@ -62,17 +63,57 @@ n.mod <- nullmodel(pref.table, N=10000, method="r2dtable")
 #Calculate preferences
 #Alternative way, probably more elegant
 
-m = pref.table #create matrix from data and overwrite in the for loop
+m = pref.table #create matrix to store data
 
-for(z in 1:ncol(pref.table)){
- for(k in 1:nrow(pref.table)){
-        
-v <- lapply(n.mod, `[[`, k) #generate vector for each row/species
-#calculate percentile and store in each matrix position     
-m[k,z] <- sum(unlist(v) <  pref.table[k,z] ) / length(unlist(v)) 
-        
-}}
+#Natural
+pref_nat = pref.table %>% select(Natural)
+n.mod_nat = n.mod
+for(n in 1:1000){
+    n.mod_nat[[n]] = n.mod_nat[[n]][,1]           
+} 
 
-#Save data
+for(k in 1:nrow(pref_nat)){
+    v <- lapply(n.mod_nat, `[[`, k)
+    m[k,1] <- sum(unlist(v) <  pref.table[k,1] ) / length(unlist(v)) 
+    
+}
+#Urban
+pref_urb = pref.table %>% select(Urban)
+n.mod_urb = n.mod
+for(n in 1:1000){
+    n.mod_urb[[n]] = n.mod_urb[[n]][,2]           
+} 
+
+for(k in 1:nrow(pref_urb)){
+    v <- lapply(n.mod_urb, `[[`, k)
+    m[k,2] <- sum(unlist(v) <  pref.table[k,2] ) / length(unlist(v)) 
+    
+}
+#Agricultural
+pref_agr = pref.table %>% select(Agricultural)
+n.mod_agr = n.mod
+for(n in 1:1000){
+    n.mod_agr[[n]] = n.mod_agr[[n]][,3]           
+} 
+
+for(k in 1:nrow(pref_agr)){
+    v <- lapply(n.mod_agr, `[[`, k)
+    m[k,3] <- sum(unlist(v) <  pref.table[k,3] ) / length(unlist(v)) 
+    
+}
+#Seminatural
+pref_sem = pref.table %>% select(Seminatural)
+n.mod_sem = n.mod
+for(n in 1:1000){
+    n.mod_sem[[n]] = n.mod_sem[[n]][,4]           
+} 
+
+for(k in 1:nrow(pref_sem)){
+    v <- lapply(n.mod_sem, `[[`, k)
+    m[k,4] <- sum(unlist(v) <  pref.table[k,4] ) / length(unlist(v)) 
+    
+}
+
 m = rownames_to_column(m, var = "Species")
 write_csv(m, "Data/Usa_data/preferences_usa.csv")
+
