@@ -124,7 +124,7 @@ kable_styling(font_size = 8,latex_options = "hold_position")
 Check final levels per category:
 
 ```{r Show levels Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
-pref = pref %>% 
+pref1 = pref %>% 
 mutate(Cover_names = fct_recode(as.factor(Cover_names),
 #1 Check with Nacho, dehesas and others 
 Seminatural = "Agro-forestry areas", #1) 2.4.4 
@@ -199,7 +199,7 @@ Discard = "Water courses" #35 5.1.1
 )) %>% 
 filter(!Cover_names == "Discard") 
 
-pref %>% 
+pref1 %>% 
 group_by(Cover_names) %>% 
 summarise(Levels = length(Cover_names)) %>% 
 kbl() %>% 
@@ -208,31 +208,271 @@ kable_styling(latex_options = "hold_position")
 
 Then, we calculate preferences and model the data.
 
-```{r Plotting Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, out.width="70%"}
+```{r Plotting Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
 
-data <- read_csv("Data/Europe_data/data_preference_brain_weight_europe.csv")
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe.csv")
 
-model1 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe.csv")
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe.csv")
 
-model2 = read_csv("Data/Europe_data/model_output_preference_it_europe.csv")
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe.csv")
 
-ggplot(model1, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe.csv")
+
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("Europe")
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("Europe occurrences")
+ggtitle("Europe")
 
-ggplot(model2, aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = IT, y = (Preference)), shape=21) +
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Intertegular distance") +
-ggtitle("Europe occurrences")
+ggtitle("Europe")  
+
+library(patchwork)
+p1 / p2 / p3 & plot_layout(guides = "collect")
 
 ```
+
+
+Now we make more strict land use classifications
+
+```{r Table with restricted levels Europe, echo = FALSE, warning = FALSE, message = FALSE}
+library(kableExtra)
+
+
+pref %>% 
+group_by(Cover_names) %>% 
+summarise(n_rows = length(Cover_names)) %>% 
+filter(!Cover_names=="NODATA") %>% 
+rename(Land_use = Cover_names) %>% 
+arrange(desc(n_rows)) %>% 
+mutate(Cover_names = fct_recode(as.factor(Land_use),
+#1 Check with Nacho, dehesas and others 
+Discard = "Agro-forestry areas", #1) 2.4.4 
+#2 Check with Nacho 
+Discard = "Airports", #2) 1.2.4 
+#3 Crops 
+Agricultural = "Annual crops associated with permanent crops", #3) 2.4.1 
+#4 Very different cover type, not included 
+Discard = "Bare rocks", #4) 3.3.2 
+#5 Very different cover type, not included 
+Discard = "Beaches, dunes, sands", #5) 3.3.1 
+#6 Not included, lack of details 
+Discard = "Burnt areas", #6 3.3.4
+#7 Not included, only water surface
+Discard = "Coastal lagoons", #7) 5.2.1 
+#8 Straightforward
+Natural = "Coniferous forest", #8) 3.1.2
+#9 Excluded, complex to consider because it lacks habitat context
+Discard = "Construction sites", #9) 1.3.3
+#10 Based on the images and the description has a lot of vegetation cover
+Discard = "Discontinuous urban fabric", #10) 1.1.2
+#11 Pollinators here are likely to depend much on the context not on the dump
+Discard = "Dump sites", #11) 1.3.2
+#12 Filter out, water body
+Discard = "Estuaries", #12) 5.2.2 
+#13 Straightforward
+Agricultural = "Fruit trees and berry plantations", #13) 2.2.2
+#14 Urban as embedded within the city
+Discard = "Green urban areas", #14) 1.4.1
+#15 Highly modified
+Urban = "Industrial or commercial units", #15) 1.2.1
+#16 By definion, seminatural
+Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #16) 2.4.3
+#17 Discard as is not clear the vegetation context
+Discard = "Mineral extraction sites", #17) 1.3.1
+#18 Straightforward 3.1.3
+Natural = "Mixed forest", #18) 3.1.3
+#19 Crystal clear category
+Discard = "Moors and heathland", #19) 3.2.2
+#20 Crystal clear category
+Discard = "Natural grasslands", #20) 3.2.1
+#21 Filter out
+Discard = "NODATA", #21 
+#22 cultivated land
+Agricultural = "Non-irrigated arable land", #22) 2.1.1
+#23 As it is a monoculture despite some very
+Discard = "Olive groves", #23) 2.2.3
+#24 Crystal clear category
+Discard = "Peat bogs", #24) 4.1.2
+#25 Crystal clear category
+Agricultural = "Permanently irrigated land", #25) 2.1.2
+#26 Check with Nacho
+Discard = "Port areas", #26) 1.2.3
+#27 Check with Nacho
+Discard = "Road and rail networks and associated land", #27) 1.2.2
+#28 Check with Nacho but just only 200 records
+Discard = "Salines", #28) 4.2.2 
+#29 Flowering plant communities 
+Discard = "Salt marshes", #29) 4.2.1
+#30 Sclerophyllous shrubs and low shrubs
+Discard = "Sclerophyllous vegetation", #30) 3.2.3
+#31 Discard for now 
+Discard = "Sea and ocean", #31) 5.2.3
+#32 Areas with sparse vegetation, covering 10-50% of surface 
+Discard = "Sparsely vegetated areas", #32) 3.3.3
+#33 Check with Nacho 
+Discard = "Sport and leisure facilities", #33) 1.4.2 
+#34 Excluded as it is very general
+Discard = "Water bodies", #34) 5.1.2
+#35 Excluded as it is very general
+Discard = "Water courses" #35 5.1.1 
+)) %>%  
+kbl() %>% 
+kable_styling(font_size = 8,latex_options = "hold_position")
+
+```
+
+
+Check final levels per category:
+
+```{r Show levels restricted land use Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
+pref2 = pref %>% 
+mutate(Cover_names = fct_recode(as.factor(Cover_names),
+#1 Check with Nacho, dehesas and others 
+Discard = "Agro-forestry areas", #1) 2.4.4 
+#2 Check with Nacho 
+Discard = "Airports", #2) 1.2.4 
+#3 Crops 
+Agricultural = "Annual crops associated with permanent crops", #3) 2.4.1 
+#4 Very different cover type, not included 
+Discard = "Bare rocks", #4) 3.3.2 
+#5 Very different cover type, not included 
+Discard = "Beaches, dunes, sands", #5) 3.3.1 
+#6 Not included, lack of details 
+Discard = "Burnt areas", #6 3.3.4
+#7 Not included, only water surface
+Discard = "Coastal lagoons", #7) 5.2.1 
+#8 Straightforward
+Natural = "Coniferous forest", #8) 3.1.2
+#9 Excluded, complex to consider because it lacks habitat context
+Discard = "Construction sites", #9) 1.3.3
+#10 Based on the images and the description has a lot of vegetation cover
+Discard = "Discontinuous urban fabric", #10) 1.1.2
+#11 Pollinators here are likely to depend much on the context not on the dump
+Discard = "Dump sites", #11) 1.3.2
+#12 Filter out, water body
+Discard = "Estuaries", #12) 5.2.2 
+#13 Straightforward
+Agricultural = "Fruit trees and berry plantations", #13) 2.2.2
+#14 Urban as embedded within the city
+Discard = "Green urban areas", #14) 1.4.1
+#15 Highly modified
+Urban = "Industrial or commercial units", #15) 1.2.1
+#16 By definion, seminatural
+Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #16) 2.4.3
+#17 Discard as is not clear the vegetation context
+Discard = "Mineral extraction sites", #17) 1.3.1
+#18 Straightforward 3.1.3
+Natural = "Mixed forest", #18) 3.1.3
+#19 Crystal clear category
+Discard = "Moors and heathland", #19) 3.2.2
+#20 Crystal clear category
+Discard = "Natural grasslands", #20) 3.2.1
+#21 Filter out
+Discard = "NODATA", #21 
+#22 cultivated land
+Agricultural = "Non-irrigated arable land", #22) 2.1.1
+#23 As it is a monoculture despite some very
+Discard = "Olive groves", #23) 2.2.3
+#24 Crystal clear category
+Discard = "Peat bogs", #24) 4.1.2
+#25 Crystal clear category
+Agricultural = "Permanently irrigated land", #25) 2.1.2
+#26 Check with Nacho
+Discard = "Port areas", #26) 1.2.3
+#27 Check with Nacho
+Discard = "Road and rail networks and associated land", #27) 1.2.2
+#28 Check with Nacho but just only 200 records
+Discard = "Salines", #28) 4.2.2 
+#29 Flowering plant communities 
+Discard = "Salt marshes", #29) 4.2.1
+#30 Sclerophyllous shrubs and low shrubs
+Discard = "Sclerophyllous vegetation", #30) 3.2.3
+#31 Discard for now 
+Discard = "Sea and ocean", #31) 5.2.3
+#32 Areas with sparse vegetation, covering 10-50% of surface 
+Discard = "Sparsely vegetated areas", #32) 3.3.3
+#33 Check with Nacho 
+Discard = "Sport and leisure facilities", #33) 1.4.2 
+#34 Excluded as it is very general
+Discard = "Water bodies", #34) 5.1.2
+#35 Excluded as it is very general
+Discard = "Water courses" #35 5.1.1 
+)) %>% 
+filter(!Cover_names == "Discard") 
+
+pref2 %>% 
+group_by(Cover_names) %>% 
+summarise(Levels = length(Cover_names)) %>% 
+kbl() %>% 
+kable_styling(latex_options = "hold_position")
+```
+
+
+\newpage
+
+And we model the data with this categories:
+
+
+```{r Plotting Europe subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
+
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe_subset.csv")
+
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe_subset.csv")
+
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe_subset.csv")
+
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_subset.csv")
+
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("Europe")
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("Europe")
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("Europe")  
+
+library(patchwork)
+p1 + p2 + p3 + plot_layout(ncol = 1) + plot_layout(guides = "collect")
+
+```
+
+
 
 \newpage
 
@@ -306,40 +546,168 @@ filter(!cover.names == "Discard") %>%  #Discard these categories classified as "
 #for livestock (Koh et al., 2016).
 group_by(cover.names) %>% 
 summarise(n_rows = length(cover.names)) %>% 
+arrange(desc(n_rows)) %>%     
 kbl() %>% 
 kable_styling(latex_options = "hold_position")
 
 ```
 
+\newpage
+
 Then, we calculate preferences and model the data.
 
-```{r Plotting USA, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, out.width="70%"}
+```{r Plotting USA, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
 
-data <- read_csv("Data/Usa_data/data_preference_brain_weight_usa.csv")
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa.csv")
 
-model1 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa.csv")
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa.csv")
 
-model2 = read_csv("Data/Usa_data/model_output_preference_it_usa.csv")
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa.csv")
 
-ggplot(model1, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa.csv")
+
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA")
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("USA occurrences")
+ggtitle("USA")
 
-ggplot(model2, aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = IT, y = (Preference)), shape=21) +
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Intertegular distance") +
-ggtitle("USA occurrences")
+ggtitle("USA")  
+
+library(patchwork)
+p1 / p2 / p3 & plot_layout(guides = "collect")
 
 ```
 
 Note: The models have been run with non-informative priors from the brms function but some work on priors can be done... I have explored a bit and the results were quite similar overall but reviewers seem to don't like this approach as one of the goals of Bayesian is to use the prior knowledge of our variables to improve our predictions.
+
+\newpage
+
+Now we make more strict categories of what is Natural, Urban and Agricultural. See below:
+
+```{r Show levels USA subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
+
+pref_subset <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
+    dplyr::select(species, cover.names) %>% 
+    mutate_if(is.character,as.factor) 
+
+pref_subset %>% 
+group_by(cover.names) %>% 
+summarise(n_rows = length(cover.names)) %>% 
+rename(Land_use = cover.names) %>% 
+arrange(desc(n_rows)) %>% 
+mutate(Cover_names = fct_recode(as.factor(Land_use),
+Discard = "Barren Land", #Very different cover type, not included (MA & JB)
+Agricultural = "Cultivated Crops", #(MA & JB)
+Natural = "Deciduous Forest", #(MA & JB)
+Urban = "Developed, High Intensity", #Greater than 50% of cover (MA & JB) 
+Urban = "Developed, Medium Intensity", #Greater than 50% of cover (MA & JB) 
+Discard = "Developed, Low Intensity", #Low urban impact (MA & JB)
+Discard = "Developed, Open Space", #Open areas with vegetation (MA & JB)
+Discard = "Emergent Herbaceous Wetlands", #(MA & JB)
+Natural = "Evergreen Forest", #(MA & JB)
+Discard = "Hay/Pasture", #Highly managed by humans (MA & JB)
+Discard = "Herbaceous", #See explanation below (MA & JB)
+Natural = "Mixed Forest", #(MA & JB)
+Discard = "Open Water", #Low vegetation and land, not included (MA & JB)
+Natural = "Shrub/Scrub", #Heath classified as natural (MA & JB)
+Natural = "Woody Wetlands")) %>% 
+kbl() %>% 
+kable_styling(latex_options = "hold_position", font_size = 10)
+```
+
+Check number of levels per category:
+
+```{r Show levels USA subset levels, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
+
+ pref_subset %>% 
+mutate(cover.names = fct_recode(as.factor(cover.names),
+Discard = "Barren Land", #Very different cover type, not included (MA & JB)
+Agricultural = "Cultivated Crops", #(MA & JB)
+Natural = "Deciduous Forest", #(MA & JB)
+Urban = "Developed, High Intensity", #Greater than 50% of cover (MA & JB) 
+Urban = "Developed, Medium Intensity", #Greater than 50% of cover (MA & JB) 
+Discard = "Developed, Low Intensity", #Low urban impact (MA & JB)
+Discard = "Developed, Open Space", #Open areas with vegetation (MA & JB)
+Discard = "Emergent Herbaceous Wetlands", #(MA & JB)
+Natural = "Evergreen Forest", #(MA & JB)
+Discard = "Hay/Pasture", #Highly managed by humans (MA & JB)
+Discard = "Herbaceous", #See explanation below (MA & JB)
+Natural = "Mixed Forest", #(MA & JB)
+Discard = "Open Water", #Low vegetation and land, not included (MA & JB)
+Natural = "Shrub/Scrub", #Heath classified as natural (MA & JB)
+Natural = "Woody Wetlands")) %>% #(MA & JB)
+filter(!cover.names == "Discard") %>% 
+group_by(cover.names) %>% 
+summarise(n_rows = length(cover.names)) %>% 
+arrange(desc(n_rows)) %>%     
+kbl() %>% 
+kable_styling(latex_options = "hold_position")
+
+```
+
+And we model the data with this categories:
+
+
+```{r Plotting USA subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
+
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_subset.csv")
+
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_subset.csv")
+
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_subset.csv")
+
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_subset.csv")
+
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA")
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA")
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA")  
+
+library(patchwork)
+p1 + p2 + p3 + plot_layout(ncol = 1) + plot_layout(guides = "collect")
+
+```
+
 
 **2) Finally, we consider Europe and USA together**
 
