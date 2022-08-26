@@ -12,7 +12,7 @@ species.brains1 = brains.it %>%
 filter(!ID == "F33") %>%  #Dasypoda visnaga's brain was conserved in ethanol, not formol
 rename(Brain.weight = Brain.Weight..mg.) %>% #Rename var
 mutate(Brain.IT = (Brain.weight/IT)) %>% #create new col
-select(Species, IT, Brain.weight, Brain.IT) %>% #select cols of interest
+dplyr::select(Species, IT, Brain.weight, Brain.IT) %>% #select cols of interest
 na.omit() #filter out na's
 
 #Check levels
@@ -89,13 +89,24 @@ wit.mean <- merge(weights.mean, IT.mean)
 
 #Linearizamos y añadimos la variable de residuales general de cada especie
 #now is one value per species
-plot(Brain.weight ~ IT, data=wit.mean)
-abline(lm(Brain.weight ~ IT, data=wit.mean))
-summary(lm(Brain.weight ~ IT, data=wit.mean))
-summary(lm(log(Brain.weight) ~ log(IT), data=wit.mean))
-lm.data.means<-lm(log(Brain.weight) ~ log(IT), data=wit.mean)
-lm.data.means$residuals
-wit.mean$residuals <- lm.data.means$residuals
+wit.mean = wit.mean %>% 
+    mutate(log_brain_weight = log(Brain.weight)) %>% 
+    mutate(log_it = log(IT))    
+#Check scatter
+ggplot(wit.mean, aes(x= IT, y = Brain.weight)) + geom_point()
+ggplot(wit.mean, aes(x= log_it, y = log_brain_weight)) + geom_point()
+#Model with phylo to extract residuals
+m1 <-  brms::brm(log_brain_weight ~ log_it , data = wit.mean, family=gaussian(), iter=3000, 
+                 warmup = 1000)
+pp_check(m1)
+#Extract residuals (estimates) and overwrite old ones
+wit.mean$residuals = residuals(m1)[,1]
+
+#Check also residuals with lm 
+wit.mean_trial = wit.mean
+m2 <- lm(log_brain_weight ~ log_it , data = wit.mean_trial)
+wit.mean_trial$residuals2 <- residuals(m2)
+cor.test(wit.mean_trial$residuals,wit.mean_trial$residuals2)
 
 #Filter out non-species
 wit.mean<-subset(wit.mean, subset = !((Species == "Andrena sp 3")))
@@ -113,5 +124,5 @@ wit.mean$Species
 #Save species to search for their occurrence data
 write.csv(wit.mean$Species, "Data/Especies_para_buscar.csv")
 #Save data to merge in scripts number 8 for analysis
-write_csv(wit.mean, "Data/drain_weight_data.csv")
+write_csv(wit.mean, "Data/brain_weight_data.csv")
 

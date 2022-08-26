@@ -68,8 +68,8 @@ count_decimals = function(x) {
 #Create a col with number of decimals fro lat and long
 all_unique_event$long_decimals <- as.numeric(all_unique_event$long) %>% count_decimals()
 all_unique_event$lat_decimals <- as.numeric(all_unique_event$lat) %>% count_decimals()
-#Now filter by minimum 3 decimals
-all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 2 & lat_decimals > 2)
+#Now filter by minimum 2 decimals
+all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 1 & lat_decimals > 1)
 #Seems to work fine
 
 #############-

@@ -3,7 +3,7 @@
 #We take 5 key decisions in data cleaning
 #1)Filter records above 1987 (this is decided based on the GIS data available)
 #2)Filter by unique capture event
-#3)Filter by minimum of 3 decimals on coordinates
+#3)Filter by minimum of 2 decimals on coordinates #Because MA dataset has only 2
 #4)Filter number of levels per species (minimum N=100)
 #5)Filter by wide geographical distribution
 ######-
@@ -18,6 +18,24 @@ all_east_coast <- data.frame(fread("Data/Usa_data/usa_all_long_lat.csv.gz"))
 names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:ncol(all_east_coast)]
 all_east_coast[, ncol(all_east_coast)] <- NULL
 all <- all_east_coast
+#Read MA tehsis data
+all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_ma_thesis_chapter.csv.gz"))
+#Fix colname position
+names(all_east_coast_thesis)[1:(ncol(all_east_coast_thesis)-1)] <- names(all_east_coast_thesis)[2:ncol(all_east_coast_thesis)]
+all_east_coast_thesis[, ncol(all_east_coast_thesis)] <- NULL
+all_thesis <- all_east_coast_thesis
+
+#Select columns of interest
+all_thesis = all_thesis %>% 
+select(gen_sp, state, lat, long, country) %>% 
+rename(species = gen_sp, Country = country, stateProvince = state)
+
+#Now mege both datasets
+colnames(all_thesis)
+colnames(all)
+
+#Rename to original name
+all = bind_rows(all, all_thesis)
 
 #############-
 #FIRST FILTER----
@@ -63,10 +81,8 @@ count_decimals = function(x) {
 all_unique_event$long_decimals <- as.numeric(all_unique_event$long) %>% count_decimals()
 all_unique_event$lat_decimals <- as.numeric(all_unique_event$lat) %>% count_decimals()
 #Now filter by minimum 3 decimals
-all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 2 & lat_decimals > 2)
+all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 1 & lat_decimals > 1)
 #Seems to work fine
-
-
 
 #############-
 #FOURTH FILTER----
