@@ -18,13 +18,9 @@ Here we summarise all the critical steps conducted to analise bee preferences.
 
 5) Filter by wide geographical distribution.
 
-## Land use classification
+\newpage
 
-**1) Europe**
-
-Link with land European use classes
-
-https://land.copernicus.eu/user-corner/technical-library/corine-land-cover-nomenclature-guidelines/html/index-clc-512.html
+# Europe (4 levels)
 
 ```{r Load Europe data, eval=TRUE, include=FALSE}
 library(tidyverse)
@@ -120,7 +116,6 @@ kable_styling(font_size = 8,latex_options = "hold_position")
 
 ```
 
-
 Check final levels per category:
 
 ```{r Show levels Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
@@ -206,51 +201,9 @@ kbl() %>%
 kable_styling(latex_options = "hold_position")
 ```
 
-Then, we calculate preferences and model the data.
+\newpage
 
-```{r Plotting Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
-
-long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe.csv")
-
-model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe.csv")
-
-model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe.csv")
-
-model3 = read_csv("Data/Europe_data/model_output_preference_it_europe.csv")
-
-
-p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Residuals") + 
-ggtitle("Europe")
-
-p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Brain weight") +
-ggtitle("Europe")
-
-
-p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Intertegular distance") +
-ggtitle("Europe")  
-
-library(patchwork)
-p1 / p2 / p3 & plot_layout(guides = "collect")
-
-```
-
-
-Now we make more strict land use classifications
+# Europe (3 levels)
 
 ```{r Table with restricted levels Europe, echo = FALSE, warning = FALSE, message = FALSE}
 library(kableExtra)
@@ -426,21 +379,23 @@ kable_styling(latex_options = "hold_position")
 ```
 
 
-\newpage
-
-And we model the data with this categories:
+\clearpage
 
 
-```{r Plotting Europe subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
 
-long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe_subset.csv")
+```{r Plotting Europe, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="90%"}
 
-model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe_subset.csv")
+library(tidyverse)
 
-model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe_subset.csv")
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe.csv")
 
-model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_subset.csv")
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe.csv")
 
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe.csv")
+
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe.csv")
+
+model4 = read_csv("Data/Europe_data/model_output_preference_brain_it_europe.csv")
 
 p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
@@ -448,7 +403,8 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Residuals") + 
-ggtitle("Europe")
+ggtitle("Europe 4 levels")+
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
 p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
@@ -456,7 +412,8 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("Europe")
+ggtitle("Europe 4 levels")+
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
 
 p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
@@ -465,18 +422,192 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Intertegular distance") +
-ggtitle("Europe")  
+ggtitle("Europe 4 levels")  +
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("Europe 4 levels")  +
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+#Read data with land use filtered
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe_subset.csv")
+
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe_subset.csv")
+
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe_subset.csv")
+
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_subset.csv")
+
+model4 = read_csv("Data/Europe_data/model_output_preference_brain_it_europe_subset.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("Europe 3 levels")+
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))+
+    theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("Europe 3 levels")+
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))+
+    theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("Europe 3 levels") +
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+    theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("Europe 3 levels") +
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+    theme(legend.position = "none")
+
 
 library(patchwork)
-p1 + p2 + p3 + plot_layout(ncol = 1) + plot_layout(guides = "collect")
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
+
+```
+
+\newpage
+
+# Europe 
+
+Qualitative analysis on the statistical evidences for preference and avoidance by habitat
+
+```{r Plotting Europe qualitative analysis, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="80%"}
+
+library(tidyverse)
+
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe_qualitative.csv")
+
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe_qualitative.csv")
+
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe_qualitative.csv")
+
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_qualitative.csv")
+
+model4 = read_csv("Data/Europe_data/model_output_preference_brain_it_europe_qualitative.csv")
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA-Europe 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+#Load land use filtered data and models
+long_data <- read_csv("Data/Europe_data/data_preference_residuals_europe_qualitative_subset.csv")
+
+model1 = read_csv("Data/Europe_data/model_output_preference_residuals_europe_qualitative_subset.csv")
+
+model2 = read_csv("Data/Europe_data/model_output_preference_brain_weight_europe_qualitative_subset.csv")
+
+model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_qualitative_subset.csv")
+
+model4 = read_csv("Data/Europe_data/model_output_preference_brain_it_europe_qualitative_subset.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA-Europe 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA-Europe 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA-Europe 3 levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA-Europe 3 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
 
 ```
 
 
-
 \newpage
 
-**2) USA**
+# USA (4 levels) 
 
 ```{r Load USA data, eval=TRUE, include=FALSE}
 #Load extracted data
@@ -486,7 +617,6 @@ mutate_if(is.character,as.factor)
 
 ```
 
-United States land use classification with total number of occurrences within cover type in our dataset
 
 ```{r Table with all levels USA, echo = FALSE, warning = FALSE, message = FALSE}
 
@@ -519,7 +649,6 @@ kable_styling(latex_options = "hold_position", font_size = 10)
 
 
 Check final levels per category:
-
 
 ```{r Show levels USA, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
 
@@ -554,54 +683,9 @@ kable_styling(latex_options = "hold_position")
 
 \newpage
 
-Then, we calculate preferences and model the data.
 
-```{r Plotting USA, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
+# USA (3 levels) 
 
-long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa.csv")
-
-model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa.csv")
-
-model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa.csv")
-
-model3 = read_csv("Data/Usa_data/model_output_preference_it_usa.csv")
-
-
-p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Residuals") + 
-ggtitle("USA")
-
-p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Brain weight") +
-ggtitle("USA")
-
-
-p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Intertegular distance") +
-ggtitle("USA")  
-
-library(patchwork)
-p1 / p2 / p3 & plot_layout(guides = "collect")
-
-```
-
-Note: The models have been run with non-informative priors from the brms function but some work on priors can be done... I have explored a bit and the results were quite similar overall but reviewers seem to don't like this approach as one of the goals of Bayesian is to use the prior knowledge of our variables to improve our predictions.
-
-\newpage
-
-Now we make more strict categories of what is Natural, Urban and Agricultural. See below:
 
 ```{r Show levels USA subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE}
 
@@ -664,19 +748,23 @@ kable_styling(latex_options = "hold_position")
 
 ```
 
-And we model the data with this categories:
+\newpage
 
+# USA (Gbif and MA thesis data)
 
-```{r Plotting USA subset, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=8, fig.width=6}
+```{r Plotting USA gbif and MA thesis data, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="90%"}
 
-long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_subset.csv")
+library(tidyverse)
 
-model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_subset.csv")
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa.csv")
 
-model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_subset.csv")
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa.csv")
 
-model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_subset.csv")
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa.csv")
 
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa.csv")
+
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa.csv")
 
 p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
@@ -684,7 +772,8 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Residuals") + 
-ggtitle("USA")
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
 p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
@@ -692,7 +781,8 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("USA")
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
 
 p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
@@ -701,39 +791,518 @@ geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Intertegular distance") +
-ggtitle("USA")  
+ggtitle("USA 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
-library(patchwork)
-p1 + p2 + p3 + plot_layout(ncol = 1) + plot_layout(guides = "collect")
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
 
-```
 
+#Load land use filtered data and models
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_subset.csv")
 
-**2) Finally, we consider Europe and USA together**
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_subset.csv")
 
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_subset.csv")
 
-```{r Plotting Europe USA, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, out.width="70%"}
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_subset.csv")
 
-data <- read_csv("Data/Europe_USA/data_preference_brain_weight_europe_usa.csv")
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa_subset.csv")
 
-model1 = read_csv("Data/Europe_USA/model_output_preference_brain_weight_europe_usa.csv")
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
 
-model2 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa.csv")
-
-ggplot(model1, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Brain weight") +
-ggtitle("Europe USA occurrences")
+ggtitle("USA 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
 
-ggplot(model2, aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  data, aes(x = IT, y = (Preference)), shape=21) +
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
 geom_line(aes(color=Habitat)) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Intertegular distance") +
-ggtitle("Europe USA occurrences")
+ggtitle("USA 3 levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA 3 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
 
 ```
+
+\newpage
+
+# USA (Gbif and MA thesis data) 
+
+Qualitative analysis on the statistical evidences for preference and avoidance by habitat
+
+```{r Plotting USA qualitative, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="80%"}
+
+library(tidyverse)
+
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_qualitative.csv")
+
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_qualitative.csv")
+
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_qualitative.csv")
+
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_qualitative.csv")
+
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa_qualitative.csv")
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+#Load land use filtered data and models
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_qualitative_subset.csv")
+
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_qualitative_subset.csv")
+
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_qualitative_subset.csv")
+
+model3 = read_csv( "Data/Usa_data/model_output_preference_it_usa_qualitative_subset.csv")
+
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa_qualitative_subset.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
+
+```
+
+
+\newpage
+
+# USA (just Gbif without MA thesis data)
+
+```{r Plotting USA gbif, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="90%"}
+
+library(tidyverse)
+
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_gbif.csv")
+
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_gbif.csv")
+
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_gbif.csv")
+
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_gbif.csv")
+
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa_gbif.csv")
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+#Load land use filtered data and models
+long_data <- read_csv("Data/Usa_data/data_preference_residuals_usa_subset_gbif.csv")
+
+model1 = read_csv("Data/Usa_data/model_output_preference_residuals_usa_subset_gbif.csv")
+
+model2 = read_csv("Data/Usa_data/model_output_preference_brain_weight_usa_subset_gbif.csv")
+
+model3 = read_csv("Data/Usa_data/model_output_preference_it_usa_subset_gbif.csv")
+
+model4 = read_csv("Data/Usa_data/model_output_preference_brain_it_usa_subset_gbif.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA 3 levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA 3 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
+
+```
+
+\newpage
+
+# USA and Europe together
+
+```{r Plotting USA Europe together, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="90%"}
+
+library(tidyverse)
+
+long_data <- read_csv("Data/Europe_USA/data_preference_residuals_europe_usa.csv")
+
+model1 = read_csv("Data/Europe_USA/model_output_preference_residuals_europe_usa.csv")
+
+model2 = read_csv("Data/Europe_USA/model_output_preference_brain_weight_europe_usa.csv")
+
+model3 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa.csv")
+
+model4 = read_csv("Data/Europe_USA/model_output_preference_brain_it_europe_usa.csv")
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA-Europe 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA-Europe 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+#Load land use filtered data and models
+long_data <- read_csv("Data/Europe_USA/data_preference_residuals_europe_usa_subset.csv")
+
+model1 = read_csv("Data/Europe_USA/model_output_preference_residuals_europe_usa_subset.csv")
+
+model2 = read_csv("Data/Europe_USA/model_output_preference_brain_weight_europe_usa_subset.csv")
+
+model3 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa_subset.csv")
+
+model4 = read_csv("Data/Europe_USA/model_output_preference_brain_it_europe_usa_subset.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA-Europe 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA-Europe 3 levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA-Europe 3 levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA-Europe 3 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
+
+```
+
+
+\newpage
+
+
+# USA and Europe together 
+
+Qualitative analysis on the statistical evidences for preference and avoidance by habitat
+
+
+```{r Plotting USA Europe together qualitative, eval = TRUE, fig.align = 'center', echo = FALSE, warning = FALSE, message = FALSE, fig.height=10, fig.width=7, fig.pos="center", out.width="90%"}
+
+library(tidyverse)
+
+long_data <- read_csv("Data/Europe_USA/data_preference_residuals_europe_usa_qualitative.csv")
+
+model1 = read_csv("Data/Europe_USA/model_output_preference_residuals_europe_usa_qualitative.csv")
+
+model2 = read_csv("Data/Europe_USA/model_output_preference_brain_weight_europe_usa_qualitative.csv")
+
+model3 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa_qualitative.csv")
+
+model4 = read_csv("Data/Europe_USA/model_output_preference_brain_it_europe_usa_qualitative.csv")
+
+p1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+p3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA 4 levels")  + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+p4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight / IT") +
+ggtitle("USA 4 levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4"))
+
+
+#Load land use filtered data and models
+long_data <- read_csv("Data/Europe_USA/data_preference_residuals_europe_usa_subset_qualitative.csv")
+
+model1 = read_csv("Data/Europe_USA/model_output_preference_residuals_europe_usa_subset_qualitative.csv")
+
+model2 = read_csv("Data/Europe_USA/model_output_preference_brain_weight_europe_usa_subset_qualitative.csv")
+
+model3 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa_subset_qualitative.csv")
+
+model4 = read_csv("Data/Europe_USA/model_output_preference_brain_it_europe_usa_subset_qualitative.csv")
+
+pp1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") + 
+ggtitle("USA levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight") +
+ggtitle("USA levels") + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+
+pp3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Intertegular distance") +
+ggtitle("USA levels")  + scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+pp4 = ggplot(model4, aes(x = brain_it, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
+geom_line(aes(color=Habitat)) +
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Brain weight /` IT") +
+ggtitle("USA levels") + 
+scale_color_manual(values=c('Agricultural'='brown', 'Natural'='forestgreen', 'Urban'='purple4', "Seminatural"="cyan4")) +
+theme(legend.position = "none")
+
+library(patchwork)
+p1 + pp1 + p2 + pp2 + p3 + pp3 + p4 + pp4 + plot_layout(ncol = 2) + plot_layout(guides = "collect")
+
+```
+
