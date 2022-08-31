@@ -1,4 +1,4 @@
-#Analysis of Europe bee preferences
+#Analysis of USA bee preferences
 
 #Load libraries
 library(tidyverse) 
@@ -8,13 +8,9 @@ library(brms)
 #Load brain data
 brain_weight = read_csv("Data/brain_weight_data.csv")
 #Load preferences
-preferences_europe = read_csv("Data/Europe_data/preferences_europe.csv") 
-preferences_usa = read_csv("Data/Usa_data/preferences_usa.csv") 
-#merge datasets
-preferences = bind_rows(preferences_europe, preferences_usa)
-
+preferences = read_csv("Data/Usa_data/preferences_usa_gbif.csv") 
 #Load phylogenetic matrix to correct for in analysis
-A10 = readRDS("Data/phylo_all.rds")
+A10 = readRDS("Data/Usa_data/phylo_usa_gbif.rds")
 
 #Prepare data----
 d = left_join(preferences, brain_weight) %>% 
@@ -34,19 +30,18 @@ model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)),
 ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T) 
 
 bayes_R2(model1)
-marginal_effects(model1)
 
 p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Residuals") + 
-ggtitle("USA and Europe")
+    geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
+    geom_line(aes(color=Habitat)) +
+    theme_bw() +
+    ylab("Habitat preference") +
+    xlab("Residuals") + 
+    ggtitle("USA")
 
 #Save data and model1 output
-write_csv(long_data , "Data/Europe_USA/data_preference_residuals_europe_usa.csv")
-write_csv(ce1[[1]], "Data/Europe_USA/model_output_preference_residuals_europe_usa.csv")
+write_csv(long_data , "Data/Usa_data/data_preference_residuals_usa_gbif.csv")
+write_csv(ce1[[1]], "Data/Usa_data/model_output_preference_residuals_usa_gbif.csv")
 
 #Analysis Preference ~ brain weight----
 model2 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)), 
@@ -54,21 +49,18 @@ model2 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)),
 
 pp_check(model2)
 bayes_R2(model2)
-marginal_effects(model2)
-
 ce2 <- conditional_effects(model2, effects = "Brain.weight:Habitat",points=T) 
 
 p2 = ggplot(ce2[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Brain weight") +
-ggtitle("USA and Europe") 
+    geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
+    geom_line(aes(color=Habitat)) +
+    theme_bw() +
+    ylab("Habitat preference") +
+    xlab("Brain weight") +
+    ggtitle("USA")    
 
 #Save data
-write_csv(ce2[[1]], "Data/Europe_USA/model_output_preference_brain_weight_europe_usa.csv")
-
+write_csv(ce2[[1]], "Data/Usa_data/model_output_preference_brain_weight_usa_gbif.csv")
 
 #Analysis Preference ~ IT----
 model3 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)), 
@@ -76,19 +68,18 @@ model3 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)),
 
 pp_check(model3)
 bayes_R2(model3)
-
 ce3 <- conditional_effects(model3, effects = "IT:Habitat",points=T) 
 
 p3 = ggplot(ce3[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
-geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
-geom_line(aes(color=Habitat)) +
-theme_bw() +
-ylab("Habitat preference") +
-xlab("Intertegular distance") +
-ggtitle("USA and Europe")  
+    geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
+    geom_line(aes(color=Habitat)) +
+    theme_bw() +
+    ylab("Habitat preference") +
+    xlab("Intertegular distance") +
+    ggtitle("USA")  
 
 #Save data
-write_csv(ce3[[1]], "Data/Europe_USA/model_output_preference_it_europe_usa.csv")
+write_csv(ce3[[1]], "Data/Usa_data/model_output_preference_it_usa_gbif.csv")
 
 #Plot all together
 library(patchwork)
@@ -109,6 +100,7 @@ p4 = ggplot(ce4[[1]], aes(x = brain_it, y = estimate__, color=Habitat)) +
     ggtitle("USA") 
 
 #Save data
-write_csv(ce4[[1]], "Data/Europe_USA/model_output_preference_brain_it_europe_usa.csv")
+write_csv(ce4[[1]], "Data/Usa_data/model_output_preference_brain_it_usa_gbif.csv")
+
 
 

@@ -1,35 +1,28 @@
-#Calculate phylogenetic matrix for USA and Europe species
+#Calculate phylogenetic matrix for USA species
 library(visreg) 
 library(data.tree)
 library(ape)
 library(phytools)
-library(tidyverse)
-
 #Load extracted data
-usa <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
+pref <- read_csv("Data/Usa_data/land_cover_usa_gbif.csv.gz") %>% 
     dplyr::select(species, cover.names) %>% 
     mutate_if(is.character,as.factor) 
-#Select species
-species_list_usa = usa %>% 
-distinct(species) %>% 
-rename(Species = species)
 
-#Load extracted data
-eur <- read_csv("Data/Europe_data/land_cover_europe.csv.gz") %>% 
-dplyr::select(Species, Cover_names) %>% 
-mutate_if(is.character,as.factor) 
-#Select species
-species_list_eur = eur %>% 
-distinct(Species) 
+#Check levels of species and cover names
+#First, Species
+species_list = pref %>% 
+    distinct(species) 
 
-#Bind lists
-species = bind_rows(species_list_usa , species_list_eur) %>% 
-mutate(species = str_replace_all(Species, " ", "_")) %>% 
-distinct(species) %>% 
-pull()
+#-----
+#Lista de especies
+bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
+
+#Generate Species vector 
+species = species_list %>%  
+    mutate(species = str_replace_all(species, " ", "_")) %>% 
+    pull()
 
 #Pick tree 1
-bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
 bee.mcmc=bee.trees[[1]]
 #Make a wasp the outgroup
 bee.mcmc=root(bee.mcmc,outgroup="Tachysphex")
@@ -39,6 +32,7 @@ bee.mcmc=chronos(bee.mcmc)
 
 
 bee.mcmc$tip.label
+species
 
 #Add genus that I don't have 
 bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa", "Chilimelissa",    
@@ -166,7 +160,6 @@ plot(bee.tree100, cex = 0.6)
 
 ##Check for missing species
 setdiff(species,bee.tree100$tip.label)
-union(setdiff(species,bee.tree100$tip.label), setdiff(bee.tree100$tip.label,species))
 
 #Remove node labels, or the model will fail
 bee.tree100$node.label=NULL
@@ -179,7 +172,6 @@ isSymmetric(A100, check.attributes = FALSE)
 
 #no differences. good
 setdiff(rownames(A100),species)
-union(setdiff(species,rownames(A100)), setdiff(rownames(A100),species))
-length(rownames(A100))
+
 #Save data
-saveRDS(A100, "Data/phylo_all.rds")
+saveRDS(A100, "Data/Usa_data/phylo_usa_gbif.rds")
