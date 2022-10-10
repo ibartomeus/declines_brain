@@ -5,4 +5,4 @@
 .httr-oauth
 .DS_Store
 Data/Raster_Europe/
-Data/Raster_USA/
+Data/Raster_USA/.DS_Store
