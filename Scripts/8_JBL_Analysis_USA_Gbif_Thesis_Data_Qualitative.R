@@ -158,7 +158,7 @@ ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T)
 
 bayes_R2(model1)
 
-p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
+ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
     geom_line(aes(color=Habitat)) +
     theme_bw() +

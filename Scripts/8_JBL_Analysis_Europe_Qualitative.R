@@ -237,7 +237,7 @@ bayes_R2(model2)
 
 ce2 <- conditional_effects(model2, effects = "Brain.weight:Habitat",points=T) 
 
-p2 = ggplot(ce2[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+ggplot(ce2[[1]], aes(x = Brain.weight, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21) +
     geom_line(aes(color=Habitat)) +
     theme_bw() +
@@ -258,7 +258,7 @@ bayes_R2(model3)
 
 ce3 <- conditional_effects(model3, effects = "IT:Habitat",points=T) 
 
-p3 = ggplot(ce3[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
+ggplot(ce3[[1]], aes(x = IT, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21) +
     geom_line(aes(color=Habitat)) +
     theme_bw() +
@@ -275,7 +275,7 @@ model4 = brm(Preference ~ brain_it * Habitat + (1|gr(Species, cov = A)),
 
 ce4 <- conditional_effects(model4, effects = "brain_it:Habitat",points=T) 
 
-p4 = ggplot(ce4[[1]], aes(x = brain_it, y = estimate__, color=Habitat)) +
+ggplot(ce4[[1]], aes(x = brain_it, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = brain_it, y = (Preference)), shape=21) +
     geom_line(aes(color=Habitat)) +
     theme_bw() +

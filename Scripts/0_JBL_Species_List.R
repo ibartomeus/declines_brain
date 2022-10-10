@@ -39,6 +39,14 @@ species.brains1 <- subset(species.brains1,
 #Augochlorella aurata
 species.brains1 <- subset(species.brains1, 
                           subset = !((Species == "Augochlorella aurata") & (Brain.weight==0.705)))
+#Bombus muscorum
+species.brains1 <- subset(species.brains1, 
+subset = !((Species == "Bombus muscorum") & (Brain.weight==3.585)))
+
+#Xylocopa cantabrita
+species.brains1 <- subset(species.brains1, 
+subset = !((Species == "Xylocopa cantabrita") & (Brain.weight==5.938)))
+
 #Bombus pascuorum
 species.brains1 <- subset(species.brains1, 
                           subset = !((Species == "Bombus pascuorum") & (Brain.weight==4.937)))
