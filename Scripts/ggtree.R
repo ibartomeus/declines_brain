@@ -1,5 +1,5 @@
 #Install packages
-devtools::install_github("YuLab-SMU/ggtree",force=TRUE)
+#devtools::install_github("YuLab-SMU/ggtree",force=TRUE)
 #It took me a while to install it (I had to update a lot of stuff)
 
 library(ggtree) #v3.5.3.002
@@ -20,26 +20,15 @@ preferences = readr::read_csv("Data/Europe_data/preferences_europe.csv")
 
 colnames(preferences)
 
+
 library(stringr)
 library(tidyverse)
+library(tibble)
+
 preferences =preferences %>% 
 mutate(Species = str_replace(Species, " ", "_")) %>% 
 column_to_rownames("Species")
 
-#Edits...
-p <- ggtree(bee.tree100) %<+% d2 + xlim(-0, 0.8)
-p=p + geom_tiplab(offset = 0.16,size=2, justify = "left") +
-geom_tippoint(aes(size = value), shape=21,x=0.38)+
-scale_size_continuous(range = c(0, 1.5),name="Brain\n size")+
-scale_colour_viridis_c()+  scale_y_continuous(expand=c(-1.15, 0.5)) +
-geom_treescale(x=0.175,  y=60, fontsize=2.25, linesize=0.5,offset=-1.75,width=0.05)
-
-
-gheatmap(p, data=preferences, colnames_angle=45, width=0.3, offset=0.02,
-color="black", high="deepskyblue4", low="gold",   legend_title = "Habitat\npreference",
-font.size = 2,colnames = T,colnames_position = "top",hjust=1) 
-
- 
 p <- ggtree(bee.tree100) %<+% d2  + 
 geom_tippoint(aes(size = value))+
 theme_tree2()+scale_size_continuous(range = c(0, 1.5),name="Brain\n size")+
@@ -51,8 +40,14 @@ preferences_1 = preferences %>% rownames_to_column('gene')
 d=gather(preferences_1, condition, measurement, Natural:Seminatural, factor_key=TRUE)
 
 p2 = ggplot(d, aes(x=condition, y=gene)) + 
-    geom_tile(aes(fill=measurement)) + scale_fill_viridis_c() + 
-    theme_minimal() + xlab(NULL) + ylab(NULL)
+geom_tile(aes(fill=measurement),color = "black") +
+scale_fill_viridis_c() + 
+theme_minimal() +
+xlab(NULL) + 
+ylab(NULL) + 
+theme(axis.text.x = element_text(face="bold", color="black", 
+size=7.5, angle=45, vjust=1.15, hjust=1),axis.text.y = element_text(face="italic", color="black", 
+size=4))
 
 
 library(aplot)

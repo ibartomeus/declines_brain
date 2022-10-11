@@ -3,6 +3,9 @@ library(visreg)
 library(data.tree)
 library(ape)
 library(phytools)
+library(dplyr)
+library(readr)
+library(stringr)
 #Load extracted data
 pref <- read_csv("Data/Europe_data/land_cover_europe.csv.gz") %>% 
     dplyr::select(Species, Cover_names) %>% 
@@ -20,7 +23,7 @@ bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
 #Generate Species vector 
 species = species_list %>%  
 mutate(Species = str_replace_all(Species, " ", "_")) %>% 
-pull()
+dplyr::pull()
 
 #Pick tree 1
 bee.mcmc=bee.trees[[1]]
@@ -178,5 +181,6 @@ setdiff(rownames(A100),species)
 
 #Save data
 saveRDS(A100, "Data/Europe_data/phylo_europe.rds")
+saveRDS(bee.tree100, "Data/Europe_data/bee.tree100.rds")
 
 
