@@ -1,4 +1,5 @@
 #In this script we calculate the residuals from brain weight ~ Intertegular distance
+#Note that we model and correct for phylogenetic relatedness across species
 
 #Load libraries----
 library(tidyverse)
