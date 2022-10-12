@@ -34,7 +34,6 @@ model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)),
 ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T) 
 
 bayes_R2(model1)
-marginal_effects(model1)
 
 p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
@@ -54,7 +53,6 @@ model2 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)),
 
 pp_check(model2)
 bayes_R2(model2)
-marginal_effects(model2)
 
 ce2 <- conditional_effects(model2, effects = "Brain.weight:Habitat",points=T) 
 

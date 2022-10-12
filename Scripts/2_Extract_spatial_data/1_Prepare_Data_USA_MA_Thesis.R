@@ -1,5 +1,7 @@
 ###############################################################---
 #Extract points from USA polygon and explore graphically----
+#Note here we add also the data from a similar geographical location
+#This data was produced by MA Collado during his PhD thesis
 ###############################################################---
 library(ggplot2) #plotting v.3.3.5
 library(dplyr) #data cleaning v.1.0.7

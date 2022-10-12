@@ -1,5 +1,5 @@
 ###############################################################---
-    #Extract points from Europe polygon and explore graphically----
+#Extract points from Europe polygon and explore graphically----
 ###############################################################---
 library(ggplot2) #plotting v.3.3.5
 library(dplyr) #data cleaning v.1.0.7
