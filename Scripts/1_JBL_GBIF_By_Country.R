@@ -10,7 +10,7 @@ library(rworldmap) #plot worldmap v.1.3-6
 library(sf) #scale worldmap v 1.0-5
 
 #Read data
-d <- read.csv("Data/Especies_para_buscar.csv", row.names = 1)
+d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
 #Rename cols
 colnames(d) <- c("Species")
 #Check levels

@@ -6,7 +6,7 @@ library(brms)
 
 #Load data ----
 #Load brain data
-brain_weight = read_csv("Data/brain_weight_data.csv")
+brain_weight = read_csv("Data/Processing/brain_weight_data.csv")
 #Load preferences
 preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") 
 preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 

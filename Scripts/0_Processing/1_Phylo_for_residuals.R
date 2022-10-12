@@ -1,28 +1,21 @@
-#Calculate phylogenetic matrix for USA species
+#Calculate phylogenetic matrix for USA and Europe species
 library(visreg) 
 library(data.tree)
 library(ape)
 library(phytools)
-#Load extracted data
-pref <- read_csv("Data/Usa_data/land_cover_usa.csv.gz") %>% 
-    dplyr::select(species, cover.names) %>% 
-    mutate_if(is.character,as.factor) 
+library(tidyverse)
 
-#Check levels of species and cover names
-#First, Species
-species_list = pref %>% 
-    distinct(species) 
+#Phylo for residuals
+wit.mean = readRDS("Data/Processing/wit.mean.rds")
 
-#-----
-#Lista de especies
-bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
-
-#Generate Species vector 
-species = species_list %>%  
-    mutate(species = str_replace_all(species, " ", "_")) %>% 
+#Extract species from data
+species = wit.mean %>% 
+    mutate(species = str_replace_all(Species, " ", "_")) %>% 
+    distinct(species) %>% 
     pull()
 
 #Pick tree 1
+bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
 bee.mcmc=bee.trees[[1]]
 #Make a wasp the outgroup
 bee.mcmc=root(bee.mcmc,outgroup="Tachysphex")
@@ -32,7 +25,6 @@ bee.mcmc=chronos(bee.mcmc)
 
 
 bee.mcmc$tip.label
-species
 
 #Add genus that I don't have 
 bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromelissa", "Chilimelissa",    
@@ -54,7 +46,7 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Samba", "Capicola", "Hesperapis",      
                                        "Eremaphanta", "Melitta", "Redivivoides",    
                                        "Rediviva", "Macropis", "Promelitta", "Meganomia",       
-                                       "Habropoda", "Deltoptila", "Pachymelus", "Amegilla",        
+                                       "Habropoda", "Deltoptila", "Pachymelus",        
                                        "Sphecodopsis", "Pasites", "Oreopasites",     
                                        "Ammobates", "Odyneropsis", "Triepeolus", "Rhinepeolus",     
                                        "Doeringiella", "Thalestria", "Epeolus", "Triopasites",     
@@ -96,10 +88,10 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Pararhophites", "Aspidosmia", "Aglaoapis", "Paradioxys",      
                                        "Dioxys", "Noteriades", "Radoszkowskiana", 
                                        "Coelioxys", "Pseudoheriades", "Afroheriades", "Protosmia",       
-                                       "Heriades", "Stenoheriades", "Hofferia", "Othinosmia",      
+                                       "Stenoheriades", "Hofferia", "Othinosmia",      
                                        "Haetosmia", "Wainia", "Hoplosmia",           
-                                       "Ashmeadiella", "Atoposmia", "Hoplitis", "Stenosmia",       
-                                       "Chelostoma", "Ochreriades", "Trachusa", "Afranthidium",    
+                                       "Ashmeadiella", "Atoposmia",  "Stenosmia",       
+                                        "Ochreriades", "Trachusa", "Afranthidium",    
                                        "Serapista", "Pseudoanthidium", "Bathanthidium",   
                                        "Dianthidium", "Anthidiellum", "Paranthidium",  
                                        "Icteranthidium", "Pachyanthidium", "Benanthis", "Eoanthidium",     
@@ -115,7 +107,7 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Eupetersia", "Mexalictus", "Patellapis",      
                                        "Thrincohalictus", "Homalictus",   
                                        "Parathrincostoma", "Thrinchostoma", "Penapis", "Goeletapis",      
-                                       "Xeralictus", "Protodufourea", "Dufourea", "Systropha",       
+                                       "Xeralictus", "Protodufourea",        
                                        "Rophites", "Sphecodosoma", "Conanthalictus", "Mydrosoma",       
                                        "Ptiloglossidia", "Willinkapis", "Caupolicana", "Ptiloglossa",     
                                        "Zikanapis", "Cadeguala", "Diphaglossa", "Cadegualina", 
@@ -132,9 +124,8 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Toromelissa", "Lonchopria", "Baeocolletes", "Astata", "Stigmus",       
                                        "Stangeella", "Crabro", "Pison", "Sphecius", "Zanysson", "Heterogyna", "Acamptopoeum", "Psaenythia",    
                                        "Austropanurgus", "Anthrenoides", "Ancylandrena", "Melittoides",
-                                       "Eucera", "Chilicola", "Duckeanthidium",
-                                       "Tachysphex", "Rhodanthidium","Apis",
-                                       "Sphecodes", "Melissodes"
+                                       "Chilicola", "Duckeanthidium",
+                                       "Tachysphex", "Apis"
 ))
 
 
@@ -160,6 +151,7 @@ plot(bee.tree100, cex = 0.6)
 
 ##Check for missing species
 setdiff(species,bee.tree100$tip.label)
+union(setdiff(species,bee.tree100$tip.label), setdiff(bee.tree100$tip.label,species))
 
 #Remove node labels, or the model will fail
 bee.tree100$node.label=NULL
@@ -172,8 +164,7 @@ isSymmetric(A100, check.attributes = FALSE)
 
 #no differences. good
 setdiff(rownames(A100),species)
-
+union(setdiff(species,rownames(A100)), setdiff(rownames(A100),species))
+length(rownames(A100))
 #Save data
-saveRDS(A100, "Data/Usa_data/phylo_usa.rds")
-saveRDS(bee.tree100, "Data/USA_data/bee.tree100.rds")
-
+saveRDS(A100, "Data/Processing/phylo_raw.rds")
