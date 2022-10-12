@@ -1,4 +1,8 @@
-#Calculate phylogenetic matrix for USA and Europe species
+#In this script we calculate the phylogenetic distance matrix for all species
+#This will be added then loaded in 1_Calculate_residuals to correct for phylo dist
+#in the modelling process
+
+#Load libraries
 library(visreg) 
 library(data.tree)
 library(ape)
