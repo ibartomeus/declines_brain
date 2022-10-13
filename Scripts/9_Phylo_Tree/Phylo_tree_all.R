@@ -70,3 +70,25 @@ p2 = ggplot(d, aes(x=condition, y=Species)) +
 library(aplot)
 p2 %>% insert_left(p) 
 
+
+#Checking preference correlation
+#Select species
+f = brain_weight %>% 
+filter(Country=="USA and Europe") %>% 
+pull(Species)
+#Filter species usa
+double_usa = preferences_usa %>% 
+filter(Species %in% f)
+#Filter species europe
+double_eu = preferences_eu %>% 
+filter(Species %in% f)
+
+#Convert wide format to long for plotting heatmap
+long_usa = gather(double_usa, condition, measurement_usa, Agricultural:Seminatural, factor_key=TRUE)
+long_eu = gather(double_eu, condition, measurement_eu, Natural:Seminatural, factor_key=TRUE)
+
+double_all = left_join(long_usa, long_eu, by=c("Species", "condition"))
+
+cor.test(double_all$measurement_usa, double_all$measurement_eu, method="spearman")
+ggstatsplot::ggscatterstats(data = double_all, x = measurement_usa, y = measurement_eu,
+                            type = 'spearman')

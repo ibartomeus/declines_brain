@@ -10,6 +10,16 @@ brain_weight = read_csv("Data/Processing/brain_weight_data.csv")
 #Load preferences
 preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") 
 preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 
+
+#There are duplicated species between usa and europe
+#Here is the list:
+f = c("Andrena wilkella", "Anthidium manicatum","Anthidium oblongatum",    
+      "Halictus confusus", "Halictus rubicundus", "Lasioglossum leucozonium",
+      "Megachile rotundata")
+#Filter them out from usa and just select europe which had higher number of records
+preferences_usa = preferences_usa %>% 
+filter(!Species %in% f)
+
 #merge datasets
 preferences = bind_rows(preferences_europe, preferences_usa)
 
