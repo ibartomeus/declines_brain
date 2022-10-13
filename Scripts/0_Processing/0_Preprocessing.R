@@ -1,7 +1,7 @@
 #Preprocessing----
 #In this script we fix typos and rename species when neccesary to their synonyms
 #The data was gathered and measured by MA Collado during his PhD thesis
-
+library(tidyverse)
 #Load data
 brains.it <- read.csv("Raw_data/brains.it.csv", dec = ",")
 

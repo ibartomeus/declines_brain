@@ -38,27 +38,32 @@ brain_weight = brain_weight %>% filter(Species %in% v)
 #Fill a column based on condition
 brain_weight = brain_weight %>% 
     mutate(Country = case_when((brain_weight$Species %in% preferences_eu$Species & 
-    brain_weight$Species %in% preferences_usa$Species ~ "Both"),
+    brain_weight$Species %in% preferences_usa$Species ~ "USA and Europe"),
     (brain_weight$Species %in% preferences_usa$Species ~ "USA"),
     (brain_weight$Species %in% preferences_eu$Species ~ "Europe")))
 
 
 #Plot tree
-p <- ggtree(bee.tree100) %<+% brain_weight  + 
+p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country)+
     geom_tippoint(aes(size = residuals, color=Country))+
-    theme_tree2()+scale_size_continuous(range = c(-1.75, 1.85),name="Residuals")
+    theme_tree2()+scale_size_continuous(range = c(-1.75, 1.8),name="Residuals")+
+    scale_color_manual(name = "Data", values=c("darkgoldenrod1","cyan4","black"),
+                       labels = c("Europe", "USA", "USA and Europe"),
+                       breaks = c("Europe", "USA", "USA and Europe"))
 
 #Convert wide format to long for plotting heatmap
 d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
 
+
 p2 = ggplot(d, aes(x=condition, y=Species)) + 
-    geom_tile(aes(fill=measurement),color = "black") +
-    scale_fill_viridis_c(name = "Habitat\n preference") + 
+    geom_tile(aes(fill=measurement),color = "white") +
+   # scale_fill_gradient(high="black",  low="white") +
+       scale_fill_viridis_c(name = "Habitat\n preference") + 
     theme_minimal() +
     xlab(NULL) + 
     ylab(NULL) + 
     theme(axis.text.x = element_text(face="bold", color="black", 
-    size=7.5, angle=45, vjust=1.15, hjust=1),
+    size=7.5,  vjust=1.15),
     axis.text.y = element_text(face="italic", color="black", size=4, hjust=0))
 
 #Nice way to insert ordered heatmap
