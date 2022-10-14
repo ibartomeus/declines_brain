@@ -26,6 +26,7 @@ group_by(Species) %>%
 summarise(across(everything(), list(mean),.names = "{.col}")) %>% 
 ungroup()
 
+
 #Delete underscore from tree
 bee.tree100$tip.label = str_replace(bee.tree100$tip.label, "_", " ")
 
@@ -53,6 +54,12 @@ p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country)+
 
 #Convert wide format to long for plotting heatmap
 d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
+
+
+#Relevel for plotting
+d = d %>% 
+mutate(condition = recode_factor(condition, "Seminatural" = "Semi-developed")) %>% 
+mutate(condition=fct_relevel(condition,c("Natural","Agricultural","Semi-developed", "Urban"))) 
 
 
 p2 = ggplot(d, aes(x=condition, y=Species)) + 

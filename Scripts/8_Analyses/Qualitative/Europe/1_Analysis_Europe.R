@@ -221,8 +221,7 @@ ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     theme_bw() +
     ylab("Habitat preference") +
     xlab("Residuals") + 
-    ggtitle("Europe")
-
+    ggtitle("Europe") #+ facet_wrap(~ Habitat)
 #Save data and model1 output
 write_csv(long_data , "Data/Europe_data/data_preference_residuals_europe_qualitative.csv")
 write_csv(ce1[[1]], "Data/Europe_data/model_output_preference_residuals_europe_qualitative.csv")
