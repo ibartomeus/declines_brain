@@ -1,5 +1,10 @@
 #In this script we download data from GBIF----
 
+#Here we download the data directly from gbif without the need of a registered user
+#and the data is directly downloaded into R without logging on gbif
+#HOWEVER, it takes very long!!!
+#I recommend the other approach since is much faster and fully reliable 
+
 #Load libraries
 library(stringr) #data cleaning v.1.4.0
 library(dplyr) #data cleaning v.1.0.7
@@ -8,6 +13,11 @@ library(ggplot2) #plotting v.3.3.5
 library(sp) #manipulate coordinates v.1.4-6
 library(rworldmap) #plot worldmap v.1.3-6
 library(sf) #scale worldmap v 1.0-5
+library(openssl)
+library(usethis)
+
+usethis::edit_r_environ()
+
 
 #Read data
 d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
@@ -26,8 +36,8 @@ d$Species[d$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
 #Filter out Apis mellifera
 d <- d %>% filter(!Species=="Apis mellifera")
 #For doing trials
-#lev_trial <- levels(factor(d$Species))[6:15]
-#d <- d %>% filter(Species %in% lev_trial)
+lev_trial <- levels(factor(d$Species))[1:1]
+d <- d %>% filter(Species %in% lev_trial)
 
 
 ########################---
@@ -83,7 +93,7 @@ dat <-  data.frame(scientificName = NA, decimalLatitude = NA,
 countries <- c("US", "DE", "GB", "LU", "BE", "NL", "DK") 
 
 for(i in gbif_id$key_number){
-    temp <- occ_data(taxonKey= i, 
+    temp <- occ_download(taxonKey= i, 
                        year="1985, 2022",
                        hasCoordinate=TRUE,
                        hasGeospatialIssue=FALSE,
@@ -204,7 +214,7 @@ info <- all_1 %>%
     summarise(no_rows = length(Raw_spp))
 #Seems ok!
 #Save data
-write.csv(all_1, file=gzfile("Data/gbif_data_final.csv.gz"),row.names=FALSE)
+#write.csv(all_1, file=gzfile("Data/gbif_data_final.csv.gz"),row.names=FALSE)
 
 
 
