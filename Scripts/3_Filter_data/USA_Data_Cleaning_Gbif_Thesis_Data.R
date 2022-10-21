@@ -23,12 +23,12 @@ all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_ma_the
 #Fix colname position
 names(all_east_coast_thesis)[1:(ncol(all_east_coast_thesis)-1)] <- names(all_east_coast_thesis)[2:ncol(all_east_coast_thesis)]
 all_east_coast_thesis[, ncol(all_east_coast_thesis)] <- NULL
-all_thesis <- all_east_coast_thesis
+all_thesis <- all_east_coast_thesis 
 
 #Select columns of interest
 all_thesis = all_thesis %>% 
 select(gen_sp, state, lat, long, country) %>% 
-rename(species = gen_sp, Country = country, stateProvince = state)
+rename(species = gen_sp, Country = country, stateProvince = state) 
 
 #Now mege both datasets
 colnames(all_thesis)
@@ -46,17 +46,9 @@ all_above_1987 <- all %>% filter(year>1987)
 #############-
 #SECOND FILTER----
 #############-
-#Second filter unique capture event based on: year, month, day, locality
-all_unique_event <- all_above_1987 %>% distinct(scientificName, year, month,day,stateProvince,locality,  .keep_all = T)
-
-#Second filter unique capture event based on: year, month, day, locality
-locality_na <-  all_above_1987 %>% filter(is.na(locality))
-locality_non_na <- all_above_1987 %>% filter(!is.na(locality))
-#Filter by unique locality when present and if not by unique coordinate
-locality_na_filtered <- locality_na %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
-locality_non_na_filtered <- locality_non_na %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
-#bind both
-all_unique_event <- rbind(locality_na_filtered, locality_non_na_filtered)
+#Filter by unique coordinate and locality 
+coordinate <- all_above_1987 %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
+all_unique_event <- coordinate %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
 
 #############-
 #THIRD FILTER----

@@ -34,7 +34,7 @@ extract_cover <- function(year,
     # load site data
     Datos <- read.table(point_d,  header=T, quote="\"", sep=",") #Si falla, usar como sep "," o ";"
     #según tus datos
-    coords <- Datos[, c("longitude", "latitude")]  
+    coords <- Datos[, c("long", "lat")]  
     #convert lat/lon to appropriate projection
     names(coords) <- c("x", "y")
     coordinates(coords) <- ~x + y
