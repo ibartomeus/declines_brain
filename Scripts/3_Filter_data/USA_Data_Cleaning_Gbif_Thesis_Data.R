@@ -17,7 +17,7 @@ all_east_coast <- data.frame(fread("Data/Usa_data/usa_all_long_lat.csv.gz"))
 #Fix colname position
 names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:ncol(all_east_coast)]
 all_east_coast[, ncol(all_east_coast)] <- NULL
-all <- all_east_coast
+all <- all_east_coast %>% select(!geometry)
 #Read MA tehsis data
 all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_ma_thesis_chapter.csv.gz"))
 #Fix colname position
@@ -113,9 +113,9 @@ all_above_50 <- all_above_50 %>% filter(!Species_name=="Apis mellifera")
 
 colnames(all_above_50)
 #Rename lat/lon cols
-all_above_50 = all_above_50 %>% 
-rename(longitude = long) %>% 
-rename(latitude = lat)
+#all_above_50 = all_above_50 %>% 
+#rename(longitude = long) %>% 
+#rename(latitude = lat)
 
 
 #############-
@@ -143,6 +143,11 @@ ny_metropolitan_1 <- read.csv("Data/Usa_data/ny_metropolitan.csv")
 #Create for loop and store all plots on a folder
 spp <- unique(all_above_50$Species_name)
 
+
+world <- map_data("world")
+
+colnames(world)
+
 for(i in spp){
 
 #Now create for loop for the different species 
@@ -160,7 +165,7 @@ coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longit
 geom_point(data = all_above_50 %>% filter(Species_name==i),aes(long, lat),
 size = 1, stroke = 0, shape = 16)+ggtitle(i)
 
-ggsave(temp_plot, file=paste0("Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
+ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
 
 }
 
@@ -172,5 +177,4 @@ ggsave(temp_plot, file=paste0("Image_bee_distribution/usa/plot_", i,".png"), wid
 
 #Save
 write.csv(all_above_50, file=gzfile("Data/Usa_data/all_above_50_usa.csv.gz"),row.names=FALSE)
-
 

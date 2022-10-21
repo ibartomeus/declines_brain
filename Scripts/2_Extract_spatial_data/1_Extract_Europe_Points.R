@@ -25,12 +25,12 @@ world <- map_data("world")
 europe <- d %>% filter(Continent %in% c("Europe"))
 str(europe)
 #Plot north america spatial data
-ggplot() + geom_map(data = world, map = world,
-                    aes(long, lat, map_id = region), color = "white", 
-                    fill = "lightgray", size = 0.1) +
-    geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
-               alpha = 0.1, size = 0.05) + ylim(0,70) +
-    coord_sf(xlim = c(-15, 40), ylim = c(30, 75), expand = FALSE)
+#ggplot() + geom_map(data = world, map = world,
+#                    aes(long, lat, map_id = region), color = "white", 
+#                    fill = "lightgray", size = 0.1) +
+#    geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
+#               alpha = 0.1, size = 0.05) + ylim(0,70) +
+#    coord_sf(xlim = c(-15, 40), ylim = c(30, 75), expand = FALSE)
 
 
 #gisco_countrycode
@@ -55,12 +55,12 @@ borders <- gisco_get_countries(
     sf::st_transform(crs = 4326) 
 
 #Plot map
-ggplot(europe_map) +
-    geom_sf(aes(fill = CNTR_CODE), color = NA, alpha = 0.3) +
-    geom_sf(data = borders, fill = NA, size = 0.1, col = "black") +
-    geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
-    alpha = 0.1, size = 0.025) + ylim(30,70)+xlim(-10,40)+
-    guides(fill=FALSE)
+#ggplot(europe_map) +
+#    geom_sf(aes(fill = CNTR_CODE), color = NA, alpha = 0.3) +
+#    geom_sf(data = borders, fill = NA, size = 0.1, col = "black") +
+#    geom_point(data = europe,aes(decimalLongitude, decimalLatitude),
+#    alpha = 0.1, size = 0.025) + ylim(30,70)+xlim(-10,40)+
+#    guides(fill=FALSE)
 
 
 #EU members plus UK
@@ -124,10 +124,10 @@ vars <- c("Germany","Germany:Fehmarn", "Germany:Rugen", "Belgium",
 europe_filtered <- filter(europe, Country %in% vars)
 
 #Plot and check
-ggplot(euro_map_1) +
-geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA,
-alpha = 0.3)+ guides(fill=FALSE)+geom_point(data = europe_filtered,
-aes(decimalLongitude, decimalLatitude),size = 0.15, stroke = 0, shape = 16) 
+#ggplot(euro_map_1) +
+#geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA,
+#alpha = 0.3)+ guides(fill=FALSE)+geom_point(data = europe_filtered,
+#aes(decimalLongitude, decimalLatitude),size = 0.15, stroke = 0, shape = 16) 
 
 #Now create a polygon of England and extract the points that fall on it
 #check levels

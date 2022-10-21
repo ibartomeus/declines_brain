@@ -2,7 +2,7 @@
 #In this script we prepare Europe data for analysis
 #We take 5 key decisions in data cleaning
 #1)Filter records above 1985 (this is decided based on the GIS data available)
-#2)Filter by unique capture event
+#2)Filter by unique capture event (locality/coordinate)
 #3)Filter by minimum of 3 decimals on coordinates
 #4)Filter number of levels per species (minimum N=100)
 #5)Filter by wide geographical distribution
@@ -12,7 +12,6 @@
 library(data.table)
 library(tidyverse)
 
-#Filter Europe data
 #Read data 
 all_long_lat <- data.frame(fread("Data/Europe_data/urope_all_long_lat.csv.gz"))
 #Fix colname position
@@ -25,8 +24,8 @@ rename(lat1 = lat) %>%
 rename(long1 = long) %>% 
 rename(lat = long1) %>% 
 rename(long = lat1) %>% 
-mutate(lat = gsub(")", "", lat))
-
+mutate(lat = gsub(")", "", lat)) %>% 
+select(!geometry)
 
 #############-
 #FIRST FILTER----
@@ -37,14 +36,9 @@ all_above_1985 <- all %>% filter(year>1985)
 #############-
 #SECOND FILTER----
 #############-
-#Second filter unique capture event based on: year, month, day, locality
-locality_na <-  all_above_1985 %>% filter(is.na(locality))
-locality_non_na <- all_above_1985 %>% filter(!is.na(locality))
-#Filter by unique locality when present and if not by unique coordinate
-locality_na_filtered <- locality_na %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
-locality_non_na_filtered <- locality_non_na %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
-#bind both
-all_unique_event <- rbind(locality_na_filtered, locality_non_na_filtered)
+#Filter by unique coordinate and locality 
+coordinate <- all_above_1985 %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
+all_unique_event <- coordinate %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
 
 #############-
 #THIRD FILTER----
@@ -151,7 +145,7 @@ panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
 size = 1, stroke = 0, shape = 16)+ggtitle(i)
 
-ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
+ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
 
 }
 
@@ -161,8 +155,8 @@ ggsave(temp_plot, file=paste0("Image_bee_distribution/europe/plot_", i,".png"), 
 #SAVE DATA----
 #############-
 
-#57 records
-#unique(all_above_50$Raw_spp)
+#58 records
+unique(as.factor(all_above_50$species))
 
 #Save
 write.csv(all_above_50, file=gzfile("Data/Europe_data/all_above_50_europe.csv.gz"),row.names=FALSE)
