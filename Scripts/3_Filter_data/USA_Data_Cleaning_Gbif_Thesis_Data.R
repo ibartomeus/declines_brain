@@ -28,11 +28,15 @@ all_thesis <- all_east_coast_thesis
 #Select columns of interest
 all_thesis = all_thesis %>% 
 select(gen_sp, state, lat, long, country) %>% 
-rename(species = gen_sp, Country = country, stateProvince = state) 
+rename(species = gen_sp, Country = country, stateProvince = state) %>% 
+mutate(year=1, month=1,day=1)
 
 #Now mege both datasets
 colnames(all_thesis)
 colnames(all)
+
+s <- all_thesis %>% distinct(species, year, month,day, long, lat,  .keep_all = T)
+
 
 #Rename to original name
 all = bind_rows(all, all_thesis)
@@ -47,8 +51,8 @@ all_above_1987 <- all %>% filter(year>1987)
 #SECOND FILTER----
 #############-
 #Filter by unique coordinate and locality 
-coordinate <- all_above_1987 %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
-all_unique_event <- coordinate %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
+coordinate <- all_above_1987 %>% distinct(species, year, month,day, long, lat,  .keep_all = T)
+all_unique_event <- coordinate %>% distinct(species, year, month,day,locality,  .keep_all = T)
 
 #############-
 #THIRD FILTER----

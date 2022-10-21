@@ -65,7 +65,7 @@ geom_point(data = data_filtered,aes(long, lat),
 size = 0.5, stroke = 0, shape = 16)
 
 #Save data
-write_csv(data_filtered, "Data/Usa_data/usa_thesis_ma_filtered")
+write_csv(data_filtered, "Data/Usa_data/usa_thesis_ma_filtered.csv")
 
 
 
