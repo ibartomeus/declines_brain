@@ -4,8 +4,7 @@
 .Ruserdata
 .httr-oauth
 .DS_Store
-Data/Raster_Europe/
-Data/Raster_USA/
+Data/Raster_USA/*.tif
 occurrence.txt
 Data/Image_bee_distribution/usa/*.png
 Data/Image_bee_distribution/europe/*.png
