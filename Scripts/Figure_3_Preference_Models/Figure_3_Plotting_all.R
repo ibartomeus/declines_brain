@@ -35,7 +35,8 @@ geom_line(aes(color=Habitat),size=0.7) +
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Residuals") +
-scale_colour_viridis_d() 
+scale_colour_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))
 # + facet_wrap(~ Habitat)
 
 
@@ -46,7 +47,8 @@ geom_line(aes(color=Habitat),size=0.7) +
 theme_bw() +
 ylab(NULL) +
 xlab("Brain weight (mg)") +
-scale_colour_viridis_d()
+scale_colour_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))
 
 
 
@@ -57,7 +59,8 @@ geom_line(aes(color=Habitat),size=0.7) +
 theme_bw() +
 ylab(NULL) +
 xlab("Intertegular distance (mm)") +
-scale_colour_viridis_d()
+scale_colour_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))
 
 
 library(patchwork)
