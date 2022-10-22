@@ -134,7 +134,7 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Austropanurgus", "Anthrenoides", "Ancylandrena", "Melittoides",
                                        "Eucera", "Chilicola", "Duckeanthidium",
                                        "Tachysphex", "Rhodanthidium","Apis",
-                                       "Sphecodes", "Melissodes"
+                                       "Sphecodes"
 ))
 
 

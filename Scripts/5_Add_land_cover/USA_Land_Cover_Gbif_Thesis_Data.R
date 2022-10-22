@@ -14,11 +14,7 @@ summarize(no_rows= length(species))
 #Extract land use
 #Code from using this code as an example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
 
-unlink(".RData")
-year=2006
-
-renv::install("rgdal")
-
+year = 2011
 extract_cover <- function(year,
                           point_d = "Data/Usa_data/all_above_50_usa.csv.gz",  
                           data_dir="Data/Raster_USA",
@@ -81,5 +77,5 @@ extract_cover <- function(year,
 
 
 #Extract cover with function
-extract_cover(year = 2006, point_d = "Data/Usa_data/all_above_50_usa.csv.gz", write_dir = "Data/Usa_data")
+extract_cover(year = 2011, point_d = "Data/Usa_data/all_above_50_usa.csv.gz", write_dir = "Data/Usa_data")
 

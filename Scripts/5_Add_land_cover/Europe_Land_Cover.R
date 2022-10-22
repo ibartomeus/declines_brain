@@ -44,7 +44,7 @@ all = cbind(europe, land_cover)
 
 #Select cols of interest
 all = all %>%
-select(species, LABEL3) %>% 
+dplyr::select(species, LABEL3) %>% 
 rename(Cover_names = LABEL3) %>% 
 rename(Species = species)
 

@@ -24,8 +24,7 @@ rename(lat1 = lat) %>%
 rename(long1 = long) %>% 
 rename(lat = long1) %>% 
 rename(long = lat1) %>% 
-mutate(lat = gsub(")", "", lat)) %>% 
-select(!geometry)
+mutate(lat = gsub(")", "", lat)) 
 
 #############-
 #FIRST FILTER----

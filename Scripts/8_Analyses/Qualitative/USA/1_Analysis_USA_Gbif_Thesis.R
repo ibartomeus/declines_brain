@@ -133,7 +133,7 @@ library(brms)
 
 #Load data ----
 #Load brain data
-brain_weight = read_csv("Data/brain_weight_data.csv")
+brain_weight = read_csv("Data/Processing/brain_weight_data.csv")
 #Load preferences
 preferences = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 
 #Load phylogenetic matrix to correct for in analysis
@@ -158,13 +158,13 @@ ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T)
 
 bayes_R2(model1)
 
-ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
+p1 =ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
     geom_line(aes(color=Habitat)) +
     theme_bw() +
     ylab("Habitat preference") +
     xlab("Residuals") + 
-    ggtitle("USA") + facet_wrap(~ Habitat)
+    ggtitle("USA") 
 
 #Save data and model1 output
 write_csv(long_data , "Data/Usa_data/data_preference_residuals_usa_qualitative.csv")

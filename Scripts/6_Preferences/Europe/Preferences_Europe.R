@@ -23,77 +23,42 @@ check_cover = pref %>%
 #Check levels here
 pref = pref %>% 
     mutate(Cover_names = fct_recode(as.factor(Cover_names),
-#1 Check with Nacho, dehesas and others 
-Natural = "Agro-forestry areas", #1) 2.4.4 
-#2 Check with Nacho 
-Urban = "Airports", #2) 1.2.4 
-#3 Crops 
-Agricultural = "Annual crops associated with permanent crops", #3) 2.4.1 
-#4 Very different cover type, not included 
-Discard = "Bare rocks", #4) 3.3.2 
-#5 Very different cover type, not included 
-Natural = "Beaches, dunes, sands", #5) 3.3.1 
-#6 Not included, lack of details 
-Discard = "Burnt areas", #6 3.3.4
-#7 Not included, only water surface
-Natural = "Coastal lagoons", #7) 5.2.1 
-#8 Straightforward
-Natural = "Coniferous forest", #8) 3.1.2
-#9 Excluded, complex to consider because it lacks habitat context
-Urban = "Construction sites", #9) 1.3.3
-#10 Based on the images and the description has a lot of vegetation cover
-Seminatural = "Discontinuous urban fabric", #10) 1.1.2
-#11 Pollinators here are likely to depend much on the context not on the dump
-Discard = "Dump sites", #11) 1.3.2
-#12 Filter out, water body
-Discard = "Estuaries", #12) 5.2.2 
-#13 Straightforward
-Agricultural = "Fruit trees and berry plantations", #13) 2.2.2
-#14 Urban as embedded within the city
-Seminatural = "Green urban areas", #14) 1.4.1
-#15 Highly modified
-Urban = "Industrial or commercial units", #15) 1.2.1
-#16 By definion, seminatural
-Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #16) 2.4.3
-#17 Discard as is not clear the vegetation context
-Discard = "Mineral extraction sites", #17) 1.3.1
-#18 Straightforward 3.1.3
-Natural = "Mixed forest", #18) 3.1.3
-#19 Crystal clear category
-Natural = "Moors and heathland", #19) 3.2.2
-#20 Crystal clear category
-Natural = "Natural grasslands", #20) 3.2.1
-#21 Filter out
-Discard = "NODATA", #21 
-#22 cultivated land
-Agricultural = "Non-irrigated arable land", #22) 2.1.1
-#23 As it is a monoculture despite some very
-Agricultural = "Olive groves", #23) 2.2.3
-#24 Crystal clear category
-Natural = "Peat bogs", #24) 4.1.2
-#25 Crystal clear category
-Agricultural = "Permanently irrigated land", #25) 2.1.2
-#26 Check with Nacho
-Urban = "Port areas", #26) 1.2.3
-#27 Check with Nacho
-Seminatural = "Road and rail networks and associated land", #27) 1.2.2
-#28 Check with Nacho but just only 200 records
-Seminatural = "Salines", #28) 4.2.2 
-#29 Flowering plant communities 
-Natural = "Salt marshes", #29) 4.2.1
-#30 Sclerophyllous shrubs and low shrubs
-Natural = "Sclerophyllous vegetation", #30) 3.2.3
-#31 Discard for now 
-Discard = "Sea and ocean", #31) 5.2.3
-#32 Areas with sparse vegetation, covering 10-50% of surface 
-Natural = "Sparsely vegetated areas", #32) 3.3.3
-#33 Check with Nacho 
-Seminatural = "Sport and leisure facilities", #33) 1.4.2 
-#34 Excluded as it is very general
-Discard = "Water bodies", #34) 5.1.2
-#35 Excluded as it is very general
-Discard = "Water courses" #35 5.1.1 
-    )) %>% 
+Urban = "Airports", #1
+Discard = "Bare rocks", #2
+Natural = "Beaches, dunes, sands", #3
+Natural = "Broad-leaved forest", #4
+Natural = "Coastal lagoons", #5
+Agricultural = "Complex cultivation patterns", #6
+Natural = "Coniferous forest", #7
+Urban = "Construction sites", #8
+Urban = "Continuous urban fabric", #9
+Seminatural = "Discontinuous urban fabric", #10
+Discard = "Dump sites", #11
+Discard = "Estuaries", #12
+Agricultural = "Fruit trees and berry plantations", #13
+Seminatural = "Green urban areas", #14)
+Urban = "Industrial or commercial units", #15
+Natural = "Inland marshes", #16
+Natural = "Intertidal flats", #17
+Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #18
+Discard = "Mineral extraction sites", #19
+Natural = "Mixed forest", #20
+Natural = "Moors and heathland", #21
+Agricultural = "Natural grasslands", #22
+Agricultural = "Non-irrigated arable land", #23
+Agricultural = "Pastures", #24
+Natural = "Peat bogs", #25
+Urban = "Port areas", #26) 
+Seminatural = "Road and rail networks and associated land", #27
+Natural = "Salt marshes", #28
+Discard = "Sea and ocean", #29
+Natural = "Sparsely vegetated areas", #30
+Seminatural = "Sport and leisure facilities", #31
+Natural = "Transitional woodland-shrub", #32
+Agricultural = "Vineyards", #33
+Discard = "Water bodies", #34
+Discard = "Water courses" #35  
+)) %>% 
     filter(!Cover_names == "Discard") 
 
 #Check levels again
