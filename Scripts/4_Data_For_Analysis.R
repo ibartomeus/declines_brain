@@ -7,6 +7,9 @@ library(data.table)
 europe <- data.frame(fread("Data/Europe_data/all_above_50_europe.csv.gz"))
 usa <- data.frame(fread("Data/Usa_data/all_above_50_usa.csv.gz"))
 
+colnames(europe)
+colnames(usa)
+
 #Add missing col of Europe
 europe$subregion <- NA
 
@@ -23,26 +26,26 @@ final_data <- data.frame(fread("Data/final_data.csv.gz"))
 
 #Some quick checks about the data
 #Check number of species
-nlevels(factor(final_data$Species_name))
+nlevels(factor(final_data$Species))
 #Check species above 100 records
 all_above_100 <- final_data %>% 
-    group_by(Species_name) %>% filter(n() >= 100) %>% ungroup()
-nlevels(factor(all_above_100$Species_name))
+    group_by(Species) %>% filter(n() >= 100) %>% ungroup()
+nlevels(factor(all_above_100$Species))
 #Check number of records by continent
 eu <- final_data %>% filter(Continent=="Europe") #344758
 us <- final_data %>% filter(Continent=="North America") #25773
-nlevels(factor(eu$Species_name))
-nlevels(factor(us$Species_name))
+nlevels(factor(eu$Species))
+nlevels(factor(us$Species))
 
 #Histogram of counts per species
 #1rst for all
 all_sum <- data.frame(final_data %>% 
-                    group_by(Species_name) %>%
-                    summarise(no_rows = length(Species_name)) 
+                    group_by(Species) %>%
+                    summarise(no_rows = length(Species)) 
                     %>%  arrange(-no_rows))
 
-all_sum$Species_name <- factor(all_sum$Species_name, levels = all_sum$Species_name)
+all_sum$Species <- factor(all_sum$Species, levels = all_sum$Species)
 
-ggplot(all_sum, aes(x=Species_name, y=no_rows)) + 
+ggplot(all_sum, aes(x=Species, y=no_rows)) + 
     geom_bar(stat = "identity") +
     theme(axis.text.x=element_text(angle=45, hjust=1, size=5))

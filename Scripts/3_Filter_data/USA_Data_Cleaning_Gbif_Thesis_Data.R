@@ -8,6 +8,9 @@
 #5)Filter by wide geographical distribution
 ######-
 
+#Note we also add the data used in the thesis of MA Collado.
+#This data is processed in the folder Collado_data
+
 #Load libraries
 library(data.table)
 library(tidyverse)
@@ -19,24 +22,22 @@ names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:nco
 all_east_coast[, ncol(all_east_coast)] <- NULL
 all <- all_east_coast %>% select(!geometry)
 #Read MA tehsis data
-all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_ma_thesis_chapter.csv.gz"))
+all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_thesis.csv.gz"))
 #Fix colname position
 names(all_east_coast_thesis)[1:(ncol(all_east_coast_thesis)-1)] <- names(all_east_coast_thesis)[2:ncol(all_east_coast_thesis)]
 all_east_coast_thesis[, ncol(all_east_coast_thesis)] <- NULL
 all_thesis <- all_east_coast_thesis 
 
+colnames(all_thesis)
+
 #Select columns of interest
 all_thesis = all_thesis %>% 
-select(gen_sp, state, lat, long, country) %>% 
-rename(species = gen_sp, Country = country, stateProvince = state) %>% 
-mutate(year=1, month=1,day=1)
+select(gen_sp, state, lat, long, country, year, month, day, site) %>% 
+rename(species = gen_sp, Country = country, stateProvince = state, locality=site) 
 
 #Now mege both datasets
 colnames(all_thesis)
 colnames(all)
-
-s <- all_thesis %>% distinct(species, year, month,day, long, lat,  .keep_all = T)
-
 
 #Rename to original name
 all = bind_rows(all, all_thesis)
@@ -84,28 +85,22 @@ all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 1 & l
 #FOURTH FILTER----
 #############-
 #This filter is done in function of the number of levels per species
-#First explore levels
-s <- data.frame(all_unique_event_3_decimals %>% 
-                    group_by(scientificName) %>%
-                    summarise(no_rows = length(scientificName)))
-#The dataframe needs a bit of cleaning
-
-#Create a col with Species name that will match the original name
-all_unique_event_3_decimals$Species_name <- paste(word(all_unique_event_3_decimals$scientificName, 1), word(all_unique_event_3_decimals$scientificName, 2))
-
-#Checking quickly if there are more synonyms on the dataset
-#d <- read.csv("Data/Especies_para_buscar.csv", row.names = 1)
-#b <- data.frame(raw_spp=unique(factor(d$x)))
-#a <- data.frame(gbif_spp=unique(factor(all_unique_event_3_decimals$Species_name)),gbif_spp=unique(factor(all_unique_event_3_decimals$Species_name)))
-#joined_df <- merge(a, b, by.x = "gbif_spp", by.y = "raw_spp", all = T)
+#Filter just spp records with same names in our dataset
+d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
+#spp
+spp = d$x
+#Species
+usa_species=all_unique_event_3_decimals %>% 
+filter(species %in% spp)
 
 #Select above species with above 50 records
-all_above_50 <- all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>% filter(n() >= 100) %>% ungroup()
+all_above_50 <- usa_species %>% 
+    group_by(species) %>% filter(n() >= 100) %>% ungroup()
 
-#Filter out now apis from this column
-all_above_50 <- all_above_50 %>% filter(!Species_name=="Apis mellifera")
-
+#check levels again
+s <- data.frame(all_above_50 %>% 
+                    group_by(species) %>%
+                    summarise(no_rows = length(species)))
 
 colnames(all_above_50)
 #Rename lat/lon cols
@@ -137,8 +132,7 @@ usa_states_1 <- read.csv("Data/Usa_data/usa_states.csv")
 ny_metropolitan_1 <- read.csv("Data/Usa_data/ny_metropolitan.csv")
 
 #Create for loop and store all plots on a folder
-spp <- unique(all_above_50$Species_name)
-
+spp <- unique(all_above_50$species)
 
 world <- map_data("world")
 
@@ -158,7 +152,7 @@ theme(panel.grid.major = element_line(color = gray(0.5),
 linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longitude")+
-geom_point(data = all_above_50 %>% filter(Species_name==i),aes(long, lat),
+geom_point(data = all_above_50 %>% filter(species==i),aes(long, lat),
 size = 1, stroke = 0, shape = 16)+ggtitle(i)
 
 ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")

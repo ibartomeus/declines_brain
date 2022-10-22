@@ -72,24 +72,26 @@ all_unique_event_3_decimals <- all_unique_event %>% filter(long_decimals > 1 & l
 #This filter is done in function of the number of levels per species
 #First explore levels
 s <- data.frame(all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>%
-    summarise(no_rows = length(scientificName)))
+    group_by(species) %>%
+    summarise(no_rows = length(species)))
 #The dataframe needs a bit of cleaning
+#Select species exclusively from our dataset
+d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
+#spp
+spp = d$x
+#Species
+eu_species=all_unique_event_3_decimals %>% 
+    filter(species %in% spp)
 
-#Delete this cases without species names
-all_unique_event_3_decimals <- all_unique_event_3_decimals %>%
-    filter(!str_detect(scientificName, regex("\\BOLD", ignore_case = TRUE)))
 
-#Rename species, gbif is giving the synonim
-all_unique_event_3_decimals$scientificName[all_unique_event_3_decimals$scientificName=="Andrena sabulosa (Scopoli, 1763)"] <- "Andrena carantonica Pérez, 1902"
 #Select above species with above 50 records
-all_above_50 <- all_unique_event_3_decimals %>% 
-    group_by(scientificName) %>% filter(n() >= 100) %>% ungroup()
+all_above_50 <- eu_species %>% 
+    group_by(species) %>% filter(n() >= 100) %>% ungroup()
 
-#Create a col with Species name that will match the original name
-all_above_50$Species_name <- paste(word(all_above_50$scientificName, 1), word(all_above_50$scientificName, 2))
-#Filter out now apis from this column
-all_above_50 <- all_above_50 %>% filter(!Species_name=="Apis mellifera")
+#Check levels again
+s <- data.frame(all_above_50 %>% 
+                    group_by(species) %>%
+                    summarise(no_rows = length(species)))
 
 #############-
 #FITH FILTER----
@@ -123,10 +125,9 @@ world <- map_data("world")
 
 #Convert long to numeric
 all_above_50$long <- as.numeric(all_above_50$long)
-str(all_above_50)
 
 #Create for loop and store all plots on a folder
-spp <- unique(all_above_50$Species_name)
+spp <- unique(all_above_50$species)
 
 for(i in spp){
 
@@ -142,7 +143,7 @@ coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
 theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
 size = 0.5), panel.background = element_rect(fill = "aliceblue"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-geom_point(data = all_above_50 %>% filter(Species_name==i),aes(lat, long),
+geom_point(data = all_above_50 %>% filter(species==i),aes(lat, long),
 size = 1, stroke = 0, shape = 16)+ggtitle(i)
 
 ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")

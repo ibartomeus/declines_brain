@@ -17,6 +17,7 @@ summarize(no_rows= length(species))
 #Read raster data
 library(terra)
 r <- rast("Data/Raster_Europe/Data/U2012_CLC2006_V2020_20u1.tif")
+
 head(cats(r)[[1]])
 
 #Create vector with coordinates
