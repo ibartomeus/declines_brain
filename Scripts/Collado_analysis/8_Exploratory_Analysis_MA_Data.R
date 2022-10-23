@@ -1,11 +1,18 @@
 
 #Read data ----
-data = read_csv("Data/Usa_data/thesis_chapter1_data_ma.csv") %>% 
-dplyr::select(gen_sp, latitude, longitude, country, state, county, city, site, habitat.extracted) %>% 
-rename(species = gen_sp) 
+
+data = fread("Data/Usa_data/usa_all_long_lat_thesis.csv.gz")
+
+#Fix colname position
+names(data)[1:(ncol(data)-1)] <- names(data)[2:ncol(data)]
+data[, ncol(data)] <- NULL
 
 data = data %>% 
-group_by(species) %>% filter(n() >= 100) %>% ungroup()
+dplyr::select(gen_sp, lat, long, country, state, county, city, site, habitat.extracted) %>% 
+rename(species = gen_sp) 
+
+#data = data %>% 
+#group_by(species) %>% filter(n() >= 100) %>% ungroup()
 
     
 #Extract land use ----
@@ -29,7 +36,7 @@ extract_cover <- function(year,
     # load site data
     Datos <- data
     #según tus datos
-    coords <- Datos[, c("longitude", "latitude")]  
+    coords <- Datos[, c("long", "lat")]  
     #convert lat/lon to appropriate projection
     names(coords) <- c("x", "y")
     coordinates(coords) <- ~x + y
@@ -74,6 +81,10 @@ extract_cover <- function(year,
 
 #Extract cover with function
 extract_cover(year = 2011, point_d = data, write_dir = "Data/Usa_data")
+
+
+pref$cover.names==data$habitat.extracted
+
 
 #Calculate preferences----
 #Load library
