@@ -6,7 +6,7 @@ library(brms)
 
 #Load data ----
 #Load brain data
-brain_weight = read_csv("Data/brain_weight_data.csv")
+brain_weight = read_csv("Data/Processing/brain_weight_data.csv")
 #Load preferences
 preferences = read_csv("Data/Usa_data/preferences_usa.csv") 
 #Load phylogenetic matrix to correct for in analysis
