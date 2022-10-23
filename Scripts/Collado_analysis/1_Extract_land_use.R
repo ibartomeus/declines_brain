@@ -1,18 +1,29 @@
-#Read clean USA data and extract land use from raster file
-#Load libraries
-library(data.table)
-library(tidyverse)
 
-#Load data
-data <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
+#Read data ----
 
-#check levels, min 106 max just over 15.0000
-data %>% 
-group_by(species) %>% 
-summarize(no_rows= length(species))
+data = fread("Data/Usa_data/usa_all_long_lat_thesis.csv.gz")
 
-#Extract land use
-#Adapted code from this example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
+#Fix colname position
+names(data)[1:(ncol(data)-1)] <- names(data)[2:ncol(data)]
+data[, ncol(data)] <- NULL
+
+#Select cols of interest
+data = data %>% 
+dplyr::select(gen_sp, lat, long, country, state, county, city, site, habitat.extracted) %>% 
+rename(species = gen_sp) 
+
+#Filter species
+#Select species of interest
+d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
+#spp
+spp = d$x
+#Species
+data=data %>% 
+filter(species %in% spp)
+#More than 100 records
+data = data %>% 
+group_by(species) %>% filter(n() >= 100) %>% ungroup()
+
 #Extract land use ----
 NLCD <- raster("Data/Raster_USA/nlcd_2011_land_cover_l48_20210604.img")
 coords <- data[, c("long", "lat")]  
@@ -43,5 +54,4 @@ data = left_join(data,conversions)
 #Select cols of interest
 data = data %>% dplyr::select(species, cover.names)
 #Save data
-write_csv(data, file=gzfile("Data/Usa_data/land_cover_usa.csv.gz"))
-
+write_csv(data, file=gzfile("Data/Usa_data/land_cover_usa_thesis_ma.csv.gz"))
