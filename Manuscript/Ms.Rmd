@@ -43,7 +43,7 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 # Methods
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} A) Phylogenetic tree at the genera level for the selected bee species with brain weight and intertegular distance information (N=100). Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted circumferences at the end of the tip branches. Larger circumferences indicate larger brains in proportion to their body and vice versa. B) Heatmap indicating the habitat preferences of the different bee species."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=100). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted circumferences at the end of the tip branches. Larger circumferences indicate larger brains in proportion to their body and vice versa. B) Heatmap indicating the habitat preferences of the different bee species."}
 
 #Phylogenetic tree for USA and Europe
 library(ggtree) 
