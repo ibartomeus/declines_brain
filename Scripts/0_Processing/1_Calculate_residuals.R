@@ -6,11 +6,6 @@ library(tidyverse)
 
 wit.mean = readRDS("Data/Processing/wit.mean.rds")
 
-#IT Xylocopa virginica
-wit.mean %>% 
-mutate(IT = replace(IT, Species == "Xylocopa virginica", 5.518))
-
-
 #Log variables first
 wit.mean = wit.mean %>% 
 mutate(log_brain_weight = log(Brain.weight)) %>% 

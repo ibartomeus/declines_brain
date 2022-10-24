@@ -20,6 +20,7 @@ preferences_eu = readr::read_csv("Data/Europe_data/preferences_europe.csv")
 #Bind rows
 pref = bind_rows(preferences_usa, preferences_eu)
 
+
 #Average preferences between USA and Europe
 preferences = pref %>% 
 group_by(Species) %>%
