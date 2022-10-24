@@ -12,6 +12,8 @@ bibliography:
   
 header-includes:
 - \usepackage{orcidlink}
+- \usepackage{caption,setspace}
+- \captionsetup[figure]{labelformat=empty}
 
 ---
 
@@ -39,6 +41,90 @@ Although the reason why many pollinator are declining is insuficiently understoo
 Human-dominated habitats —notably cities— offer unique ecological opportunities in the form of new nesting spots, reduced predation pressure and high food availability associated with non-indigenous plants [@cane2006; @winfree2011; @collado2019]. Although variation across species in tolerance to habitat loss and alteration is likely to have important demographic consequences, whether this is the reason why some pollinators are declining while others are increasing is currently unknown. Hence, the ability to adapt to human-dominated new habitats and to exploit new opportunities have become important for species to thrive [@manenti2013]. For species that tolerate human-related disturbances, human-dominated habitats —notably cities— offer unique ecological opportunities in the form of new nesting spots, reduced predation pressure and high food availability associated with non-indigenous plants [@cane2006; @winfree2011; @collado2019]. The question is then why only some species are able to enjoy the benefits of an urban life.In a novel environment, the chances to successfully survive and reproduce largely depends on cognition, that is, the processes involved in gathering, storing and reacting to environmental information. Cognitive limitations have thus help explaining the low success of many species in novel environments in general, and urban areas in particular. For example, reptiles, amphibians and birds that flourished after being introduced to new regions outside their native ranges tend to have larger brains (relative to their body size) than unsuccessful invaders [@sol2008; @sol2005; @amiel2011]. In vertebrates, relative brain size is a good proxy of problem-solving and learning (e.g. see chapter 2 of this thesis for its relationship with learning), which can help individuals to cope with the many challenges on novel environments. However, similar evidence is lacking for insects, in part because advanced cognitive abilities were not considered possible with their tiny brains. More important, there was no unequivocal evidence that brain size was related to cognitive performance. However, we now know that bees and other insects have advanced cognition, being able for instance to use tools to resolve new problems and learn socially how to do so [@alem2016]. There is in addition evidence that cognitive differences in the brain are reflected in differences in their brain size (Chapter 2). We used previously published data on bee forest and urban preference [@collado2019] as opposite points of habitat complexity, expecting to find bigger brain sizes for urban dwellers because a wider array of cognitive abilities are needed to inhabit these habitats. Species population trends were extracted from @bartomeus2013 and both datasets were crossed with a newly collected brain weight database. We wanted to explore if there is a relationship between brain size, habitat preference, and population trends. Hence, our questions were the following:Are brain sizes, as a proxy of behavioural plasticity, related to habitat preferences?Is population stability related to brain size as it has been seen in other taxa?Are habitat preferences related to population stability? Or alternatively, are urban dwellers populations increasing?
 
 # Methods
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} A) Phylogenetic tree at the genera level for the selected bee species with brain weight and intertegular distance information (N=100). Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted circumferences at the end of the tip branches. Larger circumferences indicate larger brains in proportion to their body and vice versa. B) Heatmap indicating the habitat preferences of the different bee species."}
+
+#Phylogenetic tree for USA and Europe
+library(ggtree) 
+library(ggplot2)
+library(stringr)
+library(tidyverse)
+library(tibble)
+
+#Load phylogenetic data from europe
+bee.tree100 = readRDS("../Data/Europe_USA/bee.tree100.rds")
+#Load brain data
+brain_weight = readr::read_csv("../Data/Processing/brain_weight_data.csv")
+#Load preferences data
+preferences_usa = readr::read_csv("../Data/USA_data/preferences_usa.csv") 
+preferences_eu = readr::read_csv("../Data/Europe_data/preferences_europe.csv") 
+#Bind rows
+pref = bind_rows(preferences_usa, preferences_eu)
+
+#Average preferences between USA and Europe
+preferences = pref %>% 
+group_by(Species) %>%
+summarise(across(everything(), list(mean),.names = "{.col}")) %>% 
+ungroup()
+
+
+#Delete underscore from tree
+bee.tree100$tip.label = str_replace(bee.tree100$tip.label, "_", " ")
+
+#Generate vector with species
+v = bee.tree100$tip.label
+#Filter species with that are in the phylo
+brain_weight = brain_weight %>% filter(Species %in% v)
+
+
+#Fill a column based on condition
+brain_weight = brain_weight %>% 
+    mutate(Country = case_when((brain_weight$Species %in% preferences_eu$Species & 
+    brain_weight$Species %in% preferences_usa$Species ~ "USA and Europe"),
+    (brain_weight$Species %in% preferences_usa$Species ~ "USA"),
+    (brain_weight$Species %in% preferences_eu$Species ~ "Europe")))
+
+
+#Plot tree
+p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country) +  geom_tree(size=0.8)+
+    geom_tippoint(aes(size = residuals, color=Country))+ 
+    theme_tree2()+scale_size_continuous(range = c(-1.2, 3.2),name="Residuals")+
+    scale_color_manual(name = "Data", values=c("darkgoldenrod1","cyan4","black"),
+                       labels = c("Europe", "USA", "USA and Europe"),
+                       breaks = c("Europe", "USA", "USA and Europe")) +
+  ggtitle("A") + theme(plot.title = element_text(size=22, face="bold"))
+
+#Convert wide format to long for plotting heatmap
+d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
+
+
+#Relevel for plotting
+d = d %>% 
+mutate(condition = recode_factor(condition, "Seminatural" = "Semideveloped")) %>% 
+mutate(condition=fct_relevel(condition,c("Natural","Agricultural","Semideveloped", "Urban"))) 
+
+
+p2 = ggplot(d, aes(x=condition, y=Species)) + 
+    geom_tile(aes(fill=measurement),color = "white") +
+   # scale_fill_gradient(high="black",  low="white") +
+       scale_fill_viridis_c(name = "Habitat\n preference") + 
+    theme_minimal() +
+    xlab(NULL) + 
+    ylab(NULL) + 
+    theme(axis.text.x = element_text(face="bold", color="black", 
+    size=10,  vjust=1.15),
+    axis.text.y = element_text(face="italic", color="black", size=7, hjust=0),
+    plot.title = element_text(size=22, face="bold")) +
+  ggtitle("B") 
+
+#Nice way to insert ordered heatmap
+library(aplot)
+p2 %>% insert_left(p) 
+```
+
+
+
 
 **Animals**
 

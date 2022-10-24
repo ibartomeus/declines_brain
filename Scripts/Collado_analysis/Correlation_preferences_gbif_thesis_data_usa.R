@@ -2,6 +2,7 @@
 #Check correlation between preferences 
 #Load preferences
 library(readr)
+library(dplyr)
 ma_preferences = read_csv("Data/Usa_data/preferences_usa_thesis_ma.csv") 
 gbif_preferences = read_csv("Data/Usa_data/preferences_usa_gbif.csv") 
 #Merge datasets
