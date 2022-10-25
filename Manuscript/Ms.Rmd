@@ -19,7 +19,8 @@ header-includes:
 
 \textbf{Miguel Á. Collado$^{1}$} \orcidlink{0000-0002-4216-317X} \textbf{Jose B. Lanuza$^{2}$} \orcidlink{0000-0002-0287-409X} \textbf{and Ignasi Bartomeus$^{2}$} \orcidlink{0000-0001-7893-4389}
 
-Departamento de xxxxx, Universidad de Sevilla, Seville, Spain
+
+Departamento de Ciencias de la Computación e Inteligencia Artificial, Universidad de Sevilla, Seville, Spain
 
 Estación Biológica de Doñana (EBD-CSIC), E-41092 Seville, Spain
 
@@ -43,7 +44,127 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 # Methods
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=100). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted circumferences at the end of the tip branches. Larger circumferences indicate larger brains in proportion to their body and vice versa. B) Heatmap indicating the habitat preferences of the different bee species."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the location of the downloaded GBIF occurrences for the different bee species."}
+
+#Plot maps with density of bee occurrences
+
+#Europe----
+#Load libraries
+library(giscoR) #map of europe
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(sf)
+library(patchwork)
+library(rnaturalearth)
+
+#Load europe map
+Europe <- gisco_get_countries(region = "Europe")
+#Load countries filtered
+euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
+#Load data with records filtered
+all_long_lat <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
+
+#Plot Europe map with counties of interest highlighted
+p1 = ggplot(Europe) +
+geom_sf(fill="gray25",color = "black", alpha = 0.5,size=0.2)  +
+geom_sf(data= euro_map %>% group_by(CNTR_CODE) %>% summarise() ,
+aes(fill = CNTR_CODE, group=CNTR_CODE),fill = "#f2ea69", color = "black",alpha=0.8, size = 0.25) +
+coord_sf(xlim = c(-10, 30), ylim = c(35, 65))  + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white"))
+
+
+p2 = ggplot(Europe) +
+geom_sf(fill="gray70",color = "black", alpha = 1,size=0.2)+
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8)) +
+coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
+theme(panel.background = element_rect(fill = "aliceblue"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("A") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(), 
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(40, 60, by = 6)) +
+scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))
+
+#Insert general plot within specific plot
+panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
+
+#USA-----
+#Load libraries
+
+#Load data
+usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
+ny_metropolitan_1 <- read.csv("../Data/Usa_data/ny_metropolitan.csv")
+all_long_lat <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
+
+#Load maps
+canada <- ne_states(country = "canada", returnclass = "sf") %>%
+st_as_sf(crs = 4326) 
+
+usa <- ne_states(country = "united states of america", returnclass = "sf") %>%
+st_as_sf(crs = 4326)
+
+p1 = ggplot(canada) + 
+geom_sf(fill="gray60",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray60",color = "black", alpha = 1,size=0.2) + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white")) +
+geom_map(data = ny_metropolitan_1, 
+map = ny_metropolitan_1,aes(long, lat, map_id = region, group = group), fill = "#f2ea69",color = "black",
+size = 0.1) +
+geom_map(data = usa_states_1, map = usa_states_1,
+aes(long, lat, map_id = region, group = group), color = "black", fill = "#f2ea69",
+size = 0.1) +
+coord_sf(xlim = c(-86, -62), ylim = c(25, 48)) 
+
+
+p2 = ggplot(canada) + 
+geom_sf(fill="gray70",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray70",color = "black", alpha = 1,size=0.2) +
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 3, 6)) +
+coord_sf(xlim = c(-82, -68), ylim = c(33, 47))  +
+theme(panel.background = element_rect(fill = "aliceblue"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("B") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(),
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(33, 47, by = 4)) +
+scale_x_continuous(breaks = seq(-82, -68, by = 4)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))
+
+#Insert general plot within specific plot
+panel2 = p2 + inset_element(p1, left = 0, bottom = -0.885, right = 0.35, top = 1.2, ignore_tag = TRUE) 
+
+library(patchwork)
+panel1 + panel2 
+
+
+
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 2.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=100). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural, semideveloped and urban) and the rows the different bee species."}
 
 #Phylogenetic tree for USA and Europe
 library(ggtree) 
@@ -93,7 +214,7 @@ p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country) +  geom_tree(s
     scale_color_manual(name = "Data", values=c("darkgoldenrod1","cyan4","black"),
                        labels = c("Europe", "USA", "USA and Europe"),
                        breaks = c("Europe", "USA", "USA and Europe")) +
-  ggtitle("A") + theme(plot.title = element_text(size=22, face="bold"))
+  ggtitle("A") + theme(plot.title = element_text(size=18, face="bold"))
 
 #Convert wide format to long for plotting heatmap
 d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
@@ -108,15 +229,15 @@ mutate(condition=fct_relevel(condition,c("Natural","Agricultural","Semideveloped
 p2 = ggplot(d, aes(x=condition, y=Species)) + 
     geom_tile(aes(fill=measurement),color = "white") +
    # scale_fill_gradient(high="black",  low="white") +
-       scale_fill_viridis_c(name = "Habitat\n preference") + 
+       scale_fill_viridis_c(name = "Habitat\n preference", limits=c(0, 1), breaks=c(0.1, 0.5, 0.9), labels=c("Low","","High")) + 
     theme_minimal() +
     xlab(NULL) + 
     ylab(NULL) + 
     theme(axis.text.x = element_text(face="bold", color="black", 
     size=10,  vjust=1.15),
     axis.text.y = element_text(face="italic", color="black", size=7, hjust=0),
-    plot.title = element_text(size=22, face="bold")) +
-  ggtitle("B") 
+    plot.title = element_text(size=18, face="bold")) +
+  ggtitle("B")
 
 #Nice way to insert ordered heatmap
 library(aplot)
@@ -139,6 +260,52 @@ The quantitative data of population trends for North American bees were extracte
 We used Bayesian phylogenetic generalised linear mixed models (BPGMM), as implemented in the package brms [@burkner2017], to assess whether brain sizes, habitat preference and population trends are correlated. In all models, we incorporated a phylogenetic covariance matrix. The phylogeny used were maximum-likelihood phylogenetic trees of the superfamily Apoidea at the genera level modified from (Hedtke et al., 2013, Fig. 1, Fig. S2, Fig. S3). Due to the absence of infrageneric phylogenies for all our genera, we simulated infrageneric polytomies within our phylogeny. Species tips were added to the phylogenetic tree genera nodes as polytomies of equal branch length relative to the genera branch length using the phytools package (version 0.6‐44, Revell, 2012). Because we did not have information on our 3 variables for the 44 species (habitat preference, brain weight and population trends), we used 3 different subsets of our dataset to maximize the sample size in the different models: Relative brain size-habitat preference, population trends-habitat preference and population trends-relative brain size.
 
 # Results
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=10, fig.cap="\\textbf{Figure 3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural, semideveloped and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States."}
+
+#Histogram of habitat preferences
+#Load libraries
+library(tidyverse) 
+
+#Load preferences
+preferences_europe = read_csv("../Data/Europe_data/preferences_europe.csv") 
+preferences_usa = read_csv("../Data/Usa_data/preferences_usa.csv") 
+
+#Merge datasets
+preferences = bind_rows(preferences_europe, preferences_usa)
+
+#Convert to long to model everything at the same time
+long_data = preferences %>% gather(Habitat, Preference, 2:5, -c(Species))
+
+#Relevel for plotting
+long_data = long_data %>% 
+    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semideveloped")) %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semideveloped", "Urban"))) 
+
+labels.minor <- c("Low", "", "High")
+
+#Plot
+ggplot(long_data, aes(x=Preference, color= Habitat)) +
+    geom_histogram(aes(fill= Habitat)) + 
+    xlab("Habitat preference") +
+    ylab("Frequency") +
+    facet_wrap(~ Habitat) +
+    scale_colour_viridis_d(end=0.98)+
+    scale_fill_viridis_d(end=0.98) +
+    theme_bw()+
+    theme(axis.title = element_text(face = "bold", size=14), 
+    strip.text.x = element_blank() , strip.background = element_blank(),
+    panel.border=element_rect(size=0.8))+
+    scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.5),
+                       labels = paste0(c(0,0.5,1), "\n", labels.minor)) +
+    scale_y_continuous(expand = c(0, 0))+
+    geom_vline(aes(xintercept = 0.05), colour="black", linetype="dashed") +
+    geom_vline(aes(xintercept = 0.95), colour="black", linetype="dashed")
+
+
+
+
+```
 
 # Discussion
 
