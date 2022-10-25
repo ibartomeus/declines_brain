@@ -36,11 +36,11 @@ panel.background = element_rect(fill = "white"))
 
 
 p2 = ggplot(Europe) +
-geom_sf(fill="gray70",color = "black", alpha = 1,size=0.2)+
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2)+
 geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8)) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8),limits=c(0,8)) +
 coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
-theme(panel.background = element_rect(fill = "aliceblue"),
+theme(panel.background = element_rect(fill = "white"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 ylab("Latitude") +
 xlab("Longitude") +
@@ -90,12 +90,12 @@ coord_sf(xlim = c(-86, -62), ylim = c(25, 48))
 
 
 p2 = ggplot(canada) + 
-geom_sf(fill="gray70",color = "black", alpha = 1,size=0.2) + 
-geom_sf(data= usa, fill="gray70",color = "black", alpha = 1,size=0.2) +
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray80",color = "black", alpha = 1,size=0.2) +
 geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 3, 6)) +
-coord_sf(xlim = c(-82, -68), ylim = c(33, 47))  +
-theme(panel.background = element_rect(fill = "aliceblue"),
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
+coord_sf(xlim = c(-82, -67), ylim = c(33, 47))  +
+theme(panel.background = element_rect(fill = "white"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 ylab("Latitude") +
 xlab("Longitude") +
@@ -113,7 +113,7 @@ scale_x_continuous(breaks = seq(-82, -68, by = 4)) +
 guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))
 
 #Insert general plot within specific plot
-panel2 = p2 + inset_element(p1, left = 0, bottom = -0.885, right = 0.35, top = 1.2, ignore_tag = TRUE) 
+panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
 
 library(patchwork)
 panel1 + panel2 
