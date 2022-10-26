@@ -10,7 +10,7 @@ species.brains = brains.it %>%
 filter(!ID == "F33") %>%  #Dasypoda visnaga's brain was conserved in ethanol, not formol
 rename(Brain.weight = Brain.Weight..mg.) %>% #Rename var
 mutate(Brain.IT = (Brain.weight/IT)) %>% #create new col
-dplyr::select(Species, IT, Brain.weight, Brain.IT) %>% #select cols of interest
+dplyr::select(Species, IT, Brain.weight, Brain.IT, Sex) %>% #select cols of interest
 na.omit() #filter out na's
 
 #Check levels
@@ -107,6 +107,8 @@ species.brains<-subset(species.brains, subset = !((Species == "Dasypoda sp.")))
 species.brains<-subset(species.brains, subset = !((Species == "Coelioxys sp.")))
 species.brains<-subset(species.brains, subset = !((Species == "Andrena (Chlorandrena)")))
 species.brains<-subset(species.brains, subset = !((Species == "Andrena (Chrysandrena)")))
+
+species.brains = species.brains %>%  filter(Sex == "Female") %>% dplyr::select(!Sex)
 
 #Create dataframe with average measurements of IT and brain weight
 weights.mean <- data.frame(aggregate(Brain.weight ~ Species, data = species.brains, FUN = mean))

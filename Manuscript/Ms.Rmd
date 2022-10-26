@@ -44,7 +44,7 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 # Methods
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the location of the downloaded GBIF occurrences for the different bee species."}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the location of the downloaded GBIF occurrences for the different bee species (N = 100). A) Selected North European countries that had a high number of records for the selected species. B) Selected states from"}
 
 #Plot maps with density of bee occurrences
 
