@@ -35,6 +35,10 @@ Keywords: XXXX
 
 # Introduction
 
+Relevant refs:
+
+https://onlinelibrary.wiley.com/doi/10.1111/ele.14133?af=R
+
 Pollination is a fundamental ecosystem service that connects the earth’s vegetation and human economy. Pollination services are performed by both managed and wild pollinators, mostly bees [@james2008; @winfree2011], both of which might be affected by a range of current and projected human-related environmental changes. There are indeed clear shreds of evidence of recent declines in pollinator populations [@bartomeus2019], and parallel declines in the plants that rely upon them [@potts2010; @scheper2014]. For example, in the UK, the third part of wild pollinator species has decreased from 1980 to 2013 [@powney2019], including six of all 16 non-parasitic bumblebees [@williams2009]. The decline of pollinators currently observed is projected to increase in the future [@dormann2008]. Because most wild plant species (80%) and crop species (75%) are directly dependent on insect pollination for fruit and seed production [@klein2007; @ollerton2011], there is an increasing concern that the loss of pollinators from both natural communities and agricultural areas will have severe negative consequences for ecosystem functions and services [@ashman2004; @klein2007].
 
 Although the reason why many pollinator are declining is insuficiently understood, a factor that is considered central is the loss and alteration of their habitats [@brown2009]. The destruction and fragmentation of natural habitats and their replacement by anthropogenic landscapes present new challenges for survival and reproduction of organisms, increasing the risk of extinction by negative population growth [@brown2009]. However, not all pollinators species are equally affected by habitat loss and alteration. In bees, for example, there are also “winners” —like Bombus terrestris [@rasmont2008]— that are able to thrive in human-altered environments, and there are also other species that although do not proliferate in such environments can at least maintain self-sustaining populations [@biesmeijer2006; @bartomeus2013; Reemer et al., 2012????; @collado2019].

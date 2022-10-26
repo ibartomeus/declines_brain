@@ -54,13 +54,12 @@ p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country)+
                        breaks = c("Europe", "USA", "USA and Europe"))
 
 #Convert wide format to long for plotting heatmap
-d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
+d=gather(preferences, condition, measurement, Agricultural:Urban, factor_key=TRUE)
 
 
 #Relevel for plotting
 d = d %>% 
-mutate(condition = recode_factor(condition, "Seminatural" = "Semi-developed")) %>% 
-mutate(condition=fct_relevel(condition,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+mutate(condition=fct_relevel(condition,c("Natural","Agricultural", "Urban"))) 
 
 
 p2 = ggplot(d, aes(x=condition, y=Species)) + 

@@ -23,6 +23,8 @@ long_data = d %>% gather(Habitat, Preference, 2:4, -c(Species))
 long_data = long_data %>% 
     mutate(brain_it = Brain.weight/IT)
 
+#write_rds(long_data, "Data/Processing/long_data_usa.rds")
+
 #Analysis Preference ~ residuals----
 model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), 
              data = long_data, data2 = list(A = A10), family=bernoulli())
