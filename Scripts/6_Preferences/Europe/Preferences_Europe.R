@@ -32,11 +32,11 @@ Agricultural = "Complex cultivation patterns", #6
 Natural = "Coniferous forest", #7
 Urban = "Construction sites", #8
 Urban = "Continuous urban fabric", #9
-Seminatural = "Discontinuous urban fabric", #10
+Urban = "Discontinuous urban fabric", #10
 Discard = "Dump sites", #11
 Discard = "Estuaries", #12
 Agricultural = "Fruit trees and berry plantations", #13
-Seminatural = "Green urban areas", #14)
+Urban = "Green urban areas", #14)
 Urban = "Industrial or commercial units", #15
 Natural = "Inland marshes", #16
 Natural = "Intertidal flats", #17
@@ -49,11 +49,11 @@ Agricultural = "Non-irrigated arable land", #23
 Agricultural = "Pastures", #24
 Natural = "Peat bogs", #25
 Urban = "Port areas", #26) 
-Seminatural = "Road and rail networks and associated land", #27
+Discard = "Road and rail networks and associated land", #27
 Natural = "Salt marshes", #28
 Discard = "Sea and ocean", #29
 Natural = "Sparsely vegetated areas", #30
-Seminatural = "Sport and leisure facilities", #31
+Urban = "Sport and leisure facilities", #31
 Natural = "Transitional woodland-shrub", #32
 Agricultural = "Vineyards", #33
 Discard = "Water bodies", #34
@@ -117,22 +117,23 @@ for(k in 1:nrow(pref_agr)){
     m[k,3] <- sum(unlist(v) <  pref.table[k,3] ) / length(unlist(v)) 
     
 }
-#Seminatural
-pref_sem = pref.table %>% dplyr::select(Seminatural)
-n.mod_sem = list()
-for(n in 1:10000){
-    n.mod_sem[[n]] = n.mod[[n]][,4]           
-} 
 
-for(k in 1:nrow(pref_sem)){
-    v <- lapply(n.mod_sem, `[[`, k)
-    m[k,4] <- sum(unlist(v) <  pref.table[k,4] ) / length(unlist(v)) 
-    
-}
 
-m = rownames_to_column(m, var = "Species")
-write_csv(m, "Data/Europe_data/preferences_europe.csv")
+m1 = rownames_to_column(m, var = "Species")
 
+#Save data
+write_csv(m1, "Data/Europe_data/preferences_europe.csv")
+
+#Prepare qualitative data for analysis
+#Convert to qualitative
+m[m >= 0.95] <- 1
+m[m <= 0.05] <- 0
+m[m > 0.05 & m < 0.95 ] <- NA
+
+m= rownames_to_column(m, var = "Species")
+
+#Save data
+write_csv(m, "Data/Europe_data/preferences_europe_qualitative.csv")
 
 #Safety check
 #Check preferences for column 2 species 2 (0.0143)

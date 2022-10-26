@@ -24,21 +24,21 @@ summarise(n_rows = length(cover.names))
 #and make decisions based on that
 pref = pref %>% 
 mutate(cover.names = fct_recode(as.factor(cover.names),
-      Discard = "Barren Land", #1
-      Agricultural = "Cultivated Crops", #2
-      Natural = "Deciduous Forest", #3
-      Urban = "Developed, High Intensity", #4
-      Urban = "Developed, Medium Intensity", #5
-      Seminatural = "Developed, Low Intensity", #6
-      Seminatural = "Developed, Open Space", #7
-      Natural = "Emergent Herbaceous Wetlands", #8
-      Natural = "Evergreen Forest", #9
-      Agricultural = "Hay/Pasture", #10
-      Natural = "Herbaceous", #11
-      Natural = "Mixed Forest", #12
-      Discard = "Open Water", #13
-      Natural = "Shrub/Scrub", #14
-      Natural = "Woody Wetlands")) %>% #15
+       Discard = "Barren Land", #Very different cover type, not included (MA & JB)
+       Agricultural = "Cultivated Crops", #(MA & JB)
+       Natural = "Deciduous Forest", #(MA & JB)
+       Urban = "Developed, High Intensity", #Greater than 50% of cover (MA & JB) 
+       Urban = "Developed, Medium Intensity", #Greater than 50% of cover (MA & JB) 
+       Urban = "Developed, Low Intensity", #Low urban impact (MA & JB)
+       Urban = "Developed, Open Space", #Open areas with vegetation (MA & JB)
+       Natural = "Emergent Herbaceous Wetlands", #(MA & JB)
+       Natural = "Evergreen Forest", #(MA & JB)
+       Agricultural = "Hay/Pasture", #Highly managed by humans (MA & JB)
+       Natural = "Herbaceous", #See explanation below (MA & JB)
+       Natural = "Mixed Forest", #(MA & JB)
+       Discard = "Open Water", #Low vegetation and land, not included (MA & JB)
+       Natural = "Shrub/Scrub", #Heath classified as natural (MA & JB)
+       Natural = "Woody Wetlands")) %>% #(MA & JB)
 filter(!cover.names == "Discard") #Discard these categories classified as "Discard"
 
 #Herbaceous and hay/pasture are classified as two different habitats in NLCD. 
@@ -102,20 +102,22 @@ for(k in 1:nrow(pref_urb)){
     
 }
 
-#Seminatural
-pref_sem = pref.table %>% dplyr::select(Seminatural)
-n.mod_sem = list()
-for(n in 1:10000){
-    n.mod_sem[[n]] = n.mod[[n]][,4]           
-} 
 
-for(k in 1:nrow(pref_sem)){
-    v <- lapply(n.mod_sem, `[[`, k)
-    m[k,4] <- sum(unlist(v) <  pref.table[k,4] ) / length(unlist(v)) 
-    
-}
+m1 = rownames_to_column(m, var = "Species")
 
-m = rownames_to_column(m, var = "Species")
-write_csv(m, "Data/Usa_data/preferences_usa.csv")
+#Save data
+write_csv(m1, "Data/Usa_data/preferences_usa.csv")
+
+#Prepare qualitative data for analysis
+#Convert to qualitative
+m[m >= 0.95] <- 1
+m[m <= 0.05] <- 0
+m[m > 0.05 & m < 0.95 ] <- NA
+
+m= rownames_to_column(m, var = "Species")
+
+#Save data
+write_csv(m, "Data/Usa_data/preferences_usa_qualitative.csv")
+
 
 

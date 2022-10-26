@@ -2,7 +2,7 @@
 #Load libraries
 library(data.table)
 library(tidyverse)
-
+library(raster)
 #Load data
 data <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
 
@@ -14,7 +14,7 @@ summarize(no_rows= length(species))
 #Extract land use
 #Adapted code from this example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
 #Extract land use ----
-NLCD <- raster("Data/Raster_USA/nlcd_2011_land_cover_l48_20210604.img")
+NLCD <- raster("Data/Raster_USA/nlcd_2006_land_cover_l48_20210604.img")
 coords <- data[, c("long", "lat")]  
 #convert lat/lon to appropriate projection
 names(coords) <- c("x", "y")
