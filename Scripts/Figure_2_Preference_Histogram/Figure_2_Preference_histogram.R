@@ -11,14 +11,11 @@ preferences = bind_rows(preferences_europe, preferences_usa)
 
 
 #Convert to long to model everything at the same time
-long_data = preferences %>% gather(Habitat, Preference, 2:5, -c(Species))
+long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
 
 #Relevel for plotting
 long_data = long_data %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
-
-
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
 labels.minor <- c("Low", "", "High")
 
