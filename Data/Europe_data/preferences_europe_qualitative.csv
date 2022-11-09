@@ -12,6 +12,7 @@ Andrena fulva,1,0,NA
 Andrena gravida,0,NA,1
 Andrena haemorrhoa,0,1,1
 Andrena labiata,0,0,1
+Andrena nigriceps,0,1,NA
 Andrena nigroaenea,0,0,1
 Andrena nitida,0,0,1
 Andrena ovatula,0,1,1
@@ -19,7 +20,7 @@ Andrena pilipes,NA,NA,NA
 Andrena semilaevis,0,1,1
 Andrena subopaca,0,1,1
 Andrena tibialis,1,0,NA
-Andrena wilkella,0,1,1
+Andrena varians,NA,NA,NA
 Anthidium manicatum,1,0,0
 Anthidium oblongatum,1,NA,0
 Anthophora plumipes,1,0,0
@@ -44,12 +45,12 @@ Lasioglossum sexstrigatum,NA,1,0
 Lasioglossum zonulum,0,1,1
 Megachile centuncularis,NA,0,1
 Megachile rotundata,1,0,0
-Megachile willughbiella,NA,NA,NA
+Megachile willughbiella,NA,NA,1
 Nomada succincta,0,1,NA
 Osmia caerulescens,1,0,NA
 Osmia cornuta,1,0,0
 Osmia leaiana,1,0,NA
-Panurgus banksianus,0,1,0
+Panurgus banksianus,0,1,NA
 Panurgus calcaratus,0,1,1
 Stelis breviuscula,NA,0,NA
 Xylocopa violacea,1,0,0
