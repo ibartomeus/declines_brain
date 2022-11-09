@@ -30,6 +30,7 @@ drop_na(Preference)
 model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), 
              data = long_data, data2 = list(A = A10), family=bernoulli())
 
+
 pp_check(model1)
 
 bayes_R2(model1)

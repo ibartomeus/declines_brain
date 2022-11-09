@@ -1,0 +1,1112 @@
+ID,Genus,Species,Sex,Place,Date,IT,Weigth..g.,Head.weight..g.,Plant,Brain.Weight..mg.,No.optic.lobes.weight,Country,Notes
+A1,Bombus,Bombus pratorum,Female,El valle. Sierra de Cazorla,17/6/15,3.635,0.1186,0.01,Digitalis obscura,2.06,1.057,Spain,
+A10,Xylocopa,NA,Female,Empalme del parador. Sierra de Cazorla,17/6/15,NA,0.5048,NA,NA,NA,NA,Spain,
+A11,Bombus,Bombus pascuorum,Female,El valle. Sierra de Cazorla,16/6/15,3.943,0.1704,0.0195,Digitalis obscura,3.15,NA,Spain,
+A12,Osmia,Osmia lateralis,Female,Puerto de las palomas. Sierra de Cazorla,17/6/15,2.622,0.0374,0.0095,,1.73,0.965,Spain,
+A13,Bombus,Bombus pascuorum,Female,Roblehondo. Sierra de Cazorla,16/6/15,3.834,0.1461,0.0199,Digitalis obscura,2.89,1.899,Spain,
+A14,Bombus,Bombus terrestris,Female,Cerrada del Utrero. Sierra de Cazorla,16/6/15,4.68,0.193,0.0221,Thymus mastichina,2.17,1.311,Spain,
+A15,Bombus,Bombus pascuorum,Female,Puente de las herrerías. Sierra de Cazorla,16/6/15,4.105,0.188,0.0213,Phlomis lychnitis,3.11,1.237,Spain,
+A16,Bombus,Bombus pascuorum,Female,Empalme del parador. Sierra de Cazorla,17/6/15,3.748,0.145,0.0165,Digitalis obscura,2.44,1.433,Spain,
+A17,Andrena,Andrena flavipes,Male,Nava de San Pedro. Sierra de Cazorla,16/6/15,2.689,0.0609,0.0096,Berberis,1.43,0.663,Spain,
+A18,Bombus,Bombus pratorum,Male,Roblehondo. Sierra de Cazorla,16/6/15,3.604,0.1029,0.0115,NA,2.5,1.171,Spain,
+A19,Bombus,Bombus terrestris,Female,Empalme del parador. Sierra de Cazorla,17/6/15,4.126,0.1664,NA,NA,2.94,1.661,Spain,
+A2,Bombus,Bombus pascuorum,Female,Roblehondo. Sierra de Cazorla,16/6/15,3.393,0.1041,0.0104,Digitalis obscura,NA,NA,Spain,
+A20,Bombus,Bombus pratorum,Female,Nava de San Pedro. Sierra de Cazorla,16/6/15,3.576,0.1036,0.0107,Marribium supinum,2.16,1.723,Spain,
+A21,Bombus,Bombus pratorum,Male,El valle. Sierra de Cazorla,16/6/15,3.646,0.0792,0.0062,Digitalis obscura,1.79,0.974,Spain,
+A22,Bombus,Bombus terrestris,Female,Camino del Parador. Sierra de Cazorla,16/6/15,4.45,0.1725,0.0171,Digitalis obscura,3.16,NA,Spain,
+A23,Apis,Apis mellifera,Female,Puerto de las palomas. Sierra de Cazorla,17/6/15,3.505,0.1027,0.0116,Thymus mastichina,NA,0.924,Spain,
+A24,Bombus,Bombus pascuorum,Female,Empalme del parador. Sierra de Cazorla,17/6/15,3.698,0.1424,0.0167,Digitalis obscura,NA,NA,Spain,
+A25,Bombus,Bombus terrestris,Female,Cerrada del Utrero. Sierra de Cazorla,16/6/15,4.468,0.1981,0.0187,Thymus mastichina,2.75,1.613,Spain,
+A26,Bombus,Bombus pascuorum,Female,Puente de las herrerías. Sierra de Cazorla,16/6/15,4.012,0.1463,0.0157,NA,2.15,1.304,Spain,
+A27,Panurgus,Panurgus calcaratus,Male,Nava de San Pedro. Sierra de Cazorla,16/6/15,1.422,0.0127,0.0027,Compuesta amarilla I,NA,NA,Spain,
+A28,Panurgus,Panurgus calcaratus,Male,Cazorla,16/6/15,1.455,0.0114,0.0032,NA,NA,NA,Spain,
+A29,Bombus,Bombus pratorum,Male,Cazorla,16/6/15,3.853,0.1065,0.0129,NA,2.36,0.961,Spain,
+A3,Bombus,Bombus terrestris,Female,Roblehondo. Sierra de Cazorla,16/6/15,4.289,0.1677,0.0136,Digitalis obscura,2.72,1.621,Spain,
+A30,Bombus,Bombus lucorum,Male,Cazorla,16/6/15,4.861,0.1831,NA,NA,2.4,1.159,Spain,
+A31,Bombus,Bombus terrestris,Male,Puente de las herrerías. Sierra de Cazorla,16/6/15,4.641,0.1566,0.0166,Thymus mastichina,2.71,1.514,Spain,
+A32,Xylocopa,Xylocopa cantabrita,Female,Puerto de las palomas. Sierra de Cazorla,16/6/15,4.999,0.2286,NA,Anthirrium latifolium,4.2,1.303,Spain,
+A33,Xylocopa,Xylocopa valga,Female,Empalme del parador. Sierra de Cazorla,16/6/15,6.455,0.4849,0.075,NA,7.43,2.113,Spain,
+A34,Eucera,NA,Female,Cerrada del Utrero. Sierra de Cazorla,16/6/15,NA,NA,NA,Cichorium intybus,NA,NA,Spain,
+A35,Rhodanthidium,Rhodanthidium sticticum,Female,Puerto de las palomas. Sierra de Cazorla,16/6/15,3.695,0.1189,0.0197,Flomis lignitis,NA,NA,Spain,
+A36,Eucera,Eucera elongatula,Female,Puerto de las palomas. Sierra de Cazorla,17/6/15,2.761,0.0399,0.006,Digitalis obscura,1.23,0.6,Spain,
+A37,Eucera,Eucera elongatula,Female,Puerto de las palomas. Sierra de Cazorla,17/6/15,2.546,0.0433,0.004,Digitalis obscura,NA,NA,Spain,
+A38,Rhodanthidium,Rhodanthidium sticticum,Male,Puerto de las palomas. Sierra de Cazorla,17/6/15,3.823,0.1333,0.0164,Digitalis obscura,3.42,0.95,Spain,
+A39,Lithurgus,Lithurgus sp.,Female,Roblehondo. Sierra de Cazorla,,NA,NA,NA,,1.758,0.905,Spain,
+A4,Bombus,Bombus pratorum,Male,El valle. Sierra de Cazorla,17/6/15,3.714,0.105,0.0119,Digitalis obscura,1.89,0.984,Spain,
+A5,Bombus,Bombus pascuorum,Female,Puente de las herrerías. Sierra de Cazorla,17/6/15,4.329,0.178,0.0222,Phlomis lychnitis,2.52,1.485,Spain,
+A6,Bombus,Bombus pratorum,Male,El valle. Sierra de Cazorla,17/6/15,3.714,0.0934,0.0112,Digitalis obscura,1.68,0.721,Spain,
+A7,Bombus,Bombus terrestris,Female,Roblehondo. Sierra de Cazorla,16/6/15,4.032,0.1233,0.0149,Digitalis obscura,2.6,1.43,Spain,
+A8,Bombus,Bombus terrestris,Female,Empalme del parador. Sierra de Cazorla,17/6/15,4.299,0.1665,0.0182,Digitalis obscura,2.95,1.622,Spain,
+A9,Bombus,Bombus pratorum,Male,Roblehondo. Sierra de Cazorla,16/6/15,3.829,0.0966,0.0112,Digitalis obscura,1.84,0.964,Spain,
+B1,Apis,Apis mellifera,Female,Bonares,21/4/2016,3.105,NA,NA,Cistus salvifolius,1.77,1.076,Spain,
+B10,Andrena,Andrena flavipes,Female,Huelva,21/4/2016,3.042,NA,NA,NA,NA,NA,Spain,
+B11,Panurgus,NA,Male,Huelva,21/4/2016,1.879,NA,NA,NA,NA,NA,Spain,
+B12,Panurgus,NA,Male,Huelva,21/4/2016,1.722,NA,NA,NA,0.44,NA,Spain,
+B13,Nomada,Nomada succincta,Female,Huelva,21/4/2016,2.057,NA,NA,NA,1.34,NA,Spain,
+B14,Dasypoda,Dasypoda cingulata,Male,Huelva,21/4/2016,3.023,NA,NA,NA,1.94,0.88,Spain,
+B15,Eucera,NA,Male,Huelva,21/4/2016,3.148,NA,NA,NA,1.95,0.917,Spain,
+B16,Eucera,NA,Male,Huelva,21/4/2016,3.42,NA,NA,NA,2.13,0.463,Spain,
+B17,Andrena,Andrena hispania,Female,Huelva,21/4/2016,3.016,NA,NA,NA,1.82,NA,Spain,
+B18,Dasypoda,Dasypoda cingulata,Male,Huelva,29/4/2016,2.699,0.0372,0.0055,NA,1.05,0.44,Spain,
+B19,Panurgus,Panurgus calcaratus,Female,Huelva,29/4/2016,1.404,0.01,0.0023,NA,0.47,0.135,Spain,
+B2,Andrena,NA,Male,Huelva,21/4/2016,2.409,NA,NA,NA,0.9,0.428,Spain,
+B20,Panurgus,Panurgus calcaratus,Female,Huelva,29/4/2016,1.337,0.0108,0.0018,NA,0.43,0.137,Spain,
+B21,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.952,0.0123,0.0033,NA,NA,NA,Spain,
+B22,Rhodanthidium,Rhodanthidium sticticum,Female,Huelva,29/4/2016,3.272,0.0899,0.00117,NA,2.55,0.94,Spain,
+B23,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.963,0.0155,0.0038,NA,0.53,0.26,Spain,
+B24,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.454,0.0088,0.0023,NA,NA,NA,Spain,
+B25,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.573,0.0102,0.0024,NA,0.55,0.309,Spain,
+B26,Hoplitis,Hoplitis papaveris,Female,Huelva,29/4/2016,2.213,0.027,0.0062,NA,1.1,0.665,Spain,
+B27,Xylocopa,Xylocopa cantabrita,Male,Huelva,29/4/2016,5.198,0.3302,0.0465,NA,5.09,1.45,Spain,
+B28,Hoplitis,Hoplitis papaveris,Male,Huelva,29/4/2016,2.26,0.024,0.0051,NA,0.59,NA,Spain,
+B29,Dasypoda,Dasypoda cingulata,Male,Huelva,29/4/2016,2.739,0.0466,0.006,NA,1.33,0.673,Spain,
+B3,Andrena,NA,Male,Huelva,21/4/2016,2.31,NA,NA,NA,0.88,0.428,Spain,
+B30,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.831,0.0184,0.0031,NA,0.53,NA,Spain,
+B31,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.729,0.0162,0.0038,NA,NA,NA,Spain,
+B32,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.822,0.0193,0.003,NA,0.69,0.316,Spain,
+B33,Panurgus,Panurgus calcaratus,Male,Huelva,29/4/2016,1.733,0.0115,0.001,NA,0.48,NA,Spain,
+B34,Panurgus,Panurgus calcaratus,Female,Huelva,29/4/2016,1.508,0.011,0.002,NA,0.56,0.163,Spain,
+B35,Nomada,Nomada dusmeti,Female,Huelva,29/4/2016,1.698,0.0208,0.0023,NA,NA,NA,Spain,
+B36,Nomada,Nomada dusmeti,Female,Huelva,29/4/2016,1.574,0.0128,0.0021,NA,NA,0.292,Spain,
+B37,Dasypoda,Dasypoda crassicornis,Male,Huelva,29/4/2016,2.588,0.0419,0.0042,NA,1.07,0.448,Spain,
+B38,Andrena,NA,Female,Huelva,29/4/2016,1.926,0.019,0.0023,NA,0.79,0.341,Spain,
+B39,Andrena,NA,Female,Huelva,29/4/2016,1.816,0.0241,0.0038,NA,1.04,0.342,Spain,
+B4,Andrena,NA,Male,Huelva,21/4/2016,2.326,NA,NA,NA,0.87,0.423,Spain,
+B40,Dasypoda,Dasypoda iberica,Male,Huelva,29/4/2016,2.453,0.026,0.0034,NA,0.93,NA,Spain,
+B41,Dasypoda,Dasypoda iberica,Male,Huelva,29/4/2016,2.529,0.0408,0.0044,NA,1.3,0.443,Spain,
+B42,Nomada,Nomada merceti,Female,Huelva,29/4/2016,1.541,0.0113,0.0025,NA,1.04,0.305,Spain,
+B43,Nomada,Nomada merceti,Male,Huelva,29/4/2016,1.444,0.0081,0.0018,NA,NA,NA,Spain,
+B44,Nomada,Nomada merceti,Male,Huelva,29/4/2016,1.627,0.0106,0.0016,NA,NA,NA,Spain,
+B45,Nomada,Nomada discrepans,Male,Huelva,29/4/2016,1.236,0.068,0.0013,NA,0.25,NA,Spain,
+B46,Panurgus,Panurgus dargius,Male,Huelva,29/4/2016,2.023,0.0207,0.0031,NA,NA,0.337,Spain,
+B47,Panurgus,Panurgus dargius,Male,Huelva,29/4/2016,1.558,0.0089,0.0012,NA,0.33,0.19,Spain,
+B48,Panurgus,Panurgus dargius,Male,Huelva,29/4/2016,1.851,0.0208,0.0032,NA,0.68,NA,Spain,
+B49,Megascolia,Megascolia sp.,Male,Huelva,19/5/2015,5.474,0.4074,0.046,Ground,4.69,2.633,Spain,
+B5,Rhodanthidium,Rhodanthidium sticticum,Male,Huelva,21/4/2016,3.412,NA,NA,NA,2.35,0.878,Spain,
+B50,Xylocopa,Xylocopa cantabrita,Female,Huelva,19/5/2015,5.938,0.3612,0.046,NA,6.66,NA,Spain,
+B51,Nomada,Nomada merceti,Female,Huelva,19/5/2015,1.343,0.0113,0.0016,Ground,0.32,0.113,Spain,
+B52,Nomada,Nomada merceti,Female,Huelva,19/5/2015,1.415,0.013,0.0022,Ground,0.73,0.235,Spain,
+B53,Dasypoda,Dasypoda sp.,Male,Huelva,19/5/2015,2.406,0.0441,0.0055,Halimiun halimifolium,1.5,0.577,Spain,
+B54,Flavipanurgus,Flavipanurgus venustus,Female,Huelva,19/5/2015,1.874,0.0203,0.0036,Cistus crispus,0.62,NA,Spain,
+B55,Flavipanurgus,Flavipanurgus venustus,Male,Huelva,19/5/2015,1.833,0.0206,0.0033,Cistus crispus,0.92,0.288,Spain,
+B56,Xylocopa,Xylocopa cantabrita,Female,Huelva,19/5/2015,5.439,0.3394,0.0445,Silene spp,4.43,1.629,Spain,
+B57,Nomada,Nomada merceti,Female,Huelva,19/5/2015,1.474,0.0159,0.0026,Ground,NA,NA,Spain,
+B58,Andrena,NA,Female,Huelva,19/5/2015,2.285,0.1214,0.017,Zapsia,1.84,0.935,Spain,
+B59,Xylocopa,Xylocopa cantabrita,Female,Huelva,19/5/2015,5.136,0.3244,0.0477,Cistus crispus,4.58,1.248,Spain,
+B6,Andrena,NA,Male,Huelva,21/4/2016,1.854,NA,NA,Cistus salvifolius,0.73,0.3,Spain,
+B60,Halictus,Halictus sp.,Female,Huelva,19/5/2015,2.467,0.0535,0.0066,Cistus crispus,1.2,0.569,Spain,
+B61,Bombus,Bombus terrestris,Female,Hinojos,03/06/15,4.713,0.2779,0.0257,Psoralea vituminosa,3.59,1.809,Spain,
+B62,Bombus,Bombus terrestris,Female,Hinojos,03/06/15,4.5,0.2288,0.022,Ononis spp,3.09,1.876,Spain,
+B63,Xylocopa,Xylocopa valga,Female,Hinojos,03/06/15,7.593,0.7588,0.0944,Psoralea vituminosa,7.43,2.069,Spain,
+B64,Bombus,Bombus terrestris,Female,Hinojos,03/06/15,4.383,0.1755,0.0215,Psoralea vituminosa,NA,NA,Spain,
+B65,Nomada,NA,NA,Hinojos,03/06/15,1.462,0.0113,0.0017,Ground,0.73,0.214,Spain,
+B66,Nomada,NA,NA,Hinojos,03/06/15,1.482,0.111,0.003,Ground,0.48,NA,Spain,
+B67,NA,NA,NA,Hinojos,03/06/15,2.003,0.0291,0.0046,Ground,NA,NA,Spain,
+B68,Nomada,NA,NA,Hinojos,03/06/15,1.457,0.014,0.0036,Ground,0.6,NA,Spain,
+B69,NA,NA,NA,Hinojos,03/06/15,2.011,0.0333,0.0045,Ground,1.04,0.45,Spain,
+B7,Osmia,NA,Female,Huelva,21/4/2016,2.926,NA,NA,NA,1.96,0.81,Spain,
+B70,NA,NA,NA,Hinojos,03/06/15,2.104,0.028,0.003,Ground,0.86,0.28,Spain,
+B71,Eucera,Eucera elongatula,Female,Hinojos,03/06/15,2.931,0.0558,0.0077,Ground,1.95,1.225,Spain,
+B72,Bombus,Bombus terrestris,Female,Hinojos,03/06/15,3.95,0.1259,0.0126,Psoralea vituminosa,2.26,1.401,Spain,
+B73,NA,NA,NA,Hinojos,03/06/15,1.82,0.02,0.0024,Ground,1.69,NA,Spain,
+B74,Hoplitis,Hoplitis papaveris,Male,Hinojos,03/06/15,2.622,NA,NA,NA,NA,NA,Spain,
+B75,Hoplitis,Hoplitis papaveris,Male,Hinojos,03/06/15,2.656,NA,NA,NA,1.17,0.538,Spain,
+B76,Hoplitis,Hoplitis papaveris,Male,Hinojos,03/06/15,2.305,NA,NA,NA,NA,NA,Spain,
+B77,Hoplitis,Hoplitis papaveris,Male,Hinojos,03/06/15,2.584,NA,NA,NA,NA,NA,Spain,
+B78,Apis,Apis mellifera,Female,Alcalá del río,03/11/16,2.995,0.0713,0.0081,Yedra,1.603,0.78,Spain,
+B79,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.741,0.0702,0.0088,Yedra,1.6,NA,Spain,
+B8,Andrena,NA,Male,Huelva,21/4/2016,1.427,NA,NA,NA,0.5,0.371,Spain,
+B80,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.947,0.0676,0.0088,Yedra,NA,NA,Spain,
+B81,Apis,Apis mellifera,Female,Alcalá del río,03/11/16,2.89,0.0738,0.0073,Yedra,NA,NA,Spain,
+B82,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.845,0.0679,0.0082,Yedra,1.64,NA,Spain,
+B83,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.943,0.0878,0.0118,Yedra,1.89,0.49,Spain,
+B84,Apis,Apis mellifera,Female,Alcalá del río,03/11/16,3.041,0.066,0.0096,Yedra,NA,NA,Spain,
+B85,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.978,0.0784,0.0086,Yedra,NA,NA,Spain,
+B86,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,3.073,0.0717,0.0092,Yedra,NA,NA,Spain,
+B87,Apis,Apis mellifera,Female,Alcalá del río,03/11/16,3.096,0.0675,0.0075,Yedra,1.64,0.79,Spain,
+B88,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,3.031,0.0897,0.0105,Yedra,NA,NA,Spain,
+B89,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,3.138,NA,NA,Yedra,1.6,NA,Spain,
+B9,Andrena,Andrena flavipes,Female,Huelva,21/4/2016,2.946,NA,NA,NA,1.16,NA,Spain,
+B90,Apis,Apis mellifera,Female,Alcalá del río,03/10/16,2.878,0.066,0.0081,Yedra,NA,NA,Spain,
+B91,Apis,Apis mellifera,Female,Alcalá del río,03/11/16,NA,NA,NA,Yedra,NA,NA,Spain,
+C1,Osmia,Osmia bicornis,Female,Carambolo,14/4/2016,3.451,NA,NA,NA,NA,NA,Spain,
+C10,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.764,0.1475,0.0177,Lantana camara,4.06,1.801,Spain,
+C11,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.831,0.1251,0.0169,Lantana camara,3.94,1.301,Spain,
+C12,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.934,0.148,0.0193,Lantana camara,4.55,1.47,Spain,
+C13,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.97,0.1329,0.0169,Lantana camara,4.01,1.47,Spain,
+C14,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,4.095,0.1257,0.0171,Lantana camara,4.2,1.676,Spain,
+C15,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.976,0.1516,0.018,Lantana camara,NA,NA,Spain,
+C16,Amegilla,Amegilla quadrifasciata,Female,Esquivel,22/9/2016,3.627,0.1012,0.0123,Lantana camara,3.31,1.354,Spain,
+C17,Amegilla,Amegilla quadrifasciata,Female,Esquivel,03/10/16,3.828,0.1174,0.0146,Lantana camara,3.86,1.145,Spain,
+C18,Amegilla,Amegilla quadrifasciata,Female,Esquivel,03/10/16,3.74,0.1011,0.0138,Lantana camara,3.48,1.202,Spain,
+C2,Osmia,Osmia caerulescens,Female,Carambolo,14/4/2016,2.868,NA,NA,NA,NA,NA,Spain,
+C3,Osmia,Osmia caerulescens,Male,Carambolo,14/4/2016,2.719,NA,NA,NA,1.53,0.572,Spain,
+C4,Osmia,NA,Female,Carambolo,26/4/2016,3.063,0.0625,NA,NA,NA,NA,Spain,
+C5,Hoplitis,Hoplitis adunca,Female,Carambolo,26/4/2017,2.985,0.063,NA,NA,NA,NA,Spain,
+C6,Systropha,Systropha planidens,Female,Carambolo,26/4/2018,2.405,0.0441,NA,NA,0.92,0.713,Spain,
+C7,Lasioglossum,Lasioglossum immunitum,Female,Carambolo,26/4/2019,1.354,0.0116,NA,NA,0.68,0.337,Spain,
+C8,Osmia,Osmia submicans,Female,Carambolo,26/4/2020,2.256,0.0239,NA,NA,NA,NA,Spain,
+C9,Anthidium,Anthidium manicatum,Male,Carambolo,14/9/2016,3.369,0.0795,0.012,,NA,NA,Spain,
+F1,Anthophora,Anthophora bimaculata,Male,Alba de Tormes,23/8/2016,2.419,0.0224,0.0073,,NA,NA,Spain,
+F10,Megachile,Megachile rotundata,Female,Alba de Tormes,23/8/2016,2.527,0.0179,0.0032,,NA,NA,Spain,
+F11,Lithurgus,Lithurgus cornutus,Female,Alba de Tormes,23/8/2016,4.068,0.0855,0.22,Senecio,NA,NA,Spain,
+F12,Anthidium,Anthidium manicatum,Female,Arévalo,23/8/2016,3.15,0.0662,0.015,Epilobium hirsutum,2.66,NA,Spain,
+F13,Anthidium,Anthidium florentinum,Female,Arévalo,23/8/2016,4.254,0.2281,0.0249,Senecio,4.46,1.298,Spain,
+F14,Megachile,Megachile centuncularis,Female,Alba de Tormes,23/8/2016,3.073,0.0503,0.0111,,1.16,NA,Spain,
+F15,Bombus,Bombus muscorum,Female,Arévalo,23/8/2016,4.044,0.1316,0.0156,Medicago sativa,2.02,1.106,Spain,
+F16,Anthidium,Anthidium manicatum,Female,Alba de Tormes,23/8/2016,2.903,0.0716,0.123,,2.3,NA,Spain,
+F17,Anthidium,Anthidium manicatum,Female,Alba de Tormes,23/8/2016,2.365,0.0303,NA,,1.67,NA,Spain,
+F18,Heriades,Heriades rubicola,Female,Alba de Tormes,23/8/2016,1.229,0.0061,0.0019,,0.42,0.153,Spain,
+F19,Colletes,Colletes hylaeiformis,Male,Alba de Tormes,23/8/2016,2.311,0.0152,0.0029,,1.35,0.761,Spain,
+F2,Anthidium,Anthidium oblongatum,Male,Alba de Tormes,23/8/2016,2.624,0.0437,0.0102,Lotus amarilla,1.52,0.683,Spain,
+F20,Halictus,Halictus quadricinctus,Male,Alba de Tormes,23/8/2016,2.895,0.097,0.0148,,1.55,0.665,Spain,
+F21,Anthidium,Anthidium manicatum,Female,Arévalo,23/8/2016,3.066,0.0592,0.0096,,2.02,0.44,Spain,
+F22,Bombus,Bombus muscorum,Female,Arévalo,23/8/2016,3.727,0.1288,0.0135,,2.16,1.37,Spain,
+F23,Anthidium,Anthidium manicatum,Female,Alba de Tormes,23/8/2016,3.495,0.0903,0.02,Epilobium hirsutum,NA,NA,Spain,
+F24,Bombus,Bombus muscorum,Female,Arévalo,23/8/2016,4.172,0.1259,0.0168,Epilobium hirsutum,2.7,NA,Spain,
+F25,Bombus,Bombus muscorum,Female,Arévalo,23/8/2016,3.585,0.1251,0.0159,Medicago sativa,3.67,1.811,Spain,
+F26,Anthidium,Anthidium florentinum,Male,Arévalo,23/8/2016,4.36,0.2763,0.03,Epilobium hirsutum,4.91,NA,Spain,
+F27,Xylocopa,Xylocopa violacea,Male,Alba de Tormes,23/8/2016,6.549,0.4828,0.0452,Epilobium hirsutum,9.06,1.92,Spain,
+F28,Anthidium,Anthidium manicatum,Female,Alba de Tormes,23/8/2016,2.71,0.0366,0.0093,,1.11,NA,Spain,
+F29,Andrena,Andrena albopunctata,Female,Fontiveros,01/09/16,NA,NA,NA,,NA,NA,Spain,
+F3,Anthidium,Anthidium oblongatum,Male,Alba de Tormes,23/8/2016,2.643,0.0473,0.0095,Lotus amarilla,2.02,0.762,Spain,
+F30,Andrena,Andrena agilissima,Female,Fontiveros,01/09/16,2.937,NA,NA,,NA,NA,Spain,
+F31,Andrena,Andrena morio,Female,Fontiveros,01/09/16,3.04,NA,NA,,0.55,NA,Spain,
+F32,Megascolia,Megascolia bidens,Female,Fontiveros,01/09/16,NA,NA,NA,,NA,NA,Spain,
+F33,Dasypoda,Dasypoda visnaga,Female,Fontiveros,01/09/16,3.247,NA,NA,,0.11,NA,Spain,
+F34,Halictus,Halictus scabiosae,Female,Fontiveros,01/09/16,2.515,NA,NA,,NA,2.48,Spain,
+F35,Halictus,Halictus scabiosae,Female,Fontiveros,01/09/16,2.133,NA,NA,,NA,NA,Spain,
+F36,Dasypoda,Dasypoda hirtipes,Female,Fontiveros,01/09/16,2.957,NA,NA,,0.47,NA,Spain,
+F37,Dasypoda,Dasypoda hirtipes,Female,Fontiveros,01/09/16,3.001,NA,NA,,NA,NA,Spain,
+F38,Panurgus,Panurgus banksianus,Female,Fontiveros,01/09/16,2.379,NA,NA,,1.63,1.545,Spain,
+F4,Anthophora,Anthophora bimaculata,Male,Alba de Tormes,23/8/2016,2.82,0.0248,0.004,,1.48,NA,Spain,
+F5,Bombus,Bombus muscorum,Female,Alba de Tormes,23/8/2016,3.997,0.1326,0.0143,,1.7,0.891,Spain,
+F6,Bombus,Bombus muscorum,Female,Alba de Tormes,23/8/2016,3.606,0.1258,NA,,1.85,0.948,Spain,
+F7,Bombus,Bombus muscorum,Female,Alba de Tormes,23/8/2016,3.659,0.1029,0.0147,,1.87,1.295,Spain,
+F8,Bombus,Bombus muscorum,Female,Alba de Tormes,23/8/2016,4.05,0.1427,0.0145,,1.9,1.328,Spain,
+F9,Bombus,Bombus muscorum,Female,Alba de Tormes,23/8/2016,3.465,0.1058,0.0119,,1.77,1.028,Spain,
+H1,Andrena,Andrena fulva,Female,Wahlwiller,,2.8,NA,NA,,NA,NA,Netherlands,
+H10,Andrena,Andrena tibialis,Female,Maastricht,,2.92,NA,NA,,NA,NA,Netherlands,
+H100,Andrena,Andrena dorsata,Female,Eijsden. Caestert Beemden,,2.4,NA,NA,Alliaria petiolata,0.588,0.315,Netherlands,
+H101,Lasioglossum,Lasioglossum calceatum,Female,Eijsden. Caestert Beemden,,2.25,NA,NA,Veronica chamaedrys,0.773,0.316,Netherlands,
+H102,Lasioglossum,Lasioglossum calceatum,Female,Eijsden. Caestert Beemden,,2.3,NA,NA,Veronica chamaedrys,0.663,NA,Netherlands,
+H103,Anthophora,Anthophora plumipes,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,NA,NA,Netherlands,
+H104,Anthophora,Anthophora plumipes,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,3.712,0.84,Netherlands,
+H105,Anthophora,Anthophora plumipes,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,4.786,NA,Netherlands,
+H106,Andrena,Andrena cineraria,Female,Eijsden. Caestert Beemden,,3.29,NA,NA,,NA,NA,Netherlands,
+H107,Bombus,Bombus hortorum,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,NA,NA,Netherlands,
+H108,Bombus,Bombus hortorum,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,2.334,1.387,Netherlands,
+H109,Bombus,Bombus hypnorum,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,2.947,1.645,Netherlands,
+H11,Andrena,Andrena tibialis,Female,Maastricht,,2.96,NA,NA,,NA,NA,Netherlands,
+H110,Bombus,Bombus hypnorum,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,3.277,NA,Netherlands,
+H111,Bombus,Bombus hypnorum,Female,Eijsden. Caestert Beemden,,NA,NA,NA,,2.522,1.503,Netherlands,
+H112,Andrena,Andrena tibialis,Female,Nunspeet,,3.57,NA,NA,,1.357,0.758,Netherlands,
+H113,Lasioglossum,Lasioglossum punctatissimum,Female,Berg. Curfsgroeve,,1.55,NA,NA,Fragaria vesca,0.335,0.181,Netherlands,
+H114,Lasioglossum,Lasioglossum punctatissimum,Female,Berg. Curfsgroeve,,1.51,NA,NA,Fragaria vesca,0.371,0.157,Netherlands,
+H115,Lasioglossum,Lasioglossum zonulum,Female,Berg. Curfsgroeve,,2.17,NA,NA,,0.64,0.282,Netherlands,
+H116,Lasioglossum,Lasioglossum leucozonium,Female,Berg. Curfsgroeve,,2.35,NA,NA,,0.672,0.385,Netherlands,
+H117,Andrena,Andrena nigroaenea,Female,Berg. Curfsgroeve,,3.68,NA,NA,,1.678,0.78,Netherlands,
+H118,Andrena,Andrena nitida,Female,Berg. Curfsgroeve,,3.42,NA,NA,,1.612,0.736,Netherlands,
+H119,Andrena,Andrena cineraria,Female,Berg. Curfsgroeve,,3.42,NA,NA,Veronica chamaedrys,1.492,0.74,Netherlands,
+H12,Andrena,Andrena gravida,Female,Maastricht,,2.44,NA,NA,,NA,NA,Netherlands,
+H120,Halictus,Halictus rubicundus,Female,Berg. Curfsgroeve,,2.8,NA,NA,,1.06,0.535,Netherlands,
+H121,Andrena,Andrena labiata,Female,Berg. Curfsgroeve,,2.35,NA,NA,Fragaria vesca,0.629,0.331,Netherlands,
+H122,Andrena,Andrena subopaca,Female,Vaesrade,,1.86,NA,NA,,0.267,0.106,Netherlands,
+H123,Andrena,Andrena nigroaenea,Female,Vaesrade,,3.33,NA,NA,,1.46,0.885,Netherlands,
+H124,Andrena,Andrena ovatula,Female,Vaesrade,,2.57,NA,NA,Ranunculus repens,0.734,0.353,Netherlands,
+H125,Andrena,Andrena ovatula,Female,Eersel,,2.8,NA,NA,Cytisus scoparius,0.734,0.353,Netherlands,
+H126,Lasioglossum,Lasioglossum punctatissimum,Female,Eersel,,1.73,NA,NA,Cytisus scoparius,NA,NA,Netherlands,
+H127,Halictus,Halictus rubicundus,Female,Eersel,,2.44,NA,NA,,0.443,NA,Netherlands,
+H128,Lasioglossum,Lasioglossum leucozonium,Female,Eersel,,2.4,NA,NA,Ranunculus repens,NA,0.26,Netherlands,
+H129,Lasioglossum,Lasioglossum zonulum,Female,Herkenbosch. Melickerhei,,2.22,NA,NA,,0.733,NA,Netherlands,
+H13,Andrena,Andrena gravida,Female,Maastricht,,2.28,NA,NA,,NA,NA,Netherlands,
+H130,Lasioglossum,Lasioglossum sexnotatum,Female,Herkenbosch. Melickerhei,,2.71,NA,NA,,1.038,0.484,Netherlands,
+H131,Lasioglossum,Lasioglossum punctatissimum,Female,Herkenbosch. Melickerhei,,1.68,NA,NA,Veronica arvensis,0.236,0.157,Netherlands,
+H132,Lasioglossum,Lasioglossum punctatissimum,Female,Herkenbosch. Melickerhei,,1.51,NA,NA,Veronica arvensis,0.249,0.199,Netherlands,
+H133,Anthophora,Anthophora retusa,Male,Herkenbosch. Melickerhei,,NA,NA,NA,Viola arvensis,1.832,0.637,Netherlands,
+H134,Anthophora,Anthophora retusa,Male,Herkenbosch. Melickerhei,,NA,NA,NA,Viola arvensis,1.446,0.6,Netherlands,
+H135,Bombus,Bombus jonellus,Female,Herkenbosch. Melickerhei,,NA,NA,NA,Cytisus scoparius,1.872,0.782,Netherlands,
+H136,Andrena,Andrena subopaca,Female,Herkenbosch. Melickerhei,,1.77,NA,NA,,0.358,0.264,Netherlands,
+H137,Anthophora,Anthophora retusa,Female,Berg. Curfsgroeve,,NA,NA,NA,Vicia sativa ssp. segetalis,2.798,1.045,Netherlands,
+H138,Lasioglossum,Lasioglossum zonulum,Female,Berg. Curfsgroeve,,2.35,NA,NA,,0.647,NA,Netherlands,
+H139,Andrena,Andrena ovatula,Female,Berg. Curfsgroeve,,2.71,NA,NA,,0.771,0.602,Netherlands,
+H14,Andrena,Andrena flavipes,Female,Maastricht,,2.18,NA,NA,,NA,NA,Netherlands,
+H140,Andrena,Andrena labiata,Female,Berg. Curfsgroeve,,2.04,NA,NA,Veronica chamaedrys,0.34,0.135,Netherlands,
+H141,Andrena,Andrena labiata,Female,Berg. Curfsgroeve,,2.31,NA,NA,,0.771,0.207,Netherlands,
+H142,Andrena,Andrena subopaca,Female,Berg. Curfsgroeve,,2,NA,NA,,NA,NA,Netherlands,
+H143,Andrena,Andrena semilaevis,Male,Berg. Curfsgroeve,,1.51,NA,NA,,0.3,0.121,Netherlands,
+H144,Osmia,Osmia caerulescens,Female,Berg. Curfsgroeve,,2.8,NA,NA,,0.855,0.434,Netherlands,
+H15,Halictus,Halictus rubicundus,Female,Maastricht,,1.96,NA,NA,,NA,NA,Netherlands,
+H16,Lasioglossum,Lasioglossum calceatum,Female,Maastricht,,1.76,NA,NA,,0.655,0.398,Netherlands,
+H17,Lasioglossum,Lasioglossum sexstrigatum,Female,Oeffelt,,1.44,NA,NA,,NA,NA,Netherlands,
+H18,Halictus,Halictus rubicundus,Female,Borkel - Achterste Brug,,1.92,NA,NA,,0.923,0.51,Netherlands,
+H19,Lasioglossum,Lasioglossum sexstrigatum,Female,Borkel - Achterste Brug,,1.26,NA,NA,,0.231,0.178,Netherlands,
+H2,Andrena,Andrena fulva,Female,Wahlwiller,,2.89,NA,NA,,NA,NA,Netherlands,
+H20,Lasioglossum,Lasioglossum sexstrigatum,Female,Borkel - Achterste Brug,,1.35,NA,NA,,NA,NA,Netherlands,
+H21,Lasioglossum,Lasioglossum fulvicorne,Female,Borkel - Achterste Brug,,1.35,NA,NA,,NA,NA,Netherlands,
+H22,Lasioglossum,Lasioglossum fulvicorne,Female,Borkel - Achterste Brug,,1.29,NA,NA,,NA,NA,Netherlands,
+H23,Lasioglossum,Lasioglossum fulvicorne,Female,Borkel - Achterste Brug,,1.32,NA,NA,,NA,NA,Netherlands,
+H24,Lasioglossum,Lasioglossum fulvicorne,Female,Borkel - Achterste Brug,,1.26,NA,NA,,0.3,NA,Netherlands,
+H25,Andrena,Andrena carantonica,Female,Gronsveld,,2.79,NA,NA,,1.748,0.87,Netherlands,
+H26,Bombus,Bombus terrestris,Queen,Gronsveld,,5.57,NA,NA,,5.564,3.777,Netherlands,
+H27,Andrena,Andrena varians,Female,Oirschot,,2.52,NA,NA,,1.17,0.602,Netherlands,
+H28,Andrena,Andrena carantonica,Female,Soerendonk,,2.7,NA,NA,,1.686,NA,Netherlands,
+H29,Andrena,Andrena barbilabris,Female,Soerendonk,,2.34,NA,NA,,0.296,0.436,Netherlands,
+H3,Andrena,Andrena fulva,Female,Wahlwiller,,2.53,NA,NA,,NA,NA,Netherlands,
+H30,Andrena,Andrena barbilabris,Female,Soerendonk,,2.31,NA,NA,,1.038,0.482,Netherlands,
+H31,Andrena,Andrena barbilabris,Female,Soerendonk,,2.28,NA,NA,,0.924,0.546,Netherlands,
+H32,Andrena,Andrena barbilabris,Female,Soerendonk,,2.19,NA,NA,,0.84,0.459,Netherlands,
+H33,Andrena,Andrena barbilabris,Female,Soerendonk,,2.34,NA,NA,,1.13,0.548,Netherlands,
+H34,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.61,NA,NA,Pyrus communis,NA,0.657,Netherlands,
+H35,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.49,NA,NA,Pyrus communis,1.057,0.476,Netherlands,
+H36,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.46,NA,NA,,1.125,0.673,Netherlands,
+H37,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.34,NA,NA,,NA,NA,Netherlands,
+H38,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.37,NA,NA,,1.109,0.567,Netherlands,
+H39,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.37,NA,NA,,NA,NA,Netherlands,
+H4,Andrena,Andrena bicolor,Female,Wahlwiller,,1.78,NA,NA,,NA,NA,Netherlands,
+H40,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.43,NA,NA,,1.248,0.502,Netherlands,
+H41,Andrena,Andrena haemorrhoa,Female,Oost-Maarland. Eijsder Beemden,,2.43,NA,NA,,1.289,0.691,Netherlands,
+H42,Andrena,Andrena tibialis,Female,Oost-Maarland. Eijsder Beemden,,2.97,NA,NA,,1.938,0.958,Netherlands,
+H43,Andrena,Andrena fulva,Female,Oost-Maarland. Eijsder Beemden,,2.79,NA,NA,,1.484,0.732,Netherlands,
+H44,Andrena,Andrena fulva,Female,Oost-Maarland. Eijsder Beemden,,2.61,NA,NA,,1.655,0.824,Netherlands,
+H45,Andrena,Andrena nitida,Female,Oost-Maarland. Eijsder Beemden,,2.76,NA,NA,,2.112,1.042,Netherlands,
+H46,Andrena,Andrena cineraria,Female,Oost-Maarland. Eijsder Beemden,,2.34,NA,NA,,1.4,0.626,Netherlands,
+H47,Andrena,Andrena cineraria,Female,Oost-Maarland. Eijsder Beemden,,2.67,NA,NA,,1.745,0.875,Netherlands,
+H48,Lasioglossum,Lasioglossum calceatum,Female,Oost-Maarland. Eijsder Beemden,,1.56,NA,NA,,0.506,0.347,Netherlands,
+H49,Lasioglossum,Lasioglossum calceatum,Female,Oost-Maarland. Eijsder Beemden,,1.83,NA,NA,,0.666,0.361,Netherlands,
+H5,Lasioglossum,Lasioglossum fulvicorne,Female,Berg,,1.26,NA,NA,Salix cinerea,NA,NA,Netherlands,
+H50,Andrena,Andrena carantonica,Female,Oost-Maarland. Eijsder Beemden,,2.82,NA,NA,,2.08,0.855,Netherlands,
+H51,Andrena,Andrena carantonica,Female,Oost-Maarland. Eijsder Beemden,,2.76,NA,NA,,NA,NA,Netherlands,
+H52,Andrena,Andrena carantonica,Female,Oost-Maarland. Eijsder Beemden,,2.79,NA,NA,,1.728,1.005,Netherlands,
+H53,Andrena,Andrena chrysosceles,Female,Oost-Maarland. Eijsder Beemden,,1.95,NA,NA,,NA,NA,Netherlands,
+H54,Andrena,Andrena chrysosceles,Female,Oost-Maarland. Eijsder Beemden,,1.8,NA,NA,,0.759,0.421,Netherlands,
+H55,Andrena,Andrena chrysosceles,Female,Oost-Maarland. Eijsder Beemden,,1.86,NA,NA,,1.123,0.485,Netherlands,
+H56,Andrena,Andrena chrysosceles,Female,Oost-Maarland. Eijsder Beemden,,1.83,NA,NA,,0.864,0.556,Netherlands,
+H57,Andrena,Andrena chrysosceles,Female,Oost-Maarland. Eijsder Beemden,,1.92,NA,NA,,0.578,NA,Netherlands,
+H58,Bombus,Bombus terrestris,Queen,Oost-Maarland. Eijsder Beemden,,5.5,NA,NA,Glechoma hederacea,5.838,3.359,Netherlands,
+H59,Bombus,Bombus hortorum,Queen,Oost-Maarland. Eijsder Beemden,,4.56,NA,NA,Glechoma hederacea,4.787,NA,Netherlands,
+H6,Lasioglossum,Lasioglossum fulvicorne,Female,Berg,,1.29,NA,NA,,NA,NA,Netherlands,
+H60,Bombus,Bombus pascuorum,Queen,Oost-Maarland. Eijsder Beemden,,4.33,NA,NA,Glechoma hederacea,3.871,2.199,Netherlands,
+H61,Bombus,Bombus pascuorum,Queen,Oost-Maarland. Eijsder Beemden,,4.39,NA,NA,Glechoma hederacea,4.937,2.374,Netherlands,
+H62,Bombus,Bombus lapidarius,Queen,Oost-Maarland. Eijsder Beemden,,5.11,NA,NA,Glechoma hederacea,4.258,0.914,Netherlands,
+H63,Bombus,Bombus pratorum,Queen,Soerendonk,,4.11,NA,NA,Taraxacum officinale s.l.,3.626,2.109,Netherlands,
+H64,Andrena,Andrena cineraria,Female,Gronsveld,,2.64,NA,NA,Taraxacum officinale s.l.,1.727,0.748,Netherlands,
+H65,Andrena,Andrena cineraria,Female,Gronsveld,,2.55,NA,NA,Taraxacum officinale s.l.,1.803,0.87,Netherlands,
+H66,Andrena,Andrena gravida,Female,Gronsveld,,2.37,NA,NA,Taraxacum officinale s.l.,1.348,0.825,Netherlands,
+H67,Andrena,Andrena gravida,Female,Gronsveld,,2.46,NA,NA,Taraxacum officinale s.l.,1.67,0.885,Netherlands,
+H68,Andrena,Andrena gravida,Female,Gronsveld,,2.37,NA,NA,Taraxacum officinale s.l.,1.405,0.806,Netherlands,
+H69,Andrena,Andrena nitida,Female,Gronsveld,,2.67,NA,NA,Taraxacum officinale s.l.,2.513,1.102,Netherlands,
+H7,Lasioglossum,Lasioglossum fulvicorne,Female,Berg,,1.27,NA,NA,,NA,NA,Netherlands,
+H70,Andrena,Andrena nitida,Female,Gronsveld,,2.73,NA,NA,Taraxacum officinale s.l.,1.924,0.913,Netherlands,
+H71,Andrena,Andrena nitida,Female,Gronsveld,,2.46,NA,NA,Taraxacum officinale s.l.,1.707,0.867,Netherlands,
+H72,Lasioglossum,Lasioglossum calceatum,Female,Gronsveld,,1.65,NA,NA,Taraxacum officinale s.l.,0.675,0.343,Netherlands,
+H73,Lasioglossum,Lasioglossum calceatum,Female,Gronsveld,,1.65,NA,NA,Taraxacum officinale s.l.,NA,NA,Netherlands,
+H74,Andrena,Andrena dorsata,Female,Gronsveld,,1.68,NA,NA,Taraxacum officinale s.l.,0.619,NA,Netherlands,
+H75,Halictus,Halictus rubicundus,Female,Maastricht. Sint Pietersberg,,1.97,NA,NA,Taraxacum officinale s.l.,NA,NA,Netherlands,
+H76,Bombus,Bombus jonellus,Female,Nederweert. Weerterbos,,3.37,NA,NA,Vaccinium myrtillus,2.017,0.94,Netherlands,
+H77,Bombus,Bombus lapidarius,Queen,Nederweert. Weerterbos,,4.97,NA,NA,Vaccinium myrtillus,5.075,2.264,Netherlands,
+H78,Bombus,Bombus lapidarius,Queen,Nederweert. Weerterbos,,5.15,NA,NA,Vaccinium myrtillus,4.655,2.54,Netherlands,
+H79,Bombus,Bombus pascuorum,Queen,Nederweert. Weerterbos,,4.35,NA,NA,Vaccinium myrtillus,3.932,2.195,Netherlands,
+H8,Andrena,Andrena fulva,Female,Berg,,2.88,NA,NA,,1.635,0.845,Netherlands,
+H80,Bombus,Bombus terrestris,Queen,Nederweert. Weerterbos,,5.42,NA,NA,Vaccinium myrtillus,4.678,2.122,Netherlands,
+H81,Bombus,Bombus pratorum,Queen,Nederweert. Weerterbos,,4.35,NA,NA,Vaccinium myrtillus,3.121,1.848,Netherlands,
+H82,Bombus,Bombus pratorum,Queen?,Nederweert. Weerterbos,,4.44,NA,NA,Vaccinium myrtillus,3.278,1.947,Netherlands,
+H83,Bombus,Bombus pratorum,Female,Nederweert. Weerterbos,,3.28,NA,NA,Vaccinium myrtillus,2.348,1.09,Netherlands,
+H84,Andrena,Andrena dorsata,Female,Gronsveld,,2.44,NA,NA,Alyssum saxatile (cultivated. garden plant),0.87,0.376,Netherlands,
+H85,Andrena,Andrena dorsata,Female,Gronsveld,,2.49,NA,NA,Alyssum saxatile (cultivated. garden plant),0.753,NA,Netherlands,
+H86,Anthophora,Anthophora plumipes,Female,Gronsveld,,4.08,NA,NA,Chelidonium majus,3.676,1.434,Netherlands,
+H87,Bombus,Bombus lapidarius,Queen,Gronsveld,,5.15,NA,NA,Alyssum saxatile (cultivated),4.474,NA,Netherlands,
+H88,Bombus,Bombus hypnorum,Female,Mill,,3.37,NA,NA,Taraxacum officinale s.l.,2.29,1.086,Netherlands,
+H89,Andrena,Andrena subopaca,Female,Mill,,1.78,NA,NA,Taraxacum officinale s.l.,NA,NA,Netherlands,
+H9,Andrena,Andrena bicolor,Female,Berg,,1.83,NA,NA,Prunus spinosa,0.739,0.359,Netherlands,
+H90,Andrena,Andrena nigroaenea,Female,Gronsveld,,3.71,NA,NA,Taraxacum officinale s.l.,2,0.906,Netherlands,
+H91,Osmia,Osmia bicornis,Female,Gronsveld,,4.18,NA,NA,,NA,NA,Netherlands,
+H92,Osmia,Osmia bicornis,Female,Gronsveld,,4.09,NA,NA,,NA,NA,Netherlands,
+H93,Osmia,Osmia bicornis,Female,Gronsveld,,4.09,NA,NA,,NA,NA,Netherlands,
+H94,Osmia,Osmia bicornis,Female,Gronsveld,,3.9,NA,NA,,1.56,0.797,Netherlands,
+H95,Osmia,Osmia bicornis,Female,Gronsveld,,3.95,NA,NA,,NA,NA,Netherlands,
+H96,Andrena,Andrena flavipes,Female,Eijsden. Caestert Beemden,,2.91,NA,NA,Alliaria petiolata,1.557,NA,Netherlands,
+H97,Andrena,Andrena gravida,Female,Eijsden. Caestert Beemden,,3.34,NA,NA,Veronica chamaedrys,1.954,0.801,Netherlands,
+H98,Andrena,Andrena bicolor,Female,Eijsden. Caestert Beemden,,2.58,NA,NA,Alliaria petiolata,0.666,0.361,Netherlands,
+H99,Andrena,Andrena dorsata,Female,Eijsden. Caestert Beemden,,2.3,NA,NA,Alliaria petiolata,0.758,0.325,Netherlands,
+H145,Osmia,Osmia caerulescens,Female,Holland,,3.11,NA,NA,Trifolium pratense,NA,NA,Netherlands,
+H146,Osmia,Osmia caerulescens,Female,Holland,,3.11,NA,NA,Lotus corniculatus,NA,NA,Netherlands,
+H147,Megachile,Megachile willughbiella,Female,Holland,,3.91,NA,NA,Vicia sepium,NA,NA,Netherlands,
+H148,Lasioglossum,Lasioglossum leucozonium,Female,Holland,,2.08,NA,NA,Crepis biennis,0.336,0.185,Netherlands,
+H149,Lasioglossum,Lasioglossum leucozonium,Female,Holland,,2.22,NA,NA,Geranium pyrenaicum,0.432,0.257,Netherlands,
+H150,Andrena,Andrena subopaca,Female,Holland,,1.91,NA,NA,,0.405,0.222,Netherlands,
+H151,Andrena,Andrena semilaevis,Female,Holland,,1.64,NA,NA,Diplotaxis tenuifolia,0.254,0.413,Netherlands,
+H152,Lasioglossum,Lasioglossum sexnotatum,Female,Holland,,2.4,NA,NA,Bryonia dioica,0.785,0.4,Netherlands,
+H153,Andrena,Andrena fucata,Female,Holland,,2.75,NA,NA,Rosa sp.,0.65,0.321,Netherlands,
+H154,Andrena,Andrena fucata,Female,Holland,,2.71,NA,NA,Rosa sp.,NA,NA,Netherlands,
+H155,Andrena,Andrena fucata,Female,Holland,,2.57,NA,NA,Rosa sp.,0.752,NA,Netherlands,
+H156,Andrena,Andrena fulvida,Male,Holland,,2,NA,NA,Rhamnus frangula,0.295,NA,Netherlands,
+H157,Andrena,Andrena fulvida,Male,Holland,,2.08,NA,NA,Rhamnus frangula,0.701,0.223,Netherlands,
+H158,Andrena,Andrena fulvida,Male,Holland,,2.17,NA,NA,Rhamnus frangula,NA,NA,Netherlands,
+H159,Lasioglossum,Lasioglossum zonulum,Female,Holland,,2.4,NA,NA,Rhamnus frangula,0.608,NA,Netherlands,
+H160,Anthophora,Anthophora quadrimaculata,Female,Holland,,3.77,NA,NA,Nepeta sp.. garden plant,2.593,0.959,Netherlands,
+H161,Anthophora,Anthophora retusa,Female,Holland,,NA,NA,NA,Trifolium pratense,3.394,1.542,Netherlands,
+H162,Andrena,Andrena nigriceps,Female,Holland,,2.62,NA,NA,Achillea millefolium,0.814,0.539,Netherlands,
+H163,Anthophora,Anthophora quadrimaculata,Female,Holland,,3.95,NA,NA,Teucrium scorodonia (not collecting pollen),1.852,0.698,Netherlands,
+H164,Megachile,Megachile centuncularis,Female,Holland,,3.86,NA,NA,Lotus corniculatus,1.68,0.726,Netherlands,
+H165,Megachile,Megachile ligniseca,Female,Holland,,NA,NA,NA,Cirsium vulgare,2.963,1.31,Netherlands,
+H166,Andrena,Andrena nigriceps,Female,Holland,,2.8,NA,NA,Rorippa palustris,NA,0.455,Netherlands,
+H167,Lasioglossum,Lasioglossum sexnotatum,Female,Holland,,2.57,NA,NA,Rorippa palustris,0.63,0.34,Netherlands,
+H168,Halictus,Halictus confusus,Female,Holland,,1.77,NA,NA,Jasione montana,0.332,0.145,Netherlands,
+H169,Megachile,Megachile centuncularis,Female,Holland,,3.91,NA,NA,Lotus corniculatus,1.591,0.835,Netherlands,
+H170,Bombus,Bombus jonellus,Female,Holland,,4.35,NA,NA,Lythrum salicaria,2.348,1.168,Netherlands,
+H171,Bombus,Bombus jonellus,Female,Holland,,4.13,NA,NA,Erica tetralix,2.512,1.363,Netherlands,
+H172,Bombus,Bombus jonellus,Female,Holland,,4.22,NA,NA,Calluna vulgaris,2.325,NA,Netherlands,
+H173,Halictus,Halictus confusus,Female,Holland,,1.91,NA,NA,Calluna vulgaris,0.527,0.24,Netherlands,
+B92,Xylocopa,Xylocopa violacea,Female,Carambolo,,6.187,NA,NA,,6.303,2.376,Spain,
+B93,Xylocopa,Xylocopa violacea,Female,Carambolo,,5.997,NA,NA,,5.666,2.171,Spain,
+B94,Xylocopa,Xylocopa violacea,Female,Carambolo,,6.131,NA,NA,,5.513,2.044,Spain,
+B95,Xylocopa,Xylocopa violacea,Female,Carambolo,,6.065,NA,NA,,6.022,2.31,Spain,
+OB1,Osmia,Osmia bicornis,Male,Mauerbienen,,2.767,NA,NA,,1.642,0.702,Germany,Born from coccon. not captured
+OB2,Osmia,Osmia bicornis,Male,Mauerbienen,,2.771,NA,NA,,1.381,0.73,Germany,Born from coccon. not captured
+OB03,Osmia,Osmia bicornis,Male,Mauerbienen,,2.67,NA,NA,,NA,NA,Germany,Born from coccon. not captured
+OB4,Osmia,Osmia bicornis,Male,Mauerbienen,,2.626,NA,NA,,1.328,0.582,Germany,Born from coccon. not captured
+OB5,Osmia,Osmia bicornis,Female,Mauerbienen,,2.465,NA,NA,,1.071,0.315,Germany,Born from coccon. not captured
+OB6,Osmia,Osmia bicornis,Male,Mauerbienen,,2.562,NA,NA,,1.269,0.619,Germany,Born from coccon. not captured
+OB,Osmia,Osmia bicornis,Female,Mauerbienen,,3.29,NA,NA,,1.238,0.621,Germany,Born from coccon. not captured
+OB8,Osmia,Osmia bicornis,Male,Mauerbienen,,2.683,NA,NA,,1.403,0.631,Germany,Born from coccon. not captured
+OB9,Osmia,Osmia bicornis,Male,Mauerbienen,,2.678,NA,NA,,0.912,0.258,Germany,Born from coccon. not captured
+114/1,Osmia,Osmia bicornis,Female,Sevilla,,3.095,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N8/1,Osmia,Osmia bicornis,Female,Carambolo,,3.056,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N26/5,Osmia,Osmia bicornis,Female,Carambolo,,3.035,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+119/1,Osmia,Osmia bicornis,Female,Sevilla,,3.233,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N26/2,Osmia,Osmia bicornis,Female,Carambolo,,3.217,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N8/5,Osmia,Osmia bicornis,Female,Carambolo,,2.98,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+107/3,Osmia,Osmia bicornis,Female,Sevilla,,3.002,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N26/1,Osmia,Osmia bicornis,Female,Carambolo,,3.075,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/5,Osmia,Osmia bicornis,Female,Sevilla,,3.002,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+107/1,Osmia,Osmia bicornis,Female,Sevilla,,2.812,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N110,Osmia,Osmia bicornis,Female,Carambolo,,3.089,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N26/3,Osmia,Osmia bicornis,Female,Carambolo,,3.067,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N8/3,Osmia,Osmia bicornis,Female,Carambolo,,3.102,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+OB11,Osmia,Osmia bicornis,Female,Mauerbienen,,2.848,NA,NA,,1.78,0.912,Germany,Born from coccon. not captured
+34/3,Osmia,Osmia bicornis,Female,Sevilla,,3.108,NA,NA,,1.307,0.738,Spain,Born from coccon. not captured
+12/6,Osmia,Osmia bicornis,Female,Sevilla,,3.313,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+X1,Osmia,Osmia bicornis,Female,Sevilla,,3.29,NA,NA,,1.154,0.754,Spain,Born from coccon. not captured
+34/2,Osmia,Osmia bicornis,Female,Sevilla,,3.287,NA,NA,,1.237,0.813,Spain,Born from coccon. not captured
+X3,Osmia,Osmia bicornis,Female,Sevilla,,3.381,NA,NA,,1.172,0.803,Spain,Born from coccon. not captured
+12/1,Osmia,Osmia bicornis,Female,Sevilla,,3.193,NA,NA,,1.316,0.684,Spain,Born from coccon. not captured
+34/4,Osmia,Osmia bicornis,Female,Sevilla,,3.226,NA,NA,,1.618,0.894,Spain,Born from coccon. not captured
+34/6,Osmia,Osmia bicornis,Female,Sevilla,,3.314,NA,NA,,1.013,0.685,Spain,Born from coccon. not captured
+68/2,Osmia,Osmia bicornis,Female,Sevilla,,3.342,NA,NA,,1.553,0.819,Spain,Born from coccon. not captured
+12/5,Osmia,Osmia bicornis,Female,Sevilla,,3.156,NA,NA,,1.009,0.505,Spain,Born from coccon. not captured
+11/1,Osmia,Osmia bicornis,Female,Sevilla,,3.362,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+115/1,Osmia,Osmia bicornis,Female,Sevilla,,2.452,NA,NA,,1.121,0.582,Spain,Born from coccon. not captured
+33/51,Osmia,Osmia bicornis,Female,Sevilla,,3.267,NA,NA,,1.061,NA,Spain,Born from coccon. not captured
+105/1,Osmia,Osmia bicornis,Female,Sevilla,,2.666,NA,NA,,NA,0.789,Spain,Born from coccon. not captured
+34/1,Osmia,Osmia bicornis,Female,Sevilla,,2.926,NA,NA,,1.049,0.493,Spain,Born from coccon. not captured
+11/2,Osmia,Osmia bicornis,Female,Sevilla,,3.365,NA,NA,,1.548,0.865,Spain,Born from coccon. not captured
+33/1,Osmia,Osmia bicornis,Female,Sevilla,,3.243,NA,NA,,1.134,0.758,Spain,Born from coccon. not captured
+33/5,Osmia,Osmia bicornis,Female,Sevilla,,3.173,NA,NA,,1.095,0.69,Spain,Born from coccon. not captured
+33/6,Osmia,Osmia bicornis,Female,Sevilla,,3.18,NA,NA,,0.981,0.531,Spain,Born from coccon. not captured
+38/1,Osmia,Osmia bicornis,Female,Sevilla,,3.076,NA,NA,,1.375,0.713,Spain,Born from coccon. not captured
+33/4,Osmia,Osmia bicornis,Female,Sevilla,,3.194,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+12/3,Osmia,Osmia bicornis,Female,Sevilla,,3.302,NA,NA,,1.353,0.79,Spain,Born from coccon. not captured
+12/7,Osmia,Osmia bicornis,Female,Sevilla,,3.313,NA,NA,,1.218,0.824,Spain,Born from coccon. not captured
+34/5,Osmia,Osmia bicornis,Female,Sevilla,,3.192,NA,NA,,1.517,0.734,Spain,Born from coccon. not captured
+12/4,Osmia,Osmia bicornis,Female,Sevilla,,3.219,NA,NA,,1.065,0.647,Spain,Born from coccon. not captured
+12/2,Osmia,Osmia bicornis,Female,Sevilla,,3.271,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+33/2,Osmia,Osmia bicornis,Female,Sevilla,,3.134,NA,NA,,1.249,0.564,Spain,Born from coccon. not captured
+33/3,Osmia,Osmia bicornis,Female,Sevilla,,3.063,NA,NA,,0.861,0.556,Spain,Born from coccon. not captured
+35/1,Osmia,Osmia bicornis,Female,Sevilla,,3.1,NA,NA,,1.092,0.556,Spain,Born from coccon. not captured
+128/2,Osmia,Osmia caerulescens,Male,Sevilla,,1.881,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+152/5,Osmia,Osmia caerulescens,Male,Sevilla,,1.783,NA,NA,,0.407,0.223,Spain,Born from coccon. not captured
+142/1,Osmia,Osmia caerulescens,Male,Sevilla,,1.898,NA,NA,,0.599,0.309,Spain,Born from coccon. not captured
+120/1,Osmia,Osmia caerulescens,Male,Sevilla,,2.269,NA,NA,,0.81,0.334,Spain,Born from coccon. not captured
+152/8,Osmia,Osmia caerulescens,Male,Sevilla,,1.868,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+85/1,Osmia,Osmia caerulescens,Male,Sevilla,,1.939,NA,NA,,0.569,0.38,Spain,Born from coccon. not captured
+152/4,Osmia,Osmia caerulescens,Male,Sevilla,,1.742,NA,NA,,0.662,0.25,Spain,Born from coccon. not captured
+142/3,Osmia,Osmia caerulescens,Male,Sevilla,,1.915,NA,NA,,0.588,0.33,Spain,Born from coccon. not captured
+43/1,Osmia,Osmia caerulescens,Male,Sevilla,,2.413,NA,NA,,0.8,0.238,Spain,Born from coccon. not captured
+30/1,Osmia,Osmia caerulescens,Male,Sevilla,,2.467,NA,NA,,0.866,0.428,Spain,Born from coccon. not captured
+50/2,Osmia,Osmia caerulescens,Male,Sevilla,,2.278,NA,NA,,0.722,0.436,Spain,Born from coccon. not captured
+50/1,Osmia,Osmia caerulescens,Male,Sevilla,,2.538,NA,NA,,0.769,0.354,Spain,Born from coccon. not captured
+46/2,Osmia,Osmia caerulescens,Male,Sevilla,,2.283,NA,NA,,0.502,0.274,Spain,Born from coccon. not captured
+N106/1,Osmia,Osmia caerulescens,Male,Carambolo,,2.234,NA,NA,,0.579,0.279,Spain,Born from coccon. not captured
+N105/1,Osmia,Osmia caerulescens,Male,Carambolo,,2.024,NA,NA,,0.5,0.303,Spain,Born from coccon. not captured
+152/7,Osmia,Osmia caerulescens,Male,Sevilla,,1.803,NA,NA,,0.615,0.275,Spain,Born from coccon. not captured
+152/3,Osmia,Osmia caerulescens,Male,Sevilla,,1.829,NA,NA,,0.925,0.321,Spain,Born from coccon. not captured
+152/6,Osmia,Osmia caerulescens,Male,Sevilla,,1.784,NA,NA,,0.434,0.276,Spain,Born from coccon. not captured
+103/1,Osmia,Osmia leaiana,Female,Sevilla,,2.728,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+100/1,Osmia,Osmia leaiana,Female,Sevilla,,2.877,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N103/2,Osmia,Osmia leaiana,Female,Carambolo,,2.694,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+105/3,Osmia,Osmia leaiana,Female,Sevilla,,2.635,NA,NA,,0.92,0.303,Spain,Born from coccon. not captured
+100/2,Osmia,Osmia leaiana,Female,Sevilla,,2.896,NA,NA,,1.285,0.547,Spain,Born from coccon. not captured
+103/3,Osmia,Osmia leaiana,Female,Sevilla,,2.842,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+46/1,Osmia,Osmia latreillei,Female,Sevilla,,3.061,NA,NA,,NA,NA,Spain,Asegurar si es leiana o latreillei. pues comparten cañas
+105/2,Osmia,Osmia latreillei,Female,Sevilla,,2.863,NA,NA,,0.842,0.491,Spain,Asegurar si es leiana o latreillei. pues comparten cañas
+100/3,Osmia,Osmia latreillei,Female,Sevilla,,2.76,NA,NA,,1.315,0.601,Spain,Asegurar si es leiana o latreillei. pues comparten cañas
+142/2,Osmia,Osmia submicans,Female,Sevilla,,2.055,NA,NA,,0.65,0.308,Spain,Born from coccon. not captured
+152/1,Osmia,Osmia submicans,Female,Sevilla,,2.044,NA,NA,,0.672,0.238,Spain,Born from coccon. not captured
+128/4,Osmia,Osmia submicans,Female,Sevilla,,2.137,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+128/3,Osmia,Osmia submicans,Female,Sevilla,,2.114,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+128/2,Osmia,Osmia submicans,Female,Sevilla,,2.047,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+142/4,Osmia,Osmia submicans,Female,Sevilla,,2.138,NA,NA,,0.43,NA,Spain,Born from coccon. not captured
+N05/2,Stelis,Stelis breviuscula,Female,Carambolo,,2.154,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+99/1,Stelis,Stelis breviuscula,Female,Sevilla,,1.949,NA,NA,,0.348,NA,Spain,Born from coccon. not captured
+88/1,Stelis,Stelis breviuscula,Female,Sevilla,,2.091,NA,NA,,0.416,0.351,Spain,Born from coccon. not captured
+126/1,Stelis,Stelis breviuscula,Male,Sevilla,,1.857,NA,NA,,0.566,0.226,Spain,Born from coccon. not captured
+126/2,Stelis,Stelis breviuscula,Male,Sevilla,,1.603,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+125/1,Stelis,Stelis breviuscula,Male,Sevilla,,1.521,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N111,NA,NA,NA,Carambolo,,1.847,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+N26/2,NA,NA,NA,Carambolo,,2.817,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+Parásito,NA,NA,NA,Sevilla,,2.557,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/8,Osmia,Osmia bicornis,Male,Sevilla,,2.578,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/2,Osmia,Osmia bicornis,Male,Sevilla,,2.592,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/3,Osmia,Osmia bicornis,Male,Sevilla,,2.507,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/6,Osmia,Osmia bicornis,Male,Sevilla,,2.506,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/9,Osmia,Osmia bicornis,Male,Sevilla,,2.44,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+114/7,Osmia,Osmia bicornis,Male,Sevilla,,2.575,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+89/2,Osmia,Osmia bicornis,Male,Sevilla,,2.269,NA,NA,,NA,NA,Spain,Born from coccon. not captured
+OC1,Osmia,Osmia cornuta,Female,Mauerbienen,,3.791,NA,NA,,NA,NA,Germany,
+OC2,Osmia,Osmia cornuta,Female,Mauerbienen,,3.645,NA,NA,,NA,NA,Germany,
+OC3,Osmia,Osmia cornuta,Female,Mauerbienen,,3.655,NA,NA,,NA,NA,Germany,
+OC4,Osmia,Osmia cornuta,Female,Mauerbienen,,3.576,NA,NA,,NA,NA,Germany,
+OC5,Osmia,Osmia cornuta,Female,Mauerbienen,,3.687,NA,NA,,NA,NA,Germany,
+OC6,Osmia,Osmia cornuta,Female,Mauerbienen,,3.433,NA,NA,,NA,NA,Germany,
+OC7,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC8,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC9,Osmia,Osmia cornuta,Female,Mauerbienen,,3.521,NA,NA,,NA,NA,Germany,
+OC10,Osmia,Osmia cornuta,Female,Mauerbienen,,3.949,NA,NA,,NA,NA,Germany,
+OC11,Osmia,Osmia cornuta,Male,Mauerbienen,,3.094,NA,NA,,1.003,0.408,Germany,
+OC12,Osmia,Osmia cornuta,Female,Mauerbienen,,3.427,NA,NA,,1.738,NA,Germany,
+OC13,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC14,Osmia,Osmia cornuta,Male,Mauerbienen,,2.764,NA,NA,,1.288,0.669,Germany,
+OC15,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC16,Osmia,Osmia cornuta,Male,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC17,Osmia,Osmia cornuta,Male,Mauerbienen,,2.772,NA,NA,,0.92,0.591,Germany,
+OC18,Osmia,Osmia cornuta,Male,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC19,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC20,Osmia,Osmia cornuta,Female,Mauerbienen,,3.719,NA,NA,,1.71,0.87,Germany,
+OC21,Osmia,Osmia cornuta,Male,Mauerbienen,,3.114,NA,NA,,1.19,0.677,Germany,
+OC22,Osmia,Osmia cornuta,Female,Mauerbienen,,3.821,NA,NA,,NA,NA,Germany,
+OC23,Osmia,Osmia cornuta,Male,Mauerbienen,,3.058,NA,NA,,1.362,NA,Germany,
+OC24,Osmia,Osmia cornuta,Female,Mauerbienen,,3.556,NA,NA,,NA,NA,Germany,
+OC25,Osmia,Osmia cornuta,Female,Mauerbienen,,3.828,NA,NA,,1.803,0.854,Germany,
+OC26,Osmia,Osmia cornuta,Female,Mauerbienen,,3.718,NA,NA,,1.755,0.898,Germany,
+OC27,Osmia,Osmia cornuta,Female,Mauerbienen,,3.605,NA,NA,,1.765,0.955,Germany,
+OC28,Osmia,Osmia cornuta,Female,Mauerbienen,,3.607,NA,NA,,1.46,0.517,Germany,
+OC29,Osmia,Osmia cornuta,Male,Mauerbienen,,3.314,NA,NA,,NA,NA,Germany,
+OC30,Osmia,Osmia cornuta,Female,Mauerbienen,,3.117,NA,NA,,1.715,0.651,Germany,
+OC31,Osmia,Osmia cornuta,Female,Mauerbienen,,3.974,NA,NA,,1.321,0.7,Germany,
+OC32,Osmia,Osmia cornuta,Male,Mauerbienen,,3.366,NA,NA,,1.356,0.734,Germany,
+OC33,Osmia,Osmia cornuta,Female,Mauerbienen,,3.641,NA,NA,,NA,NA,Germany,
+OC34,Osmia,Osmia cornuta,Female,Mauerbienen,,4.177,NA,NA,,NA,NA,Germany,
+OC35,Osmia,Osmia cornuta,Female,Mauerbienen,,3.78,NA,NA,,2.03,0.983,Germany,
+OC36,Osmia,Osmia cornuta,Male,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC37,Osmia,Osmia cornuta,Female,Mauerbienen,,3.647,NA,NA,,2.216,1.018,Germany,
+OC38,Osmia,Osmia cornuta,Male,Mauerbienen,,2.802,NA,NA,,1.6,0.804,Germany,
+OC39,Osmia,Osmia cornuta,Male,Mauerbienen,,2.899,NA,NA,,1.961,0.816,Germany,
+OC40,Osmia,Osmia cornuta,Male,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC41,Osmia,Osmia cornuta,Male,Mauerbienen,,3.034,NA,NA,,1.194,0.418,Germany,
+OC42,Osmia,Osmia cornuta,Male,Mauerbienen,,2.616,NA,NA,,1.269,0.777,Germany,
+OC43,Osmia,Osmia cornuta,Male,Mauerbienen,,3.12,NA,NA,,1.158,0.622,Germany,
+OC44,Osmia,Osmia cornuta,Male,Mauerbienen,,2.798,NA,NA,,1.443,0.719,Germany,
+OC45,Osmia,Osmia cornuta,Female,Mauerbienen,,3.657,NA,NA,,NA,NA,Germany,
+OC46,Osmia,Osmia cornuta,Female,Mauerbienen,,3.679,NA,NA,,NA,NA,Germany,
+OC47,Osmia,Osmia cornuta,Female,Mauerbienen,,3.746,NA,NA,,2.146,0.893,Germany,
+OC48,Osmia,Osmia cornuta,Female,Mauerbienen,,3.215,NA,NA,,NA,NA,Germany,
+OC49,Osmia,Osmia cornuta,Male,Mauerbienen,,2.966,NA,NA,,1.563,0.776,Germany,
+OC50,Osmia,Osmia cornuta,Male,Mauerbienen,,2.84,NA,NA,,NA,0.739,Germany,
+OC51,Osmia,Osmia cornuta,Male,Mauerbienen,,3.006,NA,NA,,NA,NA,Germany,
+OC52,Osmia,Osmia cornuta,Male,Mauerbienen,,2.847,NA,NA,,1.627,0.758,Germany,
+OC53,Osmia,Osmia cornuta,Male,Mauerbienen,,2.921,NA,NA,,1.464,0.793,Germany,
+OC54,Osmia,Osmia cornuta,Male,Mauerbienen,,3.367,NA,NA,,1.825,1,Germany,
+OC55,Osmia,Osmia cornuta,Male,Mauerbienen,,2.901,NA,NA,,NA,NA,Germany,
+OC56,Osmia,Osmia cornuta,Male,Mauerbienen,,2.86,NA,NA,,1.575,0.681,Germany,
+OC57,Osmia,Osmia cornuta,Female,Mauerbienen,,3.633,NA,NA,,NA,NA,Germany,
+OC58,Osmia,Osmia cornuta,Female,Mauerbienen,,3.541,NA,NA,,NA,NA,Germany,
+OC59,Osmia,Osmia cornuta,Female,Mauerbienen,,3.506,NA,NA,,NA,NA,Germany,
+OC60,Osmia,Osmia cornuta,Female,Mauerbienen,,3.768,NA,NA,,2.296,1.248,Germany,
+OC61,Osmia,Osmia cornuta,Female,Mauerbienen,,3.613,NA,NA,,1.939,0.779,Germany,
+OC62,Osmia,Osmia cornuta,Female,Mauerbienen,,3.891,NA,NA,,2.472,1.093,Germany,
+OC63,Osmia,Osmia cornuta,Female,Mauerbienen,,3.485,NA,NA,,NA,NA,Germany,
+OC64,Osmia,Osmia cornuta,Female,Mauerbienen,,3.337,NA,NA,,1.701,0.702,Germany,
+OC65,Osmia,Osmia cornuta,Male,Mauerbienen,,3.379,NA,NA,,2.198,1.104,Germany,
+OC66,Osmia,Osmia cornuta,NA,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC67,Osmia,Osmia cornuta,Male,Mauerbienen,,3.107,NA,NA,,NA,NA,Germany,
+OC68,Osmia,Osmia cornuta,Male,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC69,Osmia,Osmia cornuta,NA,Mauerbienen,,3.421,NA,NA,,2.322,1.246,Germany,
+OC70,Osmia,Osmia cornuta,Female,Mauerbienen,,3.563,NA,NA,,NA,NA,Germany,
+OC71,Osmia,Osmia cornuta,Female,Mauerbienen,,3.694,NA,NA,,2.304,1.047,Germany,
+OC72,Osmia,Osmia cornuta,Female,Mauerbienen,,3.587,NA,NA,,1.482,0.692,Germany,
+OC73,Osmia,Osmia cornuta,Female,Mauerbienen,,3.761,NA,NA,,2.643,1.084,Germany,
+OC74,Osmia,Osmia cornuta,Female,Mauerbienen,,3.553,NA,NA,,NA,0.835,Germany,
+OC75,Osmia,Osmia cornuta,Female,Mauerbienen,,3.596,NA,NA,,1.885,1.028,Germany,
+OC76,Osmia,Osmia cornuta,Male,Mauerbienen,,2.873,NA,NA,,1.223,0.611,Germany,
+OC77,Osmia,Osmia cornuta,Male,Mauerbienen,,2.812,NA,NA,,1.874,0.83,Germany,
+OC78,Osmia,Osmia cornuta,Male,Mauerbienen,,2.838,NA,NA,,1.695,NA,Germany,
+OC79,Osmia,Osmia cornuta,Female,Mauerbienen,,3.242,NA,NA,,1.506,NA,Germany,
+OC80,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC81,Osmia,Osmia cornuta,Female,Mauerbienen,,3.372,NA,NA,,NA,NA,Germany,
+OC82,Osmia,Osmia cornuta,Female,Mauerbienen,,3.343,NA,NA,,1.594,0.823,Germany,
+OC83,Osmia,Osmia cornuta,Female,Mauerbienen,,3.557,NA,NA,,1.668,0.828,Germany,
+OC84,Osmia,Osmia cornuta,Female,Mauerbienen,,3.566,NA,NA,,1.531,0.82,Germany,
+OC85,Osmia,Osmia cornuta,Female,Mauerbienen,,3.718,NA,NA,,1.387,0.753,Germany,
+OC86,Osmia,Osmia cornuta,Female,Mauerbienen,,3.259,NA,NA,,NA,NA,Germany,
+OC87,Osmia,Osmia cornuta,Female,Mauerbienen,,3.633,NA,NA,,1.73,0.922,Germany,
+OC88,Osmia,Osmia cornuta,Female,Mauerbienen,,3.608,NA,NA,,NA,NA,Germany,
+OC89,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC90,Osmia,Osmia cornuta,Female,Mauerbienen,,3.628,NA,NA,,1.813,0.684,Germany,
+OC91,Osmia,Osmia cornuta,Female,Mauerbienen,,3.304,NA,NA,,1.587,0.824,Germany,
+OC92,Osmia,Osmia cornuta,Female,Mauerbienen,,3.558,NA,NA,,NA,NA,Germany,
+OC93,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,2.304,0.822,Germany,
+OC94,Osmia,Osmia cornuta,Female,Mauerbienen,,3.73,NA,NA,,2.388,0.802,Germany,
+OC95,Osmia,Osmia cornuta,Female,Mauerbienen,,3.806,NA,NA,,1.707,0.945,Germany,
+OC96,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC97,Osmia,Osmia cornuta,Female,Mauerbienen,,3.668,NA,NA,,1.73,0.849,Germany,
+OC98,Osmia,Osmia cornuta,Male,Mauerbienen,,3.082,NA,NA,,1.449,0.705,Germany,
+OC99,Osmia,Osmia cornuta,Male,Mauerbienen,,2.911,NA,NA,,1.221,0.615,Germany,
+OC100,Osmia,Osmia cornuta,Male,Mauerbienen,,3.101,NA,NA,,1.506,0.589,Germany,
+OC101,Osmia,Osmia cornuta,Female,Mauerbienen,,3.413,NA,NA,,NA,NA,Germany,
+OC102,Osmia,Osmia cornuta,Female,Mauerbienen,,3.115,NA,NA,,1.322,0.572,Germany,
+OC103,Osmia,Osmia cornuta,Male,Mauerbienen,,3.036,NA,NA,,1.675,0.877,Germany,
+OC104,Osmia,Osmia cornuta,Female,Mauerbienen,,3.198,NA,NA,,1.332,0.161,Germany,
+OC105,Osmia,Osmia cornuta,Female,Mauerbienen,,3.704,NA,NA,,2.388,1.136,Germany,
+OC106,Osmia,Osmia cornuta,Female,Mauerbienen,,3.567,NA,NA,,1.981,0.877,Germany,
+OC107,Osmia,Osmia cornuta,Female,Mauerbienen,,3.719,NA,NA,,1.875,0.784,Germany,
+OC108,Osmia,Osmia cornuta,Female,Mauerbienen,,3.544,NA,NA,,1.974,0.936,Germany,
+OC109,Osmia,Osmia cornuta,Female,Mauerbienen,,3.659,NA,NA,,1.998,1.032,Germany,
+OC110,Osmia,Osmia cornuta,Female,Mauerbienen,,3.775,NA,NA,,2.09,0.949,Germany,
+OC111,Osmia,Osmia cornuta,Female,Mauerbienen,,3.244,NA,NA,,1.736,0.935,Germany,
+OC112,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,1.945,0.984,Germany,
+OC113,Osmia,Osmia cornuta,Female,Mauerbienen,,3.368,NA,NA,,1.835,0.974,Germany,
+OC114,Osmia,Osmia cornuta,Male,Mauerbienen,,3.045,NA,NA,,1.5,0.888,Germany,
+OC115,Osmia,Osmia cornuta,Female,Mauerbienen,,3.379,NA,NA,,1.932,0.989,Germany,
+OC116,Osmia,Osmia cornuta,Female,Mauerbienen,,3.605,NA,NA,,2.102,0.977,Germany,
+OC117,Osmia,Osmia cornuta,Female,Mauerbienen,,3.447,NA,NA,,1.998,0.823,Germany,
+OC118,Osmia,Osmia cornuta,Female,Mauerbienen,,3.855,NA,NA,,2.072,0.978,Germany,
+OC119,Osmia,Osmia cornuta,Male,Mauerbienen,,2.785,NA,NA,,1.566,0.64,Germany,
+OC120,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC121,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC122,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC123,Osmia,Osmia cornuta,Male,Mauerbienen,,3.331,NA,NA,,1.988,0.988,Germany,
+OC124,Osmia,Osmia cornuta,Male,Mauerbienen,,2.978,NA,NA,,1.746,0.819,Germany,
+OC125,Osmia,Osmia cornuta,Male,Mauerbienen,,3.196,NA,NA,,1.589,0.948,Germany,
+OC126,Osmia,Osmia cornuta,Female,Mauerbienen,,3.577,NA,NA,,NA,NA,Germany,
+OC127,Osmia,Osmia cornuta,Female,Mauerbienen,,3.552,NA,NA,,NA,NA,Germany,
+OC128,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC129,Osmia,Osmia cornuta,Male,Mauerbienen,,3.18,NA,NA,,NA,0.783,Germany,
+OC130,Osmia,Osmia cornuta,Male,Mauerbienen,,3.399,NA,NA,,2.216,0.98,Germany,
+OC131,Osmia,Osmia cornuta,Female,Mauerbienen,,3.69,NA,NA,,2.816,1.32,Germany,
+OC132,Osmia,Osmia cornuta,Female,Mauerbienen,,3.805,NA,NA,,2.314,1.208,Germany,
+OC133,Osmia,Osmia cornuta,Female,Mauerbienen,,3.597,NA,NA,,1.839,0.684,Germany,
+OC134,Osmia,Osmia cornuta,Female,Mauerbienen,,3.95,NA,NA,,1.579,0.809,Germany,
+OC135,Osmia,Osmia cornuta,Female,Mauerbienen,,3.792,NA,NA,,2.356,1.258,Germany,
+OC136,Osmia,Osmia cornuta,Female,Mauerbienen,,4.053,NA,NA,,2.583,1.144,Germany,
+OC137,Osmia,Osmia cornuta,Female,Mauerbienen,,3.975,NA,NA,,NA,1.508,Germany,
+OC138,Osmia,Osmia cornuta,Female,Mauerbienen,,3.856,NA,NA,,2.434,1.337,Germany,
+OC139,Osmia,Osmia cornuta,Female,Mauerbienen,,NA,NA,NA,,NA,NA,Germany,
+OC140,Osmia,Osmia cornuta,Female,Mauerbienen,,3.855,NA,NA,,2.186,0.988,Germany,
+OC141,Osmia,Osmia cornuta,Female,Mauerbienen,,3.582,NA,NA,,1.842,0.936,Germany,
+OC142,Osmia,Osmia cornuta,Female,Mauerbienen,,3.83,NA,NA,,2.2,1.342,Germany,
+OC143,Osmia,Osmia cornuta,Female,Mauerbienen,,3.827,NA,NA,,2.41,1.257,Germany,
+OC144,Osmia,Osmia cornuta,Female,Mauerbienen,,3.365,NA,NA,,NA,0.976,Germany,
+OC145,Osmia,Osmia cornuta,Female,Mauerbienen,,3.682,NA,NA,,2.249,1.33,Germany,
+OC146,Osmia,Osmia cornuta,Female,Mauerbienen,,3.663,NA,NA,,2.115,1.213,Germany,
+US001,Andrena,Andrena frigida,Male,Home - Brewster,30-Mar-17,2.032,NA,NA,,0.483,NA,USA,
+US002,Andrena,Andrena frigida,Male,Home - Brewster,30-Mar-17,2.2225,NA,NA,,0.494,NA,USA,
+US003,Andrena,Andrena frigida,Male,Home - Brewster,30-Mar-17,2.286,NA,NA,,0.657,NA,USA,
+US004,Andrena,Andrena frigida,Male,Home - Brewster,30-Mar-17,2.032,NA,NA,,0.606,NA,USA,
+US005,Andrena,Andrena rugosa,Male,Home - Brewster,3-Apr-17,1.651,NA,NA,,0.555,NA,USA,
+US006,Andrena,Andrena rugosa,Male,Home - Brewster,3-Apr-17,1.4605,NA,NA,,0.388,NA,USA,
+US007,Andrena,Andrena rugosa,Male,Home - Brewster,3-Apr-17,1.524,NA,NA,,0.603,NA,USA,
+US008,Osmia,Osmia pumila,Female,Home - Brewster,23-Apr-17,1.651,NA,NA,,NA,NA,USA,crabapple
+US009,Osmia,Osmia bucephala,Male,Home - Brewster,23-Apr-17,2.8575,NA,NA,,1.39,NA,USA,crabapple
+US010,Augochlorella,Augochlorella aurata,Female,Home - Brewster,23-Apr-17,1.4605,NA,NA,,0.353,NA,USA,crabapple
+US011,Ceratina,Ceratina calcarata,Male,Home - Brewster,23-Apr-17,1.27,NA,NA,,0.207,NA,USA,crabapple
+US012,Ceratina,Ceratina calcarata,Male,Home - Brewster,23-Apr-17,1.397,NA,NA,,0.221,NA,USA,crabapple
+US013,Andrena,Andrena pruni,Male,Home - Brewster,23-Apr-17,1.8415,NA,NA,,0.621,NA,USA,crabapple
+US014,Andrena,Andrena pruni,Male,Home - Brewster,23-Apr-17,1.7145,NA,NA,,0.67,NA,USA,crabapple
+US015,Andrena,Andrena pruni,Male,Home - Brewster,23-Apr-17,1.9685,NA,NA,,NA,NA,USA,crabapple
+US016,Andrena,Andrena nasonii,Male,Home - Brewster,23-Apr-17,1.27,NA,NA,,0.368,NA,USA,crabapple
+US017,Andrena,Andrena nasonii,Male,Home - Brewster,23-Apr-17,1.27,NA,NA,,0.293,NA,USA,crabapple
+US018,Andrena,Andrena hippotes,Male,Home - Brewster,23-Apr-17,1.905,NA,NA,,0.483,NA,USA,crabapple
+US019,Andrena,Andrena hippotes,Male,Home - Brewster,23-Apr-17,1.9685,NA,NA,,0.591,NA,USA,crabapple
+US020,Andrena,Andrena sp 3,NA,Home - Brewster,23-Apr-17,1.651,NA,NA,,0.366,NA,USA,crabapple
+US021,Andrena,Andrena sp 3,NA,Home - Brewster,23-Apr-17,1.651,NA,NA,,0.627,NA,USA,crabapple
+US022,Andrena,Andrena sp 3,NA,Home - Brewster,23-Apr-17,1.5875,NA,NA,,0.556,NA,USA,crabapple
+US023,Osmia,Osmia cornifrons,Male,Home - Brewster,29-Apr-17,2.7305,NA,NA,,1.07,NA,USA,crabapple
+US024,Osmia,Osmia cornifrons,Male,Home - Brewster,29-Apr-17,2.667,NA,NA,,0.846,NA,USA,crabapple
+US025,Andrena,Andrena hippotes,Male,Home - Brewster,29-Apr-17,2.032,NA,NA,,0.636,NA,USA,crabapple
+US026,Osmia,Osmia lignaria,Female,Home - Brewster,29-Apr-17,3.3655,NA,NA,,0.933,NA,USA,crabapple
+US027,Osmia,Osmia pumila,Female,Home - Brewster,29-Apr-17,1.9685,NA,NA,,0.652,NA,USA,crabapple
+US028,Andrena,Andrena pruni,Male,De Witt Cinton HS Bronx,28-Apr-17,1.778,NA,NA,,0.642,NA,USA,crabapple
+US029,Andrena,Andrena pruni,Male,De Witt Cinton HS Bronx,28-Apr-17,1.7145,NA,NA,,0.709,NA,USA,crabapple
+US030,Andrena,Andrena dunningi,Female,De Witt Cinton HS Bronx,28-Apr-17,2.6035,NA,NA,,1.184,NA,USA,crabapple
+US031,Andrena,Andrena dunningi,Female,De Witt Cinton HS Bronx,28-Apr-17,2.4765,NA,NA,,1.101,NA,USA,crabapple
+US032,Andrena,Andrena dunningi,Female,De Witt Cinton HS Bronx,28-Apr-17,2.6035,NA,NA,,1.549,NA,USA,crabapple
+US033,Andrena,Andrena dunningi,Female,De Witt Cinton HS Bronx,28-Apr-17,2.54,NA,NA,,1.304,NA,USA,crabapple
+US034,Andrena,Andrena miserabilis,Male,De Witt Cinton HS Bronx,28-Apr-17,1.397,NA,NA,,NA,NA,USA,crabapple
+US035,Andrena,Andrena miserabilis,Male,De Witt Cinton HS Bronx,28-Apr-17,1.27,NA,NA,,0.309,NA,USA,crabapple
+US036,Osmia,Osmia bucephala,Male,Home - Brewster,3-May-17,3.2385,NA,NA,,1.452,NA,USA,crabapple
+US037,Osmia,Osmia cornifrons,Male,Home - Brewster,3-May-17,2.794,NA,NA,,0.916,NA,USA,crabapple
+US038,Osmia,Osmia cornifrons,Female,Home - Brewster,3-May-17,2.794,NA,NA,,0.676,NA,USA,crabapple
+US039,Andrena,Andrena milwaukeensis,Female,Ninham Mt,12-May-17,2.0955,NA,NA,,1.005,NA,USA,
+US040,Andrena,Andrena vicina,Female,Ninham Mt,12-May-17,2.8575,NA,NA,,1.467,NA,USA,
+US041,Andrena,Andrena vicina,Female,Ninham Mt,12-May-17,2.667,NA,NA,,NA,NA,USA,
+US042,Augochlora,Augochlora pura,Female,Ninham Mt,12-May-17,1.5875,NA,NA,,0.61,NA,USA,
+US043,Andrena,Andrena crataegi,Male,Green-Wood Cemetery,16-May-17,2.0955,NA,NA,,0.98,NA,USA,hawthorne
+US044,Andrena,Andrena crataegi,Male,Green-Wood Cemetery,16-May-17,2.0955,NA,NA,,0.783,NA,USA,hawthorne
+US045,Andrena,Andrena crataegi,Male,Green-Wood Cemetery,16-May-17,1.7145,NA,NA,,0.632,NA,USA,hawthorne
+US046,Andrena,Andrena vicina,Female,Green-Wood Cemetery,16-May-17,2.9845,NA,NA,,1.587,NA,USA,hawthorne
+US047,Andrena,Andrena vicina,Female,Green-Wood Cemetery,16-May-17,2.9845,NA,NA,,1.578,NA,USA,hawthorne
+US048,Osmia,Osmia lignaria,Female,Green-Wood Cemetery,16-May-17,3.556,NA,NA,,1.414,NA,USA,hawthorne
+US049,Agapostemon,Agapostemon virescens,Female,De Witt Cinton HS Bronx,18-May-17,2.286,NA,NA,,NA,NA,USA,
+US050,Halictus,Halictus confusus,Female,Home - Brewster,19-May-17,1.524,NA,NA,,0.338,NA,USA,
+US051,Ceratina,Ceratina calcarata,Male,Home - Brewster,19-May-17,1.27,NA,NA,,0.274,NA,USA,
+US052,Osmia,Osmia bucephala,Male,Home - Brewster,19-May-17,2.9845,NA,NA,,NA,NA,USA,
+US053,Sphecodes,Sphecodes ranunculi,Female,Ninham Mt,24-May-17,1.651,NA,NA,,0.364,NA,USA,
+US054,Lasioglossum,Lasioglossum coriaceum,Female,Ninham Mt,24-May-17,1.8415,NA,NA,,0.84,NA,USA,
+US055,Halictus,Halictus ligatus,Female,Ninham Mt,24-May-17,2.032,NA,NA,,0.653,NA,USA,
+US056,Chelostoma,Chelostoma philadephi,Female,Home - Brewster,2-Jun-17,1.2065,NA,NA,,0.253,NA,USA,
+US057,Colletes,Colletes thoracicus,Female,Van Cortlandt Park - Parade Grounds,1-Jun-17,3.429,NA,NA,,1.533,NA,USA,
+US058,Colletes,Colletes thoracicus,Female,Van Cortlandt Park - Parade Grounds,1-Jun-17,3.048,NA,NA,,1.45,NA,USA,
+US059,Colletes,Colletes thoracicus,Female,Van Cortlandt Park - Parade Grounds,1-Jun-17,3.3655,NA,NA,,1.581,NA,USA,
+US060,Anthidium,Anthidium oblongatum,Male,Home - Brewster,2-Jun-17,2.8575,NA,NA,,1.512,NA,USA,
+US061,Andrena,Andrena wilkella,Male,Home - Brewster,2-Jun-17,1.8415,NA,NA,,0.703,NA,USA,
+US062,Hoplitis,Hoplitis pilosiformis,Male,Town of Southeast Rt 22,10-Jun-17,1.5875,NA,NA,,0.48,NA,USA,
+US063,Heriades,Heriades carinatus,Male,Town of Southeast Rt 22,10-Jun-17,1.2065,NA,NA,,0.269,NA,USA,
+US064,Halictus,Halictus rubicundus,Female,Town of Southeast Rt 22,10-Jun-17,2.0955,NA,NA,,0.929,NA,USA,
+US065,Osmia,Osmia georgica,Female,Town of Southeast Rt 22,10-Jun-17,2.159,NA,NA,,NA,NA,USA,
+US066,Osmia,Osmia pumila,Female,Town of Southeast Rt 22,10-Jun-17,1.651,NA,NA,,0.556,NA,USA,
+US067,Osmia,Osmia pumila,Female,Town of Southeast Rt 22,10-Jun-17,1.524,NA,NA,,NA,NA,USA,
+US068,Augochlorella,Augochlorella aurata,Female,Oliverea,12-Jun-17,1.524,NA,NA,,0.3,NA,USA,
+US069,Augochloropsis,Augochloropsis metallica,Female,Oliverea,12-Jun-17,1.8415,NA,NA,,NA,NA,USA,
+US070,Augochlorella,Augochlorella aurata,Female,Oliverea,12-Jun-17,1.524,NA,NA,,0.705,NA,USA,
+US071,Augochlora,Augochlora pura,Female,Oliverea,12-Jun-17,1.651,NA,NA,,0.71,NA,USA,
+US072,Andrena,Andrena milwaukeensis,Female,Oliverea,12-Jun-17,2.4765,NA,NA,,1,NA,USA,
+US073,Andrena,Andrena carlini,Female,Oliverea,12-Jun-17,2.4765,NA,NA,,1.26,NA,USA,
+US074,Andrena,Andrena carlini,Female,Oliverea,12-Jun-17,2.7305,NA,NA,,1.814,NA,USA,
+US075,Bombus,Bombus vagans,Male,Oliverea,12-Jun-17,2.794,NA,NA,,1.179,NA,USA,
+US076,Bombus,Bombus bimaculatus,Queen,Oliverea,12-Jun-17,4.826,NA,NA,,3.641,NA,USA,
+US077,Bombus,Bombus bimaculatus,Queen,Oliverea,12-Jun-17,5.1435,NA,NA,,3.633,NA,USA,
+US078,Andrena,Andrena wilkella,Female,Oliverea,12-Jun-17,2.4765,NA,NA,,1.13,NA,USA,Rubus
+US079,Andrena,Andrena wilkella,Female,Oliverea,12-Jun-17,2.3495,NA,NA,,1,NA,USA,Rubus
+US080,Andrena,Andrena wilkella,Female,Oliverea,12-Jun-17,2.4765,NA,NA,,1.208,NA,USA,Rubus
+US081,Calliopsis,Calliopsis andreniformis,Female,Van Cortlandt Park - Gunhill Rd,15-Jun-17,1.5875,NA,NA,,0.28,NA,USA,
+US082,Calliopsis,Calliopsis andreniformis,Female,Van Cortlandt Park - Gunhill Rd,15-Jun-17,1.4605,NA,NA,,0.45,NA,USA,
+US083,Osmia,Osmia atriventris,Female,Oliverea,12-Jun-17,2.032,NA,NA,,0.447,NA,USA,
+US084,Osmia,Osmia bucephala,Female,Oliverea,12-Jun-17,3.048,NA,NA,,NA,NA,USA,
+US085,Megachile,Megachile gemula,Male,Ninham Mt,20-Jun-17,2.7305,NA,NA,,1.305,NA,USA,
+US086,Megachile,Megachile gemula,Male,Ninham Mt,20-Jun-17,3.175,NA,NA,,1.51,NA,USA,
+US087,Andrena,Andrena vicina,Female,Ninham Mt,20-Jun-17,2.4765,NA,NA,,1.609,NA,USA,
+US088,Augochlora,Augochlora pura,Female,Ninham Mt,20-Jun-17,1.4605,NA,NA,,0.496,NA,USA,
+US089,Augochloropsis,Augochloropsis metallica,Female,Ninham Mt,20-Jun-17,1.778,NA,NA,,0.656,NA,USA,
+US090,Augochlorella,Augochlorella aurata,Female,Ninham Mt,20-Jun-17,1.3335,NA,NA,,NA,NA,USA,
+US091,Augochlorella,Augochlorella aurata,Female,Ninham Mt,20-Jun-17,1.397,NA,NA,,0.301,NA,USA,
+US092,Augochlorella,Augochlorella aurata,Female,Ninham Mt,20-Jun-17,1.397,NA,NA,,NA,NA,USA,
+US093,Andrena,Andrena fragilis,Male,Ninham Mt,20-Jun-17,1.27,NA,NA,,0.515,NA,USA,
+US094,Andrena,Andrena fragilis,Male,Ninham Mt,20-Jun-17,1.27,NA,NA,,0.337,NA,USA,
+US095,Andrena,Andrena fragilis,Male,Ninham Mt,20-Jun-17,1.27,NA,NA,,0.24,NA,USA,
+US096,Andrena,Andrena fragilis,Male,Ninham Mt,20-Jun-17,1.27,NA,NA,,0.398,NA,USA,
+US097,Andrena,Andrena fragilis,Male,Ninham Mt,20-Jun-17,1.27,NA,NA,,0.4,NA,USA,
+US098,Andrena,Andena vicina,Female,Ninham Mt,20-Jun-17,2.413,NA,NA,,1.334,NA,USA,
+US099,Augochlorella,Augochlorella aurata,Female,Ninham Mt,20-Jun-17,1.397,NA,NA,,0.455,NA,USA,
+US100,Bombus,Bombus griseocollis,Female,Patterson RT 22,2-Jul-17,4.0005,NA,NA,,3.086,NA,USA,
+US101,Agapostemon,Agapostemon virescens,Female,Patterson RT 22,2-Jul-17,1.3335,NA,NA,,1.25,NA,USA,
+US102,Halictus,Halictus confusus,Female,Patterson RT 22,2-Jul-17,1.3335,NA,NA,,0.335,NA,USA,
+US103,Bombus,Bombus griseocollis,Female,Mt Ebo,3-Jul-17,5.08,NA,NA,,3.576,NA,USA,
+US104,Bombus,Bombus griseocollis,Female,Mt Ebo,3-Jul-17,3.81,NA,NA,,2.497,NA,USA,
+US105,Anthidium,Anthidium oblongatum,Male,Mt Ebo,3-Jul-17,2.9845,NA,NA,,1.147,NA,USA,
+US106,Anthidium,Anthidium oblongatum,Male,Mt Ebo,3-Jul-17,2.794,NA,NA,,1.969,NA,USA,
+US107,Coelioxys,Coelioxys sp.,Male,Modena Rt 32,5-Jul-17,1.905,NA,NA,,0.953,NA,USA,
+US108,Ceratina,Ceratina strenua,Female,Modena Rt 32,5-Jul-17,0.889,NA,NA,,0.153,NA,USA,
+US109,Megachile,Megachile rotundata,Male,Modena Rt 32,5-Jul-17,2.2225,NA,NA,,1.058,NA,USA,
+US110,Megachile,Megachile rotundata,Male,Modena Rt 32,5-Jul-17,2.286,NA,NA,,1.027,NA,USA,
+US111,Megachile,Megachile campanile,Male,Modena Rt 32,5-Jul-17,2.286,NA,NA,,NA,NA,USA,
+US112,Dufourea,Dufourea novaeangliae,Male,Lake Tonetta,18-Jul-17,1.4605,NA,NA,,0.242,NA,USA,Pickerelweed
+US113,Dufourea,Dufourea novaeangliae,Male,Lake Tonetta,18-Jul-17,1.397,NA,NA,,0.392,NA,USA,Pickerelweed
+US114,Dufourea,Dufourea novaeangliae,Male,Lake Tonetta,18-Jul-17,1.397,NA,NA,,0.362,NA,USA,Pickerelweed
+US115,Megachile,Megachile inimica,Male,Van Cortlandt Park - Gunhill Rd,19-Jul-17,2.9845,NA,NA,,1.88,NA,USA,
+US116,Megachile,Megachile apicalis,Male,Van Cortlandt Park - Gunhill Rd,19-Jul-17,2.032,NA,NA,,0.839,NA,USA,
+US117,Melissodes,Melissodes bimaculata,Female,Van Cortlandt Park - South of Mansion,26-Jul-17,2.8575,NA,NA,,2.022,NA,USA,
+US118,Megachile,Megachile sculpturalis,Male,Van Cortlandt Park - South of Mansion,26-Jul-17,4.7625,NA,NA,,3.854,NA,USA,
+US119,Hylaeus,Hylaeus leptocephalus,Male,De Witt Cinton HS Bronx,26-Jul-17,0.9525,NA,NA,,0.183,NA,USA,
+US120,Ptilothrix,Ptilothrix bombiformis,Male,Van Cortlandt Park - South of Mansion,26-Jul-17,3.429,NA,NA,,2.314,NA,USA,Hibiscus
+US121,Ptilothrix,Ptilothrix bombiformis,Male,Van Cortlandt Park - South of Mansion,26-Jul-17,3.302,NA,NA,,1.944,NA,USA,Hibiscus
+US122,Melissodes,Melissodes bimaculata,Male,Van Cortlandt Park - South of Mansion,26-Jul-17,2.286,NA,NA,,1.661,NA,USA,
+US123,Halictus,Halictus confusus,Female,Van Cortlandt Park - South of Mansion,26-Jul-17,1.2065,NA,NA,,NA,NA,USA,
+US124,Halictus,Halictus ligatus,Female,Van Cortlandt Park - South of Mansion,26-Jul-17,1.524,NA,NA,,0.395,NA,USA,
+US125,Megachile,Megachile texana,Female,Van Cortlandt Park - South of Mansion,26-Jul-17,3.1115,NA,NA,,2.351,NA,USA,
+US126,Augochloropsis,Augochloropsis metallica,Female,Ninham Mt,28-Jul-17,2.0955,NA,NA,,0.662,NA,USA,
+US127,Augochloropsis,Augochloropsis metallica,Female,Ninham Mt,28-Jul-17,2.032,NA,NA,,0.785,NA,USA,
+US128,Lasioglossum,Lasioglossum coriaceum,Female,Ninham Mt,28-Jul-17,2.032,NA,NA,,0.817,NA,USA,
+US129,Lasioglossum,Lasioglossum coriaceum,Female,Ninham Mt,28-Jul-17,1.8415,NA,NA,,0.569,NA,USA,
+US130,Lasioglossum,Lasioglossum quebecensis,Male,Ninham Mt,28-Jul-17,1.27,NA,NA,,0.31,NA,USA,
+US131,Lasioglossum,Lasioglossum quebecensis,Male,Ninham Mt,28-Jul-17,1.397,NA,NA,,0.348,NA,USA,
+US132,Lasioglossum,Lasioglossum quebecensis,Male,Ninham Mt,28-Jul-17,1.2065,NA,NA,,0.432,NA,USA,
+US133,Megachile,Megachile mendica,Male,Ninham Mt,28-Jul-17,2.8575,NA,NA,,1.803,NA,USA,
+US134,Megachile,Megachile rotundata,NA,Van Cortlandt Park - South of Mansion,4-Aug-17,3.175,NA,NA,,1.67,NA,USA,**pinned body of centuncularis (#135)
+US135,Megachile,Megachile centuncularis,Female,Route 22 @ Doansburg Rd.,6-Aug-17,2.4765,NA,NA,,1.095,NA,USA,**pinned body of campanulae (#136)
+US136,Megachile,Megachile campanulae,NA,Route 22 @ Doansburg Rd.,6-Aug-17,2.286,NA,NA,,0.822,NA,USA,**pinned body of rotundata (#134)
+US137,Bombus,Bombus ternarius,Male,Oliverea,28-Aug-17,3.429,NA,NA,,2.12,NA,USA,goldenrod
+US138,Bombus,Bombus ternarius,Male,Oliverea,28-Aug-17,2.413,NA,NA,,1.57,NA,USA,goldenrod
+US139,Bombus,Bombus ternarius,Male,Oliverea,28-Aug-17,3.4925,NA,NA,,2.271,NA,USA,goldenrod
+US140,Megachile,Megachile pugnata,Female,Beekman,4-Sep-17,2.8575,NA,NA,,NA,NA,USA,knapweed
+US141,Andrena,Andrena hirticincta,Female,Pawling - Dutcher Ave,4-Sep-17,2.4765,NA,NA,,0.906,NA,USA,goldenrod
+US142,Andrena,Andrena hirticincta,Female,Pawling - Dutcher Ave,4-Sep-17,2.8575,NA,NA,,1.43,NA,USA,goldenrod
+US143,Xylocopa,Xylocopa virginica,Female,Pawling - Dutcher Ave,4-Sep-17,6.223,NA,NA,,NA,NA,USA,goldenrod
+US144,Agapostemon,Agapostemon sericeus,Female,Van Cortlandt Park - Gunhill Rd,5-Sep-17,2.4765,NA,NA,,0.855,NA,USA,knapweed
+US145,Andrena,Andrena hirticincta,Male,Pawling - Dutcher Ave,4-Sep-17,2.032,NA,NA,,NA,NA,USA,goldenrod
+US146,Agapostemon,Agapostemon virescens,Female,Van Cortlandt Park - Gunhill Rd,5-Sep-17,2.0955,NA,NA,,1.312,NA,USA,knapweed
+US147,Megachile,Megachile apicalis,Female,Van Cortlandt Park - Gunhill Rd,5-Sep-17,2.4765,NA,NA,,0.97,NA,USA,knapweed
+US148,Andrena,Andrena simplex,Male,Home - Brewster,10-Sep-17,1.651,NA,NA,,0.341,NA,USA,goldenrod
+US149,Andrena,Andrena simplex,Male,Home - Brewster,10-Sep-17,1.7145,NA,NA,,0.593,NA,USA,goldenrod
+US150,Andrena,Andrena nubecula,Female,Home - Brewster,10-Sep-17,1.397,NA,NA,,0.394,NA,USA,goldenrod
+US151,Andrena,Andrena nubecula,Female,Home - Brewster,10-Sep-17,1.27,NA,NA,,0.437,NA,USA,goldenrod
+US152,Halictus,Halictus ligatus,Female,Pawling - Dutcher Ave,11-Sep-17,1.778,NA,NA,,NA,NA,USA,goldenrod
+US153,Agapostemon,Agaposemon sericeus,Female,Van Cortlandt Park - South of Mansion,12-Sep-17,2.032,NA,NA,,0.844,NA,USA,
+US154,Augochlora,Augochlora pura,Female,Home - Brewster,10-Sep-17,1.8415,NA,NA,,0.614,NA,USA,goldenrod
+US155,Xylocopa,Xylocopa virginica,Female,Home - Brewster,10-Sep-17,5.207,NA,NA,,5.787,NA,USA,goldenrod
+US156,Xylocopa,Xylocopa virginica,Female,Pawling - Dutcher Ave,11-Sep-17,6.5405,NA,NA,,6.613,NA,USA,goldenrod
+US157,Anthidium,Anthidium manicatum,Male,Greenwich Point Park,15-Sep-17,3.556,NA,NA,,2.339,NA,USA,
+US158,Anthidium,Anthidium manicatum,Female,Greenwich Point Park,15-Sep-17,3.048,NA,NA,,2.559,NA,USA,
+US159,Bombus,Bombus impatiens,Female,Home - Brewster,18-Sep-17,2.794,NA,NA,,2.322,NA,USA,goldenrod
+US160,Bombus,Bombus impatiens,Female,Home - Brewster,18-Sep-17,3.1115,NA,NA,,2.387,NA,USA,goldenrod
+US161,Bombus,Bombus impatiens,Female,Home - Brewster,18-Sep-17,3.683,NA,NA,,2.634,NA,USA,goldenrod
+D53,Andrena,Andrena angustior,Female,Alamillo,27/03/18,1.868,NA,NA,,0.433,NA,Spain,
+D40,Andrena,Andrena angustior,Female,Alamillo,27/03/18,1.755,NA,NA,,0.352,NA,Spain,
+D65,Andrena,Andrena angustior,Female,Carambolo,05/04/18,1.769,NA,NA,,0.434,NA,Spain,
+D101,Andrena,Andrena cinerea,Female,Alamillo,26/04/18,1.909,NA,NA,,0.456,NA,Spain,
+D159,Andrena,Andrena cinerea,Female,Convento de la Luz,22/05/18,1.989,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D26,Andrena,Andrena flavipes,Female,Aznalcazar,22/03/18,2.421,NA,NA,Asphodelus fistulosus,0.588,NA,Spain,
+D94,Andrena,Andrena flavipes,Female,Aznalcazar,10/04/18,2.381,NA,NA,,1.59,NA,Spain,
+D95,Andrena,Andrena flavipes,Female,Aznalcazar,10/04/18,2.622,NA,NA,,1.523,NA,Spain,
+D96,Andrena,Andrena flavipes,Female,Aznalcazar,10/04/18,2.382,NA,NA,,1.303,NA,Spain,
+D56,Andrena,Andrena flavipes,Female,Carambolo,05/04/18,2.392,NA,NA,,0.736,NA,Spain,
+D64,Andrena,Andrena flavipes,Female,Carambolo,05/04/18,2.406,NA,NA,,0.73,NA,Spain,Dead during experiment
+D157,Andrena,Andrena hispania,Female,Urbanizaciones,22/05/18,2.909,NA,NA,Cistus crispus,2.902,NA,Spain,Experiment done the day after
+D25,Andrena,Andrena labialis,Male,Aznalcazar,22/03/18,NA,NA,NA,Asphodelus fistulosus,NA,NA,Spain,Ignored the test
+D13,Andrena,Andrena pilipes,NA,Alamillo,16/03/18,2.809,NA,NA,Colza,0.806,NA,Spain,
+D44,Andrena,Andrena pilipes,Female,Alamillo,27/03/18,2.928,NA,NA,,1.532,NA,Spain,
+D45,Andrena,Andrena pilipes,Female,Alamillo,27/03/18,2.74,NA,NA,,1.22,NA,Spain,
+D80,Andrena,Andrena pilipes,Female,Alamillo,17/04/18,3.033,NA,NA,,2.119,NA,Spain,Experiment done the day after
+D81,Andrena,Andrena pilipes,Female,Alamillo,17/04/18,2.663,NA,NA,,1.47,NA,Spain,Experiment done the day after
+D82,Andrena,Andrena pilipes,Female,Alamillo,17/04/18,2.974,NA,NA,,1.808,NA,Spain,Experiment done the day after
+D186,Andrena,Andrena pilipes,Female,Carambolo,5/6/18,3.198,NA,NA,,1.245,NA,Spain,
+D97,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.9,NA,NA,,0.423,NA,Spain,
+D98,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.914,NA,NA,,0.609,NA,Spain,
+D99,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.71,NA,NA,,0.411,NA,Spain,
+D100,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.995,NA,NA,,0.498,NA,Spain,
+D102,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.85,NA,NA,,0.408,NA,Spain,
+D103,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,2.1,NA,NA,,0.449,NA,Spain,
+D104,Andrena,Andrena rhyssonota,Female,Alamillo,26/04/18,1.932,NA,NA,,NA,NA,Spain,
+D10,Andrena,Andrena sp.,Female,Alamillo,16/03/18,NA,NA,NA,Colza,NA,NA,Spain,
+D8,Andrena,Andrena sp.,Female,Alamillo,16/03/18,NA,NA,NA,Colza,NA,NA,Spain,Refuses to eat
+D11,Andrena,Andrena sp.,Male,Alamillo,16/03/18,NA,NA,NA,Colza,NA,NA,Spain,
+D14,Andrena,Andrena sp.,Female,Alamillo,16/03/18,NA,NA,NA,Colza,NA,NA,Spain,
+D15,Andrena,Andrena sp.,Male,Alamillo,16/03/18,NA,NA,NA,Colza,NA,NA,Spain,
+D41,Andrena,Andrena sp.,Male,Alamillo,27/03/18,2.178,NA,NA,,2.786,NA,Spain,
+D42,Andrena,Andrena (Chrysandrena),Female,Alamillo,27/03/18,1.705,NA,NA,,0.28,NA,Spain,Inactive at the end
+D48,Andrena,Andrena sp.,Female,Alamillo,27/03/18,NA,NA,NA,,NA,NA,Spain,
+D9,Andrena,Andrena sp.,Female,Alamillo,16/03/18,2.333,NA,NA,Colza,NA,NA,Spain,Climb the cues
+D83,Andrena,Andrena sp.,Female,Alamillo,17/04/18,NA,NA,NA,,NA,NA,Spain,Experiment done the day after
+D86,Andrena,Andrena (Chlorandrena),Male,Alamillo,17/04/18,1.306,NA,NA,,0.264,NA,Spain,Experiment done the day after
+D21,Andrena,Andrena sp.,Male,Aznalcazar,22/03/18,1.92,NA,NA,Asphodelus fistulosus,0.387,NA,Spain,
+D27,Andrena,Andrena sp.,Male,Aznalcazar,22/03/18,NA,NA,NA,Asphodelus fistulosus,NA,NA,Spain,
+D66,Andrena,Andrena sp.,Male,Carambolo,05/04/18,1.804,NA,NA,,0.271,NA,Spain,
+D158,Andrena,Andrena sp.,NA,Convento de la Luz,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D62,Anthophora,Anthophora retusa,Female,Carambolo,05/04/18,3.938,NA,NA,,NA,NA,Spain,Dead during experiment
+D63,Anthophora,Anthophora retusa,Female,Carambolo,05/04/18,3.923,NA,NA,,2.096,NA,Spain,Dead during experiment
+D4,Anthophora,Anthopora dispar,Female,Carambolo,12/03/18,3.842,NA,NA,Lavandula sp.,4.532,NA,Spain,Refuses to eat
+D28,Anthophora,Anthopora plumipes,Male,Aznalcazar,22/03/18,3.906,NA,NA,Asphodelus fistulosus,3.828,NA,Spain,Dead during the trials
+D188,Apis,Apis mellifera,Female,Carambolo,7/6/18,NA,NA,NA,,NA,NA,Spain,
+D189,Apis,Apis mellifera,Female,Carambolo,7/6/18,2.932,NA,NA,,2.125,NA,Spain,
+D190,Apis,Apis mellifera,Female,Carambolo,7/6/18,NA,NA,NA,,NA,NA,Spain,
+D191,Apis,Apis mellifera,Female,Carambolo,7/6/18,2.909,NA,NA,,2.131,NA,Spain,
+D192,Apis,Apis mellifera,Female,Carambolo,7/6/18,2.934,NA,NA,,3,NA,Spain,
+D193,Apis,Apis mellifera,Female,Carambolo,7/6/18,2.798,NA,NA,,2.553,NA,Spain,
+D194,Apis,Apis mellifera,Female,Carambolo,7/6/18,NA,NA,NA,,NA,NA,Spain,
+D198,Bombus,Bombus pascuorum,Female,"La font roja, la zafranera",26/6/18,3.492,NA,NA,Hypericum perforatum,1.76,NA,Spain,
+D199,Bombus,Bombus pascuorum,Female,"La font roja, la zafranera",26/6/18,3.658,NA,NA,Hypericum perforatum,2.493,NA,Spain,
+D200,Bombus,Bombus pascuorum,Female,"La font roja, la zafranera",26/6/18,3.197,NA,NA,Hypericum perforatum,1.944,NA,Spain,
+D201,Bombus,Bombus pascuorum,Female,"La font roja, la zafranera",26/6/18,2.981,NA,NA,Hypericum perforatum,1.932,NA,Spain,
+D204,Bombus,Bombus pascuorum,Female,"La font roja, la zafranera",26/6/18,3.378,NA,NA,Hypericum perforatum,2.056,NA,Spain,
+D205,Bombus,Bombus pratorum,Male,Cazorla,27/6/18,2.539,NA,NA,,1.07,NA,Spain,Dead during experiment
+D206,Bombus,Bombus pratorum,Female,Cazorla,27/6/18,3.562,NA,NA,,1.911,NA,Spain,
+D207,Bombus,Bombus pratorum,Male,Cazorla,27/6/18,2.861,NA,NA,,1.3,NA,Spain,
+D208,Bombus,Bombus pratorum,Female,Cazorla,27/6/18,3.475,NA,NA,,1.945,NA,Spain,
+D209,Bombus,Bombus pratorum,Male,Cazorla,27/6/18,3.165,NA,NA,,1.833,NA,Spain,
+D75,Bombus,Bombus terrestris,Female,Alamillo,17/04/18,4.257,NA,NA,,2.99,NA,Spain,
+D76,Bombus,Bombus terrestris,Male,Alamillo,17/04/18,4.385,NA,NA,,2.99,NA,Spain,
+D77,Bombus,Bombus terrestris,Male,Alamillo,17/04/18,4.36,NA,NA,,3.682,NA,Spain,
+D78,Bombus,Bombus terrestris,Female,Alamillo,17/04/18,3.504,NA,NA,,3.323,NA,Spain,
+D79,Bombus,Bombus terrestris,Male,Alamillo,17/04/18,3.803,NA,NA,,2.609,NA,Spain,
+D87,Bombus,Bombus terrestris,Female,Aznalcazar,10/04/18,3.675,NA,NA,,2.401,NA,Spain,
+D88,Bombus,Bombus terrestris,Female,Aznalcazar,10/04/18,4.281,NA,NA,,3.08,NA,Spain,
+D89,Bombus,Bombus terrestris,Male,Aznalcazar,10/04/18,3.892,NA,NA,,2.814,NA,Spain,
+D90,Bombus,Bombus terrestris,Male,Aznalcazar,10/04/18,4.374,NA,NA,,3.214,NA,Spain,
+D91,Bombus,Bombus terrestris,Male,Aznalcazar,10/04/18,4.725,NA,NA,,3.606,NA,Spain,
+D92,Bombus,Bombus terrestris,Male,Aznalcazar,10/04/18,4.178,NA,NA,,3.454,NA,Spain,
+D93,Bombus,Bombus terrestris,Male,Aznalcazar,10/04/18,4.205,NA,NA,,3.245,NA,Spain,
+D6,Bombus,Bombus terrestris,Male,Carambolo,12/03/18,4.296,NA,NA,Lavandula sp.,NA,NA,Spain,
+D35,Bombus,Bombus terrestris,Male,La rocina,26/03/18,4.223,NA,NA,Anchusa calcarea,2.889,NA,Spain,
+D36,Bombus,Bombus terrestris,Male,La rocina,26/03/18,4.22,NA,NA,Anchusa calcarea,2.618,NA,Spain,
+D37,Bombus,Bombus terrestris,Male,La rocina,26/03/18,4.097,NA,NA,Anchusa calcarea,2.43,NA,Spain,
+D38,Bombus,Bombus terrestris,Male,La rocina,26/03/18,4.379,NA,NA,Anchusa calcarea,2.714,NA,Spain,
+D39,Bombus,Bombus terrestris,Male,La rocina,26/03/18,4.149,NA,NA,Anchusa calcarea,2.349,NA,Spain,
+D72,Bombus,Bombus terrestris,Male,La rocina,16/04/18,4.235,NA,NA,,2.571,NA,Spain,Experiment done the day after
+D73,Bombus,Bombus terrestris,Male,La rocina,16/04/18,4.428,NA,NA,,2.231,NA,Spain,Experiment done the day after
+D74,Bombus,Bombus terrestris,Female,La rocina,16/04/18,3.843,NA,NA,,1.741,NA,Spain,Experiment done the day after
+D7,Bombus,Bombus terrestris,Male,Pinares de Hinojos,,4.294,NA,NA,,3.49,NA,Spain,"One person only, exploration "
+D105,Bombus,Bombus terrestris,Female,Niebla,27/04/18,3.519,NA,NA,,2.484,NA,Spain,
+D106,Bombus,Bombus terrestris,Female,Convento de la Luz,27/04/18,3.853,NA,NA,,2.59,NA,Spain,
+D107,Bombus,Bombus terrestris,Female,Convento de la Luz,27/04/18,3.766,NA,NA,,3.425,NA,Spain,
+D108,Bombus,Bombus terrestris,Male,Convento de la Luz,27/04/18,4.336,NA,NA,,3.52,NA,Spain,
+D116,Bombus,Bombus terrestris,Queen,UPO,08/05/18,4.896,NA,NA,Cardo,6.37,NA,Spain,
+D117,Bombus,Bombus terrestris,Female,UPO,08/05/18,4.336,NA,NA,Cardo,3.47,NA,Spain,
+D118,Bombus,Bombus terrestris,Male,UPO,08/05/18,4.45,NA,NA,Cardo,3.542,NA,Spain,
+D119,Bombus,Bombus terrestris,Male,UPO,08/05/18,4.012,NA,NA,Cardo,1.718,NA,Spain,
+D120,Bombus,Bombus terrestris,Male,UPO,08/05/18,3.912,NA,NA,Cardo,3.569,NA,Spain,
+D121,Bombus,Bombus terrestris,Male,UPO,08/05/18,4.232,NA,NA,Cardo,3.988,NA,Spain,
+D122,Bombus,Bombus terrestris,Male,UPO,08/05/18,3.927,NA,NA,Cardo,4.234,NA,Spain,
+D136,Bombus,Bombus terrestris,Female,UPO,,3.84,NA,NA,Compuesta amarilla,3.558,NA,Spain,
+D142,Bombus,Bombus terrestris,NA,Bonares,16/05,4.92,NA,NA,Cistus crispus,3.806,NA,Spain,Experiment done the day after
+D155,Bombus,Bombus terrestris,Male,Urbanizaciones,22/05/18,4.493,NA,NA,Cistus crispus,4.8,NA,Spain,
+D169,Bombus,Bombus terrestris,Female,UPO,28/05/18,4.147,NA,NA,Colza,2.923,NA,Spain,
+D170,Bombus,Bombus terrestris,Female,UPO,28/05/18,4.282,NA,NA,Cardo,3.543,NA,Spain,
+D171,Bombus,Bombus terrestris,Male,UPO,28/05/18,4.563,NA,NA,Cardo,2.789,NA,Spain,
+D172,Bombus,Bombus terrestris,Female,UPO,28/05/18,3.732,NA,NA,Amapola,2.58,NA,Spain,
+D173,Bombus,Bombus terrestris,Male,UPO,28/05/18,4.118,NA,NA,Centaurea,3.434,NA,Spain,
+D174,Bombus,Bombus terrestris,Female,UPO,28/05/18,4.281,NA,NA,Cardo,3.774,NA,Spain,
+D175,Bombus,Bombus terrestris,Female,UPO,28/05/18,4.332,NA,NA,Cardo,1.993,NA,Spain,
+D23,Eucera,Eucera elongatula,Male,Aznalcazar,22/03/18,NA,NA,NA,Asphodelus fistulosus,NA,NA,Spain,We can't do the test because didn't licked any cue
+D24,Eucera,Eucera elongatula,Male,Aznalcazar,22/03/18,NA,NA,NA,Asphodelus fistulosus,NA,NA,Spain,Ignored the test
+D19,Eucera,Eucera notata,Male,Aznalcazar,22/03/18,4.036,NA,NA,Asphodelus fistulosus,1.76,NA,Spain,Dead by heat
+D1,Eucera,Eucera notata,Male,Carambolo,12/03/18,3.031,NA,NA,Lavandula sp.,1.621,NA,Spain,Refuses to eat
+D2,Eucera,Eucera notata,Male,Carambolo,12/03/18,3.039,NA,NA,Lavandula sp.,1.752,NA,Spain,"Refuses to eat, tries to copulate the cue"
+D3,Eucera,Eucera notata,Male,Carambolo,12/03/18,3.24,NA,NA,Lavandula sp.,1.664,NA,Spain,Refuses to eat
+D51,Eucera,Eucera rufa,Female,Alamillo,27/03/18,3.816,NA,NA,,2.139,NA,Spain,
+D84,Eucera,Eucera sp.,Female,Alamillo,17/04/18,3.484,NA,NA,,1.575,NA,Spain,Experiment done the day after
+D85,Eucera,Eucera sp.,Female,Alamillo,17/04/18,3.782,NA,NA,,1.619,NA,Spain,Experiment done the day after
+D161,Flavipanurgus,Flavipanurgus venustus,Male,Urbanizaciones,22/05/18,1.601,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D162,Flavipanurgus,Flavipanurgus venustus,Female,Urbanizaciones,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,
+D195,Flavipanurgus,Flavipanurgus venustus,Female,Urbanizaciones,12/6/18,1.779,NA,NA,,0.46,NA,Spain,
+D196,Flavipanurgus,Flavipanurgus venustus,Female,Urbanizaciones,12/6/18,1.766,NA,NA,,0.353,NA,Spain,
+D197,Flavipanurgus,Flavipanurgus venustus,Male,Urbanizaciones,12/6/18,1.696,NA,NA,,0.414,NA,Spain,
+D30,Lasioglossum,Lasioglossum immunitum,Female,La rocina,26/03/18,2.159,NA,NA,Halimium commutatum,0.349,NA,Spain,
+D31,Lasioglossum,Lasioglossum immunitum,Female,La rocina,26/03/18,1.889,NA,NA,Halimium commutatum,0.456,NA,Spain,
+D32,Lasioglossum,Lasioglossum immunitum,Female,La rocina,26/03/18,1.748,NA,NA,Halimium commutatum,0.425,NA,Spain,
+D33,Lasioglossum,Lasioglossum immunitum,Female,La rocina,26/03/18,2,NA,NA,Halimium commutatum,0.705,NA,Spain,
+D34,Lasioglossum,Lasioglossum immunitum,Female,La rocina,26/03/18,2.099,NA,NA,Halimium commutatum,0.376,NA,Spain,Agressive
+D67,Lasioglossum,Lasioglossum immunitum,Female,La rocina,16/04/18,1.596,NA,NA,,0.384,NA,Spain,
+D68,Lasioglossum,Lasioglossum immunitum,Female,La rocina,16/04/18,NA,NA,NA,,NA,NA,Spain,
+D69,Lasioglossum,Lasioglossum immunitum,Female,La rocina,16/04/18,1.742,NA,NA,,0.554,NA,Spain,
+D70,Lasioglossum,Lasioglossum immunitum,Female,La rocina,16/04/18,1.939,NA,NA,,0.694,NA,Spain,
+D71,Lasioglossum,Lasioglossum immunitum,Female,La rocina,16/04/18,1.957,NA,NA,,NA,NA,Spain,
+D109,Lasioglossum,Lasioglossum immunitum,Female,Niebla,27/04/18,1.69,NA,NA,,0.35,NA,Spain,
+D110,Lasioglossum,Lasioglossum immunitum,Female,Niebla,27/04/18,1.693,NA,NA,,0.609,NA,Spain,
+D112,Lasioglossum,Lasioglossum immunitum,Female,Niebla,27/04/18,1.778,NA,NA,,0.409,NA,Spain,
+D149,Lasioglossum,Lasioglossum immunitum,Female,Bonares,16/05,1.743,NA,NA,,0.588,NA,Spain,Experiment done the day after
+D150,Lasioglossum,Lasioglossum immunitum,Female,Bonares,16/05,1.755,NA,NA,,0.505,NA,Spain,Experiment done the day after
+D151,Lasioglossum,Lasioglossum immunitum,Female,Bonares,16/05,1.827,NA,NA,,0.593,NA,Spain,Experiment done the day after
+D176,Lasioglossum,Lasioglossum immunitum,Female,UPO,4/6/18,1.393,NA,NA,,NA,NA,Spain,
+D178,Lasioglossum,Lasioglossum immunitum,Female,UPO,4/6/18,1.359,NA,NA,,0.229,NA,Spain,
+D43,Lasioglossum,Lasioglossum malachurum,Female,Alamillo,27/03/18,1.718,NA,NA,,NA,NA,Spain,
+D47,Lasioglossum,Lasioglossum malachurum,Female,Alamillo,27/03/18,1.641,NA,NA,,0.43,NA,Spain,
+D124,Lasioglossum,Lasioglossum malachurum,Female,UPO,08/05/18,1.492,NA,NA,,0.334,NA,Spain,
+D132,Lasioglossum,Lasioglossum malachurum,Female,Carambolo,11/05/18,1.309,NA,NA,,0.419,NA,Spain,
+D133,Lasioglossum,Lasioglossum malachurum,Female,UPO,,NA,NA,NA,Compuesta amarilla,NA,NA,Spain,
+D134,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.344,NA,NA,Compuesta amarilla,0.392,NA,Spain,
+D135,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.374,NA,NA,Compuesta amarilla,0.399,NA,Spain,
+D137,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.3,NA,NA,Compuesta amarilla,0.468,NA,Spain,
+D138,Lasioglossum,Lasioglossum malachurum,Female,UPO,,NA,NA,NA,Compuesta amarilla,0.318,NA,Spain,
+D139,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.325,NA,NA,Compuesta amarilla,0.605,NA,Spain,
+D140,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.607,NA,NA,Cardo,0.534,NA,Spain,
+D141,Lasioglossum,Lasioglossum malachurum,Female,UPO,,1.52,NA,NA,Cardo,0.242,NA,Spain,
+D163,Lasioglossum,Lasioglossum sp.,NA,Convento de la Luz,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D164,Lasioglossum,Lasioglossum sp.,NA,Convento de la Luz,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D165,Lasioglossum,Lasioglossum sp.,NA,Convento de la Luz,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D166,Lasioglossum,Lasioglossum sp.,Male,Convento de la Luz,22/05/18,NA,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D123,Megachile,Megachile willughbiella,Female,Parque Maria Luisa,07/05/18,3.694,NA,NA,,1.966,NA,Spain,
+D49,NA,NA,NA,Alamillo,27/03/18,1.624,NA,NA,,0.365,NA,Spain,
+D177,Megachile??,NA,Female,UPO,4/6/18,2.029,NA,NA,Centaurea,NA,NA,Spain,
+D5,Nomada,Nomada agrestis,Female,Carambolo,12/03/18,2.705,NA,NA,Lavandula sp.,2.141,NA,Spain,
+D58,Osmia,Osmia caerulescens,Female,Carambolo,05/04/18,2.61,NA,NA,,1.213,NA,Spain,
+D59,Osmia,Osmia caerulescens,Male,Carambolo,05/04/18,2.049,NA,NA,,0.969,NA,Spain,
+D57,Osmia,Osmia latreillei,Male,Carambolo,05/04/18,2.052,NA,NA,,NA,NA,Spain,
+D111,Osmia,Osmia latreillei,Female,Niebla,27/04/18,3.269,NA,NA,,1.528,NA,Spain,
+D113,Osmia,Osmia latreillei,Female,Niebla,27/04/18,3.052,NA,NA,,1.494,NA,Spain,Aggresive
+D114,Osmia,Osmia latreillei,Female,Niebla,27/04/18,2.925,NA,NA,,1.231,NA,Spain,
+D156,Osmia,Osmia latreillei,Female,Niebla,22/05/18,3.064,NA,NA,Cardo,1.533,NA,Spain,
+D160,Panurgus,Panurgus dargius,Male,Convento de la Luz,22/05/18,1.927,NA,NA,Cistus crispus,0.494,NA,Spain,Experiment done the day after
+D187,Panurgus,Panurgus sp.,Female,Carambolo,5/6/18,2.311,NA,NA,,NA,NA,Spain,
+D203,Psithyrus,Psithyrus vestalis,Male,"La font roja, la zafranera",26/6/18,3.57,NA,NA,Hypericum perforatum,2.341,NA,Spain,
+D115,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,08/05/18,3.623,NA,NA,,2.14,NA,Spain,
+D125,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,11/05/18,3.382,NA,NA,,2.716,NA,Spain,
+D126,Rhodanthidium,Rhodanthidium sticticum,Female,Carambolo,11/05/18,3.411,NA,NA,,2.491,NA,Spain,
+D127,Rhodanthidium,Rhodanthidium sticticum,Female,Carambolo,11/05/18,3.476,NA,NA,,2.03,NA,Spain,
+D128,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,11/05/18,3.728,NA,NA,,3.094,NA,Spain,
+D129,Rhodanthidium,Rhodanthidium sticticum,Female,Carambolo,11/05/18,3.319,NA,NA,,2.295,NA,Spain,
+D130,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,11/05/18,3.251,NA,NA,,2.519,NA,Spain,
+D131,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,11/05/18,3.047,NA,NA,,1.804,NA,Spain,
+D143,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,16/05,3.68,NA,NA,Cistus crispus,2.707,NA,Spain,Experiment done the day after
+D144,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,16/05,3.63,NA,NA,Cistus crispus,2.966,NA,Spain,Experiment done the day after
+D145,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,16/05,3.6,NA,NA,Cistus crispus,2.582,NA,Spain,Experiment done the day after
+D146,Rhodanthidium,Rhodanthidium sticticum,Female,Niebla,16/05,3.9,NA,NA,Cistus crispus,2.842,NA,Spain,Experiment done the day after
+D147,Rhodanthidium,Rhodanthidium sticticum,Female,Niebla,16/05,3.79,NA,NA,Cistus crispus,NA,NA,Spain,Experiment done the day after
+D148,Rhodanthidium,Rhodanthidium sticticum,Female,Niebla,16/05,3.9,NA,NA,Cistus crispus,2.451,NA,Spain,Experiment done the day after
+D152,Rhodanthidium,Rhodanthidium sticticum,Female,Niebla,22/05/18,3.3,NA,NA,Cistus crispus,2.839,NA,Spain,
+D153,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,22/05/18,3.7,NA,NA,Cistus crispus,2.401,NA,Spain,
+D154,Rhodanthidium,Rhodanthidium sticticum,Male,Niebla,22/05/18,3.9,NA,NA,Cistus crispus,3.035,NA,Spain,
+D167,Rhodanthidium,Rhodanthidium sticticum,Female,UPO,28/05/18,3.607,NA,NA,,1.509,NA,Spain,
+D168,Rhodanthidium,Rhodanthidium sticticum,Male,UPO,28/05/18,3.85,NA,NA,,NA,NA,Spain,
+D179,Rhodanthidium,Rhodanthidium sticticum,Female,UPO,4/6/18,3.309,NA,NA,,2.246,NA,Spain,
+D180,Rhodanthidium,Rhodanthidium sticticum,Male,UPO,4/6/18,3.606,NA,NA,,2.53,NA,Spain,
+D181,Rhodanthidium,Rhodanthidium sticticum,Female,UPO,4/6/18,3.342,NA,NA,,1.804,NA,Spain,
+D182,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,5/6/18,3.314,NA,NA,,2.752,NA,Spain,
+D183,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,5/6/18,3.596,NA,NA,,2.837,NA,Spain,
+D184,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,5/6/18,3.415,NA,NA,,2.647,NA,Spain,
+D185,Rhodanthidium,Rhodanthidium sticticum,Male,Carambolo,5/6/18,3.38,NA,NA,,NA,NA,Spain,
+D50,Xylocopa,Xylocopa cantabrita,Female,Alamillo,27/03/18,3.87,NA,NA,,NA,NA,Spain,Dead during the test
+D16,Xylocopa,Xylocopa cantabrita,Male,Aznalcazar,22/03/18,5.226,NA,NA,Asphodelus fistulosus,2.92,NA,Spain,Dead by heat
+D17,Xylocopa,Xylocopa cantabrita,Male,Aznalcazar,22/03/18,5.108,NA,NA,Asphodelus fistulosus,4.13,NA,Spain,Dead by heat
+D18,Xylocopa,Xylocopa cantabrita,Male,Aznalcazar,22/03/18,4.821,NA,NA,Asphodelus fistulosus,3.026,NA,Spain,Dead by heat
+D20,Xylocopa,Xylocopa cantabrita,Male,Aznalcazar,22/03/18,5.03,NA,NA,Asphodelus fistulosus,NA,NA,Spain,
+D22,Xylocopa,Xylocopa cantabrita,Male,Aznalcazar,22/03/18,4.99,NA,NA,Asphodelus fistulosus,3.655,NA,Spain,Discarded
+D54,Xylocopa,Xylocopa violacea,Male,Carambolo,05/04/18,5.659,NA,NA,,5.839,NA,Spain,
+D55,Xylocopa,Xylocopa violacea,Male,Carambolo,05/04/18,5.28,NA,NA,,5.524,NA,Spain,
+D60,Xylocopa,Xylocopa violacea,Female,Carambolo,05/04/18,5.269,NA,NA,,9.395,NA,Spain,Chewing
+D61,Xylocopa,Xylocopa violacea,Female,Carambolo,05/04/18,6.063,NA,NA,,7.677,NA,Spain,Focused on chewing the blue
+100,Agapostemon,Agapostemon sericeus,Male,USA,,2.41,NA,NA,,NA,NA,USA,
+202,Andrena,Andrena carlini,Female,USA,,4.1,NA,NA,,1.6,NA,USA,
+201,Andrena,Andrena dunningi,Female,USA,,2.36,NA,NA,,0.6,NA,USA,
+203,Andrena,Andrena miserabilis,Female,USA,,2.84,NA,NA,,0.6,NA,USA,
+24,Andrena,Andrena nubecula,Female,USA,,2.46,NA,NA,,NA,NA,USA,
+204,Andrena,Andrena simplex,Female,USA,,3.65,NA,NA,,0.9,NA,USA,
+205,Andrena,Andrena simplex,Female,USA,,3.21,NA,NA,,0.4,NA,USA,
+206,Andrena,Andrena simplex,Female,USA,,3.53,NA,NA,,0.7,NA,USA,
+22,Anthidium,Anthidium manicatum,Male,USA,,5.38,NA,NA,,2.8,NA,USA,
+29,Anthidium,Anthidium manicatum,Male,USA,,5.31,NA,NA,,2.7,NA,USA,
+35,Anthidium,Anthidium manicatum,Male,USA,,5.23,NA,NA,,3.3,NA,USA,
+36,Anthidium,Anthidium manicatum,Male,USA,,4.77,NA,NA,,NA,NA,USA,
+23,Anthidium,Anthidium oblongatum,Male,USA,,4.15,NA,NA,,NA,NA,USA,
+26,Anthidium,Anthidium oblongatum,Male,USA,,3.85,NA,NA,,2.3,NA,USA,
+37,Anthidium,Anthidium oblongatum,Female,USA,,3.85,NA,NA,,NA,NA,USA,
+38,Anthidium,Anthidium oblongatum,Male,USA,,4.46,NA,NA,,NA,NA,USA,
+39,Anthidium,Anthidium oblongatum,Male,USA,,3.85,NA,NA,,NA,NA,USA,
+41,Anthidium,Anthidium oblongatum,Female,USA,,4.23,NA,NA,,NA,NA,USA,
+42,Anthidium,Anthidium oblongatum,Female,USA,,3.92,NA,NA,,NA,NA,USA,
+47,Anthidium,Anthidium oblongatum,Male,USA,,3.92,NA,NA,,NA,NA,USA,
+48,Anthidium,Anthidium oblongatum,Male,USA,,3.92,NA,NA,,NA,NA,USA,
+53,Anthidium,Anthidium oblongatum,Female,USA,,3.75,NA,NA,,1.8,NA,USA,
+65,Anthidium,Anthidium oblongatum,Male,USA,,3.94,NA,NA,,NA,NA,USA,
+25,Apis,Apis mellifera,Female,USA,,4.31,NA,NA,,1.9,NA,USA,
+63,Apis,Apis mellifera,Female,USA,,4.55,NA,NA,,NA,NA,USA,
+64,Apis,Apis mellifera,Female,USA,,4.25,NA,NA,,NA,NA,USA,
+71,Apis,Apis mellifera,Female,USA,,4.18,NA,NA,,NA,NA,USA,
+75,Apis,Apis mellifera,Female,USA,,4.18,NA,NA,,NA,NA,USA,
+81,Apis,Apis mellifera,Female,USA,,4.25,NA,NA,,NA,NA,USA,
+50,Augochlora,Augochlora pura,Male,USA,,2.63,NA,NA,,NA,NA,USA,
+95,Augochlora,Augochlora pura,Female,USA,,2.47,NA,NA,,NA,NA,USA,
+102,Augochlora,Augochlora pura,Female,USA,,2.47,NA,NA,,NA,NA,USA,
+138,Augochlora,Augochlora pura,Female,USA,,1.98,NA,NA,,NA,NA,USA,
+207,Augochlora,Augochlora pura,Female,USA,,3.15,NA,NA,,0.5,NA,USA,
+120,Bombus,Bombus fervidus,Female,USA,,4.2,NA,NA,,NA,NA,USA,
+10,Bombus,Bombus impatiens,Female,USA,,4.46,NA,NA,,NA,NA,USA,
+11,Bombus,Bombus impatiens,Female,USA,,4,NA,NA,,2.7,NA,USA,
+12,Bombus,Bombus impatiens,Female,USA,,4.85,NA,NA,,3,NA,USA,
+13,Bombus,Bombus impatiens,Female,USA,,4.62,NA,NA,,2.7,NA,USA,
+14,Bombus,Bombus impatiens,Female,USA,,3.92,NA,NA,,2.4,NA,USA,
+16,Bombus,Bombus impatiens,Female,USA,,4.23,NA,NA,,NA,NA,USA,
+21,Bombus,Bombus impatiens,Female,USA,,4.69,NA,NA,,3.2,NA,USA,
+34,Bombus,Bombus impatiens,Female,USA,,6,NA,NA,,NA,NA,USA,
+40,Bombus,Bombus impatiens,Female,USA,,5.46,NA,NA,,NA,NA,USA,
+45,Bombus,Bombus impatiens,Female,USA,,4.77,NA,NA,,NA,NA,USA,
+46,Bombus,Bombus impatiens,Female,USA,,5.46,NA,NA,,NA,NA,USA,
+68,Bombus,Bombus impatiens,Female,USA,,4.31,NA,NA,,NA,NA,USA,
+80,Bombus,Bombus impatiens,Female,USA,,4.55,NA,NA,,NA,NA,USA,
+84,Bombus,Bombus impatiens,Female,USA,,3.82,NA,NA,,NA,NA,USA,
+86,Bombus,Bombus impatiens,Female,USA,,4.49,NA,NA,,NA,NA,USA,
+126,Bombus,Bombus impatiens,Female,USA,,4.51,NA,NA,,NA,NA,USA,
+127,Bombus,Bombus impatiens,Female,USA,,4.44,NA,NA,,NA,NA,USA,
+128,Bombus,Bombus impatiens,Female,USA,,5.31,NA,NA,,NA,NA,USA,
+147,Bombus,Bombus impatiens,Female,USA,,4.55,NA,NA,,NA,NA,USA,
+155,Bombus,Bombus impatiens,Female,USA,,4.44,NA,NA,,NA,NA,USA,
+232,Bombus,Bombus impatiens,Female,USA,,5.61,NA,NA,,2,NA,USA,
+148,Bombus,Bombus vagans,Female,USA,,4.68,NA,NA,,NA,NA,USA,
+151,Bombus,Bombus vagans,Female,USA,,6.52,NA,NA,,NA,NA,USA,
+165,Bombus,Bombus vagans,Female,USA,,4.75,NA,NA,,NA,NA,USA,
+33,Ceratina,Ceratina calcarata,Female,USA,,2.08,NA,NA,,0.46,NA,USA,
+49,Ceratina,Ceratina calcarata,Female,USA,,2.79,NA,NA,,NA,NA,USA,
+51,Ceratina,Ceratina calcarata,Male,USA,,2.89,NA,NA,,NA,NA,USA,
+116,Ceratina,Ceratina calcarata,Male,USA,,1.91,NA,NA,,NA,NA,USA,
+134,Ceratina,Ceratina calcarata,Female,USA,,1.83,NA,NA,,0.43,NA,USA,
+136,Ceratina,Ceratina calcarata,Female,USA,,1.98,NA,NA,,NA,NA,USA,
+158,Ceratina,Ceratina calcarata,Female,USA,,1.88,NA,NA,,NA,NA,USA,
+208,Ceratina,Ceratina calcarata,Male,USA,,2.39,NA,NA,,0.4,NA,USA,
+106,Colletes,Colletes simulans,Female,USA,,3.58,NA,NA,,NA,NA,USA,
+109,Colletes,Colletes simulans,Female,USA,,3.89,NA,NA,,NA,NA,USA,
+113,Colletes,Colletes simulans,Female,USA,,3.7,NA,NA,,NA,NA,USA,
+145,Colletes,Colletes simulans,Male,USA,,3.32,NA,NA,,NA,NA,USA,
+159,Colletes,Colletes compactus,Female,USA,,3.94,NA,NA,,NA,NA,USA,
+73,Epeolus,Epeolus scutellaris,Male,USA,,2.58,NA,NA,,NA,NA,USA,
+79,Epeolus,Epeolus scutellaris,Male,USA,,2.83,NA,NA,,NA,NA,USA,
+60,Halictus,Halictus confusus,Male,USA,,2.74,NA,NA,,NA,NA,USA,
+210,Halictus,Halictus confusus,Female,USA,,2.39,NA,NA,,0.56,NA,USA,
+97,Halictus,Halictus ligatus,Male,USA,,2.59,NA,NA,,NA,NA,USA,
+118,Halictus,Halictus ligatus,Male,USA,,2.59,NA,NA,,NA,NA,USA,
+124,Halictus,Halictus ligatus,Male,USA,,2.16,NA,NA,,NA,NA,USA,
+125,Halictus,Halictus ligatus,Male,USA,,2.1,NA,NA,,NA,NA,USA,
+139,Halictus,Halictus ligatus,Male,USA,,2.28,NA,NA,,0.67,NA,USA,
+140,Halictus,Halictus ligatus,Male,USA,,2.52,NA,NA,,0.73,NA,USA,
+141,Halictus,Halictus ligatus,Male,USA,,1.88,NA,NA,,0.63,NA,USA,
+142,Halictus,Halictus ligatus,Male,USA,,2.23,NA,NA,,0.72,NA,USA,
+216,Halictus,Halictus ligatus,Female,USA,,3.21,NA,NA,,0.72,NA,USA,
+217,Halictus,Halictus ligatus,Female,USA,,3.34,NA,NA,,0.7,NA,USA,
+219,Hylaeus,Hylaeus mesillae,Female,USA,,1.76,NA,NA,,0.34,NA,USA,
+220,Hylaeus,Hylaeus modestus,Female,USA,,2.08,NA,NA,,0.31,NA,USA,
+99,Hylaeus,Hylaeus modestus,Female,USA,,0.99,NA,NA,,NA,NA,USA,
+101,Hylaeus,Hylaeus modestus,Female,USA,,1.48,NA,NA,,NA,NA,USA,
+144,Lasioglossum,Lasioglossum coriaceum,Male,USA,,2.52,NA,NA,,NA,NA,USA,
+32,Lasioglossum,Lasioglossum cressonii,Female,USA,,2,NA,NA,,NA,NA,USA,
+223,Lasioglossum,Lasioglossum dialictus spp,Female,USA,,1.89,NA,NA,,0.31,NA,USA,
+43,Lasioglossum,Lasioglossum imitatum,Female,USA,,1.74,NA,NA,,NA,NA,USA,
+55,Lasioglossum,Lasioglossum imitatum,Female,USA,,1.79,NA,NA,,NA,NA,USA,
+137,Lasioglossum,Lasioglossum imitatum,Female,USA,,1.09,NA,NA,,NA,NA,USA,
+157,Lasioglossum,Lasioglossum imitatum,Male,USA,,1.34,NA,NA,,NA,NA,USA,
+161,Lasioglossum,Lasioglossum imitatum,Male,USA,,1.19,NA,NA,,NA,NA,USA,
+163,Lasioglossum,Lasioglossum imitatum,Female,USA,,1.29,NA,NA,,NA,NA,USA,
+44,Lasioglossum,Lasioglossum sp,Male,USA,,1.74,NA,NA,,NA,NA,USA,
+58,Lasioglossum,Lasioglossum sp,Male,USA,,2.42,NA,NA,,NA,NA,USA,
+62,Lasioglossum,Lasioglossum sp,Male,USA,,2.63,NA,NA,,NA,NA,USA,
+66,Lasioglossum,Lasioglossum sp,Male,USA,,2.21,NA,NA,,NA,NA,USA,
+93,Lasioglossum,Lasioglossum sp,Male,USA,,1.79,NA,NA,,NA,NA,USA,
+123,Lasioglossum,Lasioglossum sp,Male,USA,,1.79,NA,NA,,NA,NA,USA,
+160,Lasioglossum,Lasioglossum sp,Male,USA,,1.29,NA,NA,,NA,NA,USA,
+162,Lasioglossum,Lasioglossum sp,Male,USA,,1.49,NA,NA,,NA,NA,USA,
+89,Megachile,Megachile centuncularis,Female,USA,,3.69,NA,NA,,NA,NA,USA,
+115,Megachile,Megachile latimanus,Female,USA,,5,NA,NA,,NA,NA,USA,
+114,Megachile,Megachile mendica,Female,USA,,4.01,NA,NA,,NA,NA,USA,
+69,Megachile,Megachile mucida,Female,USA,,4.43,NA,NA,,NA,NA,USA,
+224,Megachile,Megachile pugnata,Female,USA,,6.43,NA,NA,,3,NA,USA,
+98,Megachile,Megachile relativa,Female,USA,,3.64,NA,NA,,NA,NA,USA,
+104,Megachile,Megachile relativa,Female,USA,,3.64,NA,NA,,NA,NA,USA,
+107,Megachile,Megachile relativa,Female,USA,,3.69,NA,NA,,NA,NA,USA,
+225,Megachile,Megachile rotundata,Female,USA,,4.1,NA,NA,,2,NA,USA,
+52,Megachile,Megachile rotundata,Female,USA,,4.05,NA,NA,,1.2,NA,USA,
+72,Megachile,Megachile rotundata,Male,USA,,2.71,NA,NA,,NA,NA,USA,
+77,Megachile,Megachile rotundata,Male,USA,,3.79,NA,NA,,NA,NA,USA,
+59,Melissodes,Melissodes agilis,Male,USA,,4.37,NA,NA,,NA,NA,USA,
+132,Melissodes,Melissodes bimaculata,Female,USA,,3.7,NA,NA,,NA,NA,USA,
+133,Melissodes,Melissodes bimaculata,Female,USA,,3.52,NA,NA,,NA,NA,USA,
+112,Melissodes,Melissodes disponsa,Female,USA,,3.4,NA,NA,,NA,NA,USA,
+131,Melissodes,Melissodes disponsa,Female,USA,,3.89,NA,NA,,NA,NA,USA,
+226,Nomada,Nomada cressonii,Female,USA,,3.34,NA,NA,,1.76,NA,USA,
+227,Nomada,Nomada luteoloides,Female,USA,,3.53,NA,NA,,1.7,NA,USA,
+27,Xylocopa,Xylocopa virginica,Female,USA,,7.65,NA,NA,,5.1,NA,USA,
+61,Xylocopa,Xylocopa virginica,Female,USA,,7.16,NA,NA,,4.8,NA,USA,
+67,Xylocopa,Xylocopa virginica,Female,USA,,7.53,NA,NA,,5.2,NA,USA,
+74,Xylocopa,Xylocopa virginica,Female,USA,,7.78,NA,NA,,5.6,NA,USA,
+82,Xylocopa,Xylocopa virginica,Female,USA,,7.9,NA,NA,,5.3,NA,USA,
+83,Xylocopa,Xylocopa virginica,Male,USA,,8.4,NA,NA,,5.5,NA,USA,
+87,Xylocopa,Xylocopa virginica,Male,USA,,8.52,NA,NA,,5.6,NA,USA,
+117,Xylocopa,Xylocopa virginica,Male,USA,,8.15,NA,NA,,NA,NA,USA,
+122,Xylocopa,Xylocopa virginica,Female,USA,,7.41,NA,NA,,NA,NA,USA,
+135,Xylocopa,Xylocopa virginica,Female,USA,,7.65,NA,NA,,NA,NA,USA,

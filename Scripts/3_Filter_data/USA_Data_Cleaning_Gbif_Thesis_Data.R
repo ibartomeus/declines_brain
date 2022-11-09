@@ -114,51 +114,51 @@ colnames(all_above_50)
 #############-
 #Wide geograhical distribution
 #Load libraries
-library(ggplot2) #plotting v.3.3.5
-library(dplyr) #data cleaning v.1.0.7
-library(geosphere) #Calculate area within polygon
-library(sf)
-library(tidyverse)
-library(units)
-library(patchwork)
-library(spData) #to loas us_states data
-
-#Read data
-all_east_coast <- data.frame(fread("Data/Usa_data/usa_all_long_lat.csv.gz"))
-#Fix colname position
-names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:ncol(all_east_coast)]
-all_east_coast[, ncol(all_east_coast)] <- NULL
-usa_states_1 <- read.csv("Data/Usa_data/usa_states.csv")
-ny_metropolitan_1 <- read.csv("Data/Usa_data/ny_metropolitan.csv")
-
-#Create for loop and store all plots on a folder
-spp <- unique(all_above_50$species)
-
-world <- map_data("world")
-
-colnames(world)
-
-for(i in spp){
-
-#Now create for loop for the different species 
-temp_plot <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
-fill = "lightgray", size = 0.1) +geom_map(data = usa_states_1, map = usa_states_1,
-aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
-size = 0.1) + geom_map(data = ny_metropolitan_1, 
-map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
-size = 0.1) +  scale_fill_manual(values =c("#85BEDC", "#DEB478", "#CCB62F", "#115896",
-"#A1B654", "#CD8862", "#CABEE9","#D04E59","#C582B2"))+guides(fill=FALSE) +
-theme(panel.grid.major = element_line(color = gray(0.5), 
-linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longitude")+
-geom_point(data = all_above_50 %>% filter(species==i),aes(long, lat),
-size = 1, stroke = 0, shape = 16)+ggtitle(i)
-
-ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
-
-}
-
+#library(ggplot2) #plotting v.3.3.5
+#library(dplyr) #data cleaning v.1.0.7
+#library(geosphere) #Calculate area within polygon
+#library(sf)
+#library(tidyverse)
+#library(units)
+#library(patchwork)
+#library(spData) #to loas us_states data
+#
+##Read data
+#all_east_coast <- data.frame(fread("Data/Usa_data/usa_all_long_lat.csv.gz"))
+##Fix colname position
+#names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:ncol(all_east_coast)]
+#all_east_coast[, ncol(all_east_coast)] <- NULL
+#usa_states_1 <- read.csv("Data/Usa_data/usa_states.csv")
+#ny_metropolitan_1 <- read.csv("Data/Usa_data/ny_metropolitan.csv")
+#
+##Create for loop and store all plots on a folder
+#spp <- unique(all_above_50$species)
+#
+#world <- map_data("world")
+#
+#colnames(world)
+#
+#for(i in spp){
+#
+##Now create for loop for the different species 
+#temp_plot <- ggplot() + geom_map(data = world, map = world,aes(long, lat, map_id = region), color = "white", 
+#fill = "lightgray", size = 0.1) +geom_map(data = usa_states_1, map = usa_states_1,
+#aes(long, lat, map_id = region, fill=region, group = group), color = "white", 
+#size = 0.1) + geom_map(data = ny_metropolitan_1, 
+#map = ny_metropolitan_1,aes(long, lat, map_id = region, fill=region, group = group), 
+#size = 0.1) +  scale_fill_manual(values =c("#85BEDC", "#DEB478", "#CCB62F", "#115896",
+#"#A1B654", "#CD8862", "#CABEE9","#D04E59","#C582B2"))+guides(fill=FALSE) +
+#theme(panel.grid.major = element_line(color = gray(0.5), 
+#linetype = "dashed", size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+#panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#coord_sf(xlim = c(-80, -69), ylim = c(38, 45.5)) + ylab("Latitude")+xlab("Longitude")+
+#geom_point(data = all_above_50 %>% filter(species==i),aes(long, lat),
+#size = 1, stroke = 0, shape = 16)+ggtitle(i)
+#
+#ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/usa/plot_", i,".png"), width = 14, height = 10, units = "cm")
+#
+#}
+#
 #All species have approximately an homogeneous distribution
 
 #############-

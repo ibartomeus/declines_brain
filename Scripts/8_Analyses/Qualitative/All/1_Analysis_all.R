@@ -31,7 +31,7 @@ d = left_join(preferences, brain_weight) %>%
     mutate(Species = str_replace_all(Species, " ", "_"))
 
 #Convert to long to model everything at the same time
-long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
+long_data = d %>% gather(Habitat, Preference, 2:4, -c(Species))
 
 #Prepare col brain weight/IT
 long_data = long_data %>% 
@@ -41,7 +41,7 @@ long_data = long_data %>%
 model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), 
              data = long_data, data2 = list(A = A10), family=bernoulli())
 
-ce1 <- conditional_effects(model1, effects = "residuals:Habitat",points=T) 
+ce1 <- conditional_effects(model1, effects = "residuals:Habitat", points=T) 
 
 bayes_R2(model1)
 
@@ -51,7 +51,7 @@ p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     theme_bw() +
     ylab("Habitat preference") +
     xlab("Residuals") + 
-    ggtitle("USA and Europe") + facet_wrap(~Habitat)
+    ggtitle("USA and Europe") + facet_wrap(~Habitat) 
 
 #Save data and model1 output
 write_csv(long_data , "Data/Europe_USA/data_preference_residuals_europe_usa_qualitative.csv")

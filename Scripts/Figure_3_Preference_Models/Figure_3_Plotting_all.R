@@ -21,20 +21,16 @@ model3 = read_csv("Data/Europe_USA/model_output_preference_it_europe_usa_qualita
 
 #Relevel for plotting
 long_data = long_data %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model1 = model1 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model2 = model2 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model3 = model3 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
 #colorBlindness::displayAllColors(viridis::viridis(4))
 
@@ -96,20 +92,16 @@ model3 = read_csv("Data/Europe_data/model_output_preference_it_europe_qualitativ
 
 #Relevel for plotting
 long_data = long_data %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model1 = model1 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model2 = model2 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model3 = model3 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
 #colorBlindness::displayAllColors(viridis::viridis(4))
 
@@ -180,20 +172,16 @@ model3 = read_csv("Data/USA_data/model_output_preference_it_usa_qualitative.csv"
 
 #Relevel for plotting
 long_data = long_data %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model1 = model1 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model2 = model2 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 #Relevel for plotting
 model3 = model3 %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semi-developed")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semi-developed", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
 #colorBlindness::displayAllColors(viridis::viridis(4))
 
@@ -223,8 +211,6 @@ scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
 legend.box.background = element_rect(colour = "black",size=1))
-
-
 
 
 usa_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +

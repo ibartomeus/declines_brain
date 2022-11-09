@@ -91,8 +91,8 @@ double_eu = preferences_eu %>%
 filter(Species %in% f)
 
 #Convert wide format to long for plotting heatmap
-long_usa = gather(double_usa, condition, measurement_usa, Agricultural:Seminatural, factor_key=TRUE)
-long_eu = gather(double_eu, condition, measurement_eu, Natural:Seminatural, factor_key=TRUE)
+long_usa = gather(double_usa, condition, measurement_usa, Agricultural:Urban, factor_key=TRUE)
+long_eu = gather(double_eu, condition, measurement_eu, Natural:Urban, factor_key=TRUE)
 
 double_all = left_join(long_usa, long_eu, by=c("Species", "condition"))
 

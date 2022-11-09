@@ -85,7 +85,7 @@ eu_species=all_unique_event_3_decimals %>%
 
 #Select above species with above 50 records
 all_above_50 <- eu_species %>% 
-    group_by(species) %>% filter(n() >= 100) %>% ungroup()
+    group_by(species) %>% filter(n() >= 50) %>% ungroup()
 
 #Check levels again
 s <- data.frame(all_above_50 %>% 
@@ -100,54 +100,54 @@ s <- data.frame(all_above_50 %>%
 #We are avoiding "endemic" species
 #At the moment there are 32 species
 #Load libraries to create map of interest
-library(ggplot2) #plotting v.3.3.5
-library(dplyr) #data cleaning v.1.0.7
-library(geosphere) #Calculate area within polygon
-library(sf) #gis in r
-library(tidyverse)
-library(maps)
-library(giscoR) #map of europe
-library(sf)
-library(ggspatial) #to plot arrow
-library(patchwork)
-library(ggforce)
-#Read data 
-library(data.table)
-all_long_lat <- data.frame(fread("Data/Europe_data/urope_all_long_lat.csv.gz"))
-#Fix colname position
-names(all_long_lat)[1:(ncol(all_long_lat)-1)] <- names(all_long_lat)[2:ncol(all_long_lat)]
-all_long_lat[, ncol(all_long_lat)] <- NULL
-euro_map <- st_read("Data/Europe_data/euro_map.shp")
-nuts2.sf <- st_read("Data/Europe_data/euro_nuts2.sf.shp")
-#Load worldmap
-world <- map_data("world")
-
-#Convert long to numeric
-all_above_50$long <- as.numeric(all_above_50$long)
-
-#Create for loop and store all plots on a folder
-spp <- unique(all_above_50$species)
-
-for(i in spp){
-
-temp_plot <- ggplot(euro_map) +
-geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
-guides(fill="none") +
-geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
-geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
-data = . %>% group_by(CNTR_CODE) %>% summarise()) +
-ylab("Latitude") + xlab("Longitude")+
-geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
-coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
-theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
-size = 0.5), panel.background = element_rect(fill = "aliceblue"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-geom_point(data = all_above_50 %>% filter(species==i),aes(lat, long),
-size = 1, stroke = 0, shape = 16)+ggtitle(i)
-
-ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
-
-}
+#library(ggplot2) #plotting v.3.3.5
+#library(dplyr) #data cleaning v.1.0.7
+#library(geosphere) #Calculate area within polygon
+#library(sf) #gis in r
+#library(tidyverse)
+#library(maps)
+#library(giscoR) #map of europe
+#library(sf)
+#library(ggspatial) #to plot arrow
+#library(patchwork)
+#library(ggforce)
+##Read data 
+#library(data.table)
+#all_long_lat <- data.frame(fread("Data/Europe_data/urope_all_long_lat.csv.gz"))
+##Fix colname position
+#names(all_long_lat)[1:(ncol(all_long_lat)-1)] <- names(all_long_lat)[2:ncol(all_long_lat)]
+#all_long_lat[, ncol(all_long_lat)] <- NULL
+#euro_map <- st_read("Data/Europe_data/euro_map.shp")
+#nuts2.sf <- st_read("Data/Europe_data/euro_nuts2.sf.shp")
+##Load worldmap
+#world <- map_data("world")
+#
+##Convert long to numeric
+#all_above_50$long <- as.numeric(all_above_50$long)
+#
+##Create for loop and store all plots on a folder
+#spp <- unique(all_above_50$species)
+#
+#for(i in spp){
+#
+#temp_plot <- ggplot(euro_map) +
+#geom_sf(aes(fill = CNTR_CODE, group=CNTR_CODE), color = NA, alpha = 1)+ 
+#guides(fill="none") +
+#geom_point(data = all_long_lat,aes(long, lat),size = 0.15, stroke = 0, shape = 16) +
+#geom_sf(fill = "transparent", color = "gray20", size = 0.25, 
+#data = . %>% group_by(CNTR_CODE) %>% summarise()) +
+#ylab("Latitude") + xlab("Longitude")+
+#geom_sf(data= nuts2.sf,aes(fill = NA, group=CNTR_CODE), color = NA, alpha = 0.3)+
+#coord_sf(xlim = c(-5, 20), ylim = c(46, 60)) +
+#theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+#size = 0.5), panel.background = element_rect(fill = "aliceblue"),
+#panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+#geom_point(data = all_above_50 %>% filter(species==i),aes(lat, long),
+#size = 1, stroke = 0, shape = 16)+ggtitle(i)
+#
+#ggsave(temp_plot, file=paste0("Data/Image_bee_distribution/europe/plot_", i,".png"), width = 14, height = 10, units = "cm")
+#
+#}
 
 #All species have approximately an homogeneous distribution
 

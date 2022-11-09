@@ -53,7 +53,7 @@ bee.tree100=drop.tip(bee.mcmc, tip = c("Xenochilicola", "Geodiscelis", "Xeromeli
                                        "Habropoda", "Deltoptila", "Pachymelus",        
                                        "Sphecodopsis", "Pasites", "Oreopasites",     
                                        "Ammobates", "Odyneropsis", "Triepeolus", "Rhinepeolus",     
-                                       "Doeringiella", "Thalestria", "Epeolus", "Triopasites",     
+                                       "Doeringiella", "Thalestria",  "Triopasites",     
                                        "Brachynomada", "Paranomada", "Holcopasites", "Ammobatoides",    
                                        "Hexepeolus", "Neolarra", "Biastes",         
                                        "Neopasites", "Townsendiella", "Caenoprosopina", "Caenoprosopis",   
