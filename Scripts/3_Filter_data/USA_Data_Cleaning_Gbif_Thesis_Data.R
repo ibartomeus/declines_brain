@@ -95,7 +95,7 @@ filter(species %in% spp)
 
 #Select above species with above 50 records
 all_above_50 <- usa_species %>% 
-    group_by(species) %>% filter(n() >= 100) %>% ungroup()
+    group_by(species) %>% filter(n() >= 50) %>% ungroup()
 
 #check levels again
 s <- data.frame(all_above_50 %>% 
