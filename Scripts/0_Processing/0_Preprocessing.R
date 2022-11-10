@@ -5,7 +5,7 @@
 #Load libraries
 library(readr)
 library(dplyr)
-
+library(stringr)
 
 #First we clean USA records again (there were some wrong measurements in the old dataset)
 #Read both datasets
@@ -21,12 +21,20 @@ brains.it <- read.csv("Raw_data/brains.it.csv", dec = ",") %>%
   rename(Brain.weight = Brain.Weight..mg.)
 
 #Filter out USA brains from sayol, these ones are not corrected!
-brains.it = brains.it %>% 
-filter(!Country == "USA")
-
-#spp = usa_brain$species
 #brains.it = brains.it %>% 
-#filter(!Species %in% spp)
+#filter(!Country == "USA")
+
+spp = usa_brain$species
+#Do it just for USA spp 
+brains.it.usa = brains.it %>% filter(Country=="USA")
+brains.it.eur = brains.it %>% filter(!Country=="USA")
+
+#Filter out Sayol species
+brains.it.usa = brains.it.usa %>% 
+filter(!Species %in% spp)
+
+#Bind again datasets
+brains.it = bind_rows(brains.it.eur, brains.it.usa)
 
 #Prepare data----
 #Important:
@@ -34,11 +42,13 @@ filter(!Country == "USA")
 #Heads are extracted and fixed and then the brain is removed and weighted
 #Fresh brains can be converted with a conversion factor to fix! 
 #brain.fix.mg = brain.fresh.mg x 1.2262. #Check sayol etal
-
 #Convert fresh to fix when value is na (I guess that almost always when fresh is measured)
+#The trend is the same but looks a bit nicer without adding the brains with this conversion
+
+
 usa_brain = usa_brain %>% 
-mutate(brain.fix.mg = case_when(is.na(brain.fix.mg) == T ~ brain.fresh.mg * 1.2262,
-       is.na(brain.fix.mg) == F ~ brain.fix.mg)) %>% 
+#mutate(brain.fix.mg = case_when(is.na(brain.fix.mg) == T ~ brain.fresh.mg * 1.2262,
+#       is.na(brain.fix.mg) == F ~ brain.fix.mg)) %>% 
 rename(Genus = genus) %>% 
 dplyr::select(!c(family, brain.fresh.mg)) %>% 
 rename(Species = species) %>% 

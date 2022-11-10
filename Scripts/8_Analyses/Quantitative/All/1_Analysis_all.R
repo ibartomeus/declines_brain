@@ -21,7 +21,7 @@ d = left_join(preferences, brain_weight) %>%
     mutate(Species = str_replace_all(Species, " ", "_"))
 
 #Convert to long to model everything at the same time
-long_data = d %>% gather(Habitat, Preference, 2:5, -c(Species))
+long_data = d %>% gather(Habitat, Preference, 2:4, -c(Species))
 
 #Prepare col brain weight/IT
 long_data = long_data %>% 
