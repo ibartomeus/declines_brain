@@ -24,21 +24,8 @@ d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
 colnames(d) <- c("Species")
 #Check levels
 levels(unique(factor(d$Species)))
-#Fix one species name
-d$Species[d$Species=="Lasioglossum dialictus spp"] <- "Lasioglossum dialictus" 
-#Delete Species with sp. 
-d <- filter(d, !grepl(" sp.",Species))
-#Some more typos
-d$Species[d$Species=="Agaposemon sericeus"] <- "Agapostemon sericeus"
-d$Species[d$Species=="Rhodantidium sticticum"] <- "Rhodanthidium sticticum"
-d$Species[d$Species=="Anthopora plumipes"] <- "Anthophora plumipes"
 #Filter out Apis mellifera
 d <- d %>% filter(!Species=="Apis mellifera")
-#For doing trials
-#lev_trial <- levels(factor(d$Species))[1:1]
-#d <- d %>% filter(Species %in% lev_trial)
-
-#Save species list
 
 ########################---
 #Download data from GBIF----
