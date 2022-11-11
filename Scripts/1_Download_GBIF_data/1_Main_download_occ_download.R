@@ -55,4 +55,4 @@ occ_download(pred_in("taxonKey",c(gbif_id$key_number)),  pred_in("country", c("U
 
 #The data is downloaded through my gbif account
 #Here is the final data: https://doi.org/10.15468/dl.re5wwt 
-#Last accesed 10/20/2022 
+#Last accessed 11/11/2022 

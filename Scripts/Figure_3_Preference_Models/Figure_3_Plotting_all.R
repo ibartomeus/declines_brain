@@ -80,7 +80,6 @@ theme(legend.position = 'bottom', panel.border=element_rect(size=1),
       legend.box.background = element_rect(colour = "black",size=1))
 
 
-
 #Europe----
 
 #Load data for plotting
