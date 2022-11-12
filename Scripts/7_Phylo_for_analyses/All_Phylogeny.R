@@ -182,6 +182,6 @@ setdiff(rownames(A100),species)
 union(setdiff(species,rownames(A100)), setdiff(rownames(A100),species))
 length(rownames(A100))
 #Save data
-saveRDS(A100, "Data/phylo_all.rds")
+saveRDS(A100, "Data/Europe_USA/phylo_all.rds")
 saveRDS(bee.tree100, "Data/Europe_USA/bee.tree100.rds")
 

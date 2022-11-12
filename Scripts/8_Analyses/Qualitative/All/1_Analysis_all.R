@@ -24,7 +24,7 @@ filter(!Species %in% f)
 preferences = bind_rows(preferences_europe, preferences_usa)
 
 #Load phylogenetic matrix to correct for in analysis
-A10 = readRDS("Data/phylo_all.rds")
+A10 = readRDS("Data/Europe_USA/phylo_all.rds")
 
 #Prepare data----
 d = left_join(preferences, brain_weight) %>% 

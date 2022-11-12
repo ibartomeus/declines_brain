@@ -4,7 +4,8 @@ library(data.table)
 library(tidyverse)
 library(raster)
 #Load data
-data <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
+data <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",") %>% 
+  slice(1:25)
 
 #check levels, min 106 max just over 15.0000
 data %>% 
@@ -15,6 +16,7 @@ summarize(no_rows= length(species))
 #Adapted code from this example https://www.r-bloggers.com/2014/11/spatial-data-extraction-around-buffered-points-in-r/
 #Extract land use ----
 NLCD <- raster("Data/Raster_USA/nlcd_2006_land_cover_l48_20210604.img")
+
 coords <- data[, c("long", "lat")]  
 #convert lat/lon to appropriate projection
 names(coords) <- c("x", "y")
@@ -22,15 +24,9 @@ coordinates(coords) <- ~x + y
 proj4string(coords) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")
 crs_args <- NLCD@crs@projargs
 Datos_transformed <- spTransform(coords, CRS(crs_args))
-#extract land cover data for each point, given buffer size
+#extract land cover data for each point
 data$num.codes <- raster::extract(NLCD, Datos_transformed)
-    
-# summarize each site's data by proportion of each cover type
-summ <- lapply(data$num.codes, function(x){
-        prop.table(table(x))
-}
-)
-    
+
 # generate land cover number to name conversions
 num.codes <- unique(unlist(data$num.codes))
 cover.names <- NLCD@data@attributes[[1]]$NLCD.Land.Cover.Class[num.codes + 1]
