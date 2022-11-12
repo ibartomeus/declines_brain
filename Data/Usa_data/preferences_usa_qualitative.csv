@@ -2,7 +2,7 @@ Species,Agricultural,Natural,Urban
 Agapostemon sericeus,NA,NA,NA
 Agapostemon virescens,1,0,NA
 Andrena carlini,NA,1,0
-Andrena dunningi,NA,0,NA
+Andrena dunningi,NA,0,1
 Andrena hirticincta,NA,NA,NA
 Andrena milwaukeensis,0,1,NA
 Andrena miserabilis,NA,1,0
@@ -12,7 +12,7 @@ Anthidium manicatum,0,0,1
 Anthidium oblongatum,0,0,1
 Augochlora pura,NA,1,0
 Augochlorella aurata,1,1,0
-Augochloropsis metallica,NA,1,0
+Augochloropsis metallica,1,1,0
 Bombus griseocollis,1,0,1
 Bombus impatiens,0,0,1
 Calliopsis andreniformis,NA,NA,NA

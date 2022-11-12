@@ -54,5 +54,5 @@ countries <- c("US", "DE", "GB", "LU", "BE", "NL", "DK")
 occ_download(pred_in("taxonKey",c(gbif_id$key_number)),  pred_in("country", c("US", "DE", "GB", "LU", "BE", "NL", "DK")))
 
 #The data is downloaded through my gbif account
-#Here is the final data: https://doi.org/10.15468/dl.re5wwt 
+#Here is the final data: https://doi.org/10.15468/dl.nenuem
 #Last accessed 11/11/2022 

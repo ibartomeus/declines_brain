@@ -1,5 +1,5 @@
 Species,Urban,Natural,Agricultural
-Andrena angustior,0,1,1
+Andrena angustior,0,1,NA
 Andrena barbilabris,0,1,NA
 Andrena bicolor,0,NA,1
 Andrena carantonica,0,0,1
@@ -40,15 +40,15 @@ Lasioglossum calceatum,0,1,1
 Lasioglossum fulvicorne,0,1,1
 Lasioglossum leucozonium,0,1,1
 Lasioglossum malachurum,0,NA,1
-Lasioglossum punctatissimum,0,1,0
+Lasioglossum punctatissimum,0,1,NA
 Lasioglossum sexnotatum,0,1,1
-Lasioglossum sexstrigatum,NA,1,0
+Lasioglossum sexstrigatum,NA,NA,NA
 Lasioglossum zonulum,0,1,1
 Megachile centuncularis,NA,0,1
 Megachile rotundata,1,0,0
 Megachile willughbiella,NA,NA,NA
 Nomada succincta,0,1,NA
-Osmia caerulescens,1,0,NA
+Osmia caerulescens,1,0,0
 Osmia cornuta,1,0,0
 Osmia leaiana,1,0,NA
 Panurgus banksianus,0,1,0
