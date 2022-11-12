@@ -29,7 +29,7 @@ distinct(species) %>%
 pull()
 
 #Pick tree 1
-bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
+bee.trees=read.tree(file="Data/Processing/phylogeny_genus_level.txt")
 bee.mcmc=bee.trees[[1]]
 #Make a wasp the outgroup
 bee.mcmc=root(bee.mcmc,outgroup="Tachysphex")

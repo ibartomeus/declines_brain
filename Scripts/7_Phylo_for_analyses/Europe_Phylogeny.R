@@ -18,7 +18,7 @@ species_list = pref %>%
 
 #-----
 #Lista de especies
-bee.trees=read.tree(file="Data/phylogeny_genus_level.txt")
+bee.trees=read.tree(file="Data/Processing/phylogeny_genus_level.txt")
 
 #Generate Species vector 
 species = species_list %>%  
