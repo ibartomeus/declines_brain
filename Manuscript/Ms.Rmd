@@ -1,7 +1,9 @@
 ---
 title: "Bee brain size is positively associated with urban lifestyles but not with positive population trends"
-output: pdf_document
-
+output:
+  pdf_document:
+    fig_caption: yes
+ 
 link-citations: yes
 linkcolor: RoyalBlue
 urlcolor: RoyalBlue
@@ -14,8 +16,15 @@ header-includes:
 - \usepackage{orcidlink}
 - \usepackage{caption,setspace}
 - \captionsetup[figure]{labelformat=empty}
-
+- \usepackage{float} 
+- \floatplacement{figure}{H} 
 ---
+
+```{r echo=FALSE,warning=FALSE}
+
+knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
+```
+
 
 \textbf{Miguel Á. Collado$^{1}$} \orcidlink{0000-0002-4216-317X} \textbf{Jose B. Lanuza$^{2}$} \orcidlink{0000-0002-0287-409X} \textbf{and Ignasi Bartomeus$^{2}$} \orcidlink{0000-0001-7893-4389}
 
@@ -48,7 +57,10 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 # Methods
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the location of the downloaded GBIF occurrences for the different bee species (N = 100). A) Selected North European countries that had a high number of records for the selected species. B) Selected states from"}
+\clearpage
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species (N = 85). A) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark. B) East Coast of Unites States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland.", fig.pos="p"}
 
 #Plot maps with density of bee occurrences
 
@@ -167,11 +179,13 @@ panel1 + panel2
 ```
 
 
+\clearpage
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 2.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=100). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural, semideveloped and urban) and the rows the different bee species."}
 
-#Phylogenetic tree for USA and Europe
-library(ggtree) 
+
+library(ggtree) #v3.5.3.002
 library(ggplot2)
 library(stringr)
 library(tidyverse)
@@ -186,6 +200,7 @@ preferences_usa = readr::read_csv("../Data/USA_data/preferences_usa.csv")
 preferences_eu = readr::read_csv("../Data/Europe_data/preferences_europe.csv") 
 #Bind rows
 pref = bind_rows(preferences_usa, preferences_eu)
+
 
 #Average preferences between USA and Europe
 preferences = pref %>% 
@@ -212,36 +227,35 @@ brain_weight = brain_weight %>%
 
 
 #Plot tree
-p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country) +  geom_tree(size=0.8)+
-    geom_tippoint(aes(size = residuals, color=Country))+ 
-    theme_tree2()+scale_size_continuous(range = c(-1.2, 3.2),name="Residuals")+
+p <- ggtree(bee.tree100) %<+% brain_weight  +  aes(color=Country)+
+    geom_tippoint(aes(size = residuals, color=Country))+
+    theme_tree2()+scale_size_continuous(range = c(-1, 3.6),name="Residuals")+
     scale_color_manual(name = "Data", values=c("darkgoldenrod1","cyan4","black"),
                        labels = c("Europe", "USA", "USA and Europe"),
                        breaks = c("Europe", "USA", "USA and Europe")) +
   ggtitle("A") + theme(plot.title = element_text(size=18, face="bold"))
 
 #Convert wide format to long for plotting heatmap
-d=gather(preferences, condition, measurement, Agricultural:Seminatural, factor_key=TRUE)
+d=gather(preferences, condition, measurement, Agricultural:Urban, factor_key=TRUE)
 
 
 #Relevel for plotting
 d = d %>% 
-mutate(condition = recode_factor(condition, "Seminatural" = "Semideveloped")) %>% 
-mutate(condition=fct_relevel(condition,c("Natural","Agricultural","Semideveloped", "Urban"))) 
+mutate(condition=fct_relevel(condition,c("Natural","Agricultural", "Urban"))) 
 
 
 p2 = ggplot(d, aes(x=condition, y=Species)) + 
     geom_tile(aes(fill=measurement),color = "white") +
    # scale_fill_gradient(high="black",  low="white") +
-       scale_fill_viridis_c(name = "Habitat\n preference", limits=c(0, 1), breaks=c(0.1, 0.5, 0.9), labels=c("Low","","High")) + 
+    scale_fill_viridis_c(name = "Habitat\n preference") + 
     theme_minimal() +
     xlab(NULL) + 
     ylab(NULL) + 
     theme(axis.text.x = element_text(face="bold", color="black", 
-    size=10,  vjust=1.15),
-    axis.text.y = element_text(face="italic", color="black", size=7, hjust=0),
+    size=7.5,  vjust=1.15),
+    axis.text.y = element_text(face="italic", color="black", size=7.5, hjust=0),
     plot.title = element_text(size=18, face="bold")) +
-  ggtitle("B")
+   ggtitle("B")
 
 #Nice way to insert ordered heatmap
 library(aplot)
@@ -265,11 +279,9 @@ We used Bayesian phylogenetic generalised linear mixed models (BPGMM), as implem
 
 # Results
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=10, fig.cap="\\textbf{Figure 3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural, semideveloped and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States."}
 
-#Histogram of habitat preferences
-#Load libraries
-library(tidyverse) 
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=4, fig.width=10, fig.cap="\\textbf{Figure 3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
 
 #Load preferences
 preferences_europe = read_csv("../Data/Europe_data/preferences_europe.csv") 
@@ -278,15 +290,18 @@ preferences_usa = read_csv("../Data/Usa_data/preferences_usa.csv")
 #Merge datasets
 preferences = bind_rows(preferences_europe, preferences_usa)
 
+
 #Convert to long to model everything at the same time
-long_data = preferences %>% gather(Habitat, Preference, 2:5, -c(Species))
+long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
 
 #Relevel for plotting
 long_data = long_data %>% 
-    mutate(Habitat = recode_factor(Habitat, "Seminatural" = "Semideveloped")) %>% 
-    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural","Semideveloped", "Urban"))) 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
 labels.minor <- c("Low", "", "High")
+
+long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultural", "Urban"),
+                  labels = c("A) Natural", "B) Agricultural", "C) Urban"))
 
 #Plot
 ggplot(long_data, aes(x=Preference, color= Habitat)) +
@@ -296,26 +311,124 @@ ggplot(long_data, aes(x=Preference, color= Habitat)) +
     facet_wrap(~ Habitat) +
     scale_colour_viridis_d(end=0.98)+
     scale_fill_viridis_d(end=0.98) +
-    theme_bw()+
-    theme(axis.title = element_text(face = "bold", size=14), 
-    strip.text.x = element_blank() , strip.background = element_blank(),
-    panel.border=element_rect(size=0.8))+
+    theme_bw() +   
+    theme(axis.title = element_text(face = "bold"),
+    panel.border=element_rect(size=1), 
+    legend.position = "none",
+    strip.text = element_text(face = "bold", size = 18,hjust = -0.01),
+    strip.background = element_rect(fill = NA, colour = NA, size = 0,linetype="solid"))+
     scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.5),
                        labels = paste0(c(0,0.5,1), "\n", labels.minor)) +
-    scale_y_continuous(expand = c(0, 0))+
+    scale_y_continuous(expand = c(0, 0), limits = c(0,60))+
     geom_vline(aes(xintercept = 0.05), colour="black", linetype="dashed") +
-    geom_vline(aes(xintercept = 0.95), colour="black", linetype="dashed")
+    geom_vline(aes(xintercept = 0.95), colour="black", linetype="dashed") 
 
 
 
 
 ```
 
+
+\clearpage
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=10, fig.cap="\\textbf{Figure 4.}", fig.pos="p"}
+
+#Load libraries
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+#Load data for plotting
+long_data <- read_csv("../Data/Europe_USA/data_preference_residuals_europe_usa_qualitative.csv")
+
+model1 = read_csv("../Data/Europe_USA/model_output_preference_residuals_europe_usa_qualitative.csv")
+
+model2 = read_csv("../Data/Europe_USA/model_output_preference_brain_weight_europe_usa_qualitative.csv")
+
+model3 = read_csv("../Data/Europe_USA/model_output_preference_it_europe_usa_qualitative.csv")
+
+
+#Relevel for plotting
+long_data = long_data %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model1 = model1 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model2 = model2 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model3 = model3 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+
+#colorBlindness::displayAllColors(viridis::viridis(4))
+
+all_1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab("Habitat preference") +
+xlab("Residuals") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("A") +
+theme(plot.title = element_text(face = "bold", size=18))
+  
+
+
+all_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab(NULL) +
+xlab("Brain weight (mg)") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("B") +
+theme(plot.title = element_text(face = "bold", size=18))
+
+
+
+all_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab(NULL) +
+xlab("Intertegular distance (mm)") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("C") +
+theme(plot.title = element_text(face = "bold", size=18))
+
+
+library(patchwork)
+
+all_1 + (all_2/all_3) + plot_layout(guides = "collect") &
+theme(legend.position = 'bottom', panel.border=element_rect(size=1),
+      axis.title=element_text(face="bold"),
+      legend.box.background = element_rect(colour = "black",size=1))
+
+
+```
+
+
+\clearpage
+
+
 # Discussion
 
 
 Bees with urban habitat preferences tended to have bigger brains related to their body sizes, and those with forest preferences had relatively smaller brains. Surprisingly, neither brain sizes nor habitat preference explained population trends, against what we expected. Therefore, species with bigger brains appearing on urban habitat can be indicating that while only bees with large cognitive capacities are surviving in these modified environments, they do not have experienced notorious increases in their populations.We hypothesized that bees with bigger brains related to body size should be more flexible in their behaviour because a large brain may confer better cognitive abilities, as it has been observed in some species (Lefebvre et al., 2004) and as we show specifically for bees in relation to learning (Chapter 2 of this thesis). Therefore, to exploit complex urban environments, we expect bigger brains to be required. Urban habitats are typically harsher, with less and/or new resources to explore, also containing new unknown threats and a highly changing environment (Wheater, 1999). Hence, urban dwellers may need to have better cognitive abilities and flexibility in their behavior than the forest dwellers counterpart. Some examples of behaviours needed to survive in urban environments (see Table S2 for a full set of examples) are the use of human-made materials to nest (Allasino et al., 2019) or being able to collect pollen and nectar from exotic flowers from gardens (Lowenstein et al., 2014). We should not expect forested habitats to require such a plastic behaviour because the resources found in these habitats are homogeneous, stable, and bees are already pre-adapted to use them (Smith et al., 2019). In accordance, we found smaller brain sizes than expected by their body sizes in bees that preferred forests indicating that an investment in bigger relative brain sizes is not required. In addition, other traits have already been described to be filtered in anthropogenic land uses, like early spring or brood parasitism (Harrison et al., 2017), which are present in the forest dwellers.
 We could not explain population trends with brain size as it happens in other taxa. For example, in birds, brain size is a good predictor of how a population does in the long-term (Shultz, 2005). However, this is not always the case as bigger brains increase the risk of extinction in mammals (González-Voyer et al., 2016). Despite brain weight is relatively easy to measure and standardize with the used protocol, we lack information on certain neuropils size, like mushroom bodies (the suspected centers of cognitive processes in bees), which can be variable even within species (Barth & Heisenberg, 1997; Withers et al., 1995; Fahrbachand & Robinson 1995). Differences in more subtle brain structures could explain differences in behaviours, and in consequence, shed extra light on species population trends. Therefore the isolation and measurement of these neuropils could be interesting because we could get more accurate information. On the other hand, also note that population trends data is hard to find or measure, especially for invertebrate taxa. Long term data is often lacking and we count only with data indirectly taken from museums. This data is also scarce and hard to standardize (Bartomeus et al., 2018), therefore not being optimal for comparative studies of declining or increasing populations (Shultz, 2005). Species body size is generally related to population trends. In mammals, it is known that bigger body sizes decreases population density and increases the risk of extinction (Damuth, 1981; González-Voyer et al., 2016). This relation has also been seen in bees (Scheper et al., 2014). Although body size is directly related to absolute brain size, we did not find a strong correlation between body size and population trends in our subset of North American bees as it was found for the complete set in Bartomeus et al., 2013. Our subset may be biased towards the most common genera and contain fewer species per genus. If the body size-decline relationship occurs mainly within genus, and not across genus, as indicated by the strong phylogenetic signal of body size (Pagel’s lambda > 0.9), we may lack the power to detect this variation within genus in our restricted analysis. Population trends or habitat preferences could be explained by the availability of the resources consumed, for example, in the Netherlands, population trends of some bee species are related to the availability of their preferred plants (Scheper et al., 2014). A polylectic diet could help species to adapt to new environments, and we know that species able to forage on crop plant families tend to have stable or increasing populations (Scheper et al., 2014, Bartomeus et al. 2013). If we consider habitats being conditioned by their availability of the preferred resources, then we may be able to explain our link between brain size and preference for certain habitats. For example, differences in bee community composition and abundance are found for oligolectic (i.e.diet specialist bees) associated to their prefered resources along forested gradients (Grundel et al., 2010). Dietary data should be an interesting next step to see if broader (polylectic) or narrower (oligolectic) diet are generally related to habitat preferences and brain sizes. In fact, it has been already described for other taxa a relationship between brain size and diet (DeCasien et al., 2017).Finally, the absence of relationship between urban preferences and increasing population trends is interesting. Despite these bees have found new niches to occupy, they are not increasing its populations but just persisting. The transformation from natural to urban habitats is filtering which species can survive, and hence, biodiversity in urban habitats is usually lower (Collado et al., 2019, Chapter 3 of this thesis). However, survivors are not thriving either in this new conditions. Some negative effects of urbanization have already been studied in bees, like for example, biased sex ratio, with increasing males in urban areas (Fitch et al., 2019) with unknown future population consequences. It should be interesting to fully assess the costs and benefits of living in urban environments, including brain investment and other selected strategies to adapt to the new conditions.
+
+\newpage
 
 # References
 
