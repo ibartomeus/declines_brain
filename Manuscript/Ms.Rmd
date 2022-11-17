@@ -56,6 +56,24 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 
 # Methods
 
+## Overview
+
+Our study uses bee traits measured from North America and Europe to explore how different habitat types influence bee cognitive abilities measured as the deviation of the brain weight relative to their body size. To explore this, we first downloaded for our set of species, occurrence data from the Global Biodiversity Information Facility from North America and Europe. First, we identified the areas with highest density of occurrences and delimited based on that our study regions (East Coast of Unites States and North Central Europe). Second, we filtered the resulting occurrence records (e.g., duplicates and a homogeneous geographical distribution). 
+
+
+
+
+
+
+
+## Bee species and measurements
+
+
+
+## Species occurrences data
+
+Global Biodiversity Information Facility (GBIF, http://www.gbif.org/)
+
 
 \clearpage
 
@@ -111,7 +129,8 @@ plot.title = element_text(face="bold", size = 18),
 legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
 scale_y_continuous(breaks = seq(40, 60, by = 6)) +
 scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15)
 
 #Insert general plot within specific plot
 panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
@@ -166,7 +185,8 @@ plot.title = element_text(face="bold", size = 18),
 legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
 scale_y_continuous(breaks = seq(33, 47, by = 4)) +
 scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
 
 #Insert general plot within specific plot
 panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
