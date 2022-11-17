@@ -58,7 +58,7 @@ Human-dominated habitats —notably cities— offer unique ecological opportunit
 
 ## Overview
 
-Our study uses bee traits measured from North America and Europe to explore how different habitat types influence bee cognitive abilities measured as the deviation of the brain weight relative to their body size. To explore this, we first downloaded for our set of species, occurrence data from the Global Biodiversity Information Facility from North America and Europe. First, we identified the areas with highest density of occurrences and delimited based on that our study regions (East Coast of Unites States and North Central Europe). Second, we filtered the resulting occurrence records (e.g., duplicates and a homogeneous geographical distribution). 
+Our study uses bee traits measured from North America and Europe to explore how different habitat types influence bee cognitive abilities measured as the deviation of the brain weight relative to their body size. To explore this, we first downloaded for our set of species, occurrence data from the Global Biodiversity Information Facility from North America and Europe. First, we identified the areas with highest density of occurrences and delimited based on that our study regions (East Coast of Unites States and North Central Europe). Second, we filtered the resulting occurrence records (e.g., we deleted duplicates and selected species with a homogeneous geographical distribution). Third, for the resulting species we extracted  
 
 
 
