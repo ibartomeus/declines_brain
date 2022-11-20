@@ -112,6 +112,19 @@ mutate(Sex =replace(Sex, Sex == "Queen?", "Queen"))
 
 #IMPORTANT! select just females
 all_cleaning = all_cleaning %>%  filter(Sex == "Female") %>% dplyr::select(!Sex)
+#Save data to load raw values in methods
+write_csv(all_cleaning, "Raw_data/all_cleaning.csv")
+
+
+#Check unique cases and levels for methods
+
+d = all_cleaning %>% 
+group_by(Species) %>% 
+summarise(individuals = n())
+median(d$individuals)
+sum(d$individuals) #433
+nlevels(factor(unique(d$Species))) #113 species
+
 
 #Create dataframe with average measurements of IT and brain weight
 weights.mean <- data.frame(aggregate(Brain.weight ~ Species, data = all_cleaning, FUN = mean))
