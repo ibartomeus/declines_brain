@@ -60,22 +60,25 @@ by comparing the observed occurrences with the ones of null models. Finally, for
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
 
-#Script to load variables
 library(readr)
 library(dplyr)
 
+#Load final dataset 
 raw = read_csv("../Raw_data/all_cleaning.csv")
 
 d = raw %>% 
 group_by(Species) %>% 
 summarise(individuals = n())
 
+#Load taxonomic rank script
+tax = read_csv("../Data/Processing/taxonomic_rank.csv")
+
 ```
 
 
 ## Bee species dataset
 
-Our dataset consist in bee specimens captured by hand netting in different areas of the East Coast of the United States and Europe (i.e., Spain and Netherlands). In total, it contains `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species with brain weight and body size information. Of these, 93 species with their respective traits were previously published in @sayol2020. We considered exclusively female individuals as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
+Our dataset contains measurements of brain weight and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` families and `r nlevels(factor(unique(tax$genus)))` genera. We have considered exclusively female specimens as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
 
 ## Brain and body size measurements
 
