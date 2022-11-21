@@ -78,7 +78,7 @@ tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 
 ## Bee species dataset
 
-Our dataset contains measurements of brain weight and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` families and `r nlevels(factor(unique(tax$genus)))` genera. We have considered exclusively female specimens as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
+Our dataset contains measurements of brain weight and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` different families and `r nlevels(factor(unique(tax$genus)))` genera. We have considered exclusively female specimens as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
 
 ## Brain and body size measurements
 
