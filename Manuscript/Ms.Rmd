@@ -55,9 +55,8 @@ Human-dominated habitats ---notably cities--- offer unique ecological opportunit
 
 ## Overview
 
-Our study explores the long standing idea that species with higher encephalisation (i.e., large brain mass relative to their body) are more likely to thrive in urbanised areas. To evaluate this hypothesis, we have used a dataset of bee species captured in North America and Europe with measurements of brain mass and body size. For all these species, we downloaded the occurrence records from the Global Biodiversity Information Facility (GBIF) and integrated it with an independent data source of occurrences from the East Coast of Unites States. Then, we limited the study areas to the states or countries with highest density of records and filtered the data to avoid possible biases. For the resulting occurrences, we extracted the land use classification of the different georeferenced records and summarised them into 3 different categories when possible: (1) natural, (2) agricultural and (3) urban. To evaluate if the different bee species occur more in some habitats than others, we calculated their habitat preference with the help of null models. Finally, for the species that showed low and high statistical preference for the different habitats, we investigated how the association between habitat preference and encephalisation changed by habitat type.
-
-## Bee species dataset
+Our study explores the long standing idea that species with higher encephalisation (i.e., large brain mass relative to their body) are more likely to thrive in urbanised areas. To evaluate this hypothesis, we have used a dataset of bee species captured in North America and Europe with measurements of brain mass and body size. For all these species, we downloaded the occurrence records from the Global Biodiversity Information Facility (GBIF) and integrated it with an independent data source of occurrences from the East Coast of Unites States. Then, we limited the study areas to the states or countries with highest density of records and filtered the data to avoid possible biases. For the resulting occurrences, we extracted the land use classification of the different georeferenced records and summarised them into 3 different categories when possible: (1) natural, (2) agricultural and (3) urban. To evaluate if the different bee species occur more in some habitats than others, we calculated their habitat preference 
+by comparing the observed occurrences with the ones of null models. Finally, for the species that showed low and high statistical preference for the different habitats, we investigated how the association between habitat preference and encephalisation changed by habitat type.
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
 
@@ -74,11 +73,11 @@ summarise(individuals = n())
 ```
 
 
-This dataset contained species captured by hand netting in different areas of the East Coast of Unites States and Europe (i.e., Spain and Netherlands). There were in total `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species with brain weight and body size information.
+## Bee species dataset
 
+Our dataset consist in bee specimens captured by hand netting in different areas of the East Coast of the United States and Europe (i.e., Spain and Netherlands). In total, it contains `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species with brain weight and body size information. Of these, 93 species with their respective traits were previously published in @sayol2020. We considered exclusively female individuals as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
 
-
-Bees were captured 
+## Brain and body size measurements
 
 ## Species occurrences data
 
