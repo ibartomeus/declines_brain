@@ -45,6 +45,11 @@ Relevant refs:
 
 <https://onlinelibrary.wiley.com/doi/10.1111/ele.14133?af=R>
 
+This may be also relevant:
+
+Although recent studies challenge the use of absolute brain size as an estimator for behavioral complexity and computational power (Chittka and Niven, 2009, and references therein), many studies have shown correlations between brain size and performance (Deaner et al., 2007; Gronenberg and Couvillon, 2010; Lefebvre and Sol, 2008).
+
+
 Pollination is a fundamental ecosystem service that connects the earth's vegetation and human economy. Pollination services are performed by both managed and wild pollinators, mostly bees [@james2008; @winfree2011], both of which might be affected by a range of current and projected human-related environmental changes. There are indeed clear shreds of evidence of recent declines in pollinator populations [@bartomeus2019], and parallel declines in the plants that rely upon them [@potts2010; @scheper2014]. For example, in the UK, the third part of wild pollinator species has decreased from 1980 to 2013 [@powney2019], including six of all 16 non-parasitic bumblebees [@williams2009]. The decline of pollinators currently observed is projected to increase in the future [@dormann2008]. Because most wild plant species (80%) and crop species (75%) are directly dependent on insect pollination for fruit and seed production [@klein2007; @ollerton2011], there is an increasing concern that the loss of pollinators from both natural communities and agricultural areas will have severe negative consequences for ecosystem functions and services [@ashman2004; @klein2007].
 
 Although the reason why many pollinator are declining is insuficiently understood, a factor that is considered central is the loss and alteration of their habitats [@brown2009]. The destruction and fragmentation of natural habitats and their replacement by anthropogenic landscapes present new challenges for survival and reproduction of organisms, increasing the risk of extinction by negative population growth [@brown2009]. However, not all pollinators species are equally affected by habitat loss and alteration. In bees, for example, there are also "winners" ---like Bombus terrestris [@rasmont2008]--- that are able to thrive in human-altered environments, and there are also other species that although do not proliferate in such environments can at least maintain self-sustaining populations [@biesmeijer2006; @bartomeus2013; Reemer et al., 2012????; @collado2019].
@@ -53,7 +58,7 @@ Human-dominated habitats ---notably cities--- offer unique ecological opportunit
 
 # Methods
 
-## Overview
+## (a) Overview
 
 Our study explores the long standing idea that species with higher encephalisation (i.e., large brain mass relative to their body) are more likely to thrive in urbanised areas. To evaluate this hypothesis, we have used a dataset of bee species captured in North America and Europe with measurements of brain mass and body size. For all these species, we downloaded the occurrence records from the Global Biodiversity Information Facility (GBIF) and integrated it with an independent data source of occurrences from the East Coast of Unites States. Then, we limited the study areas to the states or countries with highest density of records and filtered the data to avoid possible biases. For the resulting occurrences, we extracted the land use classification of the different georeferenced records and summarised them into 3 different categories when possible: (1) natural, (2) agricultural and (3) urban. To evaluate if the different bee species occur more in some habitats than others, we calculated their habitat preference 
 by comparing the observed occurrences with the ones of null models. Finally, for the species that showed low and high statistical preference for the different habitats, we investigated how the association between habitat preference and encephalisation changed by habitat type.
@@ -76,13 +81,17 @@ tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 ```
 
 
-## Bee species dataset
+## (b) Bee species dataset
 
-Our dataset contains measurements of brain weight and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` different families and `r nlevels(factor(unique(tax$genus)))` genera. We have considered exclusively female specimens as most bees exhibit sexual dimorphism [@shreeves2008] that likely imply intraspecific differences in brain size between male and female individuals. 
+Our dataset contains measurements of brain and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` different families and `r nlevels(factor(unique(tax$genus)))` genera. We only considered female specimens because most bees exhibit sexual dimorphism and behavioral differences between sexes that can be correlated with the size and structure of the brain [@streinzer2013; @roselino2015]. In addition, because brain size can change with age and experience of the different individuals within a species [@durst1994; @withers2008], we limited our sampling to specimens foraging on flowers. Note that 93 of the species used in our study were previously published with their respective trait measurements in @sayol2020.
 
-## Brain and body size measurements
+## (c) Brain and body size measurements
 
-## Species occurrences data
+We used as a measurement of brain size the weight of fixed brains. To weight the brains, all collected individuals were kept in cold and sent them to the laboratory where they were identified by expert taxonomists and anesthetise in cold [@crook2013]. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Finally, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®.
+
+We considered as a proxy of body size the intertegular span (ITS) that represents the distance between the base of the wings (tegulae) on the bee thorax. ITS has been shown to accurately predict body size as it is highly correlated with dry body weight [@cane1987; @kendall2019]. All ITS measurements were conducted with a stereomicroscope (magnification 16 x –80 x ) with a calibrated ocular micrometre (resolution down to 0.02 mm).
+
+## (d) Species occurrences data
 
 Global Biodiversity Information Facility (GBIF, <http://www.gbif.org/>)
 
