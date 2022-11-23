@@ -83,7 +83,7 @@ tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 
 ## (b) Bee species dataset
 
-Our dataset contains measurements of brain and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` different families and `r nlevels(factor(unique(tax$genus)))` genera. We only considered female specimens because most bees exhibit sexual dimorphism and behavioral differences between sexes that can be correlated with the size and structure of the brain [@streinzer2013; @roselino2015]. In addition, because brain size can change with age and experience of the different individuals within a species [@durst1994; @withers2008], we limited our sampling to specimens foraging on flowers. Note that 93 of the species used in our study were previously published with their respective trait measurements in @sayol2020.
+Our dataset contains measurements of brain and body size for bee specimens captured by hand netting in different areas of the East Coast of United States and Europe (i.e., Spain and Netherlands). In total, the dataset includes `r sum(d$individuals)` female individuals from `r nlevels(factor(unique(d$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` different families and `r nlevels(factor(unique(tax$genus)))` genera. We only considered female specimens because most bees exhibit sexual dimorphism and behavioral differences between female and male individuals [@shreeves2008] that often correlate with the size and structure of the brain [@streinzer2013; @roselino2015]. In addition, because brain size can change with age and experience of the different individuals within a species [@durst1994; @withers2008], we limited our sampling to specimens foraging on flowers. Note that 93 of the species used in our study were previously published with their respective trait measurements in @sayol2020.
 
 ## (c) Brain and body size measurements
 
@@ -91,13 +91,55 @@ We used as a measurement of brain size the weight of fixed brains. To weight the
 
 We considered as a proxy of body size the intertegular span (ITS) that represents the distance between the base of the wings (tegulae) on the bee thorax. ITS has been shown to accurately predict body size as it is highly correlated with dry body weight [@cane1987; @kendall2019]. All ITS measurements were conducted with a stereomicroscope (magnification 16 x –80 x ) with a calibrated ocular micrometre (resolution down to 0.02 mm).
 
-## (d) Species occurrences data
+## (d) Occurrence data
 
-Global Biodiversity Information Facility (GBIF, <http://www.gbif.org/>)
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
+
+#Calculate study site areas
+#Load libraries
+library(sf)
+library(sfheaders)
+
+#EUROPE:
+#Read data
+euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
+#Add area col
+euro_map$area <- st_area(euro_map)
+#Create dataframe with the correct units
+d1 = euro_map %>% group_by(CNTR_CODE) %>% summarize(st_union(geometry), area_NAME = sum(area)) %>% 
+mutate(areakm2 = units::set_units(area_NAME, value = "km^2"))
+#Calculate area
+eukm2 = prettyNum(as.numeric(round(sum(d1$areakm2),0)),big.mark=",")
+
+#USA:
+#Read data
+usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
+#Not an sf object, convert into multypolygon
+usa = sfheaders::sf_multipolygon(
+  obj = usa_states_1
+  , multipolygon_id = "group"
+  , x = "long"
+  , y = "lat"
+) %>% st_set_crs(4326)
+#Calculate area
+usa$area <- st_area(usa)
+#Create dataframe with the correct units
+d2 = usa %>% group_by(group) %>% summarize(st_union(geometry), area_NAME = sum(area)) %>% 
+mutate(areakm2 = units::set_units(area_NAME, value = "km^2"))
+#Sum areas
+usakm2 = prettyNum(as.numeric(round(sum(d2$areakm2),0)),big.mark=",")
+
+```
+
+
+We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. The occurrence data can be downloaded from https://doi.org/10.15468/dl.nenuem where just records for the countries of interest were retrieved. Because the records were biased towards some areas that were associated with political boundaries, we selected the states or countries with highest density of records for our set of species. For North America, we selected states located on the East Coast of United States (Figure 1A) that covered an approximate area of `r usakm2` km$^{2}$. These states were: Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. Similarly, we selected countries located on the north and center of Europe (Figure 1B) that represented a total area of `r eukm2` km$^{2}$. These countries were: England, Belgium, Netherlands, Germany and Denmark. 
+
+External data information [...] Origin?
+
 
 \clearpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species (N = 85). A) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark. B) East Coast of Unites States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland.", fig.pos="p"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species (N = 85). A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.", fig.pos="p"}
 
 #Plot maps with density of bee occurrences
 
@@ -137,7 +179,7 @@ theme(panel.background = element_rect(fill = "white"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 ylab("Latitude") +
 xlab("Longitude") +
-ggtitle("A") +
+ggtitle("B") +
 theme(legend.position = c(0, 1),legend.justification = c(0, 1),
 legend.background = element_blank(),
 legend.box.background = element_blank(),
@@ -149,7 +191,8 @@ legend.text = element_text(face = "bold", size = 12), legend.direction="horizont
 scale_y_continuous(breaks = seq(40, 60, by = 6)) +
 scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
 guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
-ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15)
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
+
 
 #Insert general plot within specific plot
 panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
@@ -193,7 +236,7 @@ theme(panel.background = element_rect(fill = "white"),
 panel.border = element_rect(colour = "black", fill=NA, size=1)) +
 ylab("Latitude") +
 xlab("Longitude") +
-ggtitle("B") +
+ggtitle("A") +
 theme(legend.position = c(0, 1),legend.justification = c(0, 1),
 legend.background = element_blank(),
 legend.box.background = element_blank(),
@@ -204,20 +247,37 @@ plot.title = element_text(face="bold", size = 18),
 legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
 scale_y_continuous(breaks = seq(33, 47, by = 4)) +
 scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+ 
 ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
+
 
 #Insert general plot within specific plot
 panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
 
 library(patchwork)
-panel1 + panel2 
+panel2  + panel1
 
 
 
 ```
 
+
 \clearpage
+
+## (e) Construction of the phylogenetic tree
+
+
+**Data gathering**
+
+The quantitative data of population trends for North American bees were extracted from Bartomeus et al., 2013, where they analyzed trends for 187 species over time, using data from pinned bees from different North American museums and universities. We assigned the estimated value of their relative change over time models as values of population trends for the 44 species for which we have brain size measurements (positive for increasing populations and negative for decreasing populations). Habitat preferences for USA bee data were extracted from Collado et al., 2019, were habitat preference for forests and urban areas was calculated comparing species occurrence in each habitat to what would be expected if species occur at random using null models. This preference index ranges from 0 (avoidance) to 1 (preference).In order to have a representative value of brain weight and body size per species, we used means of the different collected individuals from each species. Twenty-four individuals with brain weight values one standard deviation higher or lower than the average were removed (see sup mat analysis) because human errors in their measurement are likely with such delicate tissues. Specially, brain weights can give errors due to dehydration or insufficient removal of fat bodies and trachea around the brain. For eusocial species, we only used workers. We estimated relative brain size using residuals from a log-log correlation of brain weight against body size to remove body size allometric relationships. (see Wurm & Fisicaro, 2014) (LM estimate ± SE = 1.88 ± 0.06, p \< 0.001, R2= 0.83, n = 163 species). Residuals were calculated using our complete brain weights and body size database.
+
+**Data analysis**
+
+We used Bayesian phylogenetic generalised linear mixed models (BPGMM), as implemented in the package brms [@burkner2017], to assess whether brain sizes, habitat preference and population trends are correlated. In all models, we incorporated a phylogenetic covariance matrix. The phylogeny used were maximum-likelihood phylogenetic trees of the superfamily Apoidea at the genera level modified from (Hedtke et al., 2013, Fig. 1, Fig. S2, Fig. S3). Due to the absence of infrageneric phylogenies for all our genera, we simulated infrageneric polytomies within our phylogeny. Species tips were added to the phylogenetic tree genera nodes as polytomies of equal branch length relative to the genera branch length using the phytools package (version 0.6‐44, Revell, 2012). Because we did not have information on our 3 variables for the 44 species (habitat preference, brain weight and population trends), we used 3 different subsets of our dataset to maximize the sample size in the different models: Relative brain size-habitat preference, population trends-habitat preference and population trends-relative brain size.
+
+# Results
+
+
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 2.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=100). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural, semideveloped and urban) and the rows the different bee species."}
 
@@ -299,19 +359,8 @@ library(aplot)
 p2 %>% insert_left(p) 
 ```
 
-**Animals**
+\clearpage
 
-Most bees were opportunistically captured by hand netting in different regions of New York State (USA), and complemented with bees captured from Spain and the Netherlands for species with a holarctic distribution. We captured 145 individuals from 44 species, kept them in cold storage and sent them to the laboratory to be processed. Once the bees were in the laboratory, they were anesthetized in cold (Crook, 2013) and decapitated. Bees were identified by expert taxonomists (Parker Gambino and Ivo Raemakers). The species used for the analysis can be consulted in Table S2. We measured the inter-tegular distance, as it is a good proxy of body size (Kendall et al., 2019). To prevent degradation, the head was fixed in 4% paraformaldehyde with phosphate buffer saline (PBS). Brains were extracted from the head capsule, and tracheae and fat bodies were removed to maximize accuracy in neural tissue weight. Brains extracted were placed on a small piece of tared Parafilm® and exceeding fixative solution was dried from the brain using Kimwipes® tissues. Finally the brain was weighted in a microbalance. Brain weight was used as a proxy of brain size (Sayol et al., 2019 in preparation).
-
-**Data gathering**
-
-The quantitative data of population trends for North American bees were extracted from Bartomeus et al., 2013, where they analyzed trends for 187 species over time, using data from pinned bees from different North American museums and universities. We assigned the estimated value of their relative change over time models as values of population trends for the 44 species for which we have brain size measurements (positive for increasing populations and negative for decreasing populations). Habitat preferences for USA bee data were extracted from Collado et al., 2019, were habitat preference for forests and urban areas was calculated comparing species occurrence in each habitat to what would be expected if species occur at random using null models. This preference index ranges from 0 (avoidance) to 1 (preference).In order to have a representative value of brain weight and body size per species, we used means of the different collected individuals from each species. Twenty-four individuals with brain weight values one standard deviation higher or lower than the average were removed (see sup mat analysis) because human errors in their measurement are likely with such delicate tissues. Specially, brain weights can give errors due to dehydration or insufficient removal of fat bodies and trachea around the brain. For eusocial species, we only used workers. We estimated relative brain size using residuals from a log-log correlation of brain weight against body size to remove body size allometric relationships. (see Wurm & Fisicaro, 2014) (LM estimate ± SE = 1.88 ± 0.06, p \< 0.001, R2= 0.83, n = 163 species). Residuals were calculated using our complete brain weights and body size database.
-
-**Data analysis**
-
-We used Bayesian phylogenetic generalised linear mixed models (BPGMM), as implemented in the package brms [@burkner2017], to assess whether brain sizes, habitat preference and population trends are correlated. In all models, we incorporated a phylogenetic covariance matrix. The phylogeny used were maximum-likelihood phylogenetic trees of the superfamily Apoidea at the genera level modified from (Hedtke et al., 2013, Fig. 1, Fig. S2, Fig. S3). Due to the absence of infrageneric phylogenies for all our genera, we simulated infrageneric polytomies within our phylogeny. Species tips were added to the phylogenetic tree genera nodes as polytomies of equal branch length relative to the genera branch length using the phytools package (version 0.6‐44, Revell, 2012). Because we did not have information on our 3 variables for the 44 species (habitat preference, brain weight and population trends), we used 3 different subsets of our dataset to maximize the sample size in the different models: Relative brain size-habitat preference, population trends-habitat preference and population trends-relative brain size.
-
-# Results
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=4, fig.width=10, fig.cap="\\textbf{Figure 3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
 

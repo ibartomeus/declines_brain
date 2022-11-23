@@ -42,7 +42,8 @@ axis.title = element_text(face="bold"),
 plot.title = element_text(face="bold"),
 legend.text = element_text(face = "bold")) +
 scale_y_continuous(breaks = seq(40, 60, by = 6)) +
-scale_x_continuous(breaks = seq(-8, 18, by = 8))
+scale_x_continuous(breaks = seq(-8, 18, by = 8))+
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
 
 #Insert general plot within specific plot
 panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
@@ -99,9 +100,8 @@ axis.title = element_text(face="bold"),
 plot.title = element_text(face="bold"),
 legend.text = element_text(face = "bold")) +
 scale_y_continuous(breaks = seq(33, 47, by = 4)) +
-scale_x_continuous(breaks = seq(-82, -68, by = 4))
-
-
+scale_x_continuous(breaks = seq(-82, -68, by = 4)) + 
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
 
 
 #Insert general plot within specific plot

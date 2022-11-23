@@ -3,7 +3,7 @@
 #Quite fast but we need a gbif account!
 #To reproduce our analysis, 
 #Skip this part and use directly the downloaded data from the DOI
-#https://doi.org/10.15468/dl.re5wwt
+#https://doi.org/10.15468/dl.nenuem
 
 #Load libraries
 library(stringr) 
