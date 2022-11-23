@@ -21,26 +21,6 @@ all_east_coast <- data.frame(fread("Data/Usa_data/usa_all_long_lat.csv.gz"))
 names(all_east_coast)[1:(ncol(all_east_coast)-1)] <- names(all_east_coast)[2:ncol(all_east_coast)]
 all_east_coast[, ncol(all_east_coast)] <- NULL
 all <- all_east_coast 
-#Read MA tehsis data
-all_east_coast_thesis <- data.frame(fread("Data/Usa_data/usa_all_long_lat_thesis.csv.gz"))
-#Fix colname position
-names(all_east_coast_thesis)[1:(ncol(all_east_coast_thesis)-1)] <- names(all_east_coast_thesis)[2:ncol(all_east_coast_thesis)]
-all_east_coast_thesis[, ncol(all_east_coast_thesis)] <- NULL
-all_thesis <- all_east_coast_thesis 
-
-colnames(all_thesis)
-
-#Select columns of interest
-all_thesis = all_thesis %>% 
-dplyr::select(gen_sp, state, lat, long, country, year, month, day, site) %>% 
-rename(species = gen_sp, Country = country, stateProvince = state, locality=site) 
-
-#Now mege both datasets
-colnames(all_thesis)
-colnames(all)
-
-#Rename to original name
-all = bind_rows(all, all_thesis)
 
 #############-
 #FIRST FILTER----
