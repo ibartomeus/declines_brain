@@ -1,15 +1,12 @@
 ######-
 #In this script we prepare USA data for analysis
 #We take 5 key decisions in data cleaning
-#1)Filter records above 1987 (this is decided based on the GIS data available)
+#1)Filter records above 1990 (this is decided based on the GIS data available)
 #2)Filter by unique capture event
 #3)Filter by minimum of 2 decimals on coordinates #Because MA dataset has only 2
-#4)Filter number of levels per species (minimum N=100)
+#4)Filter number of levels per species (minimum N=50)
 #5)Filter by wide geographical distribution
 ######-
-
-#Note we also add the data used in the thesis of MA Collado.
-#This data is processed in the folder Collado_data
 
 #Load libraries
 library(data.table)
@@ -25,14 +22,14 @@ all <- all_east_coast
 #############-
 #FIRST FILTER----
 #############-
-#First filter all records above 1987
-all_above_1987 <- all %>% filter(year>1987)
+#First filter all records above 1990
+all_above_1990 <- all %>% filter(year>1990)
 
 #############-
 #SECOND FILTER----
 #############-
 #Filter by unique coordinate and locality 
-coordinate <- all_above_1987 %>% distinct(species, year, month,day, long, lat,  .keep_all = T)
+coordinate <- all_above_1990 %>% distinct(species, year, month,day, long, lat,  .keep_all = T)
 all_unique_event <- coordinate %>% distinct(species, year, month,day,locality,  .keep_all = T)
 
 #############-
@@ -144,6 +141,9 @@ colnames(all_above_50)
 #############-
 #SAVE DATA----
 #############-
+
+#37 levels
+unique(as.factor(all_above_50$species))
 
 #Save
 write.csv(all_above_50, file=gzfile("Data/Usa_data/all_above_50_usa.csv.gz"),row.names=FALSE)

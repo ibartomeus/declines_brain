@@ -1,10 +1,10 @@
 ######-
 #In this script we prepare Europe data for analysis
 #We take 5 key decisions in data cleaning
-#1)Filter records above 1985 (this is decided based on the GIS data available)
+#1)Filter records above 1990 (this is decided based on the GIS data available)
 #2)Filter by unique capture event (locality/coordinate)
 #3)Filter by minimum of 3 decimals on coordinates
-#4)Filter number of levels per species (minimum N=100)
+#4)Filter number of levels per species (minimum N=50)
 #5)Filter by wide geographical distribution
 ######-
 
@@ -30,13 +30,13 @@ mutate(lat = gsub(")", "", lat))
 #FIRST FILTER----
 #############-
 #First filter all records above 1985 
-all_above_1985 <- all %>% filter(year>1985)
+all_above_1990 <- all %>% filter(year>1990)
 
 #############-
 #SECOND FILTER----
 #############-
 #Filter by unique coordinate and locality 
-coordinate <- all_above_1985 %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
+coordinate <- all_above_1990 %>% distinct(scientificName, year, month,day, long, lat,  .keep_all = T)
 all_unique_event <- coordinate %>% distinct(scientificName, year, month,day,locality,  .keep_all = T)
 
 #############-
@@ -155,7 +155,7 @@ s <- data.frame(all_above_50 %>%
 #SAVE DATA----
 #############-
 
-#58 records
+#56 levels
 unique(as.factor(all_above_50$species))
 
 #Save

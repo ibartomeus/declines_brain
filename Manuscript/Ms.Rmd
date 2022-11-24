@@ -60,8 +60,7 @@ Human-dominated habitats ---notably cities--- offer unique ecological opportunit
 
 ## (a) Overview
 
-Our study explores the long standing idea that species with higher encephalisation (i.e., large brain mass relative to their body) are more likely to thrive in urbanised areas. To evaluate this hypothesis, we have used a dataset of bee species captured in North America and Europe with measurements of brain mass and body size. For all these species, we downloaded the occurrence records from the Global Biodiversity Information Facility (GBIF) and integrated it with an independent data source of occurrences from the East Coast of Unites States. Then, we limited the study areas to the states or countries with highest density of records and filtered the data to avoid possible biases. For the resulting occurrences, we extracted the land use classification of the different georeferenced records and summarised them into 3 different categories when possible: (1) natural, (2) agricultural and (3) urban. To evaluate if the different bee species occur more in some habitats than others, we calculated their habitat preference 
-by comparing the observed occurrences with the ones of null models. Finally, for the species that showed low and high statistical preference for the different habitats, we investigated how the association between habitat preference and encephalisation changed by habitat type.
+Our study explores the long standing idea that species with higher encephalisation (i.e., large brain mass relative to their body) are more likely to thrive in urbanised areas. To evaluate this hypothesis, we have used a dataset of bee species captured in North America and Europe with measurements of brain mass and body size. For all these species, we downloaded the occurrence records from the Global Biodiversity Information Facility (GBIF) and selected as study area the states or countries with highest density of records. After filtering the data to avoid possible biases, we extracted the land use classification of the different georeferenced records and summarised them into 3 different categories when possible: (1) natural, (2) agricultural and (3) urban. To evaluate if the different bee species occur more in some habitats than others, we calculated their habitat preference by comparing the observed occurrences with the ones of null models. Finally, for the species that showed low and high statistical preference for the different habitats, we investigated how the association between habitat preference and encephalisation changed by habitat type.
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
 
@@ -131,10 +130,13 @@ usakm2 = prettyNum(as.numeric(round(sum(d2$areakm2),0)),big.mark=",")
 
 ```
 
+We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. Because the records were biased towards some areas that were associated with political boundaries, we selected the states or countries with highest density of records for our set of species. For North America, we selected states located on the East Coast of United States (Figure 1A) that covered an approximate area of `r usakm2` km$^{2}$. These states were: Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. Similarly, we selected countries located on the north and center of Europe (Figure 1B) that represented a total area of `r eukm2` km$^{2}$. These countries were: England, Belgium, Netherlands, Germany and Denmark. All occurrence data used in this study can be downloaded from https://doi.org/10.15468/dl.nenuem where just the countries of interest were retrieved.
 
-We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. The occurrence data can be downloaded from https://doi.org/10.15468/dl.nenuem where just records for the countries of interest were retrieved. Because the records were biased towards some areas that were associated with political boundaries, we selected the states or countries with highest density of records for our set of species. For North America, we selected states located on the East Coast of United States (Figure 1A) that covered an approximate area of `r usakm2` km$^{2}$. These states were: Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. Similarly, we selected countries located on the north and center of Europe (Figure 1B) that represented a total area of `r eukm2` km$^{2}$. These countries were: England, Belgium, Netherlands, Germany and Denmark. Because the density of records was lower for North America occurrences, we opted to integrate an additional dataset
+To avoid biases in our analysis, we filtered the occurrence records according the following criteria: (i) we only included species with a widespread distribution of occurrences along our study area; (ii) all species had a minimum number of 50 records; (iii) all duplicated records were excluded (i.e., records of specimens with the same date and location); (iv) we only included georeferenced records with a minimum of two decimals on latitude/longitude coordinates; and (v), we only included records between the time interval 1990 and 2022 that allowed us to center the land use classification information for North America and Europe on 2006 (i.e, +/- 16 year difference with the extremes).
 
-External data information [...] Origin?
+
+## (e) Land use classification
+
 
 
 \clearpage
@@ -264,7 +266,7 @@ panel2  + panel1
 
 \clearpage
 
-## (e) Construction of the phylogenetic tree
+## (f) Construction of the phylogenetic tree
 
 
 **Data gathering**
