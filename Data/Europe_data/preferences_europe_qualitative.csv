@@ -1,5 +1,5 @@
 Species,Urban,Natural,Agricultural
-Andrena angustior,0,1,NA
+Andrena angustior,0,1,1
 Andrena barbilabris,0,1,NA
 Andrena bicolor,0,NA,1
 Andrena carantonica,0,0,1
@@ -13,7 +13,7 @@ Andrena gravida,0,NA,1
 Andrena haemorrhoa,0,1,1
 Andrena labiata,0,0,1
 Andrena nigriceps,0,1,NA
-Andrena nigroaenea,0,0,1
+Andrena nigroaenea,NA,0,1
 Andrena nitida,0,0,1
 Andrena ovatula,0,1,1
 Andrena pilipes,NA,NA,NA
@@ -48,10 +48,10 @@ Megachile centuncularis,NA,0,1
 Megachile rotundata,1,0,0
 Megachile willughbiella,NA,NA,NA
 Nomada succincta,0,1,NA
-Osmia caerulescens,1,0,0
+Osmia caerulescens,1,0,NA
 Osmia cornuta,1,0,0
 Osmia leaiana,1,0,NA
-Panurgus banksianus,0,1,0
+Panurgus banksianus,0,1,NA
 Panurgus calcaratus,0,1,1
 Stelis breviuscula,NA,0,NA
 Xylocopa violacea,1,0,0
