@@ -130,14 +130,27 @@ usakm2 = prettyNum(as.numeric(round(sum(d2$areakm2),0)),big.mark=",")
 
 ```
 
-We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. Because the records were biased towards some areas that were associated with political boundaries, we selected the states or countries with highest density of records for our set of species. For North America, we selected states located on the East Coast of United States (Figure 1A) that covered an approximate area of `r usakm2` km$^{2}$. These states were: Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. Similarly, we selected countries located on the north and center of Europe (Figure 1B) that represented a total area of `r eukm2` km$^{2}$. These countries were: England, Belgium, Netherlands, Germany and Denmark. All occurrence data used in this study can be downloaded from https://doi.org/10.15468/dl.nenuem where just the countries of interest were retrieved. To avoid biases in our analysis, we filtered the occurrence records according the following criteria: (i) we only included species with a widespread distribution of occurrences along our study area; (ii) all species had a minimum number of 50 records; (iii) all duplicated records were excluded (i.e., records of specimens with the same date and location); (iv) we only included georeferenced records with a minimum of two decimals of latitude/longitude coordinates; and (v), we only included records between the time interval 1990 and 2022 in order to avoid large  differences with the extracted land cover classifications for United States and Europe (2006).
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
+
+#Read occurrence records
+#Load libraries
+library(data.table)
+#Load clean data with bee occurrences
+eu_occurrences <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
+
+eu_occurrences = prettyNum(nrow(eu_occurrences), big.mark=",")
+
+usa_occurrences <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",") 
+
+usa_occurrences = prettyNum(nrow(usa_occurrences), big.mark=",")
 
 
-## (e) Land cover classification
+
+```
 
 
+We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. Because the records were biased towards some areas that were associated with political boundaries, we selected the states or countries with highest density of records for our set of species. For North America, we selected states located on the East Coast of United States (Figure 1A) that covered an approximate area of `r usakm2` km$^{2}$. These states were: Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. Similarly, we selected countries located on the north and center of Europe (Figure 1B) that represented a total area of `r eukm2` km$^{2}$. These countries were: England, Belgium, Netherlands, Germany and Denmark. All occurrence data used in this study can be downloaded from https://doi.org/10.15468/dl.nenuem where just the countries of interest were retrieved. To avoid biases in our analysis, we filtered the occurrence records according the following criteria: (i) we only included species with a widespread distribution of occurrences along our study area; (ii) all species had a minimum number of 50 records; (iii) all duplicated records were excluded (i.e., records of specimens with the same date and location); (iv) we only included georeferenced records with a minimum of two decimals of latitude/longitude coordinates; and (v), we only included records between the time interval 1990 and 2022 in order to avoid large differences with the extracted land cover classifications from 2006 for United States and Europe. After pruning the data, our final dataset comprised `r usa_occurrences` occurrence records for United States and `r eu_occurrences` records for Europe.
 
-\clearpage
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure 1.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species (N = 85). A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.", fig.pos="p"}
 
@@ -261,10 +274,19 @@ panel2  + panel1
 
 ```
 
+\clearpage
+
+
+## (e) Land cover classification
+
+
+
 
 \clearpage
 
 ## (f) Construction of the phylogenetic tree
+
+## (g) Analysis
 
 
 **Data gathering**
