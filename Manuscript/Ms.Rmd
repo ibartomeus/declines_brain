@@ -3,7 +3,7 @@ title: "Bee brain size is positively associated with urban lifestyles but not wi
 output:
   pdf_document:
     fig_caption: yes
- 
+
 link-citations: yes
 linkcolor: RoyalBlue
 urlcolor: RoyalBlue
@@ -19,6 +19,8 @@ header-includes:
 - \usepackage{float} 
 - \floatplacement{figure}{H} 
 ---
+
+\captionsetup[table]{labelformat=empty}
 
 ```{r echo=FALSE,warning=FALSE}
 
@@ -91,9 +93,9 @@ Our dataset contains measurements of brain and body size for bee specimens captu
 
 ## (b) Brain and body size measurements
 
-We used as a measurement of brain size the weight of fixed brains. To weight the brains, all collected individuals were kept in cold and sent them to the laboratory where they were identified by expert taxonomists and anesthetise in cold [@crook2013]. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Finally, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®.
+We used as a measurement of brain size the average weight of fixed brains per species. To weight the brains, all collected individuals were kept in cold and sent them to the laboratory where they were identified by expert taxonomists and anesthetise in cold [@crook2013]. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Finally, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®.
 
-We considered as a proxy of body size the intertegular span (ITS) that represents the distance between the base of the wings (tegulae) on the bee thorax. ITS has been shown to accurately predict body size as it is highly correlated with dry body weight [@cane1987; @kendall2019]. All ITS measurements were conducted with a stereomicroscope (magnification 16 x –80 x ) with a calibrated ocular micrometre (resolution down to 0.02 mm).
+We considered as a proxy of body size the average intertegular span (ITS) per species. ITS represents the distance between the base of the wings (tegulae) on the bee thorax and has been shown to accurately predict body size as it is highly correlated with dry body weight [@cane1987; @kendall2019]. All ITS measurements were conducted with a stereomicroscope (magnification 16 x –80 x ) with a calibrated ocular micrometre (resolution down to 0.02 mm).
 
 ## (c) Occurrence data
 
@@ -295,7 +297,7 @@ panel2  + panel1
 
 ## (d) Land cover classification
 
-We assigned a habitat type for all GBIF occurrences by merging the information from land cover inventories with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.5-21 to read and obtain the cover classification, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
+We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.5-21 to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
 
 
 ## (e) Construction of the phylogenetic tree
@@ -586,8 +588,10 @@ mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
        Natural = "Shrub/Scrub", 
        Natural = "Woody Wetlands")) %>% 
 arrange(desc(Occurrences)) %>%  
-kbl() %>% 
-kable_styling(font_size = 12,latex_options = "hold_position")
+kbl(col.names = c("Original NLCD Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S1.}",
+booktabs = T, align = c("l", "c", "l"), linesep = "") %>% 
+kable_styling(font_size = 12, latex_options = c("hold_position", "striped")) %>% 
+row_spec(0,bold=TRUE)
 
 ```
 
@@ -650,8 +654,10 @@ mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
 mutate(Cover_names = fct_recode(as.factor(Cover_names),
       "Land principally occupied by agriculture" = "Land principally occupied by agriculture, with significant areas of natural vegetation")) %>% 
 arrange(desc(Occurrences)) %>%  
-kbl() %>% 
-kable_styling(font_size = 12,latex_options = "hold_position")
+kbl(col.names = c("Original CLC Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S2.}",booktabs = T,
+align = c("l", "c", "l"), linesep = "") %>% 
+kable_styling(font_size = 12,latex_options = c("hold_position", "striped")) %>% 
+row_spec(0,bold=TRUE)
 
 ```
 
