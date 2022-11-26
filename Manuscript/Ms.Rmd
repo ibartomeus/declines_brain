@@ -93,7 +93,7 @@ Our dataset contains measurements of brain and body size for bee specimens captu
 
 ## (b) Brain and body size measurements
 
-We used as a measurement of brain size the average weight of fixed brains per species. To weight the brains, all collected individuals were kept in cold and sent them to the laboratory where they were identified by expert taxonomists and anesthetise in cold [@crook2013]. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Finally, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®.
+Brain size was measured as the weight of fixed brain for each specimen. First, all collected individuals were kept in cold and sent them to the laboratory where they were identified by expert taxonomists and anesthetise in cold [@crook2013]. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Finally, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis® and calculated the average weight for the species with more than one specimen.
 
 We considered as a proxy of body size the average intertegular span (ITS) per species. ITS represents the distance between the base of the wings (tegulae) on the bee thorax and has been shown to accurately predict body size as it is highly correlated with dry body weight [@cane1987; @kendall2019]. All ITS measurements were conducted with a stereomicroscope (magnification 16 x –80 x ) with a calibrated ocular micrometre (resolution down to 0.02 mm).
 
@@ -297,18 +297,47 @@ panel2  + panel1
 
 ## (d) Land cover classification
 
-We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.5-21 to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
+We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.5-21 [@REF] to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
+
+## (f) Analysis
+
+### Habitat preference 
+
+Habitat preference was estimated by comparing species occurrences per habitat with the ones expected at random. For this, we generated from our occurrence matrix 10,000 randomised matrices with help of the function *nullmodel* from the package *bipartite* version 2.16 [@REF]. We implemented this function with the method 'r2dtable' which maintains row and column sums constant by using Patefield's algorithm [@REF]. In other words, it maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones resulting in percentiles that describe species habitat preference. We considered that a bee species exhibited statistical preference when the percentiles were under the 5th percentile (low preference) or above the 95th percentile (high preference).
+
+### Modelling
+
+Habitat preference -Null models -Bipartite
+
+Bayesian: 
+
+1st residuals from log brain weight log ITS We estimated relative brain size using residuals from a log-log correlation of brain weight against body size to remove body size allometric relationships. (see Wurm & Fisicaro, 2014)
+
+2nd 
+
+All analyses were undertaken in R (version 4.0.5) [@REF].
 
 
 ## (e) Construction of the phylogenetic tree
 
-## (f) Analysis
+We have constructed a phylogenetic tree for our set of species with the help 
+
+for the phylogenetic relatedness of the species in our analyses by constructing phylogenetic trees at the genera level. For this, 
+
+From MA:
+
+The phylogeny used were maximum-likelihood phylogenetic trees of the superfamily Apoidea at the genera level modified from (Hedtke et al., 2013, Fig. 1, Fig. S2, Fig. S3). Due to the absence of infrageneric phylogenies for all our genera, we simulated infrageneric polytomies within our phylogeny. Species tips were added to the phylogenetic tree genera nodes as polytomies of equal branch length relative to the genera branch length using the phytools package (version 0.6-44, Revell, 2012). 
+
+
+From Liam:
+
+We explored the influence of phylogenetic relatedness in predicting dry weight for bees only because a well-resolved hoverfly phylogeny was not available. We constructed an applicable phylogeny for our dataset using a bee genera backbone tree (Hedtke, Patiny, & Danforth, 2013). We removed nonrepresented genera using the ape package (version 5.1, Paradis, Claude, & Strimmer, 2004). Species tips were added to genera nodes as polytomies of equal branch length relative to the genera branch length using the phytools package (version 0.6-44, Revell, 2012). This excluded a total of three species whose genera weren't included in Hedtke et al. (2013)’s phylogeny: Flavipanurgus venustus, Protomeliturga turnerea, and Tetrapedia diversipes. As the infrageneric polytomies add an artificial element to the phylogeny, we made the explicit assumption that phylogenetic patterns in body size were assessed at and above the genus level.
 
 \clearpage
 
 **Data gathering**
 
-Habitat preferences for USA bee data were extracted from Collado et al., 2019, were habitat preference for forests and urban areas was calculated comparing species occurrence in each habitat to what would be expected if species occur at random using null models. This preference index ranges from 0 (avoidance) to 1 (preference).In order to have a representative value of brain weight and body size per species, we used means of the different collected individuals from each species. Twenty-four individuals with brain weight values one standard deviation higher or lower than the average were removed (see sup mat analysis) because human errors in their measurement are likely with such delicate tissues. Specially, brain weights can give errors due to dehydration or insufficient removal of fat bodies and trachea around the brain. For eusocial species, we only used workers. We estimated relative brain size using residuals from a log-log correlation of brain weight against body size to remove body size allometric relationships. (see Wurm & Fisicaro, 2014) (LM estimate ± SE = 1.88 ± 0.06, p \< 0.001, R2= 0.83, n = 163 species). Residuals were calculated using our complete brain weights and body size database.
+Habitat preferences for USA bee data were extracted from Collado et al., 2019, were habitat preference for forests and urban areas was calculated comparing species occurrence in each habitat to what would be expected if species occur at random using null models. This preference index ranges from 0 (avoidance) to 1 (preference).In order to have a representative value of brain weight and body size per species, we used means of the different collected individuals from each species. 
 
 **Data analysis**
 
