@@ -299,21 +299,23 @@ panel2  + panel1
 
 We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.6-41 [@hijmans2022] to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
 
+## (e) Construction of the phylogenetic tree
+
+We constructed a phylogeny with all studied species by using a previously published genus-level bee phylogeny [@hedtke2013].
+
+
 ## (f) Analysis
 
-### Habitat preference 
+**(i) Habitat preference**
 
 Habitat preference was estimated by comparing species occurrences per habitat with the ones that we would expect if they occur at random. For this, we generated from our occurrence matrix 10,000 randomised matrices with help of the function *nullmodel* from the package *bipartite* version 2.16 [@dormann2008]. We implemented this function with the method 'r2dtable' which maintains row and column sums constant by using Patefield's algorithm [@patefield1981]. In other words, it maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones. We considered that a bee species exhibited statistical preference when the observed occurrences per species and habitat were under the 5th percentile (low preference) or above the 95th percentile (high preference).
 
-### Encephalisation
+**(ii) Encephalisation**
 
-We estimated brain size relative to the body (i.e., encephalisation) by modeling the log-transformed association between brain weight and intertegular span. For this, we specified a simple Bayesian regression with the function *brm* from the package *brms* version xxxx where brain weight was the response variable and intertegular span the predictor.
-
-brain weight was the response variable and intertegular span the predictor.
+We estimated brain size relative to the body (i.e., encephalisation) by modeling the log-transformed association between brain weight and intertegular span. For this, we specified a simple Bayesian regression with the function *brm* from the package *brms* version 2.18 [@burkner2017] where brain weight was the response variable and intertegular span the predictor. To correct for the non-independent evolutionary histories among species, we included the phylogenetic covariance matrix as random factor. The model was run with 4,000 iterations with previous 1,000 warm up iterations and with non or very weakly informative priors from the brm function so the priors had negligible influence on the results [@burkner2017]. After conducting the posterior predictive checks with the function *pp_check* from *brms*, we extracted the residuals that represented species encephalisation.
 
 
-
-### Modelling
+**(iii) Habitat preference ~ encephalisation**
 
 Habitat preference -Null models -Bipartite
 
