@@ -297,13 +297,21 @@ panel2  + panel1
 
 ## (d) Land cover classification
 
-We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.5-21 [@REF] to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
+We assigned a habitat type for all GBIF occurrences by merging land cover information with the different georeferenced records. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.6-41 [@hijmans2022] to read and obtain the cover classification of the different georeferenced records, respectively. Then, to simplify the interpretation and conduct a joint analysis for both occurrence datasets, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban. The original extracted cover classes and our classification into these three different categories are shown in Table S1 for United States and Table S2 for Europe.    
 
 ## (f) Analysis
 
 ### Habitat preference 
 
-Habitat preference was estimated by comparing species occurrences per habitat with the ones expected at random. For this, we generated from our occurrence matrix 10,000 randomised matrices with help of the function *nullmodel* from the package *bipartite* version 2.16 [@REF]. We implemented this function with the method 'r2dtable' which maintains row and column sums constant by using Patefield's algorithm [@REF]. In other words, it maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones resulting in percentiles that describe species habitat preference. We considered that a bee species exhibited statistical preference when the percentiles were under the 5th percentile (low preference) or above the 95th percentile (high preference).
+Habitat preference was estimated by comparing species occurrences per habitat with the ones that we would expect if they occur at random. For this, we generated from our occurrence matrix 10,000 randomised matrices with help of the function *nullmodel* from the package *bipartite* version 2.16 [@dormann2008]. We implemented this function with the method 'r2dtable' which maintains row and column sums constant by using Patefield's algorithm [@patefield1981]. In other words, it maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones. We considered that a bee species exhibited statistical preference when the observed occurrences per species and habitat were under the 5th percentile (low preference) or above the 95th percentile (high preference).
+
+### Encephalisation
+
+We estimated brain size relative to the body (i.e., encephalisation) by modeling the log-transformed association between brain weight and intertegular span. For this, we specified a simple Bayesian regression with the function *brm* from the package *brms* version xxxx where brain weight was the response variable and intertegular span the predictor.
+
+brain weight was the response variable and intertegular span the predictor.
+
+
 
 ### Modelling
 
