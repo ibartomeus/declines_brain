@@ -675,4 +675,33 @@ row_spec(0,bold=TRUE)
 ```
 
 
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S1.}", fig.pos="p"}
 
+#Plot encephalization
+#Load libraries
+library(stringr)
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+#Read data
+m = read_csv("../Data/Processing/residuals_model.csv")
+r = read_csv("../Data/Processing/residuals_data.csv")
+d = read_csv("../Data/Processing/taxonomic_rank.csv") %>% 
+mutate(Species = str_replace_all(query, " ", "_")) %>% 
+select(!c(query, db))
+
+#Add taxonomic rank to dataset
+r = left_join(r,d)
+
+#Add ggplot
+ggplot(m, aes(x = log_it, y = estimate__)) +
+geom_line(size=1) +
+geom_point(data = r, aes(log_it, log_brain_weight, color = subfamily), size=3.5) + 
+theme_bw() +
+ylab("log(Brain size)") +
+xlab("log(Body size)") +
+theme(legend.box.background = element_rect(colour = "black"))
+
+
+```
