@@ -14,7 +14,7 @@ all_cleaning = read_csv("Raw_data/all_cleaning.csv")
 specieslist = unique(all_cleaning$Species)
 
 #Download data
-d <- tax_name(query = c(specieslist), get = c("order", "family", "genus"), db = "ncbi")
+d <- tax_name(query = c(specieslist), get = c("order", "family", "subfamily", "genus"), db = "ncbi")
 
 #Missing values
 d_missing = d %>% 
@@ -35,7 +35,15 @@ mutate(family = case_when(query=="Osmia lateralis" ~ "Megachilidae",
                           query=="Eucera rufa" ~ "Apidae",
                           query=="Chelostoma philadephi" ~ "Megachilidae",
                           query=="Lasioglossum dialictus" ~ "Halictidae")) %>% 
-mutate(genus = word(query, 1))
+mutate(genus = word(query, 1)) %>% 
+mutate(subfamily = case_when(query=="Osmia lateralis" ~ "Megachilinae",
+                          query=="Panurgus venustus" ~ "Panurginae",
+                          query=="Andrena varians" ~ "Andreninae",
+                          query=="Andrena rhyssonota" ~ "Andreninae",
+                          query=="Anthophora dispar" ~ "Apinae",
+                          query=="Eucera rufa" ~ "Apinae",
+                          query=="Chelostoma philadephi" ~ "Megachilinae",
+                          query=="Lasioglossum dialictus" ~ "Halictinae"))
 
 #Bind rows again
 all = bind_rows(d_non_missing, d_missing)
@@ -46,5 +54,6 @@ write_csv(all, "Data/Processing/taxonomic_rank.csv")
 
 nlevels(factor(unique(all$family))) #6
 nlevels(factor(unique(all$genus))) #30
-                    
+nlevels(factor(unique(all$subfamily))) #11
+  
  

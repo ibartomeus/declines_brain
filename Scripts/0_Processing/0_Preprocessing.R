@@ -125,6 +125,43 @@ median(d$individuals)
 sum(d$individuals) #433
 nlevels(factor(unique(d$Species))) #113 species
 
+#Check for possible outliers
+#1st Brain weight
+#Extract levels
+l = levels(factor(all_cleaning$Species))
+#Create function to plot everything
+s = function(v) {
+ggplot(all_cleaning %>% filter(Species %in% v), aes(Species, Brain.weight)) +
+geom_boxplot() +
+theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1, size=4))
+}
+#Plot 1st 50 records
+s(l[1:50])
+s(l[50:100])
+s(l[100:113])
+
+#Is quite easy to have outliers with brain weights (Weight them is highly ticky and values are ver sensitive to mistakes)
+#For this, we select only values between 
+all_cleaning = all_cleaning %>%
+group_by(Species) %>% 
+mutate(Max_val = quantile(Brain.weight, 0.75) + 1.5 *IQR(Brain.weight)) %>% 
+mutate(Min_val = quantile(Brain.weight, 0.25) -  1.5 * IQR(Brain.weight)) %>% 
+filter(Brain.weight <= Max_val) %>% 
+filter(Brain.weight >= Min_val) %>% 
+ungroup()
+
+s(l[1:50])
+s(l[50:100])
+s(l[100:113])
+
+#Just for safety do the same with IT's
+all_cleaning = all_cleaning %>%
+group_by(Species) %>% 
+mutate(Max_val = quantile(IT, 0.75) + 1.5 *IQR(IT)) %>% 
+mutate(Min_val = quantile(IT, 0.25) -  1.5 * IQR(IT)) %>% 
+filter(IT <= Max_val) %>% 
+filter(IT >= Min_val) %>% 
+ungroup()
 
 #Create dataframe with average measurements of IT and brain weight
 weights.mean <- data.frame(aggregate(Brain.weight ~ Species, data = all_cleaning, FUN = mean))

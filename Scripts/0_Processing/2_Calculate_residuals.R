@@ -14,7 +14,7 @@ mutate(log_it = log(IT))
 ggplot(wit.mean, aes(x= IT, y = Brain.weight)) + geom_point()
 ggplot(wit.mean, aes(x= log_it, y = log_brain_weight)) + geom_point()
 
-#Read with phylogenetic distance to add in the modelling process
+#Read with phylogenetic distance to add it to the modelling process
 phylo =readRDS("Data/Processing/phylo_raw.rds")
 
 #Add under score to unify species names
@@ -27,6 +27,15 @@ library(brms)
 m1 <-  brm(log_brain_weight ~ log_it + (1|gr(Species, cov = A)) , data = wit.mean,
                  data2 = list(A = phylo),family=gaussian(), iter=4000, 
                  warmup = 1000)
+
+
+bayes_R2(m1)
+
+ce1 <- conditional_effects(m1, effects = "log_it", points=T) 
+
+#Save data
+write_csv(ce1[[1]] , "Data/Processing/residuals_model.csv")
+write_csv(wit.mean , "Data/Processing/residuals_data.csv")
 
 #Model diagnostics
 pp_check(m1)
