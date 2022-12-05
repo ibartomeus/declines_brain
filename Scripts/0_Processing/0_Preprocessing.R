@@ -117,7 +117,6 @@ write_csv(all_cleaning, "Raw_data/all_cleaning.csv")
 
 
 #Check unique cases and levels for methods
-
 d = all_cleaning %>% 
 group_by(Species) %>% 
 summarise(individuals = n())
@@ -155,13 +154,13 @@ s(l[50:100])
 s(l[100:113])
 
 #Just for safety do the same with IT's
-all_cleaning = all_cleaning %>%
-group_by(Species) %>% 
-mutate(Max_val = quantile(IT, 0.75) + 1.5 *IQR(IT)) %>% 
-mutate(Min_val = quantile(IT, 0.25) -  1.5 * IQR(IT)) %>% 
-filter(IT <= Max_val) %>% 
-filter(IT >= Min_val) %>% 
-ungroup()
+#all_cleaning = all_cleaning %>%
+#group_by(Species) %>% 
+#mutate(Max_val = quantile(IT, 0.75) + 1.5 *IQR(IT)) %>% 
+#mutate(Min_val = quantile(IT, 0.25) -  1.5 * IQR(IT)) %>% 
+#filter(IT <= Max_val) %>% 
+#filter(IT >= Min_val) %>% 
+#ungroup()
 
 #Create dataframe with average measurements of IT and brain weight
 weights.mean <- data.frame(aggregate(Brain.weight ~ Species, data = all_cleaning, FUN = mean))

@@ -39,7 +39,7 @@ Estación Biológica de Doñana (EBD-CSIC), E-41092 Seville, Spain
 
 The rapid conversion of natural habitats to anthropogenic landscapes is threatening insect pollinators worldwide, raising concern on the consequences for their fundamental role in ecosystems for fruit and seed production. However, not all pollinators are negatively affected by habitat conversion, but some find in anthropogenic landscapes appropriate resources to survive and reproduce. Why some animals can thrive in anthropogenic environments that most species cannot tolerate remains insufficiently understood, but it might in part reflect enhanced behavioural plasticity to exploit new resource opportunities. While this hypothesis has received ample support in studies of vertebrates, it is less obvious whether the small brain of insects can offer enough behavioural plasticity to cope with the many challenges of anthropogenic habitats. To address this issue, we measured brains for 145 individuals from 44 species of bees ---the most important group of pollinators--- from North America and Europe, and compared them with detailed information on habitat preferences and population trends. Our analyses revealed that bees that prefer forest habitats had smaller brains relative to their body size, but those who prefer urban habitats tended to have larger brains compared to forest dwellers. However, we found no evidence that either larger brains or a preference for urban habitats are associated with positive population trends. These results suggest that a large brain can help maintaining bee urban populations, but also highlight that being tolerant to urbanisation is not enough to compensate for the worldwide decline of their populations.
 
-Keywords: XXXX
+Keywords: encephalisation, brain-body mass ratio, habitat preference, Apoidea, GBIF
 
 \clearpage
 
@@ -501,7 +501,7 @@ geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
-xlab("Residuals") +
+xlab("Encephalisation") +
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
@@ -675,7 +675,7 @@ row_spec(0,bold=TRUE)
 ```
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S1.}", fig.pos="p"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=7, fig.cap="\\textbf{Figure S1.}", fig.pos="p", out.width="80%"}
 
 #Plot encephalization
 #Load libraries
@@ -683,6 +683,7 @@ library(stringr)
 library(readr)
 library(ggplot2)
 library(dplyr)
+library(elementalist) #devtools::install_github("teunbrand/elementalist")
 
 #Read data
 m = read_csv("../Data/Processing/residuals_model.csv")
@@ -694,6 +695,17 @@ select(!c(query, db))
 #Add taxonomic rank to dataset
 r = left_join(r,d)
 
+#Select just species that fulfilled our criteria of filtering
+#Load preferences
+preferences_europe = read_csv("../Data/Europe_data/preferences_europe_qualitative.csv") 
+preferences_usa = read_csv("../Data/Usa_data/preferences_usa_qualitative.csv") 
+
+sp = c(preferences_europe$Species, preferences_usa$Species)
+
+r = r %>% 
+mutate(Species = str_replace_all(Species, "_", " ")) %>% 
+filter(Species %in% sp)
+
 #Add ggplot
 ggplot(m, aes(x = log_it, y = estimate__)) +
 geom_line(size=1) +
@@ -701,7 +713,22 @@ geom_point(data = r, aes(log_it, log_brain_weight, color = subfamily), size=3.5)
 theme_bw() +
 ylab("log(Brain size)") +
 xlab("log(Body size)") +
-theme(legend.box.background = element_rect(colour = "black"))
+theme(legend.position = c(.95, .60),
+legend.justification = c("right", "top"),
+legend.box.just = "right",
+legend.background = element_rect_round(radius = unit(0.2, "snpc"),fill = "grey85"),
+legend.key = element_rect(fill = "grey85")) +
+guides(colour=guide_legend(title="Subfamily")) +
+theme(axis.title = element_text(face = "bold"))
 
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=7, fig.cap="\\textbf{Figure S2.}", fig.pos="p", out.width="100%"}
+
+plot_all = readRDS("../Data/Processing/plot_all.rds")
+
+plot_all
 
 ```

@@ -285,7 +285,7 @@ legend2 <- get_legend(
 # now add the title
 title2 <- ggdraw() + 
   draw_label(
-paste("United States (N =", format(nrow(usa), big.mark = ",") ,")"),    fontface = 'bold',
+paste("United States occurrences (N =", format(nrow(usa), big.mark = ",") ,")"),    fontface = 'bold',
     x = 0,
     hjust = 0
   ) +
@@ -302,4 +302,6 @@ panel2 = plot_grid(
   rel_heights = c(0.1, 0.3)
 )
 
-plot_grid(panel1, panel2, legend2, ncol=1, rel_heights = c(1, 1, 0.4))
+plot_all = plot_grid(panel2, panel1, legend2, ncol=1, rel_heights = c(1, 1, 0.4))
+
+saveRDS(plot_all, "Data/Processing/plot_all.rds")
