@@ -28,8 +28,8 @@ rename(Brain.weight = Brain.Weight..mg.)
 #Convert fresh to fix when value is na (I guess that almost always when fresh is measured)
 #The trend is the same but looks a bit nicer without adding the brains with this conversion
 sayol = sayol %>% 
-mutate(brain.fix.mg = case_when(is.na(brain.fix.mg) == T ~ brain.fresh.mg * 1.2262,
-is.na(brain.fix.mg) == F ~ brain.fix.mg)) %>% 
+#mutate(brain.fix.mg = case_when(is.na(brain.fix.mg) == T ~ brain.fresh.mg * 1.2262,
+#is.na(brain.fix.mg) == F ~ brain.fix.mg)) %>% 
 rename(Species = species) %>% 
 rename(Sex =  sex) %>% 
 rename(Country  = country) %>% 

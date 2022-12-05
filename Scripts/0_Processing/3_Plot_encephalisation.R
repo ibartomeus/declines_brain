@@ -11,8 +11,10 @@ library(stringr)
 library(readr)
 library(ggplot2)
 library(dplyr)
-library(elementalist) #devtools::install_github("teunbrand/elementalist")
-
+library(elementalist) 
+#devtools::install_github("teunbrand/elementalist")
+#install.packages("remotes")
+#remotes::install_github("teunbrand/elementalist")
 #Read data----
 m = read_csv("Data/Processing/residuals_model.csv")
 r = read_csv("Data/Processing/residuals_data.csv")
@@ -24,14 +26,14 @@ r = left_join(r,d)
 
 #Select just species that fulfilled our criteria of filtering
 #Load preferences
-preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") 
-preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 
+#preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") 
+#preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 
 
-sp = c(preferences_europe$Species, preferences_usa$Species)
+#sp = c(preferences_europe$Species, preferences_usa$Species)
 
 r = r %>% 
-mutate(Species = str_replace_all(Species, "_", " ")) %>% 
-filter(Species %in% sp)
+mutate(Species = str_replace_all(Species, "_", " ")) 
+#filter(Species %in% sp)
 
 
 #Plot----
