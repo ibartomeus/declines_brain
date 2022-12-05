@@ -24,8 +24,6 @@ d <- read.csv("Data/Processing/Especies_para_buscar.csv", row.names = 1)
 colnames(d) <- c("Species")
 #Check levels
 levels(unique(factor(d$Species)))
-#Filter out Apis mellifera
-d <- d %>% filter(!Species=="Apis mellifera")
 
 ########################---
 #Download data from GBIF----
