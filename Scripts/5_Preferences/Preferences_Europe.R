@@ -126,9 +126,9 @@ write_csv(m1, "Data/Europe_data/preferences_europe.csv")
 
 #Prepare qualitative data for analysis
 #Convert to qualitative
-m[m >= 0.95] <- 1
-m[m <= 0.05] <- 0
-m[m > 0.05 & m < 0.95 ] <- NA
+m[m >= 0.80] <- 1
+m[m <= 0.20] <- 0
+m[m > 0.20 & m < 0.80 ] <- NA
 
 m= rownames_to_column(m, var = "Species")
 

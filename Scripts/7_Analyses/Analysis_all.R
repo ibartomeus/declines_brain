@@ -8,14 +8,13 @@ library(brms)
 #Load brain data
 brain_weight = read_csv("Data/Processing/brain_weight_data.csv")
 #Load preferences
-preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") 
-preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") 
+preferences_europe = read_csv("Data/Europe_data/preferences_europe_qualitative.csv") %>% 
+mutate(country = "europe")
+preferences_usa = read_csv("Data/Usa_data/preferences_usa_qualitative.csv") %>% 
+mutate(country = "usa")
 
 #There are duplicated species between usa and europe
-#Here is the list:
-f = c("Andrena wilkella", "Anthidium manicatum","Anthidium oblongatum",    
-      "Halictus confusus", "Halictus rubicundus", "Lasioglossum leucozonium",
-      "Megachile rotundata")
+f <- intersect(preferences_europe$Species, preferences_usa$Species)
 #Filter them out from usa and just select europe which had higher number of records
 preferences_usa = preferences_usa %>% 
 filter(!Species %in% f)
@@ -38,10 +37,11 @@ long_data = long_data %>%
     mutate(brain_it = Brain.weight/IT)
 
 #Analysis Preference ~ residuals----
-model1 = brm(Preference ~ residuals * Habitat + (1|gr(Species, cov = A)), 
+model1 = brm(Preference ~ residuals * Habitat +  (1|gr(Species, cov = A)), 
              data = long_data, data2 = list(A = A10), family=bernoulli())
 
 ce1 <- conditional_effects(model1, effects = "residuals:Habitat", points=T) 
+pp_check(model1)
 
 bayes_R2(model1)
 

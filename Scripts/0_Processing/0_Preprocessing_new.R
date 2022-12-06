@@ -1,5 +1,7 @@
 #Preprocessing----
 #In this script we fix typos and rename species when neccesary to their synonyms
+#The data source is Sayol et al., but we also have added extra species from Collado thesis
+#Sayol http://dx.doi.org/10.1098/rspb.2020.0762
 
 #Load libraries----
 library(readr)
@@ -8,12 +10,12 @@ library(stringr)
 library(ggplot2)
 
 #Read datasets
-#1st Sayol http://dx.doi.org/10.1098/rspb.2020.0762
+#1st Sayol 
 sayol = read_csv("Raw_data/BeeTraits_individual.csv") %>% 
 dplyr::select(!c(head.weight.g, no.optic.lobes.weight.mg,body.mass.g)) %>% 
 mutate(species = str_replace(species, "_", " "))
 #snd Collado (is similar but Collado has some extra species)
-#Note Sayol data is clean but Collado still has typos and errors in measurements
+#Note Sayol data is clean but Collado still needs some processing
 collado <- read.csv("Raw_data/brains.it.csv", dec = ",") %>% 
 dplyr::select(!c(Place, No.optic.lobes.weight, 
 Notes, Head.weight..g., Plant, Date, Weigth..g., ID, Genus)) %>% 
@@ -48,8 +50,7 @@ spp = s$Species
 #Subset collado
 collado_filtered = collado %>% 
 filter(!Species == "Dasypoda visnaga") %>%  #Dasypoda visnaga's brain was conserved in ethanol, not formol
-filter(!Species %in% spp)
-
+filter(!Species %in% spp) 
 #Bind both datasets
 all = bind_rows(sayol_main, collado_filtered) %>% 
 na.omit() #filter out na's
@@ -108,29 +109,19 @@ s(l[1:50])
 s(l[50:100])
 s(l[100:130])
 
-#Is quite easy to have outliers with brain weights (Weight them is highly ticky and values are ver sensitive to mistakes)
-#For this, we select only values between 
+#Is quite easy to have outliers with brain weights 
+#For this, we filter outliers
 all_cleaning = all_cleaning %>%
 group_by(Species) %>% 
 mutate(Max_val = quantile(Brain.weight, 0.75) + 1.5 *IQR(Brain.weight)) %>% 
 mutate(Min_val = quantile(Brain.weight, 0.25) -  1.5 * IQR(Brain.weight)) %>% 
-filter(Brain.weight <= Max_val) %>% 
-filter(Brain.weight >= Min_val) %>% 
+filter(Brain.weight <= Max_val) %>% #Species with one unique value are not considered!
+filter(Brain.weight >= Min_val) %>% #Species with one unique value are not considered!
 ungroup()
 
 s(l[1:50])
 s(l[50:100])
 s(l[100:130])
-
-#Just for safety do the same with IT's
-all_cleaning = all_cleaning %>%
-group_by(Species) %>% 
-mutate(Max_val = quantile(IT, 0.75) + 1.5 *IQR(IT)) %>% 
-mutate(Min_val = quantile(IT, 0.25) -  1.5 * IQR(IT)) %>% 
-filter(IT <= Max_val) %>% 
-filter(IT >= Min_val) %>% 
-ungroup()
-
 
 
 #Create dataframe with average measurements of IT and brain weight

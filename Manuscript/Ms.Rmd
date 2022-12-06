@@ -431,7 +431,7 @@ long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
 long_data = long_data %>% 
     mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
 
-labels.minor <- c("Low", "", "High")
+labels.minor <- c("Avoidance", "", "Preference")
 
 long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultural", "Urban"),
                   labels = c("A) Natural", "B) Agricultural", "C) Urban"))
@@ -450,11 +450,11 @@ ggplot(long_data, aes(x=Preference, color= Habitat)) +
     legend.position = "none",
     strip.text = element_text(face = "bold", size = 18,hjust = -0.01),
     strip.background = element_rect(fill = NA, colour = NA, size = 0,linetype="solid"))+
-    scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.5),
+    scale_x_continuous(breaks = c(0.2,0.5,0.8),
                        labels = paste0(c(0,0.5,1), "\n", labels.minor)) +
     scale_y_continuous(expand = c(0, 0), limits = c(0,60))+
-    geom_vline(aes(xintercept = 0.05), colour="black", linetype="dashed") +
-    geom_vline(aes(xintercept = 0.95), colour="black", linetype="dashed") 
+    geom_vline(aes(xintercept = 0.20), colour="black", linetype="dashed") +
+    geom_vline(aes(xintercept = 0.80), colour="black", linetype="dashed") 
 
 
 
