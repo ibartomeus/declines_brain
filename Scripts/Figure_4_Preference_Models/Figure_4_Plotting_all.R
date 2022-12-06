@@ -239,9 +239,7 @@ theme(legend.position = 'bottom', panel.border=element_rect(size=1),
 library(cowplot)
 
 eu <- read.table("Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
-nrow(usa)
 usa <- read.table("Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
-nrow(usa)
 
 #Europe
 #Plot row 

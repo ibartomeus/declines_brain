@@ -1,0 +1,60 @@
+---
+title: "Untitled"
+output:
+  pdf_document: default
+  html_document: default
+date: "2022-12-06"
+---
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=4, fig.width=4, fig.cap="\\textbf{Figure 3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
+
+#Histogram of habitat preferences
+#Load libraries
+library(tidyverse) 
+
+#Load preferences
+preferences_europe = read_csv("../Data/Europe_data/preferences_europe.csv") 
+preferences_usa = read_csv("../Data/Usa_data/preferences_usa.csv") 
+
+#Merge datasets
+preferences = bind_rows(preferences_europe, preferences_usa)
+
+#Convert to long to model everything at the same time
+long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
+
+#Relevel for plotting
+long_data = long_data %>% 
+mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+
+labels.minor <- c("Avoidance", rep("", times = 2), "Preference","")
+
+long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultural", "Urban"),labels = c("A) Natural", "B) Agricultural", "C) Urban"))
+
+long_data = long_data %>% 
+mutate(Preference_colour = case_when(Preference <= 0.2 ~ "A", Preference >= 0.8 ~ "B", T ~ "C"))
+
+long_data$Preference_colour <- factor(long_data$Preference_colour, levels = c("A","C", "B"), labels = c("Avoidance", "No preference", "Preference"))
+
+
+ggplot(long_data, aes(x=Preference, color= Preference_colour)) +
+    geom_histogram(aes(fill= Preference_colour),bins = 35, alpha = 0.8,linewidth=0.5) + 
+    xlab("Habitat preference") +
+    ylab("Frequency") +
+    facet_wrap(~ Habitat) +
+    scale_fill_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
+    scale_color_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
+    theme_bw() +   
+    theme(axis.title = element_text(face = "bold"),
+    panel.border=element_rect(size=1),
+    strip.text = element_text(face = "bold", size = 18,hjust = -0.01),
+    strip.background = element_rect(fill = NA, colour = NA, size = 0,linetype="solid"),
+    panel.grid.minor=element_blank())+
+    scale_y_continuous(expand = c(0, 0), limits = c(0,60))+
+    geom_vline(aes(xintercept = 0.20), colour="black", linetype="dashed") +
+    geom_vline(aes(xintercept = 0.80), colour="black", linetype="dashed") +
+    scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.2),
+                       labels = c(0,0.2,0.4,0.6,0.8,1)) 
+
+
+
+
+```
