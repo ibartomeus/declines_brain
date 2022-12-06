@@ -1,4 +1,8 @@
 #Read clean USA data and extract land use from raster file
+#Note that I don't use the Terra package because it wasn't working on one of my pcs (software updates...)
+#But see how to implement it here:
+#https://stackoverflow.com/questions/74417289/inconsistencies-when-matching-land-cover-nlcd-levels-to-coordinates
+
 #Load libraries
 library(data.table)
 library(tidyverse)
@@ -21,7 +25,7 @@ coordinates(coords) <- ~x + y
 proj4string(coords) <- CRS("+proj=longlat +ellps=WGS84 +datum=WGS84")
 crs_args <- NLCD@crs@projargs
 Datos_transformed <- spTransform(coords, CRS(crs_args))
-#extract land cover data for each point
+#Extract land cover data for each point
 data$num.codes <- raster::extract(NLCD, Datos_transformed)
 
 #Generate land cover number to name conversions
