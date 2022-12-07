@@ -27,8 +27,6 @@ rename(Brain.weight = Brain.Weight..mg.)
 #Heads are extracted and fixed and then the brain is removed and weighted
 #Fresh brains can be converted with a conversion factor to fix! 
 #brain.fix.mg = brain.fresh.mg x 1.2262. #Check sayol etal
-#Convert fresh to fix when value is na (I guess that almost always when fresh is measured)
-#The trend is the same but looks a bit nicer without adding the brains with this conversion
 sayol = sayol %>% 
 #mutate(brain.fix.mg = case_when(is.na(brain.fix.mg) == T ~ brain.fresh.mg * 1.2262,
 #is.na(brain.fix.mg) == F ~ brain.fix.mg)) %>% 
@@ -95,7 +93,7 @@ sum(d$individuals) #433
 nlevels(factor(unique(d$Species))) #113 species
 
 #Check for possible outliers
-#1st Brain weight
+#Brain weight
 #Extract levels
 l = levels(factor(all_cleaning$Species))
 #Create function to plot everything
@@ -110,7 +108,7 @@ s(l[50:100])
 s(l[100:130])
 
 #Is quite easy to have outliers with brain weights 
-#For this, we filter outliers
+#For this, we filter the ones out of 1.5 times IQR
 all_cleaning = all_cleaning %>%
 group_by(Species) %>% 
 mutate(Max_val = quantile(Brain.weight, 0.75) + 1.5 *IQR(Brain.weight)) %>% 
@@ -119,16 +117,15 @@ filter(Brain.weight <= Max_val) %>% #Species with one unique value are not consi
 filter(Brain.weight >= Min_val) %>% #Species with one unique value are not considered!
 ungroup()
 
+#Check again filtered plots
 s(l[1:50])
 s(l[50:100])
 s(l[100:130])
-
 
 #Create dataframe with average measurements of IT and brain weight
 weights.mean <- data.frame(aggregate(Brain.weight ~ Species, data = all_cleaning, FUN = mean))
 IT.mean <- data.frame(aggregate(IT ~ Species, data = all_cleaning, FUN = mean))
 wit.mean <- merge(weights.mean, IT.mean)
-
 #Check number of levels
 #levels(factor(wit.mean$Species))
 

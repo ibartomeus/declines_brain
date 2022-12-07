@@ -35,7 +35,7 @@ bee.tree100$tip.label = str_replace(bee.tree100$tip.label, "_", " ")
 
 #Generate vector with species
 v = bee.tree100$tip.label
-#Filter species with that are in the phylo
+#Filter species that are in the phylo
 brain_weight = brain_weight %>% filter(Species %in% v)
 
 

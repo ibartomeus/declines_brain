@@ -3,7 +3,7 @@
 #Quite fast but we need a gbif account!
 #To reproduce our analysis, 
 #Skip this part and use directly the downloaded data from the DOI
-#https://doi.org/10.15468/dl.nenuem
+#https://doi.org/10.15468/dl.5s5kuf
 
 #Load libraries
 library(stringr) 
@@ -52,5 +52,5 @@ countries <- c("US", "DE", "GB", "LU", "BE", "NL", "DK")
 occ_download(pred_in("taxonKey",c(gbif_id$key_number)),  pred_in("country", c("US", "DE", "GB", "LU", "BE", "NL", "DK")))
 
 #The data is downloaded through my gbif account
-#Here is the final data: https://doi.org/10.15468/dl.nenuem
-#Last accessed 11/11/2022 
+#Here is the final data: https://doi.org/10.15468/dl.5s5kuf
+#Last accessed 05/12/2022 

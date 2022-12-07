@@ -29,13 +29,14 @@ m1 <-  brm(log_brain_weight ~ log_it + (1|gr(Species, cov = A)) , data = wit.mea
                  warmup = 1000)
 
 
-bayes_R2(m1)
+r2 = bayes_R2(m1)
 
 ce1 <- conditional_effects(m1, effects = "log_it", points=T) 
 
 #Save data
 write_csv(ce1[[1]] , "Data/Processing/residuals_model.csv")
 write_csv(wit.mean , "Data/Processing/residuals_data.csv")
+write_rds(r2 , "Data/Processing/bayessianr2.rds")
 
 #Model diagnostics
 pp_check(m1)
@@ -54,6 +55,16 @@ ggplot(res_df,
 
 #Extract residuals (estimates) 
 wit.mean$residuals = residuals(m1)[,1]
+
+#visual comparison between fitted and observed values
+#residuals(m1)
+#r =  wit.mean$log_brain_weight - fitted(m1)[,1]
+#r= tibble(a = head(fitted(m1)[,1]), b = head(wit.mean$log_brain_weight), c = head(wit.mean$log_it))
+#ggplot(ce1[[1]], aes(x = log_it, y = estimate__)) +
+#geom_line() +
+#geom_point(data = r[4,], aes(c,a), color="blue") +
+#geom_point(data = r[4,], aes(c,b))
+#wit.mean$residuals[4]
 
 #Check species
 wit.mean$Species

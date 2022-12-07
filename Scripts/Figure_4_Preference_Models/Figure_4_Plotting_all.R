@@ -115,11 +115,12 @@ nrow(europe)
 eu_1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Residuals") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
@@ -128,11 +129,12 @@ legend.box.background = element_rect(colour = "black",size=1))
 eu_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab(NULL) +
 xlab("Brain weight (mg)") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
@@ -142,11 +144,12 @@ legend.box.background = element_rect(colour = "black",size=1))
 eu_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab(NULL) +
 xlab("Intertegular distance (mm)") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
@@ -190,11 +193,12 @@ model3 = model3 %>%
 usa_1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Residuals") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
@@ -204,11 +208,12 @@ legend.box.background = element_rect(colour = "black",size=1))
 usa_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab(NULL) +
 xlab("Brain weight (mg)") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
@@ -218,11 +223,12 @@ legend.box.background = element_rect(colour = "black",size=1))
 usa_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21, size=2.5) +
 geom_line(aes(color=Habitat),size=0.7) +
-#geom_ribbon(aes(ymin = lower__, ymax = upper__, color=Habitat), linetype = "dashed",alpha = 0)+
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab(NULL) +
 xlab("Intertegular distance (mm)") +
 scale_colour_viridis_d() +
+scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),

@@ -1,4 +1,4 @@
-#In this script we process the data downloaded from GBIF: https://doi.org/10.15468/dl.re5wwt
+#In this script we process the data downloaded from GBIF: https://doi.org/10.15468/dl.5s5kuf
 #We select cols of interest with georreferenced information
 
 #Notes: 
