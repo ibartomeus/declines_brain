@@ -51,6 +51,8 @@ Relevant refs:
 
 <https://onlinelibrary.wiley.com/doi/10.1111/ele.14133?af=R>
 
+https://www.biorxiv.org/content/10.1101/2022.12.09.519739v1
+
 This may be also relevant:
 
 Although recent studies challenge the use of absolute brain size as an estimator for behavioral complexity and computational power (Chittka and Niven, 2009, and references therein), many studies have shown correlations between brain size and performance (Deaner et al., 2007; Gronenberg and Couvillon, 2010; Lefebvre and Sol, 2008).
