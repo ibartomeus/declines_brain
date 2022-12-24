@@ -40,7 +40,7 @@ geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
-xlab("Residuals") +
+xlab("Relative brain size") +
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) 
@@ -118,7 +118,7 @@ geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
-xlab("Residuals") +
+xlab("Relative brain size") +
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
@@ -196,7 +196,7 @@ geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
 ylab("Habitat preference") +
-xlab("Residuals") +
+xlab("Relative brain size") +
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+

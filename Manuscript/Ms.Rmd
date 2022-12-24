@@ -27,15 +27,15 @@ header-includes:
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 ```
 
-\textbf{Miguel Á. Collado$^{1}$} \orcidlink{0000-0002-4216-317X} \textbf{Jose B. Lanuza$^{2}$} \orcidlink{0000-0002-0287-409X} \textbf{Ferran Sayol$^{3}$} \orcidlink{0000-0003-3540-7487} \textbf{and Ignasi Bartomeus$^{2}$} \orcidlink{0000-0001-7893-4389}
-
-Departamento de Ciencias de la Computación e Inteligencia Artificial, Universidad de Sevilla, Seville, Spain
+\orcidlink{0000-0002-4216-317X} \textbf{Jose B. Lanuza$^{1}$} \textbf{Miguel Á. Collado$^{2}$}  \orcidlink{0000-0002-0287-409X} \textbf{Ferran Sayol$^{3}$} \orcidlink{0000-0003-3540-7487} \textbf{and Ignasi Bartomeus$^{1}$} \orcidlink{0000-0001-7893-4389}
 
 Estación Biológica de Doñana (EBD-CSIC), E-41092 Seville, Spain
 
+Departamento de Ciencias de la Computación e Inteligencia Artificial, Universidad de Sevilla, Seville, Spain
+
 Centre de Recerca Ecològica i Aplicacions Forestals: Bellaterra, Catalonia, Spain
 
-\textbf{Author for correspondence:}
+\textbf{Author for correspondence: barragansljose@gmail.com}
 
 # Abstract
 
@@ -353,16 +353,18 @@ lowest_encephalisation = brain_weight %>% filter(residuals == min(residuals)) %>
 r2 = read_rds("../Data/Processing/bayessianr2.rds")
 r2 = round(r2[1],2)
 
+#Read phylo signal
+phylo = read_rds("../Data/Processing/phylo_signal.rds")
+lambda = round(phylo$lambda, 2)
 ```
 
-For the `r nlevels(factor(unique(d$Species)))` bee species, brain size scaled allometrically with body size (Bayesian R$^2$ = `r r2`). However, there were considerable variability in brain size relative to the body across species (Figure S1). Considering this association, the species with the largest and smallest brains relative to the body were the American bee *`r largest_encephalisation`* and the European bee *`r lowest_encephalisation`*, respectively.
+Our dataset showed that brain size scaled allometrically with body size (Bayesian R$^2$ = `r r2`). As expected, this allometric relationship was constrained by the evolutive history of the species (phylogenetic signal of relative brain size, $\lambda$ = `r lambda`; *P* < 0.01). However, we found considerable variability in relative brain size (Figure S1; Figure 2A) within and across the different taxonomic groups (i.e., genera and subfamily level).
 
-Mention how this is constrained by phylogenetic relationship but there is still large variability.
+Explain now habitat preference trends by species (Figure 2B)
 
+Explain overall habitat preference patterns (Figure 3)
 
-Histogram
-
-Model
+Explain main models and model by continent (Figure 4 and Figure S2)
 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 2.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=89). A) Phylogenetic tree at the genera level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural, semideveloped and urban) and the rows the different bee species."}
@@ -756,10 +758,12 @@ theme(axis.title = element_text(face = "bold"))
 
 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=7, fig.cap="\\textbf{Figure S2.}", fig.pos="p", out.width="100%"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S2.}", fig.pos="p", out.width="100%"}
 
 plot_all = readRDS("../Data/Processing/plot_all.rds")
 
 plot_all
 
 ```
+
+
