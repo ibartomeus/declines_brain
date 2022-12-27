@@ -43,7 +43,8 @@ model1 = brm(Preference ~ residuals * Habitat +  (1|gr(Species, cov = A)),
 ce1 <- conditional_effects(model1, effects = "residuals:Habitat", points=T) 
 pp_check(model1)
 
-bayes_R2(model1)
+r2_main = bayes_R2(model1)
+saveRDS(r2_main, "Data/processing/r2_main.rds")
 
 p1 = ggplot(ce1[[1]], aes(x = residuals, y = estimate__, color=Habitat)) +
     geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21) +
@@ -63,6 +64,9 @@ model2 = brm(Preference ~ Brain.weight * Habitat + (1|gr(Species, cov = A)),
 
 pp_check(model2)
 bayes_R2(model2)
+
+r2_brain = bayes_R2(model2)
+saveRDS(r2_brain, "Data/processing/r2_brain.rds")
 
 ce2 <- conditional_effects(model2, effects = "Brain.weight:Habitat",points=T) 
 
@@ -84,6 +88,8 @@ model3 = brm(Preference ~ IT * Habitat + (1|gr(Species, cov = A)),
 
 pp_check(model3)
 bayes_R2(model3)
+r2_its = bayes_R2(model3)
+saveRDS(r2_its, "Data/processing/r2_its.rds")
 
 ce3 <- conditional_effects(model3, effects = "IT:Habitat",points=T) 
 

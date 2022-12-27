@@ -119,12 +119,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Relative brain size") +
+ggtitle("D") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 eu_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
 geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21, size=2.5) +
@@ -133,12 +135,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab(NULL) +
 xlab("Brain weight (mg)") +
+ggtitle("E") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 
 eu_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
@@ -148,12 +152,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab(NULL) +
 xlab("Intertegular distance (mm)") +
+ggtitle("F") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 library(patchwork)
 
@@ -197,12 +203,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab("Habitat preference") +
 xlab("Relative brain size") +
+ggtitle("A") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 
 usa_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
@@ -212,12 +220,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab(NULL) +
 xlab("Brain weight (mg)") +
+ggtitle("B") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 
 usa_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
@@ -227,12 +237,14 @@ geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linety
 theme_bw() +
 ylab(NULL) +
 xlab("Intertegular distance (mm)") +
+ggtitle("C") +  
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
 scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High"))+
 theme(legend.position="none", panel.border=element_rect(size=1),
 axis.title=element_text(face="bold"),
-legend.box.background = element_rect(colour = "black",size=1))
+legend.box.background = element_rect(colour = "black",size=1),
+plot.title = element_text(face="bold"))
 
 
 usa_1 + (usa_2/usa_3) + plot_layout(guides = "collect") &
