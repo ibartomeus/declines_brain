@@ -16,13 +16,13 @@ library(trackdown)
 
 #update_file
 update_file(
-  file = "Manuscript/Lanuza_et_al_2022.Rmd", 
-  gfile = "Reproductive_traits"
+  file = "Manuscript/Ms.Rmd", 
+  gfile = "Bee_brains"
 )
 
 
 #download file 
 download_file(
-  file = "Manuscript/Lanuza_et_al_2022.Rmd", 
-  gfile = "Reproductive_traits"
+  file = "Manuscript/Ms.Rmd", 
+  gfile = "Bee_brains"
 )
