@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  17 APR 2023 13:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  12 JUN 2023 02:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -986,231 +986,251 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ] [3
 
 ] [4]
-<Ms_files/figure-latex/unnamed-chunk-2-1.pdf, id=127, 848.16875pt x 856.19875pt
+<Ms_files/figure-latex/unnamed-chunk-2-1.pdf, id=129, 848.16875pt x 856.19875pt
 >
 File: Ms_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-2-1.pdf  used on i
-nput line 415.
+nput line 392.
 (pdftex.def)             Requested size: 469.75563pt x 474.20302pt.
 [5] [6 <./Ms_files/figure-latex/unnamed-chunk-2-1.pdf>]
-<Ms_files/figure-latex/unnamed-chunk-3-1.pdf, id=151, 702.625pt x 414.54875pt>
+<Ms_files/figure-latex/unnamed-chunk-3-1.pdf, id=153, 702.625pt x 414.54875pt>
 File: Ms_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-3-1.pdf  used on i
-nput line 445.
+nput line 422.
 (pdftex.def)             Requested size: 469.76996pt x 277.16426pt.
 [7
 
 ] [8 <./Ms_files/figure-latex/unnamed-chunk-3-1.pdf>] [9
 
 ] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 553--558
+Underfull \hbox (badness 10000) in paragraph at lines 532--537
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 559--565
+Underfull \hbox (badness 10000) in paragraph at lines 538--544
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 566--571
+Underfull \hbox (badness 10000) in paragraph at lines 545--550
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--579
+Underfull \hbox (badness 10000) in paragraph at lines 551--558
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 580--585
+Underfull \hbox (badness 10000) in paragraph at lines 559--564
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 586--592
+Underfull \hbox (badness 10000) in paragraph at lines 565--571
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--598
+Underfull \hbox (badness 10000) in paragraph at lines 572--577
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--603
+Underfull \hbox (badness 10000) in paragraph at lines 578--582
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 604--609
+Underfull \hbox (badness 10000) in paragraph at lines 583--588
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--615
+Underfull \hbox (badness 10000) in paragraph at lines 589--594
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--622
+Underfull \hbox (badness 10000) in paragraph at lines 595--601
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--628
+Underfull \hbox (badness 10000) in paragraph at lines 602--607
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 629--635
+Underfull \hbox (badness 10000) in paragraph at lines 608--614
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 636--642
+Underfull \hbox (badness 10000) in paragraph at lines 615--620
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 643--649
+Underfull \hbox (badness 10000) in paragraph at lines 621--627
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 650--655
+Underfull \hbox (badness 10000) in paragraph at lines 628--633
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 634--638
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 656--660
+Underfull \hbox (badness 10000) in paragraph at lines 639--644
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--666
+Underfull \hbox (badness 10000) in paragraph at lines 645--650
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 667--672
+Underfull \hbox (badness 10000) in paragraph at lines 651--656
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 673--678
+Underfull \hbox (badness 10000) in paragraph at lines 657--663
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 679--685
+Underfull \hbox (badness 10000) in paragraph at lines 664--669
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 686--691
+Underfull \hbox (badness 10000) in paragraph at lines 670--675
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 692--697
+Underfull \hbox (badness 10000) in paragraph at lines 676--680
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 698--702
+Underfull \hbox (badness 10000) in paragraph at lines 681--686
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 703--708
+Underfull \hbox (badness 10000) in paragraph at lines 687--692
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 709--714
+Underfull \hbox (badness 10000) in paragraph at lines 693--698
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 715--721
+Underfull \hbox (badness 10000) in paragraph at lines 699--705
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 722--727
+Underfull \hbox (badness 10000) in paragraph at lines 706--712
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--734
+Underfull \hbox (badness 10000) in paragraph at lines 713--718
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 735--741
+Underfull \hbox (badness 10000) in paragraph at lines 719--724
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 742--747
+Underfull \hbox (badness 10000) in paragraph at lines 725--730
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 748--753
+Underfull \hbox (badness 10000) in paragraph at lines 731--736
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 754--758
+Underfull \hbox (badness 10000) in paragraph at lines 737--742
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 759--764
+Underfull \hbox (badness 10000) in paragraph at lines 743--748
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 765--770
+Underfull \hbox (badness 10000) in paragraph at lines 749--754
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 771--776
+Underfull \hbox (badness 10000) in paragraph at lines 755--759
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 777--782
+Underfull \hbox (badness 10000) in paragraph at lines 760--765
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 783--788
+Underfull \hbox (badness 10000) in paragraph at lines 766--772
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 789--795
+Underfull \hbox (badness 10000) in paragraph at lines 773--778
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 796--801
+Underfull \hbox (badness 10000) in paragraph at lines 779--784
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 802--807
+Underfull \hbox (badness 10000) in paragraph at lines 785--788
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 808--811
+Underfull \hbox (badness 10000) in paragraph at lines 789--794
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 795--800
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 801--806
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 807--811
 
  []
 
@@ -1230,73 +1250,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 825--830
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 831--836
+Underfull \hbox (badness 10000) in paragraph at lines 831--837
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 837--842
+Underfull \hbox (badness 10000) in paragraph at lines 838--844
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 843--849
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 850--855
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 856--861
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 862--867
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 868--873
+Underfull \hbox (badness 10000) in paragraph at lines 845--851
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 874--880
+Underfull \hbox (badness 10000) in paragraph at lines 852--857
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 881--885
+Underfull \hbox (badness 10000) in paragraph at lines 858--863
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 886--891
+Underfull \hbox (badness 10000) in paragraph at lines 864--869
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 892--897
+Underfull \hbox (badness 10000) in paragraph at lines 870--876
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 898--904
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 905--910
+Underfull \hbox (badness 10000) in paragraph at lines 877--882
 
  []
 
 [14]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-32.
+04.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1312,14 +1307,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: Ms_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-4-1.pdf  used on i
-nput line 1040.
+nput line 1012.
 (pdftex.def)             Requested size: 375.8077pt x 321.0341pt.
 [18 <./Ms_files/figure-latex/unnamed-chunk-4-1.pdf>]
 <Ms_files/figure-latex/unnamed-chunk-5-1.pdf, id=298, 847.165pt x 511.9125pt>
 File: Ms_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-5-1.pdf  used on i
-nput line 1051.
+nput line 1023.
 (pdftex.def)             Requested size: 422.76707pt x 255.46352pt.
 [19
 
@@ -1330,7 +1325,7 @@ nput line 1051.
 File: Ms_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-6-1.pdf  used on i
-nput line 1062.
+nput line 1034.
 (pdftex.def)             Requested size: 469.74937pt x 189.76993pt.
 [20 <./Ms_files/figure-latex/unnamed-chunk-6-1.pdf>]
 <Ms_files/figure-latex/unnamed-chunk-7-1.pdf, id=335, 568.1225pt x 396.48125pt>
@@ -1338,44 +1333,33 @@ nput line 1062.
 File: Ms_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Ms_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Ms_files/figure-latex/unnamed-chunk-7-1.pdf  used on i
-nput line 1073.
+nput line 1045.
 (pdftex.def)             Requested size: 469.7731pt x 327.84518pt.
-[21
-
-
-] [22 <./Ms_files/figure-latex/unnamed-chunk-7-1.pdf>] (./Ms.aux) ) 
+[21 <./Ms_files/figure-latex/unnamed-chunk-7-1.pdf>] (./Ms.aux) ) 
 Here is how much of TeX's memory you used:
- 27556 strings out of 478268
- 513844 string characters out of 5846348
- 830281 words of memory out of 5000000
- 44948 multiletter control sequences out of 15000+600000
- 528024 words of font info for 157 fonts, out of 8000000 for 9000
+ 27540 strings out of 478268
+ 513600 string characters out of 5846348
+ 830194 words of memory out of 5000000
+ 44946 multiletter control sequences out of 15000+600000
+ 527578 words of font info for 153 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,9n,94p,999b,657s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{ref-gmail.com} has been referenced but does not exi
-st, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{ref-xmiguelangelcolladox} has been referenced but d
-oes not exist, replaced by a fixed one
-
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/t
-exlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/202
-2/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-di
-st/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/d
-vips/lm/lm-rm.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmb
-x12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022
-/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2022/texmf-dist
-/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
-/lmsy10.pfb>
-Output written on Ms.pdf (22 pages, 1884522 bytes).
+{/usr/local/te
+xlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2022/te
+xmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/f
+onts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/d
+vips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.
+enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texl
+ive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fo
+nts/type1/public/lm/lmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
+ublic/lm/lmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr
+i12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on Ms.pdf (21 pages, 1880563 bytes).
 PDF statistics:
- 488 PDF objects out of 1000 (max. 8388607)
- 421 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
- 30907 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 475 PDF objects out of 1000 (max. 8388607)
+ 409 compressed objects within 5 object streams
+ 122 named destinations out of 1000 (max. 500000)
+ 30899 words of extra memory for PDF output out of 35830 (max. 10000000)
 
