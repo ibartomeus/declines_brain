@@ -56,7 +56,6 @@ s = unique(pref$Species)
 
 raw = raw %>% filter(Species %in% s)
 
-
 #Load taxonomic rank script
 tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 
@@ -66,7 +65,7 @@ tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 
 # Abstract
 
-The rapid conversion of natural habitats to anthropogenic landscapes is threatening insect pollinators worldwide, raising concern on the consequences for their fundamental role as plant pollinators. However, not all pollinators are negatively affected by habitat conversion, as certain species find in anthropogenic landscapes appropriate resources to persist and proliferate. The reason why some species thrive in anthropogenic environments while most find them inhospitable remains poorly understood. The cognitive buffer hypothesis, widely supported in vertebrates but untested in insects, offers a potential explanation. This theory  suggests that species with larger brains have enhanced behavioural plasticity, enabling them to confront and adapt to novel challenges. To investigate this hypothesis in insects, we measured brains for `r nrow(raw)` individuals from `r nlevels(factor(unique(raw$Species)))` species of bees, and evaluated the association of their brain sizes with detailed information on habitat preferences. Our analyses revealed that bees that prefer urban habitats had larger brains relative to their body size than those who prefer forested or agricultural habitats. Additionally, urban bees exhibited larger body sizes and, consequently, larger absolute brain sizes. Our results provide the first empirical support to this hypothesis in invertebrates, suggesting that a large brain in bees could confer behavioural advantages to tolerate urban environments.
+The rapid conversion of natural habitats to anthropogenic landscapes is threatening insect pollinators worldwide, raising concern on the consequences for their fundamental role as plant pollinators. However, not all pollinators are negatively affected by habitat conversion, as certain species find in anthropogenic landscapes appropriate resources to persist and proliferate. The reason why some species thrive in anthropogenic environments while most find them inhospitable remains poorly understood. The cognitive buffer hypothesis, widely supported in vertebrates but untested in insects, offers a potential explanation. This theory  suggests that species with larger brains have enhanced behavioural plasticity, enabling them to confront and adapt to novel challenges. To investigate this hypothesis in insects, we measured brains for `r nrow(raw)` individuals from `r nlevels(factor(unique(raw$Species)))` species of bees, and evaluated the association of their brain sizes with detailed information on habitat preferences. Our analyses revealed that bees that prefer urban habitats had larger brains relative to their body size than those who prefer forested or agricultural habitats. Additionally, urban bees exhibited larger body sizes and, consequently, larger absolute brain sizes. Our results provide the first empirical support for the cognitive buffer hypothesis in invertebrates, suggesting that a large brain in bees could confer behavioural advantages to tolerate urban environments.
 
 Keywords: relative brain size, habitat preference, Apoidea, urbanisation, pollinators
 
@@ -76,7 +75,7 @@ Keywords: relative brain size, habitat preference, Apoidea, urbanisation, pollin
 
 # 1. Introduction
 
-Pollinators deliver a fundamental ecosystem service on which the earth's vegetation and human economy depend [@ollerton2017]. Regrettably, there is increasing evidence of recent declines in pollinator populations [@bartomeus2019; @potts2010; @scheper2014]. One of the main contributing factors to the current pollinator declines is the alteration and loss of their habitat due to human activity [@harrison2015; @harrison2018]. Anthropogenic landscapes present new challenges for survival and reproduction of organisms, increasing their risk of extinction by maldaptation [@winfree2011; @brown2009 ; @harrison2019]. Yet, not all pollinator species are negatively affected by land use change. For instance, some bee species are able to tolerate human-altered environments [@biesmeijer2006; @bartomeus2013; @collado2019] or even to thrive [e.g., _Bombus terrestris_\; @rasmont2008; @theodorou2020]. 
+Pollinators deliver a fundamental ecosystem service on which the earth's vegetation and human economy depend [@ollerton2017]. Regrettably, there is increasing evidence of recent declines in pollinator populations [@bartomeus2019; @potts2010; @scheper2014]. One of the main contributing factors to the current pollinator declines is the alteration and loss of their habitat due to human activity [@harrison2015; @harrison2018]. Anthropogenic landscapes present new challenges for the survival and reproduction of organisms, increasing their risk of extinction by maldaptation [@winfree2011; @brown2009 ; @harrison2019]. Yet, not all pollinator species are negatively affected by land use change. For instance, some bee species are able to tolerate human-altered environments [@biesmeijer2006; @bartomeus2013; @collado2019] or even to thrive [e.g., _Bombus terrestris_\; @rasmont2008; @theodorou2020]. 
 
 Human-dominated habitats ---notably cities--- drastically modify the original conditions where pollinators evolved, but can also offer unique ecological opportunities in the form of new nesting spots, reduced predation pressure and high food availability associated with non-indigenous plants [@cane2006; @winfree2011; @collado2019]. The question is then why only some species are able to tolerate urban environments. The “cognitive buffer hypothesis” provides an explanation for this conundrum, suggesting that in novel environments the chances to successfully survive and reproduce depends on cognition [@sol2009], that is, the processes involved in gathering, storing and reacting to environmental information [@shettleworth2009]. While the “cognitive buffer hypothesis” receives ample support from studies of vertebrates [@sol2008; @amiel2011; @sayol2016; @howell2023], similar evidence is lacking for insects. 
 
@@ -162,7 +161,7 @@ r2_its = round(r2_its[[1]],2)
 
 ```
 
-## (a) Bee species dataset
+## (a) Brain measurements
 
 Our dataset contains measurements of brain and body size for bee specimens captured on flowers by hand netting in different areas of the East Coast of the United States and Europe (Spain and the Netherlands). The dataset includes information of `r nrow(raw)` female individuals from `r nlevels(factor(unique(raw$Species)))` species that represent `r nlevels(factor(unique(tax$family)))` families and `r nlevels(factor(unique(tax$genus)))` genera. We only considered female specimens because: (i) they are involved in a greater diversity of tasks than males, and hence are expected to experience greater environmental pressures; and (ii), have brains that are structurally and functionally different from those of males [@streinzer2013; @roselino2015]. Brain size was measured as the weight of fixed brains [@sayol2020] and body size as intertegular span [@kendall2019\; see supplementary text]. Given that brain size scales allometrically with body size [@sayol2020], we considered for our analysis the size of the brain relative to the body.
 
@@ -170,7 +169,7 @@ Following @sayol2020, we estimated relative brain size as the residuals of a log
 
 
 
-## (b) Occurrence data
+## (b) Habitat preferences
 
 ```{r Loading study site areas, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE}
 
@@ -247,29 +246,27 @@ spp_number_nofilter = nrow(all_spp) #total number of species
 
 ```
 
-We downloaded occurrence information for all species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. We selected the states or countries with the highest density of records for our set of species. For North America, we selected states located on the East Coast of the United States (Figure S2A), covering an approximate area of `r usakm2` km$^{2}$. For Europe, we selected countries located on the north and centre of the continent (Figure S2B), representing a total area of `r eukm2` km$^{2}$. To further reduce biases in the data, we only included species with a minimum number of 50 records and whose geographic distribution was larger than the sampled area (i.e., excluding species at the edge of their distributions). In addition, we optimised the match between species occurrence and the land cover data by only using georeferenced records obtained between 1990 and 2022 with a minimum of two decimals of latitude/longitude coordinates.
+We downloaded occurrence information for all the measured species from the Global Biodiversity Information Facility (GBIF; http://www.gbif.org/) for North America and Europe. The data was downloaded through R programming language with the help of the function *occ_download* from the package *rgbif* version 3.7.3 [@chamberlain2017]. We selected the states or countries with the highest density of records for our set of species. For North America, we selected states located on the East Coast of the United States (Figure S2A), covering an approximate area of `r usakm2` km$^{2}$. For Europe, we selected countries located on the north and centre of the continent (Figure S2B), representing a total area of `r eukm2` km$^{2}$. To further reduce biases in the data, we only included species with a minimum number of 50 records and whose geographic distribution was larger than the sampled area (i.e., excluding species at the edge of their distributions). In addition, we optimised the match between species occurrence and the land cover data by only using georeferenced records obtained between 1990 and 2022 with a minimum of two decimals of latitude/longitude coordinates.
+
+We assigned a habitat type to each GBIF occurrence by merging land cover information with the georeferenced records of species occurrences. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these inventories as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.6-41 [@hijmans2022] to read and obtain the cover classification of the different georeferenced records, respectively. To simplify the interpretation and conduct a joint analysis for both regions, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban (see Tables S1 and S2 for details). With this information we can build an occurrence matrix with species in rows, habitats in columns, and cells depicting the number of occurrences per species-habitat combination. 
 
 
 
-## (c) Land cover classification
+Habitat preferences were estimated by assessing whether the occurrences of species in a given habitat were more frequent than expected by chance. For this, we generated 10,000 randomised matrices based on the occurrence matrix with the function *nullmodel* from the package *bipartite* version 2.16 [@dormann2008]. We used the method 'r2dtable', which maintains row and column sums constant by using Patefield's algorithm [@patefield1981]. This maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones (i.e., percentile). Lastly, we considered that a bee species exhibited a “high preference” for any of the three studied habitats when the number of  occurrences observed in this habitat exceeded  the 80th percentile of the values obtained from the simulations. On the contrary, the species was considered to exhibit “low preference or avoidance” for the habitat when the observed occurrences were below the 20th percentile. To better understand if our findings are affected by the evolutionary histories of the species, we estimated the phylogenetic signal of relative brain size and habitat preference across habitats for our set of species with the help of the function *phylosig* from the *phytools* package.
 
-We assigned a habitat type to each GBIF occurrence by merging land cover information with the georeferenced records of species occurrences. The land cover classification was obtained from the 2006 online inventories of the National Land Cover Database (NLCD) for United States and the Corine Land Cover (CLC) for Europe. After downloading these inventories as raster files, we used the functions *rast* and *extract* from the *Terra* package version 1.6-41 [@hijmans2022] to read and obtain the cover classification of the different georeferenced records, respectively. To simplify the interpretation and conduct a joint analysis for both regions, we divided the resulting cover classes into three single categories: (i) natural, (ii) agricultural and (iii) urban (see Tables S1 and S2 for details).  
+## (c) Analysis
 
-
-
-## (d) Analysis
-
-Habitat preferences were estimated by assessing whether the occurrences of species in a given habitat were more frequent than expected by chance. For this, we generated 10,000 randomised matrices based on the occurrence matrix (i.e., species in rows and habitats in columns) with the function *nullmodel* from the package *bipartite* version 2.16 [@dormann2008]. We used the method 'r2dtable', which maintains row and column sums constant by using Patefield's algorithm [@patefield1981]. This maintains the proportional dominance of the species and habitats constant but reshuffles their associations. We then estimated the percentage of simulated occurrences per species and habitat that were under the observed ones (i.e., percentile). Lastly, we considered that a bee species exhibited a “high preference” for any of the three studied habitats when the number of  occurrences observed in this habitat exceeded  the 80th percentile of the values obtained from the simulations. On the contrary, the species was considered to exhibit “low preference or avoidance” for the habitat when the observed occurrences were below the 20th percentile. To better understand if our findings are affected by the evolutionary histories of the species, we estimated the phylogenetic signal of relative brain size and habitat preference across habitats for our set of species with the help of the function *phylosig* from the *phytools* package.
-
-To evaluate how the association between habitat preference and relative brain size changed by habitat type, we modelled with Bayesian generalised linear models their association. For this, we first joined the resulting habitat preference and relative brain size datasets by species and extracted those with statistical habitat preference on any of these three habitats. The resulting distribution of habitat preferences for each of the habitats analysed followed a zero-one inflated beta distribution (Figure S3), indicating that there were high frequencies of habitat preferences close to 0 or 1 but low frequencies of intermediate values between 0 and 1. Hence, in our analyses we only modelled the extremes of the distribution (i.e., species classified as avoiding or preferring a given habitat). Because we assessed habitat preference as binary (low or high), we specified a Bernouilli distribution where habitat preference was the response variable and relative brain size the predictor. Again, we included the phylogenetic covariance matrix as a random factor. Moreover, we also explored how habitat preference changed by brain weight and intertegular span independently. For this, we conducted two analogous models with these two different predictors. In addition, we also investigated the different trends for the United States and Europe separately.  
+To evaluate how the association between habitat preference and relative brain size changed by habitat type, we modelled with Bayesian generalised linear models their association. For this, we first joined the resulting habitat preference and relative brain size datasets by species. The resulting distribution of habitat preferences for each of the habitats analysed followed a zero-one inflated beta distribution (Figure S3), indicating that there were high frequencies of habitat preferences close to 0 or 1 but low frequencies of intermediate values between 0 and 1. Hence, in our analyses we take a conservative approach and only modelled the extremes of the distribution (i.e., species classified as avoiding or preferring a given habitat). Because we assessed habitat preference as binary (“avoiding” or “preferring”), we specified a Bernouilli distribution where habitat preference was the response variable and relative brain size the predictor. Again, we included the phylogenetic covariance matrix as a random factor. Moreover, we also explored how habitat preference changed by brain weight and intertegular span independently. For this, we conducted two analogous models with these two different predictors. In addition, we also investigated the different trends for the United States and Europe separately.  
 
 All our models were run with 4,000 iterations with previous 1,000 warm up iterations, using non-informative or weakly informative priors [@burkner2017]. Further, the different posterior predictive checks were conducted with the function *pp_check*, also from the *brms* package. All our analyses were undertaken in R version 4.0.5 [@r2021], and all data processing and graphics were done with the set of packages from the tidyverse version 1.3.0 [@tidyverse19].
 
 # 3. Results
 
-Habitat preference varied substantially across species (Figure 1B) but showed none (i.e., preference for agricultural and rural habitats) or moderate phylogenetic signal (i.e., preference for natural habitat; $\lambda$ = `r lambda_nat`; *P* = `r p_nat`). In general, most bee species preferred one or two habitat types but more rarely occurred indistinctly in the three habitats (Figure 1B). The most preferred habitats were the agricultural and natural ones with `r pref_agr` and `r pref_nat` species over 80% of the values from null models, respectively (Figure 1B and Figure S3). In contrast, most species avoided urban habitats (`r pref_urb1` species under the 20th percentile) and just `r pref_urb2` species showed high preference for this habitat type (Figure 1B and Figure S3). 
+Habitat preference varied substantially across species (Figure 1B) and showed moderate phylogenetic signal (i.e., preference for natural habitat; $\lambda$ = `r lambda_nat`; *P* = `r p_nat`). In general, most bee species preferred one or two habitat types but more rarely occurred indistinctly in the three habitats (Figure 1B). The most preferred habitats were the agricultural and natural ones with `r pref_agr` and `r pref_nat` species over 80% of the values from null models, respectively (Figure 1B and Figure S3). In contrast, most species avoided urban habitats (`r pref_urb1` species under the 20th percentile) and just `r pref_urb2` species showed high preference for this habitat type (Figure 1B and Figure S3). 
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=89). A) Phylogenetic tree at the genus level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural, semideveloped and urban) and the rows the different bee species."}
+
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=12, fig.width=12,fig.cap="\\textbf{Figure 1.} Phylogenetic relationship and habitat preferences for the selected bee species with brain weight and intertegular distance information (N=89). A) Phylogenetic tree at the genus level. Tree branches are coloured based on the geographical location of the different bee species (North of Europe, East Coast of United States or from both regions). The deviation of the brain size in relation to the body (i.e., residuals) is indicated with weighted points at the end of the tip branches. Larger points indicate larger brains in proportion to their body size and vice versa. B) Heatmap showing the habitat preference for each bee species. The columns delimit the habitat type (i.e., natural, agricultural and urban) and the rows the different bee species."}
 
 library(ggtree) #v3.5.3.002
 library(ggplot2)
@@ -344,7 +341,7 @@ p2 %>% insert_left(p)
 
 \clearpage
 
-Although the model evaluating how relative brain size was associated with habitat preference explained little of the overall variance (Bayesian R$^2$ = `r r2_main`), we found evident trends when we explored this association by habitat type (Figure 2A). Specifically, we found that bees with larger brains relative to body size showed a higher preference for urban habitats than bees with smaller relative brain sizes (Figure 2A). Contrarily, bees with smaller relative brains showed higher preference in natural and agricultural habitats than bees with larger relative brain sizes (Figure 2A). The models of the association between absolute brain size and intertegular span with habitat preference captured also little of the overall variance (Bayesian R$^2$ = `r r2_brain`; Bayesian R$^2$ = `r r2_its`, respectively). However, we found again marked differences between habitat types (Figures 2B and 2C). Specifically, we found that bees with larger brains and body sizes tend to appear more in urban habitats and bees with smaller brains and body sizes are more common in natural and agricultural ones (Figures 2B and 2C). These findings were consistent with the analogous analyses separated by geographical regions (United States and Europe; Figure S4). 
+We found that bee species relative brain size is associated with the habitat type preference (Figure 2A; Bayesian R$^2$ = `r r2_main`). Specifically, we found that bees with larger brains relative to body size showed a higher preference for urban habitats than bees with smaller relative brain sizes (Figure 2A). Contrarily, bees with smaller relative brains showed higher preference in natural and agricultural habitats than bees with larger relative brain sizes (Figure 2A). The models of the association between absolute brain size and intertegular span with habitat preference also showed a marked differences between habitat types (Figures 2B and 2C; Bayesian R$^2$ = `r r2_brain`; Bayesian R$^2$ = `r r2_its`, respectively). Specifically, we found that bees with larger brains and body sizes tend to appear more in urban habitats and bees with smaller brains and body sizes are more common in natural and agricultural ones (Figures 2B and 2C). These findings were consistent with the analogous analyses separated by geographical regions (United States and Europe; Figure S4). 
 
 ```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=10, fig.cap="\\textbf{Figure 2.} Association between relative brain size (A), brain weight (B) and intertegular distance (C) with habitat preference by habitat type (i.e., natural, agricultural and urban). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p"}
 
@@ -436,11 +433,11 @@ theme(legend.position = 'bottom', panel.border=element_rect(size=1),
 
 
 
-Using data from two different continents and 89 bee species, we find that bees with a preference for inhabiting urban habitats tended to have larger brains relative to their body while those with forest or agricultural preferences had relatively smaller brains. These results are in line with the cognitive buffer hypothesis [@sol2009], which predicts that a large relative brain should provide enhanced behavioural plasticity to persist and thrive in novel environments. In urban environments, individuals are frequently exposed to a variety of new challenges such as novel resources or human disturbances that can change fast in time and space [@wheater2002]. In such scenarios, a large brain could confer the cognitive flexibility needed to efficiently exploit novel resources while avoiding risks. While the exact mechanisms are unclear, we expect cognitive flexibility to be essential in a variety of contexts such as the use of human-made materials for the nest [@allasino2019] or the need to collect pollen and nectar from exotic flowers [@lowenstein2019]. 
+Using data from two different continents and `r nlevels(factor(unique(raw$Species)))` bee species, we find that bees with a preference for inhabiting urban habitats tended to have larger brains relative to their body while those with forest or agricultural preferences had relatively smaller brains. These results are in line with the cognitive buffer hypothesis [@sol2009], which predicts that a large relative brain should provide enhanced behavioural plasticity to persist and thrive in novel environments. In urban environments, individuals are frequently exposed to a variety of new challenges such as novel resources or human disturbances that can change fast in time and space [@wheater2002]. In such scenarios, a large brain could confer the cognitive flexibility needed to efficiently exploit novel resources while avoiding risks. While the exact mechanisms are unclear, we expect cognitive flexibility to be essential in a variety of contexts such as the use of human-made materials for the nest [@allasino2019] or the need to collect pollen and nectar from exotic flowers [@lowenstein2019]. 
 
 
 
-Also in line with the cognitive buffer hypothesis [@ducatez2020], we find that bees that proliferate in urban habitats have bigger bodies and larger absolute brains. Larger species obtain greater net benefits from exploring and learning, especially in heterogeneous environments [@bateman2012; @theodorou2021]. The patchiness of urban resources seems indeed to favour larger body sizes, as suggests the observation that foraging distance is positively associated with body size in bees [@greenleaf2007; @kendall2019]. There are also shreds of evidence that associate increased tolerance to urbanisation with wider ecological niches [@geslin2013; @buchholz2020; @prendergast2022], and both larger bodies and relative brains are thought to be features that can facilitate broader diets and niche expansion. Further understanding all these processes represent an important avenue of future research.
+Also in line with the cognitive buffer hypothesis [@ducatez2020], we find that bees that proliferate in urban habitats have bigger bodies and larger absolute brains. Larger species require longer development times and obtain greater net benefits from exploring and learning, especially in heterogeneous environments [@bateman2012; @theodorou2021]. For example, the large carpenter bees of the genus Xylocopa can live up to two years and are frequent urban dwellers, while small Andrena forest specialists complete their adult life cycle in a few weeks. The patchiness of urban resources also seems to favour larger body sizes, as suggests the observation that foraging distance is positively associated with body size in bees [@greenleaf2007; @kendall2019]. There are also shreds of evidence that associate increased tolerance to urbanisation with wider ecological niches [@geslin2013; @buchholz2020; @prendergast2022], and both larger bodies and relative brains are thought to be features that can facilitate broader diets and niche expansion. Further understanding all these processes represent an important avenue of future research.
 
 
 
@@ -448,17 +445,19 @@ Overall, our findings support and expand previous evidence found in vertebrates 
 
 # Data accessibility
 
-All occurrence data used in this study can be downloaded from https://doi.org/10.15468/dl.5s5kuf. In addition, bee trait data and code can be found in the online repositories of Zenodo XXXXXXXKXX and Github https://github.com/ibartomeus/declines_brain.git.
+All occurrence data used in this study can be downloaded from https://doi.org/10.15468/dl.5s5kuf. In addition, bee trait data and code can be found in the online repositories of Zenodo https://doi.org/10.5281/zenodo.8049996 and Github https://github.com/ibartomeus/declines_brain.git.
 
 # Authors' contributions
 
-MAC, IB and JBL designed the study. MAC and FS collected the data. JBL led the analysis with help from MAC and IB. JBL and IB wrote the manuscript with contributions from all authors.
+IB, MAC and JBL designed the study. MAC and FS collected the data. JBL led the analysis with help from MAC and IB. JBL and IB wrote the manuscript with contributions from all authors.
 
 # Funding
 
 Ministerio de Economía y Competitividad, Gobierno de España, Grant/Award Number: CGL2013-47448-P
 
 # Acknowledgements
+
+We thank Curro Molina, Ivo Reamakers and Parker Gambino for collecting some of the studies specimens. 
 
 # Conflict of interest declaration
 
@@ -471,351 +470,4 @@ We declare we have no competing interests.
 ::: {#refs}
 :::
 
-\clearpage
 
-# Supplementary material
-
-## Brain and body size measurements
-
-Brain size was measured as the weight of the fixed brain for each specimen. First, all collected individuals were kept in cold and sent to the laboratory where they were identified by expert taxonomists and anaesthetised in cold. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Then, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®. Finally, we calculated the average weight for the species with more than one specimen. Because weighing bee brains is a highly error-prone task, we excluded values that were under or above 1.5 times the interquartile range for each species.
-
-We considered as a proxy of body size the average intertegular span (ITS) per species. ITS represents the distance between the base of the wings (tegulae) on the bee thorax and has been shown to accurately predict body size as it is highly correlated with dry body weight (Cane et al., 2006; Kendall et al., 2019). All ITS measurements were conducted with a stereomicroscope (magnification 16x or 80x) with a calibrated ocular micrometre (resolution down to 0.02 mm).
-
-Cane, J. H., Minckley, R. L., Kervin, L. J., Roulston, T. A. H., & Williams, N. M. (2006). Complex responses within a desert bee guild (Hymenoptera: Apiformes) to urban habitat fragmentation. _Ecological applications_, _16_(2), 632-644.
-
-Kendall, L. K., Rader, R., Gagic, V., Cariveau, D. P., Albrecht, M., Baldock, K. C., ... & Bartomeus, I. (2019). Pollinator size and its consequences: Robust estimates of body size in pollinating insects. _Ecology and Evolution_, _9_(4), 1702-1714.
-
-```{r Table S1, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center"}
-
-#Create table of occurrences per habitat type (USA)
-#Load libraries
-library(tidyverse)
-library(kableExtra)
-
-#Load extracted data
-pref <- read_csv("../Data/Usa_data/land_cover_usa.csv.gz") %>% 
-dplyr::select(species, cover.names) %>% 
-mutate_if(is.character,as.factor) 
-
-#Create table with original and new cover categories
-pref %>% 
-rename(Cover_names = cover.names) %>% 
-select(Cover_names) %>% 
-group_by(Cover_names) %>% 
-summarise(Occurrences = length(Cover_names)) %>% 
-mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
-       Discarded = "Barren Land", 
-       Agricultural = "Cultivated Crops", 
-       Natural = "Deciduous Forest", 
-       Urban = "Developed, High Intensity", 
-       Urban = "Developed, Medium Intensity",
-       Urban = "Developed, Low Intensity",
-       Urban = "Developed, Open Space", 
-       Natural = "Emergent Herbaceous Wetlands", 
-       Natural = "Evergreen Forest", 
-       Agricultural = "Hay/Pasture", 
-       Natural = "Herbaceous", 
-       Natural = "Mixed Forest", 
-       Discarded = "Open Water", 
-       Natural = "Shrub/Scrub", 
-       Natural = "Woody Wetlands")) %>% 
-arrange(desc(Occurrences)) %>%  
-kbl(col.names = c("Original NLCD Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S1.} Original downloaded cover classes for United States with the respective assigned cover classes and number of bee occurrences found on each of them.",
-booktabs = T, align = c("l", "c", "l"), linesep = "") %>% 
-kable_styling(font_size = 12, latex_options = c("hold_position", "striped")) %>% 
-row_spec(0,bold=TRUE)
-
-```
-
-\clearpage
-
-```{r Table S2, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center"}
-
-#Create table of occurrences per habitat type (USA)
-#Load libraries
-library(tidyverse)
-library(kableExtra)
-
-#Load extracted data
-pref <- read_csv("../Data/Europe_data/land_cover_europe.csv.gz") %>% 
-    dplyr::select(Species, Cover_names) %>% 
-    mutate_if(is.character,as.factor) 
-
-#Create table with original and new cover categories
-pref %>% 
-select(Cover_names) %>% 
-group_by(Cover_names) %>% 
-summarise(Occurrences = length(Cover_names)) %>% 
-mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
-      Urban = "Airports", #1
-      Discarded = "Bare rocks", #2
-      Natural = "Beaches, dunes, sands", #3
-      Natural = "Broad-leaved forest", #4
-      Natural = "Coastal lagoons", #5
-      Agricultural = "Complex cultivation patterns", #6
-      Natural = "Coniferous forest", #7
-      Urban = "Construction sites", #8
-      Urban = "Continuous urban fabric", #9
-      Urban = "Discontinuous urban fabric", #10
-      Discarded = "Dump sites", #11
-      Discarded = "Estuaries", #12
-      Agricultural = "Fruit trees and berry plantations", #13
-      Urban = "Green urban areas", #14)
-      Urban = "Industrial or commercial units", #15
-      Natural = "Inland marshes", #16
-      Natural = "Intertidal flats", #17
-      Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #18
-      Discarded = "Mineral extraction sites", #19
-      Natural = "Mixed forest", #20
-      Natural = "Moors and heathland", #21
-      Agricultural = "Natural grasslands", #22
-      Agricultural = "Non-irrigated arable land", #23
-      Agricultural = "Pastures", #24
-      Natural = "Peat bogs", #25
-      Urban = "Port areas", #26) 
-      Discarded = "Road and rail networks and associated land", #27
-      Natural = "Salt marshes", #28
-      Discarded = "Sea and ocean", #29
-      Natural = "Sparsely vegetated areas", #30
-      Urban = "Sport and leisure facilities", #31
-      Natural = "Transitional woodland-shrub", #32
-      Agricultural = "Vineyards", #33
-      Discarded = "Water bodies", #34
-      Discarded = "Water courses" #35  
-)) %>% 
-mutate(Cover_names = fct_recode(as.factor(Cover_names),
-      "Land principally occupied by agriculture" = "Land principally occupied by agriculture, with significant areas of natural vegetation")) %>% 
-arrange(desc(Occurrences)) %>%  
-kbl(col.names = c("Original CLC Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S2.} Original downloaded cover classes for Europe with the respective assigned cover classes and number of bee occurrences found on each of them.",booktabs = T,
-align = c("l", "c", "l"), linesep = "") %>% 
-kable_styling(font_size = 12,latex_options = c("hold_position", "striped")) %>% 
-row_spec(0,bold=TRUE)
-
-```
-
-\clearpage
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=7, fig.cap="\\textbf{Figure S1.} Association between the log-transformed values of brain and body size (N = 116). The different raw values or points are coloured by the subfamily taxonomic rank.", fig.pos="p", out.width="80%"}
-
-#Plot encephalization
-#Load libraries
-library(stringr)
-library(readr)
-library(ggplot2)
-library(dplyr)
-library(elementalist) #devtools::install_github("teunbrand/elementalist")
-
-#Read data
-m = read_csv("../Data/Processing/residuals_model.csv")
-r = read_csv("../Data/Processing/residuals_data.csv")
-d = read_csv("../Data/Processing/taxonomic_rank.csv") %>% 
-mutate(Species = str_replace_all(query, " ", "_")) %>% 
-select(!c(query, db))
-
-#Add taxonomic rank to dataset
-r = left_join(r,d)
-
-#Add ggplot
-ggplot(m, aes(x = log_it, y = estimate__)) +
-geom_line(size=1) +
-geom_point(data = r, aes(log_it, log_brain_weight, color = subfamily), size=3.5) + 
-theme_bw() +
-ylab("log(Brain size)") +
-xlab("log(Body size)") +
-theme(legend.position = c(.95, .60),
-legend.justification = c("right", "top"),
-legend.box.just = "right",
-legend.background = element_rect_round(radius = unit(0.2, "snpc"),fill = "grey85"),
-legend.key = element_rect(fill = "grey85")) +
-guides(colour=guide_legend(title="Subfamily")) +
-theme(axis.title = element_text(face = "bold"))
-
-```
-
-\clearpage
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure S2.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species. A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.",  out.width="90%"}
-
-#Plot maps with density of bee occurrences
-
-#Europe----
-#Load libraries
-library(giscoR) #map of europe
-library(ggplot2)
-library(dplyr)
-library(readr)
-library(sf)
-library(patchwork)
-library(rnaturalearth)
-
-#Load europe map
-Europe <- gisco_get_countries(region = "Europe")
-#Load countries filtered
-euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
-#Load data with records filtered
-all_long_lat <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
-
-#Plot Europe map with counties of interest highlighted
-p1 = ggplot(Europe) +
-geom_sf(fill="gray25",color = "black", alpha = 0.5,size=0.2)  +
-geom_sf(data= euro_map %>% group_by(CNTR_CODE) %>% summarise() ,
-aes(fill = CNTR_CODE, group=CNTR_CODE),fill = "#f2ea69", color = "black",alpha=0.8, size = 0.25) +
-coord_sf(xlim = c(-10, 30), ylim = c(35, 65))  + 
-microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
-panel.background = element_rect(fill = "white"))
-
-p2 = ggplot(Europe) +
-geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2)+
-geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
-coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
-theme(panel.background = element_rect(fill = "white"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-ylab("Latitude") +
-xlab("Longitude") +
-ggtitle("B") +
-theme(legend.position = c(0, 1),legend.justification = c(0, 1),
-legend.background = element_blank(),
-legend.box.background = element_blank(),
-legend.key = element_blank(), 
-legend.title = element_text(face = "bold"),
-axis.title = element_text(face="bold", size = 14),
-plot.title = element_text(face="bold", size = 18),
-legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
-scale_y_continuous(breaks = seq(40, 60, by = 6)) +
-scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
-ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
-
-#Insert general plot within specific plot
-panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
-
-#USA-----
-#Load libraries
-
-#Load data
-usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
-ny_metropolitan_1 <- read.csv("../Data/Usa_data/ny_metropolitan.csv")
-all_long_lat <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
-
-#Load maps
-canada <- ne_states(country = "canada", returnclass = "sf") %>%
-st_as_sf(crs = 4326) 
-
-usa <- ne_states(country = "united states of america", returnclass = "sf") %>%
-st_as_sf(crs = 4326)
-
-p1 = ggplot(canada) + 
-geom_sf(fill="gray60",color = "black", alpha = 1,size=0.2) + 
-geom_sf(data= usa, fill="gray60",color = "black", alpha = 1,size=0.2) + 
-microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
-panel.background = element_rect(fill = "white")) +
-geom_map(data = ny_metropolitan_1, 
-map = ny_metropolitan_1,aes(long, lat, map_id = region, group = group), fill = "#f2ea69",color = "black",
-size = 0.1) +
-geom_map(data = usa_states_1, map = usa_states_1,
-aes(long, lat, map_id = region, group = group), color = "black", fill = "#f2ea69",
-size = 0.1) +
-coord_sf(xlim = c(-86, -62), ylim = c(25, 48)) 
-
-p2 = ggplot(canada) + 
-geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2) + 
-geom_sf(data= usa, fill="gray80",color = "black", alpha = 1,size=0.2) +
-geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
-coord_sf(xlim = c(-82, -67), ylim = c(33, 47))  +
-theme(panel.background = element_rect(fill = "white"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-ylab("Latitude") +
-xlab("Longitude") +
-ggtitle("A") +
-theme(legend.position = c(0, 1),legend.justification = c(0, 1),
-legend.background = element_blank(),
-legend.box.background = element_blank(),
-legend.key = element_blank(),
-legend.title = element_text(face = "bold"),
-axis.title = element_text(face="bold", size = 14),
-plot.title = element_text(face="bold", size = 18),
-legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
-scale_y_continuous(breaks = seq(33, 47, by = 4)) +
-scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+ 
-ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
-
-#Insert general plot within specific plot
-panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
-
-library(patchwork)
-panel2  + panel1
-
-
-
-```
-
-
-
-\clearpage
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=5, fig.width=12, fig.cap="\\textbf{Figure S3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
-
-#Histogram of habitat preferences
-#Load libraries
-library(tidyverse) 
-
-#Load preferences
-preferences_europe = read_csv("../Data/Europe_data/preferences_europe.csv") 
-preferences_usa = read_csv("../Data/Usa_data/preferences_usa.csv") 
-
-#Merge datasets
-preferences = bind_rows(preferences_europe, preferences_usa)
-
-#Convert to long to model everything at the same time
-long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
-
-#Relevel for plotting
-long_data = long_data %>% 
-mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
-
-labels.minor <- c("Avoidance", rep("", times = 2), "Preference","")
-
-long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultural", "Urban"),labels = c("A) Natural", "B) Agricultural", "C) Urban"))
-
-long_data = long_data %>% 
-mutate(Preference_colour = case_when(Preference <= 0.2 ~ "A", Preference >= 0.8 ~ "B", T ~ "C"))
-
-long_data$Preference_colour <- factor(long_data$Preference_colour, levels = c("A","C", "B"), labels = c("Low preference", "No preference", "High preference"))
-
-ggplot(long_data, aes(x=Preference, color= Preference_colour)) +
-    geom_histogram(aes(fill= Preference_colour),bins = 35, alpha = 0.8,linewidth=0.5) + 
-    xlab("Habitat preference") +
-    ylab("Frequency") +
-    facet_wrap(~ Habitat) +
-    scale_fill_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
-    scale_color_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
-    theme_bw() +   
-    theme(axis.title = element_text(face = "bold", size = 14),
-    panel.border=element_rect(size=1),
-    strip.text = element_text(face = "bold", size = 18,hjust = -0.01),
-    strip.background = element_rect(fill = NA, colour = NA, size = 0,linetype="solid"),
-    panel.grid.minor=element_blank())+
-    scale_y_continuous(expand = c(0, 0), limits = c(0,60))+
-    geom_vline(aes(xintercept = 0.20), colour="black", linetype="dashed") +
-    geom_vline(aes(xintercept = 0.80), colour="black", linetype="dashed") +
-    scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.2),
-                       labels = c(0,0.2,0.4,0.6,0.8,1)) +
-  theme(legend.position = 'bottom', legend.box.background = element_rect(colour = "black",size=1))
-
-
-
-
-```
-
-\clearpage
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S4}. Association between relative brain size (A and D), brain weight (B and E) and intertegular distance (C and F) with habitat preference separated by habitat type (i.e., natural, agricultural and urban) and geographical region (USA in the upper panel and Europe in the lower one). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p", out.width="100%"}
-
-plot_all = readRDS("../Data/Processing/plot_all.rds")
-
-plot_all
-
-```

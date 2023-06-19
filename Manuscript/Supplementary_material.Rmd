@@ -1,0 +1,362 @@
+---
+output: pdf_document
+header-includes:
+- \usepackage{orcidlink}
+- \usepackage{caption,setspace}
+- \captionsetup[figure]{labelformat=empty}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+---
+
+\captionsetup[table]{labelformat=empty}
+
+
+# Supplementary material
+
+## Brain and body size measurements
+
+Brain size was measured as the weight of the fixed brain for each specimen. First, all collected individuals were kept in cold and sent to the laboratory where they were identified by expert taxonomists and anaesthetised in cold. Then, heads were removed with a scalpel and placed in a fixative solution (4% paraformaldehyde in 0.1 M phosphate-buffered saline -PBS- pH = 7.4) to avoid degradation. Subsequently, brains were extracted from the head capsule and placed on a petri dish after removing the retina from the optic lobes and cleaning the entire brain of all tracheae and fat bodies. By doing this, we ensured that our brain measurements mainly accounted for neural tissue. We then placed the brains on a small piece of Parafilm® and dried the exceeding fixative solution with Kimwipes® tissues. Then, within 4 seconds of the liquid removal, we weighted the brains with the help of a microbalance Sartorius Cubis®. Finally, we calculated the average weight for the species with more than one specimen. Because weighing bee brains is a highly error-prone task, we excluded values that were under or above 1.5 times the interquartile range for each species.
+
+We considered as a proxy of body size the average intertegular span (ITS) per species. ITS represents the distance between the base of the wings (tegulae) on the bee thorax and has been shown to accurately predict body size as it is highly correlated with dry body weight (Cane et al., 2006; Kendall et al., 2019). All ITS measurements were conducted with a stereomicroscope (magnification 16x or 80x) with a calibrated ocular micrometre (resolution down to 0.02 mm).
+
+Cane, J. H., Minckley, R. L., Kervin, L. J., Roulston, T. A. H., & Williams, N. M. (2006). Complex responses within a desert bee guild (Hymenoptera: Apiformes) to urban habitat fragmentation. _Ecological applications_, _16_(2), 632-644.
+
+Kendall, L. K., Rader, R., Gagic, V., Cariveau, D. P., Albrecht, M., Baldock, K. C., ... & Bartomeus, I. (2019). Pollinator size and its consequences: Robust estimates of body size in pollinating insects. _Ecology and Evolution_, _9_(4), 1702-1714.
+
+\clearpage
+
+```{r Table S1, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center"}
+
+#Create table of occurrences per habitat type (USA)
+#Load libraries
+library(tidyverse)
+library(kableExtra)
+
+#Load extracted data
+pref <- read_csv("../Data/Usa_data/land_cover_usa.csv.gz") %>% 
+dplyr::select(species, cover.names) %>% 
+mutate_if(is.character,as.factor) 
+
+#Create table with original and new cover categories
+pref %>% 
+rename(Cover_names = cover.names) %>% 
+select(Cover_names) %>% 
+group_by(Cover_names) %>% 
+summarise(Occurrences = length(Cover_names)) %>% 
+mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
+       Discarded = "Barren Land", 
+       Agricultural = "Cultivated Crops", 
+       Natural = "Deciduous Forest", 
+       Urban = "Developed, High Intensity", 
+       Urban = "Developed, Medium Intensity",
+       Urban = "Developed, Low Intensity",
+       Urban = "Developed, Open Space", 
+       Natural = "Emergent Herbaceous Wetlands", 
+       Natural = "Evergreen Forest", 
+       Agricultural = "Hay/Pasture", 
+       Natural = "Herbaceous", 
+       Natural = "Mixed Forest", 
+       Discarded = "Open Water", 
+       Natural = "Shrub/Scrub", 
+       Natural = "Woody Wetlands")) %>% 
+arrange(desc(Occurrences)) %>%  
+kbl(col.names = c("Original NLCD Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S1.} Original downloaded cover classes for United States with the respective assigned cover classes and number of bee occurrences found on each of them.",
+booktabs = T, align = c("l", "c", "l"), linesep = "") %>% 
+kable_styling(font_size = 12, latex_options = c("hold_position", "striped")) %>% 
+row_spec(0,bold=TRUE)
+
+```
+
+\clearpage
+
+```{r Table S2, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center"}
+
+#Create table of occurrences per habitat type (USA)
+#Load libraries
+library(tidyverse)
+library(kableExtra)
+
+#Load extracted data
+pref <- read_csv("../Data/Europe_data/land_cover_europe.csv.gz") %>% 
+    dplyr::select(Species, Cover_names) %>% 
+    mutate_if(is.character,as.factor) 
+
+#Create table with original and new cover categories
+pref %>% 
+select(Cover_names) %>% 
+group_by(Cover_names) %>% 
+summarise(Occurrences = length(Cover_names)) %>% 
+mutate(Cover_names1 = fct_recode(as.factor(Cover_names),
+      Urban = "Airports", #1
+      Discarded = "Bare rocks", #2
+      Natural = "Beaches, dunes, sands", #3
+      Natural = "Broad-leaved forest", #4
+      Natural = "Coastal lagoons", #5
+      Agricultural = "Complex cultivation patterns", #6
+      Natural = "Coniferous forest", #7
+      Urban = "Construction sites", #8
+      Urban = "Continuous urban fabric", #9
+      Urban = "Discontinuous urban fabric", #10
+      Discarded = "Dump sites", #11
+      Discarded = "Estuaries", #12
+      Agricultural = "Fruit trees and berry plantations", #13
+      Urban = "Green urban areas", #14)
+      Urban = "Industrial or commercial units", #15
+      Natural = "Inland marshes", #16
+      Natural = "Intertidal flats", #17
+      Agricultural = "Land principally occupied by agriculture, with significant areas of natural vegetation", #18
+      Discarded = "Mineral extraction sites", #19
+      Natural = "Mixed forest", #20
+      Natural = "Moors and heathland", #21
+      Agricultural = "Natural grasslands", #22
+      Agricultural = "Non-irrigated arable land", #23
+      Agricultural = "Pastures", #24
+      Natural = "Peat bogs", #25
+      Urban = "Port areas", #26) 
+      Discarded = "Road and rail networks and associated land", #27
+      Natural = "Salt marshes", #28
+      Discarded = "Sea and ocean", #29
+      Natural = "Sparsely vegetated areas", #30
+      Urban = "Sport and leisure facilities", #31
+      Natural = "Transitional woodland-shrub", #32
+      Agricultural = "Vineyards", #33
+      Discarded = "Water bodies", #34
+      Discarded = "Water courses" #35  
+)) %>% 
+mutate(Cover_names = fct_recode(as.factor(Cover_names),
+      "Land principally occupied by agriculture" = "Land principally occupied by agriculture, with significant areas of natural vegetation")) %>% 
+arrange(desc(Occurrences)) %>%  
+kbl(col.names = c("Original CLC Cover class", "Occurrences", "Assigned cover class"), caption = "\\textbf{Table S2.} Original downloaded cover classes for Europe with the respective assigned cover classes and number of bee occurrences found on each of them.",booktabs = T,
+align = c("l", "c", "l"), linesep = "") %>% 
+kable_styling(font_size = 12,latex_options = c("hold_position", "striped")) %>% 
+row_spec(0,bold=TRUE)
+
+```
+
+\clearpage
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=7, fig.cap="\\textbf{Figure S1.} Association between the log-transformed values of brain and body size (N = 116). The different raw values or points are coloured by the subfamily taxonomic rank.", fig.pos="p", out.width="80%"}
+
+#Plot encephalization
+#Load libraries
+library(stringr)
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(elementalist) #devtools::install_github("teunbrand/elementalist")
+
+#Read data
+m = read_csv("../Data/Processing/residuals_model.csv")
+r = read_csv("../Data/Processing/residuals_data.csv")
+d = read_csv("../Data/Processing/taxonomic_rank.csv") %>% 
+mutate(Species = str_replace_all(query, " ", "_")) %>% 
+select(!c(query, db))
+
+#Add taxonomic rank to dataset
+r = left_join(r,d)
+
+#Add ggplot
+ggplot(m, aes(x = log_it, y = estimate__)) +
+geom_line(size=1) +
+geom_point(data = r, aes(log_it, log_brain_weight, color = subfamily), size=3.5) + 
+theme_bw() +
+ylab("log(Brain size)") +
+xlab("log(Body size)") +
+theme(legend.position = c(.95, .60),
+legend.justification = c("right", "top"),
+legend.box.just = "right",
+legend.background = element_rect_round(radius = unit(0.2, "snpc"),fill = "grey85"),
+legend.key = element_rect(fill = "grey85")) +
+guides(colour=guide_legend(title="Subfamily")) +
+theme(axis.title = element_text(face = "bold"))
+
+```
+
+\clearpage
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure S2.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species. A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.",  out.width="90%"}
+
+#Plot maps with density of bee occurrences
+
+#Europe----
+#Load libraries
+library(giscoR) #map of europe
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(sf)
+library(patchwork)
+library(rnaturalearth)
+
+#Load europe map
+Europe <- gisco_get_countries(region = "Europe")
+#Load countries filtered
+euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
+#Load data with records filtered
+all_long_lat <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
+
+#Plot Europe map with counties of interest highlighted
+p1 = ggplot(Europe) +
+geom_sf(fill="gray25",color = "black", alpha = 0.5,size=0.2)  +
+geom_sf(data= euro_map %>% group_by(CNTR_CODE) %>% summarise() ,
+aes(fill = CNTR_CODE, group=CNTR_CODE),fill = "#f2ea69", color = "black",alpha=0.8, size = 0.25) +
+coord_sf(xlim = c(-10, 30), ylim = c(35, 65))  + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white"))
+
+p2 = ggplot(Europe) +
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2)+
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
+coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
+theme(panel.background = element_rect(fill = "white"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("B") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(), 
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(40, 60, by = 6)) +
+scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
+
+#Insert general plot within specific plot
+panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
+
+#USA-----
+#Load libraries
+
+#Load data
+usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
+ny_metropolitan_1 <- read.csv("../Data/Usa_data/ny_metropolitan.csv")
+all_long_lat <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
+
+#Load maps
+canada <- ne_states(country = "canada", returnclass = "sf") %>%
+st_as_sf(crs = 4326) 
+
+usa <- ne_states(country = "united states of america", returnclass = "sf") %>%
+st_as_sf(crs = 4326)
+
+p1 = ggplot(canada) + 
+geom_sf(fill="gray60",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray60",color = "black", alpha = 1,size=0.2) + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white")) +
+geom_map(data = ny_metropolitan_1, 
+map = ny_metropolitan_1,aes(long, lat, map_id = region, group = group), fill = "#f2ea69",color = "black",
+size = 0.1) +
+geom_map(data = usa_states_1, map = usa_states_1,
+aes(long, lat, map_id = region, group = group), color = "black", fill = "#f2ea69",
+size = 0.1) +
+coord_sf(xlim = c(-86, -62), ylim = c(25, 48)) 
+
+p2 = ggplot(canada) + 
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray80",color = "black", alpha = 1,size=0.2) +
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
+coord_sf(xlim = c(-82, -67), ylim = c(33, 47))  +
+theme(panel.background = element_rect(fill = "white"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("A") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(),
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(33, 47, by = 4)) +
+scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+ 
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
+
+#Insert general plot within specific plot
+panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
+
+library(patchwork)
+panel2  + panel1
+
+
+
+```
+
+
+
+\clearpage
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=5, fig.width=12, fig.cap="\\textbf{Figure S3.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
+
+#Histogram of habitat preferences
+#Load libraries
+library(tidyverse) 
+
+#Load preferences
+preferences_europe = read_csv("../Data/Europe_data/preferences_europe.csv") 
+preferences_usa = read_csv("../Data/Usa_data/preferences_usa.csv") 
+
+#Merge datasets
+preferences = bind_rows(preferences_europe, preferences_usa)
+
+#Convert to long to model everything at the same time
+long_data = preferences %>% gather(Habitat, Preference, 2:4, -c(Species))
+
+#Relevel for plotting
+long_data = long_data %>% 
+mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+
+labels.minor <- c("Avoidance", rep("", times = 2), "Preference","")
+
+long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultural", "Urban"),labels = c("A) Natural", "B) Agricultural", "C) Urban"))
+
+long_data = long_data %>% 
+mutate(Preference_colour = case_when(Preference <= 0.2 ~ "A", Preference >= 0.8 ~ "B", T ~ "C"))
+
+long_data$Preference_colour <- factor(long_data$Preference_colour, levels = c("A","C", "B"), labels = c("Low preference", "No preference", "High preference"))
+
+ggplot(long_data, aes(x=Preference, color= Preference_colour)) +
+    geom_histogram(aes(fill= Preference_colour),bins = 35, alpha = 0.8,linewidth=0.5) + 
+    xlab("Habitat preference") +
+    ylab("Frequency") +
+    facet_wrap(~ Habitat) +
+    scale_fill_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
+    scale_color_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
+    theme_bw() +   
+    theme(axis.title = element_text(face = "bold", size = 14),
+    panel.border=element_rect(size=1),
+    strip.text = element_text(face = "bold", size = 18,hjust = -0.01),
+    strip.background = element_rect(fill = NA, colour = NA, size = 0,linetype="solid"),
+    panel.grid.minor=element_blank())+
+    scale_y_continuous(expand = c(0, 0), limits = c(0,60))+
+    geom_vline(aes(xintercept = 0.20), colour="black", linetype="dashed") +
+    geom_vline(aes(xintercept = 0.80), colour="black", linetype="dashed") +
+    scale_x_continuous(breaks = seq(from = 0, to = 1, by = 0.2),
+                       labels = c(0,0.2,0.4,0.6,0.8,1)) +
+  theme(legend.position = 'bottom', legend.box.background = element_rect(colour = "black",size=1))
+
+
+
+
+```
+
+\clearpage
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S4}. Association between relative brain size (A and D), brain weight (B and E) and intertegular distance (C and F) with habitat preference separated by habitat type (i.e., natural, agricultural and urban) and geographical region (USA in the upper panel and Europe in the lower one). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p", out.width="100%"}
+
+plot_all = readRDS("../Data/Processing/plot_all.rds")
+
+plot_all
+
+```
+

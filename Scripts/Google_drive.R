@@ -1,16 +1,17 @@
 #Upload files to google drive
 #install packages
-remotes::install_github("claudiozandonella/trackdown",
-                        build_vignettes = TRUE, force=T)
+#remotes::install_github("claudiozandonella/trackdown",
+#                        build_vignettes = TRUE, force=T)
 
-install.packages("googledrive")
+#install.packages("googledrive")
+
+
+
+library(googledrive)
+library(trackdown)
 
 #set google doc
 googledrive::drive_auth()
-
-#load libraries
-library(googledrive)
-library(trackdown)
 
 #upload file
 
