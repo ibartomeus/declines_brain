@@ -1,9 +1,9 @@
 ---
 title: "Bees need larger brains to thrive in urban environments"
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
+  word_document: default
 link-citations: yes
 linkcolor: RoyalBlue
 urlcolor: RoyalBlue
@@ -71,7 +71,7 @@ tax = read_csv("../Data/Processing/taxonomic_rank.csv")
 
 # Abstract
 
-The rapid conversion of natural habitats to anthropogenic landscapes is threatening insect pollinators worldwide, raising concern on the consequences for their fundamental role as plant pollinators. However, not all pollinators are negatively affected by habitat conversion, as certain species find in anthropogenic landscapes appropriate resources to persist and proliferate. The reason why some species thrive in anthropogenic environments while most find them inhospitable remains poorly understood. The cognitive buffer hypothesis, widely supported in vertebrates but untested in insects, offers a potential explanation. This theory suggests that species with larger brains have enhanced behavioural plasticity, enabling them to confront and adapt to novel challenges. To investigate this hypothesis in insects, we measured brains for `r nrow(raw)` individuals from `r nlevels(factor(unique(raw$Species)))` species of bees, and evaluated the association of their brain sizes with detailed information on habitat preferences. Our analyses revealed that bees that prefer urban habitats had larger brains relative to their body size than those who prefer forested or agricultural habitats. Additionally, urban bees exhibited larger body sizes and, consequently, larger absolute brain sizes. Our results provide the first empirical support for the cognitive buffer hypothesis in invertebrates, suggesting that a large brain in bees could confer behavioural advantages to tolerate urban environments.
+The rapid conversion of natural habitats to anthropogenic landscapes is threatening insect pollinators worldwide, raising concern on the consequences for their fundamental role as plant pollinators. However, not all pollinators are negatively affected by habitat conversion, as certain species find in anthropogenic landscapes appropriate resources to persist and proliferate. The reason why some species thrive in anthropogenic environments while most find them inhospitable remains poorly understood. The cognitive buffer hypothesis, widely supported in vertebrates but untested in insects, offers a potential explanation. This theory suggests that species with larger brains have enhanced behavioural plasticity, enabling them to confront and adapt to novel challenges. To investigate this hypothesis in insects, we measured brains for `r nrow(raw)` individuals from `r nlevels(factor(unique(raw$Species)))` bee species, and evaluated the association of their brain sizes with detailed information on habitat preferences. Our analyses revealed that bees that prefer urban habitats had larger brains relative to their body size than those who prefer forested or agricultural habitats. Additionally, urban bees exhibited larger body sizes and, consequently, larger absolute brain sizes. Our results provide the first empirical support for the cognitive buffer hypothesis in invertebrates, suggesting that a large brain in bees could confer behavioural advantages to tolerate urban environments.
 
 Keywords: relative brain size, habitat preference, Apoidea, urbanisation, pollinators
 
