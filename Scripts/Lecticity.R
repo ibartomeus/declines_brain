@@ -1,11 +1,20 @@
+#To answer one of the issues raised by a reviewer
+#We explore how the bee's diet (oligo/polylectic)
+#is associated with habitat preference (1) and brain size (2)
+
+#The data of the diet comes from the paper of Ferran
+#but because is missing for some species
+#I have look the diets for missing ones (~20spp)
+
 #Load libraries
 library(dplyr)
 library(stringr)
+library(ggplot2)
+library(patchwork)
+library(readr)
 
-#Load phylogenetic data from europe
-bee.tree100 = readRDS("Data/Europe_USA/bee.tree100.rds")
-#Load brain data
-brain_weight = readr::read_csv("Data/Processing/brain_weight_data.csv")
+# (1) Lecticity ~ habitat preference ----
+#First we explore this association with habitat preference
 #Load preferences data
 preferences_usa = readr::read_csv("Data/USA_data/preferences_usa.csv") 
 preferences_eu = readr::read_csv("Data/Europe_data/preferences_europe.csv") 
@@ -17,14 +26,12 @@ unique(pref$Species)
 
 #Average preferences between USA and Europe
 preferences = pref %>% 
-  group_by(Species) %>%
-  summarise(across(everything(), list(mean),.names = "{.col}")) %>% 
-  ungroup()
-
+group_by(Species) %>%
+summarise(across(everything(), list(mean),.names = "{.col}")) %>% 
+ungroup()
 
 #Read lecticity
-lecticity = readr::read_csv("Data/Bees_Lecticity.csv") 
-
+lecticity = read_csv("Data/Bees_Lecticity.csv") 
 #Delete underscore from tree
 lecticity$species = str_replace(lecticity$species, "_", " ")
 lecticity = lecticity %>% rename(Species = species)
@@ -144,5 +151,74 @@ mutate(Lecticity = replace(Lecticity, Species == "Megachile texana", "Polylectic
 d = d %>% 
 mutate(Lecticity = replace(Lecticity, Species == "Megachile willughbiella", "Polylectic"))
 
+d %>% 
+ggplot(aes(Lecticity, Agricultural)) +
+geom_violin()
 
 
+#Natural
+p1 = ggplot(d, aes(x = Lecticity, y = Natural)) + 
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab("Preference")+
+xlab(NULL)+
+ggtitle("Natural")+
+theme_bw()
+
+
+#Agricultural
+p2 = ggplot(d, aes(x = Lecticity, y = Agricultural)) + 
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab(NULL)+
+ggtitle("Agricultural")+
+theme_bw()
+
+
+#Urban
+p3 = ggplot(d, aes(x = Lecticity, y = Urban)) +
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab(NULL)+
+xlab(NULL)+
+ggtitle("Urban")+
+theme_bw()
+
+p1+p2+p3
+
+# (2) Lecticity ~ brain size ----
+#Load brain data
+brain_weight = readr::read_csv("Data/Processing/brain_weight_data.csv")
+
+d1 = left_join(brain_weight, d) %>% 
+filter(!is.na(Lecticity))
+
+p1 = ggplot(d1, aes(x = Lecticity, y = residuals)) + 
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab("Relative brain size")+
+xlab(NULL)+
+theme_bw()
+
+
+p2 = ggplot(d1, aes(x = Lecticity, y = Brain.weight)) + 
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab("Absolute brain size")+
+xlab(NULL)+
+theme_bw()
