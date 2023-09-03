@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  19 JUN 2023 08:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  1 SEP 2023 22:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -998,13 +998,22 @@ ile (type pdf)
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
 k-4-1.pdf  used on input line 250.
 (pdftex.def)             Requested size: 469.7731pt x 327.84518pt.
-[7 <./Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>] (./Supp
+[7 <./Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf, id=100, 578.1
+6pt x 433.62pt>
+File: Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf Graphic f
+ile (type pdf)
+<use Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>
+Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
+k-5-1.pdf  used on input line 261.
+(pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
+[8 <./Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>] (./Supp
 lementary_material.aux) ) 
 Here is how much of TeX's memory you used:
- 26611 strings out of 478268
- 498893 string characters out of 5846348
- 795847 words of memory out of 5000000
- 44220 multiletter control sequences out of 15000+600000
+ 26623 strings out of 478268
+ 499520 string characters out of 5846348
+ 795892 words of memory out of 5000000
+ 44229 multiletter control sequences out of 15000+600000
  508062 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,9n,94p,1019b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1015,10 +1024,10 @@ texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 22/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-di
 st/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
 pe1/public/lm/lmri10.pfb>
-Output written on Supplementary_material.pdf (7 pages, 1756490 bytes).
+Output written on Supplementary_material.pdf (8 pages, 1840111 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 18 named destinations out of 1000 (max. 500000)
- 22577 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 160 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 20 named destinations out of 1000 (max. 500000)
+ 22582 words of extra memory for PDF output out of 24883 (max. 10000000)
 

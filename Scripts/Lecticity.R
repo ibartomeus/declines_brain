@@ -157,32 +157,33 @@ geom_violin()
 
 
 #Natural
-p1 = ggplot(d, aes(x = Lecticity, y = Natural)) + 
+p1_1 = ggplot(d, aes(x = Lecticity, y = Natural)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
 outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
-ylab("Preference")+
+ylab("Habitat Preference")+
 xlab(NULL)+
 ggtitle("Natural")+
-theme_bw()
+theme_bw() 
 
 
 #Agricultural
-p2 = ggplot(d, aes(x = Lecticity, y = Agricultural)) + 
+p1_2 = ggplot(d, aes(x = Lecticity, y = Agricultural)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
 outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
 ylab(NULL)+
+xlab("Diet")+
 ggtitle("Agricultural")+
 theme_bw()
 
 
 #Urban
-p3 = ggplot(d, aes(x = Lecticity, y = Urban)) +
+p1_3 = ggplot(d, aes(x = Lecticity, y = Urban)) +
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
@@ -193,7 +194,8 @@ xlab(NULL)+
 ggtitle("Urban")+
 theme_bw()
 
-p1+p2+p3
+panel1 = p1_1+p1_2+p1_3 
+
 
 # (2) Lecticity ~ brain size ----
 #Load brain data
@@ -202,23 +204,35 @@ brain_weight = readr::read_csv("Data/Processing/brain_weight_data.csv")
 d1 = left_join(brain_weight, d) %>% 
 filter(!is.na(Lecticity))
 
-p1 = ggplot(d1, aes(x = Lecticity, y = residuals)) + 
+p2_1 = ggplot(d1, aes(x = Lecticity, y = residuals)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
 outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
 ylab("Relative brain size")+
-xlab(NULL)+
+xlab("Diet")+
 theme_bw()
 
 
-p2 = ggplot(d1, aes(x = Lecticity, y = Brain.weight)) + 
+p2_2 = ggplot(d1, aes(x = Lecticity, y = Brain.weight)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
 outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
 ylab("Absolute brain size")+
-xlab(NULL)+
+xlab("Diet")+
 theme_bw()
+
+panel2 =  p2_2 + p2_1
+
+
+library(cowplot)
+
+plot_grid(plot_grid(panel1, labels = c('A'))+
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=2)),
+
+plot_grid(panel2, labels = c('B'))+
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=2)), nrow = 2)
+
