@@ -236,3 +236,29 @@ plot_grid(plot_grid(panel1, labels = c('A'))+
 plot_grid(panel2, labels = c('B'))+
   theme(panel.border = element_rect(colour = "black", fill=NA, size=2)), nrow = 2)
 
+
+
+#Test statistical differences across groups
+#1st explore normality
+a = d %>% filter(Lecticity== "Polylectic")
+ggplot(a, aes(Agricultural)) +
+  geom_histogram()
+b = d %>% filter(Lecticity== "Oligolectic")
+ggplot(b, aes(Agricultural)) +
+  geom_histogram()
+#Let's pick a non-parametric option for low sample sizes
+wilcox.test(a$Agricultural, b$Agricultural)
+wilcox.test(a$Natural, b$Natural)
+wilcox.test(a$Urban, b$Urban)
+
+#Test statistical differences across groups
+glimpse(d1)
+a1 = d1 %>% filter(Lecticity== "Polylectic")
+ggplot(a1, aes(Brain.weight)) +
+  geom_histogram()
+b1 = d1 %>% filter(Lecticity== "Oligolectic")
+ggplot(b1, aes(Brain.weight)) +
+  geom_histogram()
+#Test for statistical differences
+wilcox.test(a1$Brain.weight, b1$Brain.weight)
+wilcox.test(a1$residuals, b1$residuals)
