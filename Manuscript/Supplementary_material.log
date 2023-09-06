@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  1 SEP 2023 22:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  6 SEP 2023 23:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -910,124 +910,136 @@ Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-07.
+14.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [1
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+]
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-40.
+92.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-40.
+92.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-140.
+192.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-140.
+192.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 140.
+(Font)              <12> on input line 192.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 140.
+(Font)              <8> on input line 192.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 140.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 140
+(Font)              <6> on input line 192.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 192
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 140
+LaTeX Font Info:    Trying to load font information for U+msb on input line 192
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [2
+) [3
 
-] [3
+] [4
 
 ]
-<Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf, id=32, 495.85
+<Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf, id=40, 495.85
 25pt x 423.5825pt>
 File: Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-1-1.pdf  used on input line 217.
+k-1-1.pdf  used on input line 269.
 (pdftex.def)             Requested size: 375.8077pt x 321.0341pt.
-[4 <./Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf, id=46, 847.16
-5pt x 511.9125pt>
+[5 <./Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf, id=54, 578.16
+pt x 433.62pt>
 File: Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-2-1.pdf  used on input line 228.
-(pdftex.def)             Requested size: 422.76707pt x 255.46352pt.
-[5
-
-
- <./Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf>]
-<Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf, id=65, 857.20
-25pt x 346.29375pt>
+k-2-1.pdf  used on input line 280.
+(pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
+[6 <./Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf, id=73, 847.16
+5pt x 511.9125pt>
 File: Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-3-1.pdf  used on input line 239.
-(pdftex.def)             Requested size: 469.74937pt x 189.76993pt.
-[6 <./Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf>]
-<Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf, id=82, 568.12
-25pt x 396.48125pt>
+k-3-1.pdf  used on input line 291.
+(pdftex.def)             Requested size: 422.76707pt x 255.46352pt.
+[7
+
+
+
+ <./Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf, id=93, 558.08
+5pt x 413.545pt>
 File: Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-4-1.pdf  used on input line 250.
-(pdftex.def)             Requested size: 469.7731pt x 327.84518pt.
-[7 <./Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf, id=100, 578.1
-6pt x 433.62pt>
+k-4-1.pdf  used on input line 302.
+(pdftex.def)             Requested size: 469.76752pt x 348.10109pt.
+[8 <./Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf, id=107, 857.2
+025pt x 346.29375pt>
 File: Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-5-1.pdf  used on input line 261.
-(pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
-[8 <./Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>] (./Supp
-lementary_material.aux) ) 
+k-5-1.pdf  used on input line 313.
+(pdftex.def)             Requested size: 469.74937pt x 189.76993pt.
+[9 <./Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf, id=124, 568.1
+225pt x 396.48125pt>
+File: Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf Graphic f
+ile (type pdf)
+<use Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
+k-6-1.pdf  used on input line 324.
+(pdftex.def)             Requested size: 469.7731pt x 327.84518pt.
+[10 <./Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf>] (./Sup
+plementary_material.aux) ) 
 Here is how much of TeX's memory you used:
- 26623 strings out of 478268
- 499520 string characters out of 5846348
- 795892 words of memory out of 5000000
- 44229 multiletter control sequences out of 15000+600000
- 508062 words of font info for 96 fonts, out of 8000000 for 9000
+ 26654 strings out of 478268
+ 500783 string characters out of 5846348
+ 797499 words of memory out of 5000000
+ 44242 multiletter control sequences out of 15000+600000
+ 508477 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,94p,1019b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm
-/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/
-texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
-22/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-di
-st/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
-pe1/public/lm/lmri10.pfb>
-Output written on Supplementary_material.pdf (8 pages, 1840111 bytes).
+ 99i,9n,94p,1338b,391s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/l
+m/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2
+022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/t
+ype1/public/lm/lmri10.pfb>
+Output written on Supplementary_material.pdf (10 pages, 1875307 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 20 named destinations out of 1000 (max. 500000)
- 22582 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 189 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
+ 22603 words of extra memory for PDF output out of 24883 (max. 10000000)
 

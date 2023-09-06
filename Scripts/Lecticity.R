@@ -21,9 +21,6 @@ preferences_eu = readr::read_csv("Data/Europe_data/preferences_europe.csv")
 #Bind rows
 pref = bind_rows(preferences_usa, preferences_eu)
 
-unique(pref$Species)
-
-
 #Average preferences between USA and Europe
 preferences = pref %>% 
 group_by(Species) %>%
@@ -104,12 +101,6 @@ mutate(Lecticity = replace(Lecticity, Species == "Ceratina strenua", "Polylectic
 d = d %>% 
 mutate(Lecticity = replace(Lecticity, Species == "Colletes thoracicus", "Polylectic"))
 
-#Lasioglossum malachurum
-
-#Megachile texana
-
-#Megachile willughbiella
-
 #Osmia atriventris
 #https://doi.org/10.1073/pnas.1218503110
 d = d %>% 
@@ -151,12 +142,33 @@ mutate(Lecticity = replace(Lecticity, Species == "Megachile texana", "Polylectic
 d = d %>% 
 mutate(Lecticity = replace(Lecticity, Species == "Megachile willughbiella", "Polylectic"))
 
-d %>% 
-ggplot(aes(Lecticity, Agricultural)) +
-geom_violin()
 
 
-#Natural
+#Explore statistical differences across groups-----
+#1st explore normality
+a = d %>% filter(Lecticity== "Polylectic")
+ggplot(a, aes(Agricultural)) +
+  geom_histogram()
+b = d %>% filter(Lecticity== "Oligolectic")
+ggplot(b, aes(Agricultural)) +
+  geom_histogram()
+#Let's pick a non-parametric option for low sample sizes
+wt1 = wilcox.test(a$Natural, b$Natural)
+wt2 = wilcox.test(a$Agricultural, b$Agricultural)
+wt3 = wilcox.test(a$Urban, b$Urban)
+
+#Plotting----
+#Here we load some libraries to include Wilcoxon rank test in the plot
+#for publication
+library(ggpubr)
+library(rstatix)
+
+#First graph Natural habitat
+stat.test1 <- d %>%
+wilcox_test(Natural ~ Lecticity) %>%
+add_significance()
+stat.test1 <- stat.test1 %>% add_xy_position(x = "Lecticity")
+#Build plot
 p1_1 = ggplot(d, aes(x = Lecticity, y = Natural)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
@@ -166,10 +178,17 @@ geom_jitter(alpha=0.3,width = 0.1) +
 ylab("Habitat Preference")+
 xlab(NULL)+
 ggtitle("Natural")+
-theme_bw() 
+stat_pvalue_manual(stat.test1, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
+scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
+theme_bw()
 
 
-#Agricultural
+#Second graph Agricultural habitat
+stat.test2 <- d %>%
+wilcox_test(Agricultural ~ Lecticity) %>%
+add_significance()
+stat.test2 <- stat.test2 %>% add_xy_position(x = "Lecticity")
+#Build plot
 p1_2 = ggplot(d, aes(x = Lecticity, y = Agricultural)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
@@ -179,10 +198,16 @@ geom_jitter(alpha=0.3,width = 0.1) +
 ylab(NULL)+
 xlab("Diet")+
 ggtitle("Agricultural")+
+stat_pvalue_manual(stat.test2, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
+scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
-
-#Urban
+#Third graph Urban habitat
+stat.test3 <- d %>%
+wilcox_test(Urban ~ Lecticity) %>%
+add_significance()
+stat.test3 <- stat.test3 %>% add_xy_position(x = "Lecticity")
+#Build plot
 p1_3 = ggplot(d, aes(x = Lecticity, y = Urban)) +
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
@@ -192,6 +217,8 @@ geom_jitter(alpha=0.3,width = 0.1) +
 ylab(NULL)+
 xlab(NULL)+
 ggtitle("Urban")+
+stat_pvalue_manual(stat.test3, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
+scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
 panel1 = p1_1+p1_2+p1_3 
@@ -204,18 +231,27 @@ brain_weight = readr::read_csv("Data/Processing/brain_weight_data.csv")
 d1 = left_join(brain_weight, d) %>% 
 filter(!is.na(Lecticity))
 
-p2_1 = ggplot(d1, aes(x = Lecticity, y = residuals)) + 
-geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
-geom_boxplot(colour="black",fill="grey",
-width = .15, 
-outlier.shape = NA) +
-geom_jitter(alpha=0.3,width = 0.1) +
-ylab("Relative brain size")+
-xlab("Diet")+
-theme_bw()
+#Test statistical differences across groups----
+glimpse(d1)
+a1 = d1 %>% filter(Lecticity== "Polylectic")
+ggplot(a1, aes(Brain.weight)) +
+  geom_histogram()
+b1 = d1 %>% filter(Lecticity== "Oligolectic")
+ggplot(b1, aes(Brain.weight)) +
+  geom_histogram()
+#Test for statistical differences
+wilcox.test(a1$Brain.weight, b1$Brain.weight)
+wilcox.test(a1$residuals, b1$residuals)
 
+#Plotting----
 
-p2_2 = ggplot(d1, aes(x = Lecticity, y = Brain.weight)) + 
+#First graph brain weight
+stat.test4 <- d1 %>%
+wilcox_test(Brain.weight ~ Lecticity) %>%
+add_significance()
+stat.test4 <- stat.test4 %>% add_xy_position(x = "Lecticity")
+#Build plot
+p2_1 = ggplot(d1, aes(x = Lecticity, y = Brain.weight)) + 
 geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
 geom_boxplot(colour="black",fill="grey",
 width = .15, 
@@ -223,9 +259,30 @@ outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
 ylab("Absolute brain size")+
 xlab("Diet")+
+stat_pvalue_manual(stat.test4, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
+scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
-panel2 =  p2_2 + p2_1
+
+#Second graph residuals
+stat.test5 <- d1 %>%
+wilcox_test(residuals ~ Lecticity) %>%
+add_significance()
+stat.test5 <- stat.test5 %>% add_xy_position(x = "Lecticity")
+#Build plot
+p2_2 = ggplot(d1, aes(x = Lecticity, y = residuals)) + 
+geom_violin(alpha=0.4, fill="#d7e1ee",linewidth=0)+
+geom_boxplot(colour="black",fill="grey",
+width = .15, 
+outlier.shape = NA) +
+geom_jitter(alpha=0.3,width = 0.1) +
+ylab("Relative brain size")+
+xlab("Diet")+
+stat_pvalue_manual(stat.test5, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
+scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
+theme_bw()
+
+panel2 =  p2_1 + p2_2
 
 
 library(cowplot)
@@ -238,27 +295,5 @@ plot_grid(panel2, labels = c('B'))+
 
 
 
-#Test statistical differences across groups
-#1st explore normality
-a = d %>% filter(Lecticity== "Polylectic")
-ggplot(a, aes(Agricultural)) +
-  geom_histogram()
-b = d %>% filter(Lecticity== "Oligolectic")
-ggplot(b, aes(Agricultural)) +
-  geom_histogram()
-#Let's pick a non-parametric option for low sample sizes
-wilcox.test(a$Agricultural, b$Agricultural)
-wilcox.test(a$Natural, b$Natural)
-wilcox.test(a$Urban, b$Urban)
 
-#Test statistical differences across groups
-glimpse(d1)
-a1 = d1 %>% filter(Lecticity== "Polylectic")
-ggplot(a1, aes(Brain.weight)) +
-  geom_histogram()
-b1 = d1 %>% filter(Lecticity== "Oligolectic")
-ggplot(b1, aes(Brain.weight)) +
-  geom_histogram()
-#Test for statistical differences
-wilcox.test(a1$Brain.weight, b1$Brain.weight)
-wilcox.test(a1$residuals, b1$residuals)
+
