@@ -192,10 +192,130 @@ theme(axis.title = element_text(face = "bold"))
 
 ```
 
+\clearpage
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure S2.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species. A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.",  out.width="90%"}
+
+#Plot maps with density of bee occurrences
+
+#Europe----
+#Load libraries
+library(giscoR) #map of europe
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(sf)
+library(patchwork)
+library(rnaturalearth)
+
+#Load europe map
+Europe <- gisco_get_countries(region = "Europe")
+#Load countries filtered
+euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
+#Load data with records filtered
+all_long_lat <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
+
+#Plot Europe map with counties of interest highlighted
+p1 = ggplot(Europe) +
+geom_sf(fill="gray25",color = "black", alpha = 0.5,size=0.2)  +
+geom_sf(data= euro_map %>% group_by(CNTR_CODE) %>% summarise() ,
+aes(fill = CNTR_CODE, group=CNTR_CODE),fill = "#f2ea69", color = "black",alpha=0.8, size = 0.25) +
+coord_sf(xlim = c(-10, 30), ylim = c(35, 65))  + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white"))
+
+p2 = ggplot(Europe) +
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2)+
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
+coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
+theme(panel.background = element_rect(fill = "white"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("B") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(), 
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(40, 60, by = 6)) +
+scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
+
+#Insert general plot within specific plot
+panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
+
+#USA-----
+#Load libraries
+
+#Load data
+usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
+ny_metropolitan_1 <- read.csv("../Data/Usa_data/ny_metropolitan.csv")
+all_long_lat <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
+
+#Load maps
+canada <- ne_states(country = "canada", returnclass = "sf") %>%
+st_as_sf(crs = 4326) 
+
+usa <- ne_states(country = "united states of america", returnclass = "sf") %>%
+st_as_sf(crs = 4326)
+
+p1 = ggplot(canada) + 
+geom_sf(fill="gray60",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray60",color = "black", alpha = 1,size=0.2) + 
+microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
+panel.background = element_rect(fill = "white")) +
+geom_map(data = ny_metropolitan_1, 
+map = ny_metropolitan_1,aes(long, lat, map_id = region, group = group), fill = "#f2ea69",color = "black",
+size = 0.1) +
+geom_map(data = usa_states_1, map = usa_states_1,
+aes(long, lat, map_id = region, group = group), color = "black", fill = "#f2ea69",
+size = 0.1) +
+coord_sf(xlim = c(-86, -62), ylim = c(25, 48)) 
+
+p2 = ggplot(canada) + 
+geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2) + 
+geom_sf(data= usa, fill="gray80",color = "black", alpha = 1,size=0.2) +
+geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
+viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
+coord_sf(xlim = c(-82, -67), ylim = c(33, 47))  +
+theme(panel.background = element_rect(fill = "white"),
+panel.border = element_rect(colour = "black", fill=NA, size=1)) +
+ylab("Latitude") +
+xlab("Longitude") +
+ggtitle("A") +
+theme(legend.position = c(0, 1),legend.justification = c(0, 1),
+legend.background = element_blank(),
+legend.box.background = element_blank(),
+legend.key = element_blank(),
+legend.title = element_text(face = "bold"),
+axis.title = element_text(face="bold", size = 14),
+plot.title = element_text(face="bold", size = 18),
+legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
+scale_y_continuous(breaks = seq(33, 47, by = 4)) +
+scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
+guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+ 
+ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
+
+#Insert general plot within specific plot
+panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
+
+library(patchwork)
+panel2  + panel1
+
+
+
+```
+
 
 \clearpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S2}. Graphical representation and statistical differences of diet specialisation (i.e., oligolectic and polylectic species) by habitat preference per habitat type (Panel A) and brain size including absolute and relative brain size (Panel B). The graphical representation shows boxplots, raw values and a shaded violin plot to allow a better understanding of the spread, density and number of values by each category. Note that the raw values are jittered horizontally in order to allow a better visualisation of overlapping points. The significance of the statistical differences across values are shown with the resulting P-values of a Wilcoxon test. Interestingly, we see that (i) there are few oligolectic species represented in our dataset; (ii) there are no statistical differences between oligolectic and polylectic species in habitat preference (Panel A) and brain size (Panel B); and, (iii) oligolectic species tend to have larger relative brains and, if anything, show lower preferences by urban habitats, indicating that feeding specialisation is unlikely to be driving the observed association between urban preference and brain size.", fig.pos="p", out.width="100%"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S3}. Graphical representation and statistical differences of diet specialisation (i.e., oligolectic and polylectic species) by habitat preference per habitat type (Panel A) and brain size including absolute and relative brain size (Panel B). The graphical representation shows boxplots, raw values and a shaded violin plot to allow a better understanding of the spread, density and number of values by each category. Note that the raw values are jittered horizontally in order to allow a better visualisation of overlapping points. The significance of the statistical differences across values are shown with the resulting P-values of a Wilcoxon test. Interestingly, we see that (i) there are few oligolectic species represented in our dataset; (ii) there are no statistical differences between oligolectic and polylectic species in habitat preference (Panel A) and brain size (Panel B); and, (iii) oligolectic species tend to have larger relative brains and, if anything, show lower preferences by urban habitats, indicating that feeding specialisation is unlikely to be driving the observed association between urban preference and brain size.", fig.pos="p", out.width="100%"}
 
 #To answer one of the issues raised by a reviewer
 #We explore how the bee's diet (oligo/polylectic)
@@ -469,127 +589,6 @@ plot_grid(panel2, labels = c('B'))+
 ```
 
 
-
-
-\clearpage
-
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE, fig.align="center", fig.height=12, fig.width=12, fig.cap="\\textbf{Figure S3.} Maps showing the study areas and the number of GBIF occurrences in logarithmic scale for the selected bee species. A) East Coast of United States with records for Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut, New York metropolitan area, New Jersey, Delaware and Maryland. B) European continent with records downloaded for England, Belgium, Netherlands, Germany and Denmark.",  out.width="90%"}
-
-#Plot maps with density of bee occurrences
-
-#Europe----
-#Load libraries
-library(giscoR) #map of europe
-library(ggplot2)
-library(dplyr)
-library(readr)
-library(sf)
-library(patchwork)
-library(rnaturalearth)
-
-#Load europe map
-Europe <- gisco_get_countries(region = "Europe")
-#Load countries filtered
-euro_map <- st_read("../Data/Europe_data/euro_map_1.shp", quiet = TRUE)
-#Load data with records filtered
-all_long_lat <- read.table("../Data/Europe_data/all_above_50_europe.csv.gz",  header=T, quote="\"", sep=",")
-
-#Plot Europe map with counties of interest highlighted
-p1 = ggplot(Europe) +
-geom_sf(fill="gray25",color = "black", alpha = 0.5,size=0.2)  +
-geom_sf(data= euro_map %>% group_by(CNTR_CODE) %>% summarise() ,
-aes(fill = CNTR_CODE, group=CNTR_CODE),fill = "#f2ea69", color = "black",alpha=0.8, size = 0.25) +
-coord_sf(xlim = c(-10, 30), ylim = c(35, 65))  + 
-microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
-panel.background = element_rect(fill = "white"))
-
-p2 = ggplot(Europe) +
-geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2)+
-geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=70) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
-coord_sf(xlim = c(-8, 18), ylim = c(40, 60)) +
-theme(panel.background = element_rect(fill = "white"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-ylab("Latitude") +
-xlab("Longitude") +
-ggtitle("B") +
-theme(legend.position = c(0, 1),legend.justification = c(0, 1),
-legend.background = element_blank(),
-legend.box.background = element_blank(),
-legend.key = element_blank(), 
-legend.title = element_text(face = "bold"),
-axis.title = element_text(face="bold", size = 14),
-plot.title = element_text(face="bold", size = 18),
-legend.text = element_text(face = "bold", size = 12), legend.direction="horizontal") +
-scale_y_continuous(breaks = seq(40, 60, by = 6)) +
-scale_x_continuous(breaks = seq(-8, 18, by = 8)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5)) +
-ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"),  width_hint = 0.15) 
-
-#Insert general plot within specific plot
-panel1 = p2 + inset_element(p1, left = 0, bottom = -0.89 , right = 0.35, top = 1.23, ignore_tag = TRUE) 
-
-#USA-----
-#Load libraries
-
-#Load data
-usa_states_1 <- read.csv("../Data/Usa_data/usa_states.csv")
-ny_metropolitan_1 <- read.csv("../Data/Usa_data/ny_metropolitan.csv")
-all_long_lat <- read.table("../Data/Usa_data/all_above_50_usa.csv.gz",  header=T, quote="\"", sep=",")
-
-#Load maps
-canada <- ne_states(country = "canada", returnclass = "sf") %>%
-st_as_sf(crs = 4326) 
-
-usa <- ne_states(country = "united states of america", returnclass = "sf") %>%
-st_as_sf(crs = 4326)
-
-p1 = ggplot(canada) + 
-geom_sf(fill="gray60",color = "black", alpha = 1,size=0.2) + 
-geom_sf(data= usa, fill="gray60",color = "black", alpha = 1,size=0.2) + 
-microplot::theme_collapse(panel.border = element_rect(colour = "black", fill=NA, size=2),
-panel.background = element_rect(fill = "white")) +
-geom_map(data = ny_metropolitan_1, 
-map = ny_metropolitan_1,aes(long, lat, map_id = region, group = group), fill = "#f2ea69",color = "black",
-size = 0.1) +
-geom_map(data = usa_states_1, map = usa_states_1,
-aes(long, lat, map_id = region, group = group), color = "black", fill = "#f2ea69",
-size = 0.1) +
-coord_sf(xlim = c(-86, -62), ylim = c(25, 48)) 
-
-p2 = ggplot(canada) + 
-geom_sf(fill="gray80",color = "black", alpha = 1,size=0.2) + 
-geom_sf(data= usa, fill="gray80",color = "black", alpha = 1,size=0.2) +
-geom_bin2d(data = all_long_lat, aes(x = long, y = lat, fill=log(..count..)),size = 1,bins=50) +
-viridis::scale_fill_viridis(name = "log(Count)", breaks = c(0, 4, 8), limits=c(0,8)) +
-coord_sf(xlim = c(-82, -67), ylim = c(33, 47))  +
-theme(panel.background = element_rect(fill = "white"),
-panel.border = element_rect(colour = "black", fill=NA, size=1)) +
-ylab("Latitude") +
-xlab("Longitude") +
-ggtitle("A") +
-theme(legend.position = c(0, 1),legend.justification = c(0, 1),
-legend.background = element_blank(),
-legend.box.background = element_blank(),
-legend.key = element_blank(),
-legend.title = element_text(face = "bold"),
-axis.title = element_text(face="bold", size = 14),
-plot.title = element_text(face="bold", size = 18),
-legend.text = element_text(face = "bold", size = 12, hjust=0), legend.direction="horizontal") +
-scale_y_continuous(breaks = seq(33, 47, by = 4)) +
-scale_x_continuous(breaks = seq(-82, -67, by = 4)) +
-guides(fill = guide_colourbar(title.position = "top", title.hjust = .5))+ 
-ggspatial::annotation_scale(location = 'br',  bar_cols = c("grey60", "white"))
-
-#Insert general plot within specific plot
-panel2 = p2 + inset_element(p1, left = 0, bottom = -0.86, right = 0.35, top = 1.2, ignore_tag = TRUE) 
-
-library(patchwork)
-panel2  + panel1
-
-
-
-```
 
 
 \clearpage
