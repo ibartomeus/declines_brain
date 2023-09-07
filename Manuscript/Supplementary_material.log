@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  6 SEP 2023 23:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.9)  7 SEP 2023 23:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -919,39 +919,39 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 ]
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-92.
+91.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-92.
+91.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-192.
+191.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-192.
+191.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 192.
+(Font)              <12> on input line 191.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 192.
+(Font)              <8> on input line 191.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 192.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 192
+(Font)              <6> on input line 191.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 191
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 192
+LaTeX Font Info:    Trying to load font information for U+msb on input line 191
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -968,7 +968,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-1-1.pdf  used on input line 269.
+k-1-1.pdf  used on input line 268.
 (pdftex.def)             Requested size: 375.8077pt x 321.0341pt.
 [5 <./Supplementary_material_files/figure-latex/unnamed-chunk-1-1.pdf>]
 <Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf, id=54, 578.16
@@ -977,7 +977,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-2-1.pdf  used on input line 280.
+k-2-1.pdf  used on input line 279.
 (pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
 [6 <./Supplementary_material_files/figure-latex/unnamed-chunk-2-1.pdf>]
 <Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf, id=73, 847.16
@@ -986,7 +986,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-3-1.pdf  used on input line 291.
+k-3-1.pdf  used on input line 290.
 (pdftex.def)             Requested size: 422.76707pt x 255.46352pt.
 [7
 
@@ -999,7 +999,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-4-1.pdf  used on input line 302.
+k-4-1.pdf  used on input line 301.
 (pdftex.def)             Requested size: 469.76752pt x 348.10109pt.
 [8 <./Supplementary_material_files/figure-latex/unnamed-chunk-4-1.pdf>]
 <Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf, id=107, 857.2
@@ -1008,7 +1008,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-5-1.pdf  used on input line 313.
+k-5-1.pdf  used on input line 312.
 (pdftex.def)             Requested size: 469.74937pt x 189.76993pt.
 [9 <./Supplementary_material_files/figure-latex/unnamed-chunk-5-1.pdf>]
 <Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf, id=124, 568.1
@@ -1017,7 +1017,7 @@ File: Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf Graphic f
 ile (type pdf)
 <use Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Supplementary_material_files/figure-latex/unnamed-chun
-k-6-1.pdf  used on input line 324.
+k-6-1.pdf  used on input line 323.
 (pdftex.def)             Requested size: 469.7731pt x 327.84518pt.
 [10 <./Supplementary_material_files/figure-latex/unnamed-chunk-6-1.pdf>] (./Sup
 plementary_material.aux) ) 
@@ -1036,7 +1036,7 @@ m/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<
 022/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2022/texmf-d
 ist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/t
 ype1/public/lm/lmri10.pfb>
-Output written on Supplementary_material.pdf (10 pages, 1875307 bytes).
+Output written on Supplementary_material.pdf (10 pages, 1875303 bytes).
 PDF statistics:
  189 PDF objects out of 1000 (max. 8388607)
  144 compressed objects within 2 object streams
