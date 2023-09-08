@@ -1,9 +1,9 @@
 ---
 title: "Bees need larger brains to thrive in urban environments"
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
-  word_document: default
 link-citations: yes
 linkcolor: RoyalBlue
 urlcolor: RoyalBlue
@@ -29,17 +29,19 @@ csl: BiologyLetters.csl
 knitr::opts_chunk$set(fig.pos = "H", out.extra = "")
 ```
 
-\textbf{Jose B. Lanuza$^{1}$} \orcidlink{0000-0002-0287-409X} \textbf{, Miguel Á. Collado$^{1,2}$} \orcidlink{0000-0002-4216-317X} \textbf{, Ferran Sayol$^{3,4}$} \orcidlink{0000-0003-3540-7487} \textbf{, Daniel Sol$^{3}$} \orcidlink{0000-0001-6346-6949} \textbf{and Ignasi Bartomeus$^{1}$} \orcidlink{0000-0001-7893-4389}
+\textbf{Jose B. Lanuza$^{1,2}$} \orcidlink{0000-0002-0287-409X} \textbf{, Miguel Á. Collado$^{1,3}$} \orcidlink{0000-0002-4216-317X} \textbf{, Ferran Sayol$^{4}$} \orcidlink{0000-0003-3540-7487} \textbf{, Daniel Sol$^{4,5}$} \orcidlink{0000-0001-6346-6949} \textbf{and Ignasi Bartomeus$^{1}$} \orcidlink{0000-0001-7893-4389}
 
-Jose B. Lanuza$^{1}$ https://orcid.org/0000-0002-0287-409X, Miguel Á. Collado$^{1,2}$ https://orcid.org/0000-0002-4216-317X, Ferran Sayol$^{3}$ https://orcid.org/0000-0003-3540-7487, Daniel Sol$^{3,4}$ https://orcid.org/0000-0001-6346-6949 and Ignasi Bartomeus$^{1}$ https://orcid.org/0000-0001-7893-4389
+Jose B. Lanuza$^{1,2}$ https://orcid.org/0000-0002-0287-409X, Miguel Á. Collado$^{1,3}$ https://orcid.org/0000-0002-4216-317X, Ferran Sayol$^{4}$ https://orcid.org/0000-0003-3540-7487, Daniel Sol$^{4,5}$ https://orcid.org/0000-0001-6346-6949 and Ignasi Bartomeus$^{1}$ https://orcid.org/0000-0001-7893-4389
 
 $^{1}$Estación Biológica de Doñana (EBD-CSIC), E-41092 Seville, Spain
 
-$^{2}$Departamento de Ciencias de la Computación e Inteligencia Artificial, Universidad de Sevilla, Seville, Spain
+$^{2}$German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig
 
-$^{3}$Centre for Ecological Research and Forestry Applications (CREAF), Bellaterra, Catalonia, Spain
+$^{3}$Departamento de Ciencias de la Computación e Inteligencia Artificial, Universidad de Sevilla, Seville, Spain
 
-$^{4}$CSIC, Spanish National Research Council, CREAF-UAB, Catalonia, Spain
+$^{4}$Centre for Ecological Research and Forestry Applications (CREAF), Bellaterra, Catalonia, Spain
+
+$^{5}$CSIC, Spanish National Research Council, CREAF-UAB, Catalonia, Spain
 
 **Author for correspondence: barragansljose\@gmail.com**
 

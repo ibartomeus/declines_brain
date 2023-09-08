@@ -11,12 +11,12 @@ library(ggplot2)
 
 #Read datasets
 #1st Sayol 
-sayol = read_csv("Raw_data/BeeTraits_individual.csv") %>% 
+sayol = read_csv("Raw_data/sayol_data.csv") %>% 
 dplyr::select(!c(head.weight.g, no.optic.lobes.weight.mg,body.mass.g)) %>% 
 mutate(species = str_replace(species, "_", " "))
 #snd Collado (is similar but Collado has some extra species)
 #Note Sayol data is clean but Collado still needs some processing
-collado <- read.csv("Raw_data/brains.it.csv", dec = ",") %>% 
+collado <- read.csv("Raw_data/collado_data.csv", dec = ",") %>% 
 dplyr::select(!c(Place, No.optic.lobes.weight, 
 Notes, Head.weight..g., Plant, Date, Weigth..g., ID, Genus)) %>% 
 rename(Brain.weight = Brain.Weight..mg.)
@@ -131,7 +131,7 @@ wit.mean <- merge(weights.mean, IT.mean)
 
 #Save data ----
 #Save data to load raw values in methods
-write_csv(all_cleaning, "Raw_data/all_cleaning.csv")
+write_csv(all_cleaning, "Data/Processing/all_cleaning.csv")
 #Save data to calculate residuals
 saveRDS(wit.mean, "Data/Processing/wit.mean.rds")
 

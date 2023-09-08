@@ -28,7 +28,7 @@ summarise(across(everything(), list(mean),.names = "{.col}")) %>%
 ungroup()
 
 #Read lecticity
-lecticity = read_csv("Data/Bees_Lecticity.csv") 
+lecticity = read_csv("Data/Lecticity/Bees_Lecticity.csv") 
 #Delete underscore from tree
 lecticity$species = str_replace(lecticity$species, "_", " ")
 lecticity = lecticity %>% rename(Species = species)
@@ -142,7 +142,7 @@ mutate(Lecticity = replace(Lecticity, Species == "Megachile texana", "Polylectic
 d = d %>% 
 mutate(Lecticity = replace(Lecticity, Species == "Megachile willughbiella", "Polylectic"))
 
-
+write_csv(d, "Data/Lecticity/Lecticity_all.csv")
 
 #Explore statistical differences across groups-----
 #1st explore normality
