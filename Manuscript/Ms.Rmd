@@ -52,7 +52,7 @@ library(readr)
 library(dplyr)
 
 #Load final dataset 
-raw = read_csv("../Raw_data/all_cleaning.csv")
+raw = read_csv("../Data/Processing/all_cleaning.csv")
 
 d = raw %>% 
 group_by(Species) %>% 
@@ -450,7 +450,7 @@ Our findings support and extend upon previous evidence in vertebrates, that havi
 
 # Data accessibility
 
-All occurrence data used in this study can be downloaded from <https://doi.org/10.15468/dl.5s5kuf>. In addition, bee trait data and code can be found in the online repositories of Zenodo <https://doi.org/10.5281/zenodo.8049996> and Github <https://github.com/ibartomeus/declines_brain.git>.
+All data and code can be accessed at Dryad Digital Repository: <https://doi.org/10.5061/dryad.zw3r228dr> [@Lanuza2023].
 
 # Authors' contributions
 

@@ -134,5 +134,6 @@ wit.mean <- merge(weights.mean, IT.mean)
 write_csv(all_cleaning, "Data/Processing/all_cleaning.csv")
 #Save data to calculate residuals
 saveRDS(wit.mean, "Data/Processing/wit.mean.rds")
+write_csv(wit.mean, "Data/Processing/wit.mean.csv")
 
 
