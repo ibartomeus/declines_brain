@@ -144,6 +144,9 @@ mutate(Lecticity = replace(Lecticity, Species == "Megachile willughbiella", "Pol
 
 write_csv(d, "Data/Lecticity/Lecticity_all.csv")
 
+d1 = d %>% select(Species, Lecticity)
+write_csv(d1, "Data/Lecticity/Lecticity.csv")
+
 #Explore statistical differences across groups-----
 #1st explore normality
 a = d %>% filter(Lecticity== "Polylectic")

@@ -12,7 +12,7 @@ header-includes:
 
 \captionsetup[table]{labelformat=empty}
 
-# Supplementary material for: Bees need larger brains to thrive in urban environments
+# Supplementary material for: Brain size predicts bees' tolerance to urban environments
 
 ## Authors: Jose B. Lanuza, Miguel Á. Collado, Ferran Sayol, Daniel Sol and Ignasi Bartomeus
 
@@ -315,7 +315,7 @@ panel2  + panel1
 
 \clearpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S3}. Graphical representation and statistical differences of diet specialisation (i.e., oligolectic and polylectic species) by habitat preference per habitat type (Panel A) and brain size including absolute and relative brain size (Panel B). The graphical representation shows boxplots, raw values and a shaded violin plot to allow a better understanding of the spread, density and number of values by each category. Note that the raw values are jittered horizontally in order to allow a better visualisation of overlapping points. The significance of the statistical differences across values are shown with the resulting P-values of a Wilcoxon test. Interestingly, we see that (i) there are few oligolectic species represented in our dataset; (ii) there are no statistical differences between oligolectic and polylectic species in habitat preference (Panel A) and brain size (Panel B); and, (iii) oligolectic species tend to have larger relative brains and, if anything, show lower preferences by urban habitats, indicating that feeding specialisation is unlikely to be driving the observed association between urban preference and brain size.", fig.pos="p", out.width="100%"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S3}. Graphical representation and statistical differences of diet specialisation (i.e., oligolectic and polylectic species) by the degree of habitat occupancy per habitat type (Panel A) and brain size including absolute and relative brain size (Panel B). The graphical representation shows boxplots, raw values and a shaded violin plot to allow a better understanding of the spread, density and number of values by each category. Note that the raw values are jittered horizontally in order to allow a better visualisation of overlapping points. The significance of the statistical differences across values are shown with the resulting P-values of a Wilcoxon test. Interestingly, we see that (i) there are few oligolectic species represented in our dataset; (ii) there are no statistical differences between oligolectic and polylectic species in habitat occupancy (Panel A) and brain size (Panel B); and, (iii) oligolectic species tend to have larger relative brains and, if anything, show lower occupancy in urban habitats, indicating that feeding specialisation is unlikely to be driving the observed association between urban occupancy and brain size.", fig.pos="p", out.width="100%"}
 
 #To answer one of the issues raised by a reviewer
 #We explore how the bee's diet (oligo/polylectic)
@@ -347,7 +347,7 @@ summarise(across(everything(), list(mean),.names = "{.col}")) %>%
 ungroup()
 
 #Read lecticity
-lecticity = read_csv("../Data/Bees_Lecticity.csv") 
+lecticity = read_csv("../Data/Lecticity/Bees_Lecticity.csv") 
 #Delete underscore from tree
 lecticity$species = str_replace(lecticity$species, "_", " ")
 lecticity = lecticity %>% rename(Species = species)
@@ -479,11 +479,11 @@ geom_boxplot(colour="black",fill="grey",
 width = .15, 
 outlier.shape = NA) +
 geom_jitter(alpha=0.3,width = 0.1) +
-ylab("Habitat preference")+
+ylab("Habitat occupancy")+
 xlab(NULL)+
 ggtitle("Natural")+
 stat_pvalue_manual(stat.test1, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
-scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
+scale_y_continuous(breaks = c(0, 0.5,1),expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
 
@@ -503,7 +503,7 @@ ylab(NULL)+
 xlab("Diet")+
 ggtitle("Agricultural")+
 stat_pvalue_manual(stat.test2, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
-scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
+scale_y_continuous(breaks = c(0, 0.5,1),expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
 #Third graph Urban habitat
@@ -522,7 +522,7 @@ ylab(NULL)+
 xlab(NULL)+
 ggtitle("Urban")+
 stat_pvalue_manual(stat.test3, label =  "Wilcoxon test, p = {p}",vjust = -0.05, bracket.nudge.y = 0.05) +
-scale_y_continuous(expand = expansion(mult = c(0.05, 0.2))) +
+scale_y_continuous(breaks = c(0, 0.5,1), expand = expansion(mult = c(0.05, 0.2))) +
 theme_bw()
 
 panel1 = p1_1+p1_2+p1_3 
@@ -609,7 +609,7 @@ library(lme4)
 library(performance)
 
 #Read data
-long = read_csv("../Raw_data/all_cleaning.csv")
+long = read_csv("../Data/Processing/all_cleaning.csv")
 
 #Filter out the species that we don't use
 #Load preferences data
@@ -671,7 +671,7 @@ p1 + p2
 
 \clearpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=5, fig.width=12, fig.cap="\\textbf{Figure S5.} Frequency distribution of the bee preferences for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for Unites States.", fig.pos="p"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=5, fig.width=12, fig.cap="\\textbf{Figure S5.} Frequency distribution of the degree of habitat occupancy compared to null expectations for each habitat type (i.e., natural, agricultural and urban). The different habitats are reclassifications from the 2006 land use categories of the Corine Land Cover (CLC) inventory for Europe and the National Land Cover (NLC) database for the United States. The categories of 'low' and 'high' indicate that the observed occurrences are consistently under- or over-represented when compared to random expectations.", fig.pos="p"}
 
 #Histogram of habitat preferences
 #Load libraries
@@ -698,11 +698,11 @@ long_data$Habitat <- factor(long_data$Habitat, levels = c("Natural", "Agricultur
 long_data = long_data %>% 
 mutate(Preference_colour = case_when(Preference <= 0.2 ~ "A", Preference >= 0.8 ~ "B", T ~ "C"))
 
-long_data$Preference_colour <- factor(long_data$Preference_colour, levels = c("A","C", "B"), labels = c("Low preference", "No preference", "High preference"))
+long_data$Preference_colour <- factor(long_data$Preference_colour, levels = c("A","C", "B"), labels = c("Low", "No difference", "High"))
 
 ggplot(long_data, aes(x=Preference, color= Preference_colour)) +
     geom_histogram(aes(fill= Preference_colour),bins = 35, alpha = 0.8,linewidth=0.5) + 
-    xlab("Habitat preference") +
+    xlab("Degree of habitat occupancy") +
     ylab("Frequency") +
     facet_wrap(~ Habitat) +
     scale_fill_manual(name="" ,values=c("coral2", "gray", "palegreen3")) +
@@ -727,7 +727,7 @@ ggplot(long_data, aes(x=Preference, color= Preference_colour)) +
 
 \clearpage
 
-```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S6}. Association between relative brain size (A and D), brain weight (B and E) and intertegular distance (C and F) with habitat preference separated by habitat type (i.e., natural, agricultural and urban) and geographical region (USA in the upper panel and Europe in the lower one). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p", out.width="100%"}
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=8, fig.cap="\\textbf{Figure S6}. Association between relative brain size (A and D), brain weight (B and E) and intertegular distance (C and F) with the degree of habitat occupancy separated by habitat type (i.e., natural, agricultural and urban) and geographical region (USA in the upper panel and Europe in the lower one). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p", out.width="100%"}
 
 plot_all = readRDS("../Data/Processing/plot_all.rds")
 

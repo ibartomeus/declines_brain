@@ -39,7 +39,7 @@ geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, si
 geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
-ylab("Habitat preference") +
+ylab("Habitat occupancy") +
 xlab("Relative brain size") +
 scale_colour_viridis_d() +
 scale_fill_viridis_d() +
@@ -117,7 +117,7 @@ geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, si
 geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
-ylab("Habitat preference") +
+ylab("Habitat occupancy") +
 xlab("Relative brain size") +
 ggtitle("D") +  
 scale_colour_viridis_d() +
@@ -201,7 +201,7 @@ geom_point(data =  long_data, aes(x = residuals, y = (Preference)), shape=21, si
 geom_line(aes(color=Habitat),size=0.7) +
 geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
 theme_bw() +
-ylab("Habitat preference") +
+ylab("Habitat occupancy") +
 xlab("Relative brain size") +
 ggtitle("A") +  
 scale_colour_viridis_d() +
