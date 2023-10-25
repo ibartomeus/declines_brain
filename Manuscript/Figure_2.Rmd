@@ -1,0 +1,91 @@
+---
+output: pdf_document
+header-includes:
+- \usepackage{caption,setspace}
+- \captionsetup[figure]{labelformat=empty}
+---
+
+```{r, echo=FALSE, message=FALSE, cache=FALSE, warning=FALSE,fig.align="center", fig.height=6, fig.width=10, fig.cap="Figure 2. Association between relative brain size (A), brain weight (B) and intertegular distance (C) with the degree of habitat occupancy by habitat type (i.e., natural, agricultural and urban). The shaded and coloured areas by habitat type represent 95\\% credible intervals.", fig.pos="p"}
+
+#Load libraries
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+
+#Load data for plotting
+long_data <- read_csv("../Data/Europe_USA/data_preference_residuals_europe_usa_qualitative.csv")
+
+model1 = read_csv("../Data/Europe_USA/model_output_preference_residuals_europe_usa_qualitative.csv")
+
+model2 = read_csv("../Data/Europe_USA/model_output_preference_brain_weight_europe_usa_qualitative.csv")
+
+model3 = read_csv("../Data/Europe_USA/model_output_preference_it_europe_usa_qualitative.csv")
+
+#Relevel for plotting
+long_data = long_data %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model1 = model1 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model2 = model2 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+#Relevel for plotting
+model3 = model3 %>% 
+    mutate(Habitat=fct_relevel(Habitat,c("Natural","Agricultural", "Urban"))) 
+
+#colorBlindness::displayAllColors(viridis::viridis(4))
+
+set.seed(3)
+
+all_1 = ggplot(model1, aes(x = residuals, y = estimate__, color=Habitat)) +
+geom_jitter(width = 0.05, height = 0,data =  long_data, aes(x = residuals, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab("Habitat occupancy") +
+xlab("Relative brain size") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("A") +
+theme(plot.title = element_text(face = "bold", size=18))
+  
+
+all_2 = ggplot(model2, aes(x = Brain.weight, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = Brain.weight, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__,  fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab(NULL) +
+xlab("Brain weight (mg)") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("B") +
+theme(plot.title = element_text(face = "bold", size=18))
+
+
+
+all_3 = ggplot(model3, aes(x = IT, y = estimate__, color=Habitat)) +
+geom_point(data =  long_data, aes(x = IT, y = (Preference)), shape=21, size=2.5) +
+geom_line(aes(color=Habitat),size=0.7) +
+geom_ribbon(aes(ymin = lower__, ymax = upper__, fill = Habitat),color=NA, linetype = "dashed",alpha = 0.2)+
+theme_bw() +
+ylab(NULL) +
+xlab("Intertegular distance (mm)") +
+scale_colour_viridis_d() +
+scale_fill_viridis_d() +
+scale_y_continuous(breaks = seq(0, 1, by = 1),labels = c("Low", "High")) +
+ggtitle("C") +
+theme(plot.title = element_text(face = "bold", size=18))
+
+library(patchwork)
+
+all_1 + (all_2/all_3) + plot_layout(guides = "collect") &
+theme(legend.position = 'bottom', panel.border=element_rect(size=1),
+      axis.title=element_text(face="bold"),
+      legend.box.background = element_rect(colour = "black",size=1))
+
+```
